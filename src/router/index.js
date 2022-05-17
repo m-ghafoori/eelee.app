@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home/HomeView.vue'
-import HomeViewMobile from '../views/home-mobile/HomeViewMobile.vue'
+import HomeViewMobile from '../views/home-mobile/HomeMobile.vue'
 
 const routes = [
   {
@@ -8,7 +8,7 @@ const routes = [
     name: 'home',
     component: () => { 
       if (window.innerWidth < 992) {
-        return import('../views/home-mobile/HomeViewMobile.vue');
+        return import('../views/home-mobile/HomeMobile.vue');
       } else {
         return import('../views/home/HomeView.vue');
       }

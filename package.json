@@ -7,9 +7,9 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "vue": "^3.2.13",
-    "vue-router": "^4.0.3",
-    "jquery": "3.6.0"
+    "jquery": "3.6.0",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-router": "~5.0.0",
