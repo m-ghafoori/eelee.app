@@ -65,7 +65,7 @@ export default {
     screenWidthChangeHandler(sizeClass) {
       this.sizeHistoryArray.push(sizeClass)
       this.sizeHistoryArray.shift();
-      console.log(this.sizeHistoryArray)
+      // console.log(this.sizeHistoryArray)
       if (this.checkArraysEquality(this.sizeHistoryArray, ['lg','md'])
         ||this.checkArraysEquality(this.sizeHistoryArray, ['md','lg'])) {
         this.$router.go(0);
@@ -77,11 +77,15 @@ export default {
     this.sizeHistoryArray.push(initialSize)
     this.sizeHistoryArray.push(initialSize)
     console.log('created:',this.sizeHistoryArray);
-  }
+  },
+  emits: ['screen-width-change']
   }
 </script>
 
 <style>
+@import '@/assets/css/animate.css';
+@import '@/assets/css/global.css';
+
 body {
   margin: 0;
 }

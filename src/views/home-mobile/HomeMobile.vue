@@ -34,7 +34,7 @@
     <div id="m-containerWrapper" class="">
         <div id="m-mainContainer" class="">
     
-            <header class="">
+            <header id="m-header" class="">
                 <span id="m-logo-1" class="text-shadow-logo">ee</span>
                 <span id="m-logo-2" class="text-shadow-logo">f
                 </span>
@@ -68,7 +68,7 @@
                 </div>
             </section>
     
-            <footer class="">
+            <footer id="m-footer" class="">
                         <span id="m-telegramSpan" href="#" class="">
                             <img id="m-telegramIcon" class="footer-shadow hoverable" @mouseenter="telegramImgSrcMouseEnter" @mouseleave="telegramImgSrcMouseLeave" :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)">
                         </span>

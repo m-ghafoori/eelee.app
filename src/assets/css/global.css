@@ -1,0 +1,29 @@
+
+.invisible {
+    visibility: hidden !important;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.flex-column {
+    flex-direction: column !important;
+}
+
+.sound-enabled {
+    color: green;
+}
+
+.sound-disabled {
+    color: red;
+}
+
+.lg-wide-screen {
+    min-height: 569px !important;
+    min-width: 1280px !important;
+}

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/home/HomeView.vue'
+import HomeView from '../views/home/Home.vue'
 import HomeViewMobile from '../views/home-mobile/HomeMobile.vue'
 
 const routes = [
@@ -10,7 +10,7 @@ const routes = [
       if (window.innerWidth < 992) {
         return import('../views/home-mobile/HomeMobile.vue');
       } else {
-        return import('../views/home/HomeView.vue');
+        return import('../views/home/Home.vue');
       }
     }
   },
