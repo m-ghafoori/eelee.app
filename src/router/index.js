@@ -6,7 +6,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => { 
+    component: () => {
       if (window.innerWidth < 992) {
         return import('../views/home-mobile/HomeMobile.vue');
       } else {

@@ -14,28 +14,33 @@
   0% {
     text-shadow: 0 0 0 rgb(255, 255, 255, 1);
   }
+
   50% {
     text-shadow: 0 0 38px rgba(255, 255, 255, 1);
   }
+
   100% {
     text-shadow: 0 0 0 rgb(255, 255, 255, 1);
   }
 }
+
 @keyframes text-shadow-drop-center {
   0% {
     text-shadow: 0 0 0 rgb(255, 255, 255, 1);
   }
+
   50% {
     text-shadow: 0 0 38px rgba(255, 255, 255, 1);
   }
+
   100% {
     text-shadow: 0 0 0 rgb(255, 255, 255, 1);
   }
 }
 
 .text-shadow-drop-center {
-	-webkit-animation: text-shadow-drop-center 12s infinite both ease-in-out;
-	        animation: text-shadow-drop-center 12s infinite both ease-in-out;
+  -webkit-animation: text-shadow-drop-center 12s infinite both ease-in-out;
+  animation: text-shadow-drop-center 12s infinite both ease-in-out;
 }
 
 
@@ -56,28 +61,33 @@
   0% {
     text-shadow: 0 0 0 #a2e5ff;
   }
+
   50% {
     text-shadow: 0 0 28px #a2e5ff;
   }
+
   100% {
     text-shadow: 0 0 0 #a2e5ff;
   }
 }
+
 @keyframes text-shadow-logo {
   0% {
     text-shadow: 0 0 0 #a2e5ff;
   }
+
   50% {
     text-shadow: 0 0 28px #a2e5ff;
   }
+
   100% {
     text-shadow: 0 0 0 #a2e5ff;
   }
 }
 
 .text-shadow-logo {
-	-webkit-animation: text-shadow-logo 8s infinite both ease-in-out;
-	        animation: text-shadow-logo 8s infinite both ease-in-out;
+  -webkit-animation: text-shadow-logo 8s infinite both ease-in-out;
+  animation: text-shadow-logo 8s infinite both ease-in-out;
 }
 
 
@@ -98,38 +108,43 @@
   0% {
     filter: saturate(0.9);
   }
+
   50% {
     filter: saturate(3);
   }
+
   100% {
     filter: saturate(0.9);
   }
 }
+
 @keyframes footer-shadow {
   0% {
     filter: saturate(0.9);
   }
+
   50% {
     filter: saturate(3);
   }
+
   100% {
     filter: saturate(0.9);
   }
 }
 
 .footer-shadow {
-	-webkit-animation: footer-shadow 2.8s infinite both ease-in-out;
-	        animation: footer-shadow 2.8s infinite both ease-in-out;
+  -webkit-animation: footer-shadow 2.8s infinite both ease-in-out;
+  animation: footer-shadow 2.8s infinite both ease-in-out;
 }
 
 .moon-shadow {
-	-webkit-animation: footer-shadow 6s infinite both ease-in-out;
-	        animation: footer-shadow 6s infinite both ease-in-out;
+  -webkit-animation: footer-shadow 6s infinite both ease-in-out;
+  animation: footer-shadow 6s infinite both ease-in-out;
 }
 
 .shake-horizontal {
-	-webkit-animation: shake-horizontal 2s both;
-	        animation: shake-horizontal 2s both;
+  -webkit-animation: shake-horizontal 2s both;
+  animation: shake-horizontal 2s both;
 }
 
 /* ----------------------------------------------
@@ -144,12 +159,14 @@
  * animation shake-horizontal
  * ----------------------------------------
  */
- @-webkit-keyframes shake-horizontal {
+@-webkit-keyframes shake-horizontal {
+
   0%,
   100% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
   }
+
   10%,
   20%,
   30%,
@@ -160,8 +177,9 @@
   80%,
   90% {
     -webkit-transform: translateX(-10px);
-            transform: translateX(-10px);
+    transform: translateX(-10px);
   }
+
   5%,
   15%,
   25%,
@@ -173,15 +191,18 @@
   85%,
   95% {
     -webkit-transform: translateX(10px);
-            transform: translateX(10px);
+    transform: translateX(10px);
   }
 }
+
 @keyframes shake-horizontal {
+
   0%,
   100% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
   }
+
   10%,
   20%,
   30%,
@@ -192,8 +213,9 @@
   80%,
   90% {
     -webkit-transform: translateX(-10px);
-            transform: translateX(-10px);
+    transform: translateX(-10px);
   }
+
   5%,
   15%,
   25%,
@@ -205,20 +227,28 @@
   85%,
   95% {
     -webkit-transform: translateX(10px);
-            transform: translateX(10px);
+    transform: translateX(10px);
   }
 }
 
 
 /* Linear Wipe */
 .linear-wipe {
-	animation: animated_text 10s ease-in-out infinite;
-	-moz-animation: animated_text 10s ease-in-out infinite;
-	-webkit-animation: animated_text 10s ease-in-out infinite;
+  animation: animated_text 10s ease-in-out infinite;
+  -moz-animation: animated_text 10s ease-in-out infinite;
+  -webkit-animation: animated_text 10s ease-in-out infinite;
 }
 
 @keyframes animated_text {
-	0% { background-position: 0px 50%; }
-	50% { background-position: 100% 50%; }
-	100% { background-position: 0px 50%; }
+  0% {
+    background-position: 0px 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0px 50%;
+  }
 }

@@ -1,3 +1,5 @@
+/* Fonts */
+
 @font-face {
     font-family: Logo-Font;
     src: url("../fonts/logo-mobile.ttf");
@@ -18,145 +20,76 @@
     src: url("../fonts/pandoralimiter_Teabeer.ttf");
 }
 
+/* ID Tags */
+
 #m-body {
     background-color: #02021b;
-    width: 100%;
-    height: 100%;
-    min-width: 320px;
-    cursor: url('../images/svg/pointer.svg'), auto;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-#m-footer {
-    width: 40%;
-    height: 13vh;
-    display: flex;
-    justify-content: space-between;
-    align-self: center;
-}
-/* 
-#m-footer span {
-    max-width: fit-content;
-    max-height: fit-content;
-}
-*/
-
-.hoverable {
-    cursor: url('../images/svg/pointer-hover.svg'), auto;
-}
-
-#m-question {
     width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#m-question p{
-    width: 80vw;
-    font-size: 2.8vw;
-    text-align: center;
-    letter-spacing: 0.5vw;
-    word-spacing: 2vw;
-    white-space: nowrap;
-    color: #f8cc09;
-}
-
-#m-question div{
-    width: 50vw;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-#m-question span{
-    border: 1px solid #1369b9;
-    border-radius: 50%;
-    padding: 3vw 5vw;
-    font-size: 2.5vw;
-    margin: 20px;
-    color: #1369b9;
-}
-
-#m-enableSound:hover {
-    background: green;
-    color: white;
-    border-color: green;
-    opacity: 0.7;
-}
-
-#m-disableSound:hover {
-    background: red;
-    color: white;
-    border-color: red;
-    opacity: 0.7;
-}
-
-#m-enableSound:active {
-    /* background: green;
-    color: white;
-    border-color: green; */
-    opacity: 1;
-}
-
-#m-disableSound:active {
-    /* background: red;
-    color: white;
-    border-color: red; */
-    opacity: 1;
-}
-
-/* 
-.optionClick {
-    opacity: 1;
-} */
-
-.preload {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Gluten', cursive;
+    min-width: 320px;
+    cursor: url("../images/svg/pointer.svg"), auto;
 }
 
 #m-containerWrapper {
     width: 100%;
-    /* height: 100%; */
+    height: 100%;
     min-width: 320px;
-    min-height: 100vh;
+    min-height: 95vh;
     display: none;
 }
 
 #m-mainContainer {
     width: 100%;
+    height: 99.5%;
     min-width: 320px;
-    min-height: 95vh;
+    min-height: 90vh;
     background: url("../images/background.jpg") no-repeat center;
     background-size: cover;
+    display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
 }
 
+/* Header Section */
+
+#m-header {
+    height: 15vh;
+    font-family: Logo-Font;
+    color: #b2ffff !important;
+    font-size: 6vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vh;
+}
+
+#m-logo-1,
+#m-logo-3 {
+    letter-spacing: calc(3vw + 3vh + 1.5vmin);
+}
+
+#m-logo-3 {
+    transform: rotateY(180deg);
+}
+
+#m-logo-2 {
+    font-family: "Illustrated";
+    font-size: 4.5vw;
+    padding-top: calc(1vh + 1vw);
+}
+
+#m-logo:hover {
+    color: #1c9b31 !important;
+}
+
+/* Showcase Section */
+
 #m-showcase {
     width: 100vw;
-    height: 60vh;
+    height: 50vh;
     margin: 0;
     display: flex;
 }
-/* 
-ul li.nav-item {
-    width: max-content;
-    height: max-content;
-    vertical-align: middle;
-    font-size:calc(1vw + 1vh + 1vmin);
-} */
 
 #m-navUl {
     width: 18vw;
@@ -166,18 +99,17 @@ ul li.nav-item {
     justify-content: flex-start;
 }
 
-#m-navUl li{
+#m-navUl li {
     max-width: fit-content;
     max-height: fit-content;
     margin: calc(4vw + 2vh) 0;
-    font-family: 'Pandora';
+    font-family: "Pandora";
     font-size: 2.5vw;
-    /* font-weight: bold; */
     letter-spacing: 0.42vw;
     color: #a2e5ff !important;
     transform: rotate(-33deg);
 }
-    
+
 #m-navUl li:hover {
     color: #27b595 !important;
 }
@@ -190,15 +122,6 @@ ul li.nav-item {
     align-items: center;
 }
 
-#m-header {
-    font-family: Logo-Font;
-    color: #b2ffff !important;
-    font-size: 6vw;
-    display: flex;
-    justify-content: center;
-    margin-bottom: auto;
-}
-
 #m-orderDiv {
     width: 100%;
     display: flex;
@@ -209,10 +132,10 @@ ul li.nav-item {
 #m-orderSpan-1 {
     width: 50vw;
     max-height: 6vw;
-    font-family: 'Creepster', cursive;
+    font-family: "Creepster", cursive;
     font-size: 4vw;
     text-align: center;
-    background: linear-gradient(to bottom,#ff0000, #ffe56f);
+    background: linear-gradient(to bottom, #ff0000, #ffe56f);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -236,7 +159,7 @@ ul li.nav-item {
 }
 
 #m-orderSpan-2 {
-    font-family: 'Star-Bold';
+    font-family: "Star-Bold";
     font-size: 3vw;
     white-space: nowrap;
     text-align: center;
@@ -249,14 +172,14 @@ ul li.nav-item {
     margin: 10vh 5vw 0 0;
 }
 
-#m-orderSpan-2-2 {
-    font-family: 'Illustrated';
-    font-size: 3.5vw;
-    letter-spacing: 0;
-}
-
 #m-orderSpan-2:hover {
     color: #27b595 !important;
+}
+
+#m-orderSpan-2-2 {
+    font-family: "Illustrated";
+    font-size: 3.5vw;
+    letter-spacing: 0;
 }
 
 #m-donateDiv {
@@ -264,51 +187,45 @@ ul li.nav-item {
     margin-top: auto;
 }
 
-#m-logo-2 {
-    /* transform: rotate(28deg); */
-    font-family: 'Illustrated';
-    font-size: 4.5vw;
-    padding-top: calc(1vh + 1vw);
-}
-
-#m-logo-3 {
-    transform: rotateY(180deg);
-}
-
-#m-logo-1, #m-logo-3 {
-    letter-spacing: calc(3vw + 3vh + 1.5vmin);
-}
-
-#m-logo:hover {
-    color: #1c9b31 !important;
-}
-/* 
-#m-telegramNav {
-    margin-top: 40px;
-} */
-
 #m-donateIcon {
     transform: rotate(150deg);
     margin: 0 20%;
 }
 
-#m-telegramSpan {
+/* Footer Section */
+
+#m-footer {
+    width: 40%;
+    height: 18vh;
+}
+
+#m-footer ul {
+    height: 100%;
+    max-height: fit-content;
+    display: flex;
+    justify-content: space-between;
     align-self: center;
 }
 
-#m-linkedInSpan {
-    transform: rotate(-20deg);
-    align-self: flex-end;
+#m-telegramNav {
+    align-self: center;
 }
 
-#m-emailSpan {
+#m-emailNav {
     transform: rotate(10deg);
     align-self: flex-start;
 }
 
+#m-linkedinNav {
+    transform: rotate(-20deg);
+    align-self: center;
+}
+
+/* Media Queries */
+
 @media (max-width: 576px) {
     #m-footer {
         width: 50%;
-        height: 20vh;
+        height: 30vh;
     }
 }
