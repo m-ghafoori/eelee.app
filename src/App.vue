@@ -4,6 +4,7 @@
     @sound-enabled="enableSoundHandler"
     @sound-disabled="disableSoundHandler"
     :isSoundSelected="this.isSoundSelected"
+    :soundAlreadySelected="this.soundAlreadySelected"
     :isSoundMuted="this.isSoundMuted"
   ></router-view>
 </template>
@@ -17,6 +18,7 @@ export default {
       sizeHistoryArray: [],
       isSoundSelected: false,
       isSoundMuted: false,
+      soundAlreadySelected: false,
     };
   },
 
@@ -47,6 +49,12 @@ export default {
 
     // Event Handler Methods
 
+    beforeUnloadHandler() {
+      if (this.isSoundSelected) {
+        this.$router.push({name: 'home'})
+      }
+    },
+
     screenWidthChangeHandler(sizeClass) {
       this.sizeHistoryArray.push(sizeClass);
       this.sizeHistoryArray.shift();
@@ -54,26 +62,46 @@ export default {
         this.sizeHistoryArray.includes('lg') &&
         this.sizeHistoryArray[0] != this.sizeHistoryArray[1]
       ) {
-        this.$router.go(0);
+        if (this.$route.path == '/') this.$router.go('/home');
+        if (this.$route.path == '/home') this.$router.go('/');      
       }
     },
 
-    enableSoundHandler() {
-      this.isSoundMuted = false;
-      this.isSoundSelected = true;
+    enableSoundHandler(fromQuestion) {
+      this.$router.push({name: 'home'})
+      setTimeout(() => {
+        this.isSoundMuted = false;
+        if (fromQuestion) {
+          this.isSoundSelected = true;
+        } else if (this.isSoundSelected) {
+          this.soundAlreadySelected = true;
+        }
+      }, 500);
     },
 
-    disableSoundHandler() {
-      this.isSoundMuted = true;
-      this.isSoundSelected = true;
+    disableSoundHandler(fromQuestion) {
+      this.$router.push({name: 'home'})
+      setTimeout(() => {
+        this.isSoundMuted = true;
+        if (fromQuestion) {
+          this.isSoundSelected = true;
+        } else if (this.isSoundSelected) {
+          this.soundAlreadySelected = true;
+        }
+      }, 500);
     },
   },
 
   created() {
+    window.addEventListener("beforeunload", this.beforeUnloadHandler);
     var initialSize = this.windowWidthClassEmitter();
     this.sizeHistoryArray.push(initialSize);
     this.sizeHistoryArray.push(initialSize);
     console.log("created:", this.sizeHistoryArray);
+  },
+
+  destroyed() {
+    window.removeEventListener("beforeunload", this.beforeUnloadHandler);
   },
 
   emits: ["screen-width-change", "sound-enabled", "sound-disabled"],

@@ -1,11 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/home/Home.vue'
-import HomeViewMobile from '../views/home-mobile/HomeMobile.vue'
+import Question from '../views/question/Question.vue'
 
 const routes = [
   {
     path: '/',
+    name: 'question',
+    component: Question
+  },
+  {
+    path: '/home',
     name: 'home',
+    alias: '/',
     component: () => {
       if (window.innerWidth < 992) {
         return import('../views/home-mobile/HomeMobile.vue');

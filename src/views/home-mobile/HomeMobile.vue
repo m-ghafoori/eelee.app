@@ -1,23 +1,5 @@
 <template>
   <div id="m-body" class="">
-    <div id="m-question" class="preload animate__animated">
-      <p>ENABLE SOUND EFFECTS ???</p>
-      <div class="d-flex justify-content-around align-items-center">
-        <span id="m-enableSound" class="hoverable" @click="enableSoundHandler"
-          >YES</span
-        >
-        <span id="m-disableSound" class="hoverable" @click="disableSoundHandler"
-          >NO</span
-        >
-      </div>
-      <p
-        id="m-soundMessage"
-        class="animate__animated"
-        :style="{ color: soundMessageColor }"
-      >
-        &nbsp;
-      </p>
-    </div>
 
     <div id="m-containerWrapper" class="">
       <div id="m-mainContainer" class="">
@@ -117,13 +99,10 @@ export default {
   data() {
     return {
       // Global
-      soundMessageColor: "#f8cc09",
       isAudioMuted: false,
       isMusicMuted: false,
 
       // Element Object References
-      question: Object,
-      soundMessage: Object,
       containerWrapper: Object,
       mainContainer: Object,
       appNav: Object,
@@ -146,14 +125,7 @@ export default {
   watch: {
     // Starts the initial page animations after sound effects being enabled or disabled
     isSoundSelected() {
-      this.soundMessage.classList.add("animate__flash");
-      setTimeout(() => {
-        this.question.classList.add("animate__bounceOut");
-        setTimeout(() => {
-          this.question.classList.add("d-none");
-          this.startAnimations();
-        }, 1000);
-      }, 2000);
+      this.startAnimations();
     },
     
     isSoundMuted(val) {
@@ -333,8 +305,6 @@ export default {
   },
 
   mounted() {
-    this.question = document.getElementById("m-question");
-    this.soundMessage = document.getElementById("m-soundMessage");
     this.containerWrapper = document.getElementById("m-containerWrapper");
     this.mainContainer = document.getElementById("m-mainContainer");
     this.appNav = document.getElementById("m-appNav");

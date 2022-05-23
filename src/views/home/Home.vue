@@ -1,23 +1,5 @@
 <template>
   <div id="bodyDiv" class="">
-    <div id="question" class="preload animate__animated">
-      <p>ENABLE SOUND EFFECTS ???</p>
-      <div class="d-flex justify-content-around align-items-center">
-        <span id="enableSound" class="hoverable" @click="enableSoundHandler"
-          >YES</span
-        >
-        <span id="disableSound" class="hoverable" @click="disableSoundHandler"
-          >NO</span
-        >
-      </div>
-      <p
-        id="soundMessage"
-        class="animate__animated"
-        :style="{ color: soundMessageColor }"
-      >
-        &nbsp;
-      </p>
-    </div>
 
     <div id="mainContainer" class="d-none">
       <header
@@ -34,24 +16,24 @@
           href="#"
           >EELee</span
         >
-        <ul id="navbarUl" class="">
+        <ul id="headerUl" class="invisible">
           <li
             id="appNav"
-            class="invisible hoverable animate__animated"
+            class="hoverable animate__animated"
             href="#"
           >
             App
           </li>
           <li
             id="portNav"
-            class="invisible hoverable animate__animated"
+            class="hoverable animate__animated"
             href="#"
           >
             Portfolio
           </li>
           <li
             id="orderNav"
-            class="invisible hoverable animate__animated"
+            class="hoverable animate__animated"
             href="#"
           >
             Let's App
@@ -190,7 +172,6 @@ export default {
   data() {
     return {
       // Global
-      soundMessageColor: "#f8cc09",
       isAudioMuted: false,
       isMusicMuted: false,
 
@@ -241,8 +222,7 @@ export default {
       bellAudioTwo: Audio,
 
       //Element Object References
-      question: Object,
-      soundMessage: Object,
+      headerUl: Object,
       logo: Object,
       appNav: Object,
       portNav: Object,
@@ -272,21 +252,19 @@ export default {
   watch: {
     // Starts the initial page animations after sound effects being enabled or disabled
     isSoundSelected() {
-      this.soundMessage.classList.add("animate__flash");
-      setTimeout(() => {
-        this.question.classList.add("animate__bounceOut");
-        this.question.parentElement.classList.add("lg-wide-screen");
-        this.mainContainer.classList.add("lg-wide-screen");
-        setTimeout(() => {
-          this.question.classList.add("d-none");
-          this.startAnimations();
-        }, 1000);
-      }, 2000);
+      this.mainContainer.parentElement.classList.add("lg-wide-screen");
+      this.mainContainer.classList.add("lg-wide-screen");
+      this.startAnimations();
     },
 
     isSoundMuted(val) {
       this.toggleMuteSoundEffects('sound', val)
     },
+
+    soundAlreadySelected() {
+      console.log('watcher called')
+      this.showRunningHome();
+    }
   },
 
   methods: {
@@ -416,6 +394,17 @@ export default {
       this.orderLinkInitAppear();
     },
 
+    // Loads home page with running animation without replaying initial animations,
+    // when resizing the window
+    showRunningHome() {
+      console.log('running home called');
+      this.headerMouseLeave();
+      this.orderLinkMouseLeave();
+      this.soundDivMouseLeave();
+      this.donateMouseLeave();
+      this.linkedinMouseLeave();
+    },
+
     // Sets initial volumes
     setInitVol() {
       this.backgroundWaveAudio.volume = 0.15;
@@ -452,7 +441,7 @@ export default {
         this.logoWindAudio.play();
         setTimeout(() => {
           for (let i = 1; i < 4; i++) {
-            this.headerNavsList[i].classList.remove("invisible");
+            this.headerUl.classList.remove("invisible");
             this.headerNavsList[i].classList.add("navbar-tracking-in-expand");
           }
         }, 5300);
@@ -585,22 +574,7 @@ export default {
       var craeteTime = new Date();
       console.log("loaded", craeteTime.getMilliseconds());
     },
-
-    enableSoundHandler() {
-      this.$emit('sound-enabled');
-      this.soundMessage.innerHTML = "ENABLED";
-      this.soundMessageColor = "green";
-      // this.isiSSoundSelected = true;
-    },
-
-    disableSoundHandler() {
-      this.$emit('sound-disabled');
-      this.soundMessage.innerHTML = "DISABLED";
-      this.soundMessageColor = "red";
-      // this.isiSSoundMuted = true;
-      // this.isiSSoundSelected = true;
-    },
-
+    
     // Header Section Handlers
 
     // Stops header animation loop
@@ -943,12 +917,6 @@ export default {
     },
   },
 
-  created() {
-    window.addEventListener("resize", this.windowWidthClassEmitter);
-    window.addEventListener("DOMContentLoaded", this.documentLoading);
-    window.addEventListener("load", this.documentLoaded);
-  },
-
   mounted() {
     this.backgroundWaveAudio = new Audio(
       require("./assets/audio/backgroundWaveAudio.mp3")
@@ -1002,8 +970,7 @@ export default {
     ];
     this.musicArray = [];
     this.soundArray = this.audioArray.concat(this.musicArray);
-    this.question = document.getElementById("question");
-    this.soundMessage = document.getElementById("soundMessage");
+    this.headerUl = document.getElementById("headerUl");
     this.logo = document.getElementById("logo");
     this.appNav = document.getElementById("appNav");
     this.portNav = document.getElementById("portNav");
@@ -1021,6 +988,12 @@ export default {
     this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
     this.soundDivList = [this.soundSpan, this.musicSpan, this.audioSpan];
     this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
+  },
+  
+  created() {
+    window.addEventListener("resize", this.windowWidthClassEmitter);
+    window.addEventListener("DOMContentLoaded", this.documentLoading);
+    window.addEventListener("load", this.documentLoaded);
   },
 
   destroyed() {
