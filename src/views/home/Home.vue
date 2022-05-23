@@ -1,7 +1,7 @@
 <template>
-  <div id="bodyDiv" class="">
+  <div id="bodyDiv" class='lg-wide-screen'>
 
-    <div id="mainContainer" class="d-none">
+    <div id="mainContainer" class="d-flex flex-column lg-wide-screen">
       <header
         id="header"
         class=""
@@ -10,13 +10,13 @@
       >
         <span
           id="logo"
-          class="invisible hoverable animate__animated"
+          class="hoverable animate__animated"
           @mouseenter="logoMouseEnter"
           @mouseleave="logoMouseLeave"
           href="#"
           >EELee</span
         >
-        <ul id="headerUl" class="invisible">
+        <ul id="headerUl" class="">
           <li
             id="appNav"
             class="hoverable animate__animated"
@@ -45,7 +45,7 @@
         <div id="orderDiv" class="animate__animated animate__slower">
           <span
             id="orderLink"
-            class="invisible hoverable animate__animated"
+            class="hoverable animate__animated"
             @mouseenter="orderLinkMouseEnter"
             @mouseleave="orderLinkMouseLeave"
             href="#"
@@ -63,7 +63,7 @@
         >
           <span
             id="soundSpan"
-            class="invisible hoverable animate__animated"
+            class="hoverable animate__animated"
             @click="soundSpanClick"
           >
             <img
@@ -106,7 +106,7 @@
         </div>
         <div
           id="donateDiv"
-          class="invisible hoverable animate__animated animate__slower"
+          class="hoverable animate__animated animate__slower"
         >
           <span id="donateSpan" href="#">
             <img
@@ -123,7 +123,7 @@
 
       <footer id="footer" class="vibrate-1">
         <span id="footerNote" class="">&copy; 2022 - EELee App Design</span>
-        <ul id="footerUl" class="invisible hoverable">
+        <ul id="footerUl" class="hoverable">
           <li id="linkedinNav" class="animate__animated">
             <img
               id="linkedinIcon"
@@ -165,8 +165,8 @@ export default {
 
   props: {
     //Global Sound Variables
-    isSoundSelected: false,
-    isSoundMuted: false,
+    soundMutedValue: false,
+    soundSelectedValue: false,
   },
 
   data() {
@@ -174,6 +174,8 @@ export default {
       // Global
       isAudioMuted: false,
       isMusicMuted: false,
+      isSoundMuted: false,
+      isSoundSelected: false,
 
       //#header Variables
       intervalRef: Function,
@@ -246,25 +248,38 @@ export default {
       headerNavsList: Array,
       soundDivList: Array,
       footerNavsList: Array,
+      invisibleElemsList: Array,
+      timeOutRefsList: [this.logoTimeOutRef, this.appNavTimeOutRef, this.portNavTimeOutRef, this.orderNavTimeOutRef, this.visibilityTimeOutRef, this.vibrationTimeOutRef],
+      intervalRefsList: [this.intervalRef, this.initialIntervalRef, this.linkIntervalRef, this.donateIntervalRef, this.footerFirstIntervalRef, this.footerSecondIntervalRef],
     };
   },
 
   watch: {
     // Starts the initial page animations after sound effects being enabled or disabled
     isSoundSelected() {
-      this.mainContainer.parentElement.classList.add("lg-wide-screen");
-      this.mainContainer.classList.add("lg-wide-screen");
+      console.log('soundSelected watcher', new Date().getUTCMilliseconds())
+      this.mainContainer.classList.add('d-none','lg-wide-screen');
+      this.mainContainer.parentElement.classList.add('d-none', 'lg-wide-screen');
       this.startAnimations();
+    },
+
+    soundMutedValue(val) {
+      this.isAudioMuted = val;
+      this.isMusicMuted = val;
+      this.isSoundMuted = val;
+    },
+
+    isAudioMuted(val) {
+      this.toggleMuteSoundEffects('audio', val)
+    },
+
+    isMusicMuted(val) {
+      this.toggleMuteSoundEffects('music', val)
     },
 
     isSoundMuted(val) {
       this.toggleMuteSoundEffects('sound', val)
     },
-
-    soundAlreadySelected() {
-      console.log('watcher called')
-      this.showRunningHome();
-    }
   },
 
   methods: {
@@ -382,7 +397,16 @@ export default {
 
     // Starts initial appearance animations
     startAnimations() {
-      console.log("animations started");
+      console.log("animations started",new Date().getMilliseconds());
+      this.invisibleElemsList.forEach(element => {
+        element.classList.add('invisible');
+      });
+      this.timeOutRefsList.forEach(ref => {
+        clearTimeout(ref);
+      });
+      this.intervalRefsList.forEach(ref => {
+        clearInterval(ref);
+      });
       this.setInitVol();
       this.mainContainerInitAppear();
       this.headerInitAppear();
@@ -397,7 +421,9 @@ export default {
     // Loads home page with running animation without replaying initial animations,
     // when resizing the window
     showRunningHome() {
-      console.log('running home called');
+      console.log('running home called', new Date().getUTCMilliseconds());
+      console.log(this.isSoundSelected);
+      this.setInitVol();
       this.headerMouseLeave();
       this.orderLinkMouseLeave();
       this.soundDivMouseLeave();
@@ -424,6 +450,7 @@ export default {
     // Starts mainContainer animation
     mainContainerInitAppear() {
       setTimeout(() => {
+        this.mainContainer.parentElement.classList.remove("d-none");
         this.mainContainer.classList.remove("d-none");
         this.mainContainer.classList.add(
           "d-flex",
@@ -498,7 +525,7 @@ export default {
             this.footerUl.classList.add("bounce-in-left");
             this.footerInWaveAudio.play();
           }, 5000);
-        }, 15000);
+        }, 22000);
       }, 8500);
     },
 
@@ -566,13 +593,11 @@ export default {
     // Global Handlers
 
     documentLoading() {
-      var craeteTime = new Date();
-      console.log("loading", craeteTime.getMilliseconds());
+      console.log("loading", new Date().getMilliseconds());
     },
 
     documentLoaded() {
-      var craeteTime = new Date();
-      console.log("loaded", craeteTime.getMilliseconds());
+      console.log("loaded", new Date().getMilliseconds());
     },
     
     // Header Section Handlers
@@ -670,12 +695,12 @@ export default {
 
     musicSpanClick() {
       this.isMusicMuted = !this.isMusicMuted;
-      this.toggleMuteSoundEffects("music", this.isMusicMuted);
+      // this.toggleMuteSoundEffects("music", this.isMusicMuted);
     },
 
     audioSpanClick() {
       this.isAudioMuted = !this.isAudioMuted;
-      this.toggleMuteSoundEffects("audio", this.isAudioMuted);
+      // this.toggleMuteSoundEffects("audio", this.isAudioMuted);
     },
 
     soundIconMouseEnter() {
@@ -988,12 +1013,20 @@ export default {
     this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
     this.soundDivList = [this.soundSpan, this.musicSpan, this.audioSpan];
     this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
+    this.invisibleElemsList = [this.logo, this.headerUl, this.orderDiv.firstElementChild, this.soundSpan, this.donateSpan.parentElement, this.footerUl];
+    this.showRunningHome();
+    this.isSoundMuted = this.soundMutedValue;
+    this.isMusicMuted = this.soundMutedValue;
+    this.isAudioMuted = this.soundMutedValue;
+    this.isSoundSelected = this.soundSelectedValue;
+    // if (this.soundSelectedValue) this.startAnimations();
   },
   
   created() {
     window.addEventListener("resize", this.windowWidthClassEmitter);
     window.addEventListener("DOMContentLoaded", this.documentLoading);
     window.addEventListener("load", this.documentLoaded);
+    // console.log('created on:', Date.now())
   },
 
   destroyed() {

@@ -39,9 +39,10 @@ export default {
             this.soundMessageColor = "green";
             this.soundMessage.classList.add("animate__flash");
             setTimeout(() => {
+                this.$emit('sound-enabled');
+                console.log('emitted', new Date().getUTCMilliseconds())
                 this.question.classList.add("animate__bounceOut");
                 setTimeout(() => {
-                    this.$emit('sound-enabled', true);
                     this.question.classList.add("d-none");
                 }, 1000);
             }, 2000);
@@ -52,9 +53,10 @@ export default {
             this.soundMessageColor = "red";
             this.soundMessage.classList.add("animate__flash");
             setTimeout(() => {
+                this.$emit('sound-disabled');
+                console.log('emitted', new Date().getUTCMilliseconds())
                 this.question.classList.add("animate__bounceOut");
                 setTimeout(() => {
-                    this.$emit('sound-disabled', true);
                     this.question.classList.add("d-none");
                 }, 1000);
             }, 2000);
@@ -71,7 +73,4 @@ export default {
 
 <style scoped>
 
-div {
-    background: #0bc0b7;
-}
 </style>

@@ -3,9 +3,8 @@
     @screen-width-change="screenWidthChangeHandler"
     @sound-enabled="enableSoundHandler"
     @sound-disabled="disableSoundHandler"
-    :isSoundSelected="this.isSoundSelected"
-    :soundAlreadySelected="this.soundAlreadySelected"
-    :isSoundMuted="this.isSoundMuted"
+    :soundMutedValue="this.isSoundMuted"
+    :soundSelectedValue="this.isSoundSelected"
   ></router-view>
 </template>
 
@@ -16,9 +15,8 @@ export default {
   data() {
     return {
       sizeHistoryArray: [],
-      isSoundSelected: false,
       isSoundMuted: false,
-      soundAlreadySelected: false,
+      isSoundSelected: false,
     };
   },
 
@@ -67,28 +65,24 @@ export default {
       }
     },
 
-    enableSoundHandler(fromQuestion) {
-      this.$router.push({name: 'home'})
+    enableSoundHandler() {
+      this.isSoundMuted = false;
+      console.log(`app soundMuted:${this.isSoundMuted}`, new Date().getUTCMilliseconds())
       setTimeout(() => {
-        this.isSoundMuted = false;
-        if (fromQuestion) {
-          this.isSoundSelected = true;
-        } else if (this.isSoundSelected) {
-          this.soundAlreadySelected = true;
-        }
-      }, 500);
+        this.isSoundSelected = true;
+        console.log(`app soundSelected:${this.isSoundSelected}`, new Date().getUTCMilliseconds())
+        this.$router.push({name: 'home'})
+      }, 1000);
     },
 
-    disableSoundHandler(fromQuestion) {
-      this.$router.push({name: 'home'})
+    disableSoundHandler() {
+      this.isSoundMuted = true;
+      console.log(`app soundMuted:${this.isSoundMuted}`, new Date().getUTCMilliseconds())
       setTimeout(() => {
-        this.isSoundMuted = true;
-        if (fromQuestion) {
-          this.isSoundSelected = true;
-        } else if (this.isSoundSelected) {
-          this.soundAlreadySelected = true;
-        }
-      }, 500);
+        this.isSoundSelected = true;
+        console.log(`app soundSelected:${this.isSoundSelected}`, new Date().getUTCMilliseconds())
+        this.$router.push({name: 'home'})
+      }, 1000);
     },
   },
 

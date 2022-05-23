@@ -4,7 +4,6 @@
     width: 100vw;
     height: 100vh;
     background-color: #0bc0b7 !important;
-    cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 #mainContainer {
@@ -14,7 +13,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: none;
 }
 
 /* Header Section */

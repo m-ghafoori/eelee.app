@@ -6,11 +6,13 @@
 
 html {
     min-height: 100vh;
+    cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 body {
     overflow-x: hidden;
     margin: 0;
+    background: #02021b;
 }
 
 ul {
@@ -98,7 +100,7 @@ li {
 
 #question span,
 #m-question span {
-    border: 1px solid #1369b9;
+    border: 1px solid #3179bc;
     border-radius: 50%;
     padding: 3vw 5vw;
     font-size: 2.5vw;
@@ -130,4 +132,12 @@ li {
 #disableSound:active,
 #m-disableSound:active {
     opacity: 1;
+}
+
+/* Media Queries */
+
+@media (min-width: 992px) {
+    body {
+        background: #0bc0b7;
+    }
 }
