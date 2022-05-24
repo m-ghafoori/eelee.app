@@ -89,18 +89,9 @@
 
 export default {
   name: "HomeMobile",
-  
-  props: {
-    //Global Sound Variables
-    isSoundSelected: false,
-    isSoundMuted: false,
-  },
 
   data() {
     return {
-      // Global
-      isAudioMuted: false,
-      isMusicMuted: false,
 
       // Element Object References
       containerWrapper: Object,
@@ -122,17 +113,6 @@ export default {
     widthClass() {return this.windowWidthClassEmitter()},
   },
 
-  watch: {
-    // Starts the initial page animations after sound effects being enabled or disabled
-    isSoundSelected() {
-      this.startAnimations();
-    },
-    
-    isSoundMuted(val) {
-      this.toggleMuteSoundEffects('sound', val)
-    },
-  },
-
   methods: {
     // Utility Methods
 
@@ -148,32 +128,6 @@ export default {
       return diffNum;
     },
     
-    // Toggles between music and sound effects
-    toggleMuteSoundEffects(effect, setMute) {
-      switch (effect) {
-        case "audio":
-          // this.audioArray.forEach((audio) => {
-          //   audio.muted = setMute;
-          // });
-          console.log('audioMuted is:', setMute)
-          break;
-
-        case "music":
-          // this.musicArray.forEach((music) => {
-          //   music.muted = setMute;
-          // });
-          console.log('musicMuted is:', setMute)
-          break;
-
-        default:
-          // this.soundArray.forEach((sound) => {
-          //   sound.muted = setMute;
-          // });
-          console.log('isSoundMuted is:', setMute)
-          break;
-      }
-    },
-
     // Triggers different window size classes on resize
     windowWidthClassEmitter() {
       var windowWidth = window.innerWidth;
@@ -210,32 +164,6 @@ export default {
     },
 
     // Event Handler Methods
-    // Global Handlers
-
-    documentLoading() {
-      var craeteTime = new Date();
-      console.log("loading", craeteTime.getMilliseconds());
-    },
-
-    documentLoaded() {
-      var craeteTime = new Date();
-      console.log("loaded", craeteTime.getMilliseconds());
-    },
-
-    enableSoundHandler() {
-      this.$emit('sound-enabled');
-      this.soundMessage.innerHTML = "ENABLED";
-      this.soundMessageColor = "green";
-      // this.isiSSoundSelected = true;
-    },
-
-    disableSoundHandler() {
-      this.$emit('sound-disabled');
-      this.soundMessage.innerHTML = "DISABLED";
-      this.soundMessageColor = "red";
-      // this.isiSSoundMuted = true;
-      // this.isiSSoundSelected = true;
-    },
 
     // Showcase Section Handlers
 
@@ -299,8 +227,6 @@ export default {
   },
 
   created() {
-    window.addEventListener("load", this.documentLoaded);
-    window.addEventListener("DOMContentLoaded", this.documentLoading);
     window.addEventListener("resize", this.windowWidthClassEmitter);
   },
 
@@ -314,12 +240,6 @@ export default {
     this.linkedinNav = document.getElementById("m-linkedinNav");
     this.emailNav = document.getElementById("m-emailNav");
     this.telegramNav = document.getElementById("m-telegramNav");
-  },
-
-  destroyed() {
-    window.removeEventListener("load", this.documentLoaded);
-    window.removeEventListener("DOMContentLoaded", this.documentLoading);
-    window.removeEventListener("resize", this.windowWidthClassEmitter);
   },
 };
 </script>

@@ -1,10 +1,6 @@
 <template>
   <router-view
     @screen-width-change="screenWidthChangeHandler"
-    @sound-enabled="enableSoundHandler"
-    @sound-disabled="disableSoundHandler"
-    :soundMutedValue="this.isSoundMuted"
-    :soundSelectedValue="this.isSoundSelected"
   ></router-view>
 </template>
 
@@ -15,8 +11,6 @@ export default {
   data() {
     return {
       sizeHistoryArray: [],
-      isSoundMuted: false,
-      isSoundSelected: false,
     };
   },
 
@@ -47,12 +41,6 @@ export default {
 
     // Event Handler Methods
 
-    beforeUnloadHandler() {
-      if (this.isSoundSelected) {
-        this.$router.push({name: 'home'})
-      }
-    },
-
     screenWidthChangeHandler(sizeClass) {
       this.sizeHistoryArray.push(sizeClass);
       this.sizeHistoryArray.shift();
@@ -64,41 +52,16 @@ export default {
         if (this.$route.path == '/home') this.$router.go('/');      
       }
     },
-
-    enableSoundHandler() {
-      this.isSoundMuted = false;
-      console.log(`app soundMuted:${this.isSoundMuted}`, new Date().getUTCMilliseconds())
-      setTimeout(() => {
-        this.isSoundSelected = true;
-        console.log(`app soundSelected:${this.isSoundSelected}`, new Date().getUTCMilliseconds())
-        this.$router.push({name: 'home'})
-      }, 1000);
-    },
-
-    disableSoundHandler() {
-      this.isSoundMuted = true;
-      console.log(`app soundMuted:${this.isSoundMuted}`, new Date().getUTCMilliseconds())
-      setTimeout(() => {
-        this.isSoundSelected = true;
-        console.log(`app soundSelected:${this.isSoundSelected}`, new Date().getUTCMilliseconds())
-        this.$router.push({name: 'home'})
-      }, 1000);
-    },
   },
 
   created() {
-    window.addEventListener("beforeunload", this.beforeUnloadHandler);
     var initialSize = this.windowWidthClassEmitter();
     this.sizeHistoryArray.push(initialSize);
     this.sizeHistoryArray.push(initialSize);
     console.log("created:", this.sizeHistoryArray);
   },
 
-  destroyed() {
-    window.removeEventListener("beforeunload", this.beforeUnloadHandler);
-  },
-
-  emits: ["screen-width-change", "sound-enabled", "sound-disabled"],
+  emits: ['screen-width-change'],
 };
 </script>
 

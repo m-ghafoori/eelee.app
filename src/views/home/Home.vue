@@ -4,52 +4,54 @@
     <div id="mainContainer" class="d-flex flex-column lg-wide-screen">
       <header
         id="header"
-        class=""
+        class="d-flex align-items-center"
         @mouseenter="headerMouseEnter"
         @mouseleave="headerMouseLeave"
       >
-        <span
+        <router-link
           id="logo"
           class="hoverable animate__animated"
+          to="/"
           @mouseenter="logoMouseEnter"
           @mouseleave="logoMouseLeave"
-          href="#"
-          >EELee</span
+          >EELee</router-link
         >
-        <ul id="headerUl" class="">
-          <li
+        <div id="headerNavbar" class="d-flex align-items-center">
+
+          <router-link
             id="appNav"
-            class="hoverable animate__animated"
-            href="#"
+            class="nav-link hoverable animate__animated"
+            to="/app"
           >
             App
-          </li>
-          <li
+          </router-link>
+          <router-link
             id="portNav"
-            class="hoverable animate__animated"
-            href="#"
+            class="nav-link hoverable animate__animated"
+            to="/portfolio"
           >
             Portfolio
-          </li>
-          <li
+          </router-link>
+          <router-link
             id="orderNav"
-            class="hoverable animate__animated"
-            href="#"
+            class="nav-link hoverable animate__animated"
+            to="/"
           >
-            Let's App
-          </li>
-        </ul>
+            Let's App!
+          </router-link>
+        </div>
       </header>
 
       <section id="showcase" class="">
         <div id="orderDiv" class="animate__animated animate__slower">
-          <span
+          <router-link
             id="orderLink"
             class="hoverable animate__animated"
+            to="/"
             @mouseenter="orderLinkMouseEnter"
             @mouseleave="orderLinkMouseLeave"
             href="#"
-            >Need A Modern Website ???</span
+            >Need A Modern Website ???</router-link
           >
           <span id="orderMessage" class="invisible animate__animated"
             >Click To Get One . . .</span
@@ -57,58 +59,10 @@
         </div>
 
         <div
-          id="soundDiv"
-          class="animate__animated"
-          @mouseleave="soundDivMouseLeave"
-        >
-          <span
-            id="soundSpan"
-            class="hoverable animate__animated"
-            @click="soundSpanClick"
-          >
-            <img
-              id="soundIcon"
-              class="vibrate-1 animate__animated"
-              @mouseenter="soundIconMouseEnter"
-              @mouseleave="soundIconMouseLeave"
-              :src="require('./assets/images/svg/music.svg')"
-              alt=""
-            />
-          </span>
-          <span
-            id="musicSpan"
-            class="invisible hoverable animate__animated"
-            @click="musicSpanClick"
-          >
-            <img
-              id="musicIcon"
-              class="animate__animated"
-              @mouseenter="musicIconMouseEnter"
-              @mouseleave="musicIconMouseLeave"
-              :src="require('./assets/images/svg/music-on.svg')"
-              alt=""
-            />
-          </span>
-          <span
-            id="audioSpan"
-            class="invisible hoverable animate__animated"
-            @click="audioSpanClick"
-          >
-            <img
-              id="audioIcon"
-              class="animate__animated"
-              @mouseenter="audioIconMouseEnter"
-              @mouseleave="audioIconMouseLeave"
-              :src="require('./assets/images/svg/volume-on.svg')"
-              alt=""
-            />
-          </span>
-        </div>
-        <div
           id="donateDiv"
           class="hoverable animate__animated animate__slower"
         >
-          <span id="donateSpan" href="#">
+          <router-link id="donateSpan" class="hoverable" to="/">
             <img
               id="donateIcon"
               class="animate__animated"
@@ -117,7 +71,7 @@
               :src="require('./assets/images/svg/donate.svg')"
               alt=""
             />
-          </span>
+          </router-link>
         </div>
       </section>
 
@@ -163,19 +117,8 @@
 export default {
   name: "Home",
 
-  props: {
-    //Global Sound Variables
-    soundMutedValue: false,
-    soundSelectedValue: false,
-  },
-
   data() {
     return {
-      // Global
-      isAudioMuted: false,
-      isMusicMuted: false,
-      isSoundMuted: false,
-      isSoundSelected: false,
 
       //#header Variables
       intervalRef: Function,
@@ -193,12 +136,7 @@ export default {
         "animate__flip",
       ],
       linkAnimationIndex: 0,
-      linkAudioIndex: 0,
       linkIntervalRef: Function,
-
-      //#soundDiv Variables
-      visibilityTimeOutRef: Function,
-      vibrationTimeOutRef: Function,
 
       //#donateDiv Variables
       donateAnimationList: ["animate__jello", "vibrate-3"],
@@ -209,29 +147,12 @@ export default {
       footerFirstIntervalRef: Function,
       footerSecondIntervalRef: Function,
 
-      //Audio
-      backgroundWaveAudio: Audio,
-      headerWindAudio: Audio,
-      logoWindAudio: Audio,
-      footerInWaveAudio: Audio,
-      footerOutWaveAudio: Audio,
-      donateShakeAudio: Audio,
-      orderLinkAudioOne: Audio,
-      orderLinkAudioTwo: Audio,
-      orderLinkAudioThree: Audio,
-      orderLinkAudioFour: Audio,
-      bellAudioOne: Audio,
-      bellAudioTwo: Audio,
-
       //Element Object References
-      headerUl: Object,
+      headerNavbar: Object,
       logo: Object,
       appNav: Object,
       portNav: Object,
       orderNav: Object,
-      soundSpan: Object,
-      musicSpan: Object,
-      audioSpan: Object,
       orderDiv: Object,
       donateSpan: Object,
       footerUl: Object,
@@ -241,45 +162,12 @@ export default {
       mainContainer: Object,
 
       //Arrays
-      linkAudioList: Array,
-      audioArray: Array,
-      musicArray: Array,
-      soundArray: Array,
       headerNavsList: Array,
-      soundDivList: Array,
       footerNavsList: Array,
       invisibleElemsList: Array,
       timeOutRefsList: [this.logoTimeOutRef, this.appNavTimeOutRef, this.portNavTimeOutRef, this.orderNavTimeOutRef, this.visibilityTimeOutRef, this.vibrationTimeOutRef],
       intervalRefsList: [this.intervalRef, this.initialIntervalRef, this.linkIntervalRef, this.donateIntervalRef, this.footerFirstIntervalRef, this.footerSecondIntervalRef],
     };
-  },
-
-  watch: {
-    // Starts the initial page animations after sound effects being enabled or disabled
-    isSoundSelected() {
-      console.log('soundSelected watcher', new Date().getUTCMilliseconds())
-      this.mainContainer.classList.add('d-none','lg-wide-screen');
-      this.mainContainer.parentElement.classList.add('d-none', 'lg-wide-screen');
-      this.startAnimations();
-    },
-
-    soundMutedValue(val) {
-      this.isAudioMuted = val;
-      this.isMusicMuted = val;
-      this.isSoundMuted = val;
-    },
-
-    isAudioMuted(val) {
-      this.toggleMuteSoundEffects('audio', val)
-    },
-
-    isMusicMuted(val) {
-      this.toggleMuteSoundEffects('music', val)
-    },
-
-    isSoundMuted(val) {
-      this.toggleMuteSoundEffects('sound', val)
-    },
   },
 
   methods: {
@@ -295,32 +183,6 @@ export default {
         }
       }
       return diffNum;
-    },
-
-    // Toggles between music and sound effects
-    toggleMuteSoundEffects(effect, setMute) {
-      switch (effect) {
-        case "audio":
-          this.audioArray.forEach((audio) => {
-            audio.muted = setMute;
-          });
-          console.log('audioMuted:', setMute)
-          break;
-
-        case "music":
-          this.musicArray.forEach((music) => {
-            music.muted = setMute;
-          });
-          console.log('musicMuted:', setMute)
-          break;
-
-        default:
-          this.soundArray.forEach((sound) => {
-            sound.muted = setMute;
-          });
-          console.log('isSoundMuted:', setMute)
-          break;
-      }
     },
 
     // Triggers and returns different window size classes on resize
@@ -350,31 +212,19 @@ export default {
       }
     },
 
-    // Creates wind effect on logo and navbar icons with sound effects with customizable delays
+    // Creates wind effect on header icons with customizable delays
     windEffect(initialDelay, beforeApp, beforePort, beforeOrder) {
       this.logoTimeOutRef = setTimeout(() => {
         this.logo.classList.add("shake-top");
-        this.headerWindAudio.play();
-
-        setTimeout(() => {
-          this.bellAudioOne.play();
-          this.bellAudioTwo.play();
-        }, 800);
 
         this.appNavTimeOutRef = setTimeout(() => {
           this.appNav.classList.add("shake-top");
-          this.bellAudioTwo.play();
-          this.bellAudioOne.play();
 
           this.portNavTimeOutRef = setTimeout(() => {
             this.portNav.classList.add("shake-top");
-            this.bellAudioTwo.play();
-            this.bellAudioOne.play();
 
             this.orderNavTimeOutRef = setTimeout(() => {
               this.orderNav.classList.add("shake-top");
-              this.bellAudioTwo.play();
-              this.bellAudioOne.play();
             }, beforeOrder);
           }, beforePort);
         }, beforeApp);
@@ -407,12 +257,10 @@ export default {
       this.intervalRefsList.forEach(ref => {
         clearInterval(ref);
       });
-      this.setInitVol();
       this.mainContainerInitAppear();
       this.headerInitAppear();
       this.headerInitWind();
       this.headerAnimationLoop();
-      this.soundSpanInitAppear();
       this.footerUlInitAppear();
       this.donateDivInitAppear();
       this.orderLinkInitAppear();
@@ -422,29 +270,10 @@ export default {
     // when resizing the window
     showRunningHome() {
       console.log('running home called', new Date().getUTCMilliseconds());
-      console.log(this.isSoundSelected);
-      this.setInitVol();
       this.headerMouseLeave();
       this.orderLinkMouseLeave();
-      this.soundDivMouseLeave();
       this.donateMouseLeave();
       this.linkedinMouseLeave();
-    },
-
-    // Sets initial volumes
-    setInitVol() {
-      this.backgroundWaveAudio.volume = 0.15;
-      this.headerWindAudio.volume = 0.58;
-      this.logoWindAudio.volume = 0.6;
-      this.orderLinkAudioOne.volume = 0.3;
-      this.orderLinkAudioTwo.volume = 0.3;
-      this.orderLinkAudioThree.volume = 0.3;
-      this.orderLinkAudioFour.volume = 0.3;
-      this.donateShakeAudio.volume = 0.2;
-      this.footerOutWaveAudio.volume = 0.25;
-
-      this.backgroundWaveAudio.loop = true;
-      this.backgroundWaveAudio.play();
     },
 
     // Starts mainContainer animation
@@ -465,10 +294,9 @@ export default {
       setTimeout(() => {
         this.logo.classList.remove("invisible");
         this.logo.classList.add("text-focus-in");
-        this.logoWindAudio.play();
         setTimeout(() => {
           for (let i = 1; i < 4; i++) {
-            this.headerUl.classList.remove("invisible");
+            this.headerNavbar.classList.remove("invisible");
             this.headerNavsList[i].classList.add("navbar-tracking-in-expand");
           }
         }, 5300);
@@ -494,18 +322,8 @@ export default {
     headerAnimationLoop() {
       this.initialIntervalRef = setInterval(() => {
         this.clearWindEffect();
-        this.bellAudioOne.volume = 0.2;
-        this.bellAudioTwo.volume = 0.2;
         this.windEffect(1000, 900, 450, 450);
       }, 33000);
-    },
-
-    // Initial soundSpan Animation
-    soundSpanInitAppear() {
-      setTimeout(() => {
-        this.soundSpan.classList.remove("invisible");
-        this.soundSpan.classList.add("roll-in-left");
-      }, 8000);
     },
 
     // Initial footerUl Animation
@@ -513,17 +331,14 @@ export default {
       setTimeout(() => {
         this.footerUl.classList.remove("invisible");
         this.footerUl.classList.add("bounce-in-left");
-        this.footerInWaveAudio.play();
 
         this.footerFirstIntervalRef = setInterval(() => {
           this.footerUl.classList.remove("bounce-in-left");
           this.footerUl.classList.add("bounce-out-left");
-          this.footerOutWaveAudio.play();
 
           this.footerSecondIntervalRef = setTimeout(() => {
             this.footerUl.classList.remove("bounce-out-left");
             this.footerUl.classList.add("bounce-in-left");
-            this.footerInWaveAudio.play();
           }, 5000);
         }, 22000);
       }, 8500);
@@ -549,7 +364,6 @@ export default {
           this.donateSpan.firstElementChild.classList.add(
             this.donateAnimationList[this.donateAnimationIndex]
           );
-          this.donateShakeAudio.play();
         }, 18000);
       }, 20000);
     },
@@ -576,30 +390,15 @@ export default {
             this.linkAnimationList.length,
             false
           );
-          this.linkAudioIndex = this.nextNumber(
-            this.linkAudioIndex,
-            this.linkAudioList.length,
-            false
-          );
           this.orderDiv.firstElementChild.classList.add(
             this.linkAnimationList[this.linkAnimationIndex]
           );
-          this.linkAudioList[this.linkAudioIndex].play();
         }, 25000);
       }, 11500);
     },
 
     // Event Handler Methods
-    // Global Handlers
 
-    documentLoading() {
-      console.log("loading", new Date().getMilliseconds());
-    },
-
-    documentLoaded() {
-      console.log("loaded", new Date().getMilliseconds());
-    },
-    
     // Header Section Handlers
 
     // Stops header animation loop
@@ -672,142 +471,10 @@ export default {
           this.linkAnimationList.length,
           false
         );
-        this.linkAudioIndex = this.nextNumber(
-          this.linkAudioIndex,
-          this.linkAudioList.length,
-          false
-        );
         this.orderDiv.firstElementChild.classList.add(
           this.linkAnimationList[this.linkAnimationIndex]
         );
-        this.linkAudioList[this.linkAudioIndex].play();
       }, 25000);
-    },
-
-    // soundDiv Handlers
-
-    soundSpanClick() {
-      // this.toggleMuteSoundEffects("all", !this.isiSSoundMuted);
-      // this.isiSSoundMuted = !this.isiSSoundMuted;
-      var soundEvent = (this.isSoundMuted ? 'sound-enabled' : 'sound-disabled'); 
-      this.$emit(soundEvent)
-    },
-
-    musicSpanClick() {
-      this.isMusicMuted = !this.isMusicMuted;
-      // this.toggleMuteSoundEffects("music", this.isMusicMuted);
-    },
-
-    audioSpanClick() {
-      this.isAudioMuted = !this.isAudioMuted;
-      // this.toggleMuteSoundEffects("audio", this.isAudioMuted);
-    },
-
-    soundIconMouseEnter() {
-      clearTimeout(this.visibilityTimeOutRef);
-      clearTimeout(this.vibrationTimeOutRef);
-      this.soundSpan.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/music-hover.svg")
-      );
-      this.soundSpan.firstElementChild.classList.remove(
-        "vibrate-1",
-        "animate__wobble"
-      );
-      this.soundSpan.firstElementChild.classList.add("scale-up-center");
-      this.musicSpan.classList.remove("invisible");
-      this.audioSpan.classList.remove("invisible");
-      this.musicSpan.firstElementChild.classList.remove(
-        "invisible",
-        "animate__rollOut"
-      );
-      this.audioSpan.firstElementChild.classList.remove(
-        "invisible",
-        "animate__rollOut"
-      );
-      this.musicSpan.firstElementChild.classList.add("animate__rollIn");
-      this.audioSpan.firstElementChild.classList.add("animate__rollIn");
-    },
-
-    soundIconMouseLeave() {
-      this.soundSpan.firstElementChild.classList.remove("scale-up-center");
-      this.soundSpan.firstElementChild.classList.add("scale-down-center");
-      setTimeout(() => {
-        this.soundSpan.firstElementChild.classList.remove("scale-down-center");
-      }, 400);
-    },
-
-    soundDivMouseLeave() {
-      this.soundSpan.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/music.svg")
-      );
-      this.musicSpan.firstElementChild.classList.remove("animate__rollIn");
-      this.audioSpan.firstElementChild.classList.remove("animate__rollIn");
-      setTimeout(() => {
-        this.soundSpan.firstElementChild.classList.add("animate__wobble");
-        this.musicSpan.firstElementChild.classList.add(
-          "animate__animated",
-          "animate__rollOut"
-        );
-        this.audioSpan.firstElementChild.classList.add(
-          "animate__animated",
-          "animate__rollOut"
-        );
-      }, 400);
-
-      this.visibilityTimeOutRef = setTimeout(() => {
-        for (let i = 1; i < 3; i++) {
-          this.soundDivList[i].classList.add("invisible");
-          this.soundDivList[i].firstElementChild.classList.add("invisible");
-        }
-      }, 1000);
-
-      this.vibrationTimeOutRef = setTimeout(() => {
-        this.soundSpan.firstElementChild.classList.add("vibrate-1");
-      }, 2500);
-    },
-
-    musicIconMouseEnter() {
-      this.musicSpan.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/music-off-hover.svg")
-      );
-      this.musicSpan.firstElementChild.classList.add("scale-up-center");
-    },
-
-    musicIconMouseLeave() {
-      this.musicSpan.firstElementChild.classList.remove("scale-up-center");
-      this.musicSpan.firstElementChild.classList.add("scale-down-center");
-      this.musicSpan.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/music-on.svg")
-      );
-      this.musicSpan.firstElementChild.classList.remove("animate__animated");
-      setTimeout(() => {
-        this.musicSpan.firstElementChild.classList.remove("scale-down-center");
-      }, 400);
-    },
-
-    audioIconMouseEnter() {
-      this.audioSpan.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/volume-off-hover.svg")
-      );
-      this.audioSpan.firstElementChild.classList.add("scale-up-center");
-    },
-
-    audioIconMouseLeave() {
-      this.audioSpan.firstElementChild.classList.remove("scale-up-center");
-      this.audioSpan.firstElementChild.classList.add("scale-down-center");
-      this.audioSpan.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/volume-on.svg")
-      );
-      this.audioSpan.firstElementChild.classList.remove("animate__animated");
-      setTimeout(() => {
-        this.audioSpan.firstElementChild.classList.remove("scale-down-center");
-      }, 400);
     },
 
     // donateDiv Handlers
@@ -842,7 +509,6 @@ export default {
         this.donateSpan.firstElementChild.classList.add(
           this.donateAnimationList[this.donateAnimationIndex]
         );
-        this.donateShakeAudio.play();
       }, 16000);
     },
 
@@ -869,12 +535,10 @@ export default {
       this.footerFirstIntervalRef = setInterval(() => {
         this.footerUl.classList.remove("bounce-in-left");
         this.footerUl.classList.add("bounce-out-left");
-        this.footerOutWaveAudio.play();
 
         this.footerSecondIntervalRef = setTimeout(() => {
           this.footerUl.classList.remove("bounce-out-left");
           this.footerUl.classList.add("bounce-in-left");
-          this.footerInWaveAudio.play();
         }, 5000);
       }, 15000);
     },
@@ -900,12 +564,10 @@ export default {
       this.footerFirstIntervalRef = setInterval(() => {
         this.footerUl.classList.remove("bounce-in-left");
         this.footerUl.classList.add("bounce-out-left");
-        this.footerOutWaveAudio.play();
 
         this.footerSecondIntervalRef = setTimeout(() => {
           this.footerUl.classList.remove("bounce-out-left");
           this.footerUl.classList.add("bounce-in-left");
-          this.footerInWaveAudio.play();
         }, 5000);
       }, 15000);
     },
@@ -931,78 +593,22 @@ export default {
       this.footerFirstIntervalRef = setInterval(() => {
         this.footerUl.classList.remove("bounce-in-left");
         this.footerUl.classList.add("bounce-out-left");
-        this.footerOutWaveAudio.play();
 
         this.footerSecondIntervalRef = setTimeout(() => {
           this.footerUl.classList.remove("bounce-out-left");
           this.footerUl.classList.add("bounce-in-left");
-          this.footerInWaveAudio.play();
         }, 5000);
       }, 15000);
     },
   },
 
   mounted() {
-    this.backgroundWaveAudio = new Audio(
-      require("./assets/audio/backgroundWaveAudio.mp3")
-    );
-    this.headerWindAudio = new Audio(
-      require("./assets/audio/headerWindAudio.mp3")
-    );
-    this.logoWindAudio = new Audio(require("./assets/audio/logoWindAudio.mp3"));
-    this.footerInWaveAudio = new Audio(
-      require("./assets/audio/footerInWaveAudio.mp3")
-    );
-    this.footerOutWaveAudio = new Audio(
-      require("./assets/audio/footerOutWaveAudio.mp3")
-    );
-    this.donateShakeAudio = new Audio(
-      require("./assets/audio/donateShakeAudio.mp3")
-    );
-    this.orderLinkAudioOne = new Audio(
-      require("./assets/audio/orderLinkAudioOne.mp3")
-    );
-    this.orderLinkAudioTwo = new Audio(
-      require("./assets/audio/orderLinkAudioTwo.mp3")
-    );
-    this.orderLinkAudioThree = new Audio(
-      require("./assets/audio/orderLinkAudioThree.mp3")
-    );
-    this.orderLinkAudioFour = new Audio(
-      require("./assets/audio/orderLinkAudioFour.mp3")
-    );
-    this.bellAudioOne = new Audio(require("./assets/audio/bellAudioOne.mp3"));
-    this.bellAudioTwo = new Audio(require("./assets/audio/bellAudioTwo.mp3"));
-    this.linkAudioList = [
-      this.orderLinkAudioFour,
-      this.orderLinkAudioOne,
-      this.orderLinkAudioTwo,
-      this.orderLinkAudioThree,
-    ];
-    this.audioArray = [
-      this.backgroundWaveAudio,
-      this.footerInWaveAudio,
-      this.footerOutWaveAudio,
-      this.headerWindAudio,
-      this.logoWindAudio,
-      this.orderLinkAudioOne,
-      this.orderLinkAudioTwo,
-      this.orderLinkAudioThree,
-      this.orderLinkAudioFour,
-      this.donateShakeAudio,
-      this.bellAudioOne,
-      this.bellAudioTwo,
-    ];
-    this.musicArray = [];
-    this.soundArray = this.audioArray.concat(this.musicArray);
-    this.headerUl = document.getElementById("headerUl");
+    
+    this.headerNavbar = document.getElementById("headerNavbar");
     this.logo = document.getElementById("logo");
     this.appNav = document.getElementById("appNav");
     this.portNav = document.getElementById("portNav");
     this.orderNav = document.getElementById("orderNav");
-    this.soundSpan = document.getElementById("soundSpan");
-    this.musicSpan = document.getElementById("musicSpan");
-    this.audioSpan = document.getElementById("audioSpan");
     this.orderDiv = document.getElementById("orderDiv");
     this.donateSpan = document.getElementById("donateSpan");
     this.footerUl = document.getElementById("footerUl");
@@ -1011,28 +617,13 @@ export default {
     this.telegramNav = document.getElementById("telegramNav");
     this.mainContainer = document.getElementById("mainContainer");
     this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
-    this.soundDivList = [this.soundSpan, this.musicSpan, this.audioSpan];
     this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
-    this.invisibleElemsList = [this.logo, this.headerUl, this.orderDiv.firstElementChild, this.soundSpan, this.donateSpan.parentElement, this.footerUl];
+    this.invisibleElemsList = [this.logo, this.headerNavbar, this.orderDiv.firstElementChild, this.donateSpan.parentElement, this.footerUl];
     this.showRunningHome();
-    this.isSoundMuted = this.soundMutedValue;
-    this.isMusicMuted = this.soundMutedValue;
-    this.isAudioMuted = this.soundMutedValue;
-    this.isSoundSelected = this.soundSelectedValue;
-    // if (this.soundSelectedValue) this.startAnimations();
   },
   
   created() {
     window.addEventListener("resize", this.windowWidthClassEmitter);
-    window.addEventListener("DOMContentLoaded", this.documentLoading);
-    window.addEventListener("load", this.documentLoaded);
-    // console.log('created on:', Date.now())
-  },
-
-  destroyed() {
-    window.removeEventListener("resize", this.windowWidthClassEmitter);
-    window.removeEventListener("DOMContentLoaded", this.documentLoading);
-    window.removeEventListener("load", this.documentLoaded);
   },
 };
 </script>
