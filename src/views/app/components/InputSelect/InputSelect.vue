@@ -19,6 +19,7 @@ export default {
     labelName: String,
     dataListArray: Array,
     zIndex: Number,
+    updatorNum: Number,
   },
   data() {
     return {
@@ -32,6 +33,9 @@ export default {
   watch: {
     selectedValue(val) {
       this.$emit('selected-changed', val);
+    },
+    updatorNum() {
+      this.selectedText = this.selectedValue;
     },
   },
   methods: {
@@ -57,7 +61,6 @@ export default {
     },
     dataItemClickHandler(item) {
       this.selectedValue = item.toString();
-      // console.log(this.selectedValue);
       this.selectedText = this.selectedValue;
       this.selectedSpanClickHandler();
     },
@@ -71,12 +74,8 @@ export default {
     },
     selectedTextUpdator() {
       if (this.selectedOption.offsetWidth > 68) {
-        // console.log('updator called for value of:', this.selectedText)
         this.selectedText = `${this.selectedText.substr(0, this.selectedText.length-4)}...`;
       }
-      // if (this.selectedOption.offsetWidth < 60) {
-      //   this.selectedText = this.selectedValue;
-      // }
     },
   },
   computed: {
@@ -96,6 +95,7 @@ export default {
   updated() {
     this.selectedTextUpdator();
   },
+  emits: ['selected-changed']
 };
 </script>
 

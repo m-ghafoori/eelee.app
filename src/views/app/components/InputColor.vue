@@ -101,7 +101,6 @@ export default {
 
         this.colorInput = document.getElementById(this.removeSpace(this.labelName));
     },
-    emits: ['selected-changed'],
 }
 </script>
 

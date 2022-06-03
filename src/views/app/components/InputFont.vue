@@ -6,14 +6,14 @@
             :id="labelName" 
             class="hoverable"
             :style="{'font-family' : fontFamily}"
-            @change="submitFontChange"
+            @change="onSelectedChanged"
             @mousedown="inputClickHandler"
             @focus="inputFocusHandler"
             @blur="inputBlurHandler">
                 <option class="" v-for="font in fontsArray" :key="font.index">{{font}}</option>
             </select> -->
 
-            <InputSelect class="input-select" :labelName="labelName" :dataListArray="fontsArray" :zIndex="selectZIndex" @selected-changed="submitFontChange" />
+            <InputSelect class="input-select" :labelName="labelName" :dataListArray="fontsArray" :zIndex="selectZIndex" :updatorNum="selectUpdator" @selected-changed="onSelectedChanged" />
 
         </div>
 </template>
@@ -33,6 +33,7 @@ export default {
         labelName: String,
         fontFamily: String,
         selectZIndex: Number,
+        selectUpdator: Number,
     },
     data () {
         return {
@@ -57,8 +58,8 @@ export default {
             e = e || window.event;
             e.preventDefault();
         },
-        submitFontChange (val) {
-            console.log(val);
+        onSelectedChanged (val) {
+            // console.log(val);
             // var fontIndex = event.srcElement.options.selectedIndex;
             this.$emit(this.eventName, val);
         },
@@ -93,10 +94,9 @@ export default {
     created () {
         this.placeHolder = this.fontFamily;
     },
-        mounted() {
-        this.fontInput = document.getElementById(`${this.labelName}`);
+    mounted() {
+    this.fontInput = document.getElementById(`${this.labelName}`);
     },
-    emits: ['selected-changed'],
 }
 </script>
 

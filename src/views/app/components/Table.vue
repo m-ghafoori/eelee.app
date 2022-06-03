@@ -38,13 +38,13 @@
         <SettingsIcon imgType="font" targetID="fontSettingsList" @settingsIconClick="settingsIconClickHandler"/>
         <ul id="fontSettingsList" class="mx-1 my-2 px-0 scale-down-ver-top">
           <li>
-            <InputFont labelName="Information" :fontFamily="settingsFontFamily" :selectZIndex="100" eventName="info-font-changed" @info-font-changed="infoFontChangedHandler"/>
+            <InputFont labelName="Information" :fontFamily="settingsFontFamily" :selectZIndex="100" :selectUpdator="selectElementsUpdator" eventName="info-font-changed" @info-font-changed="onInfoFontChanged"/>
           </li>
           <li>
-            <InputFont labelName="Table" :fontFamily="settingsFontFamily" :selectZIndex="99" eventName="table-font-changed" @table-font-changed="tableFontChangedHandler"/>
+            <InputFont labelName="Table" :fontFamily="settingsFontFamily" :selectZIndex="99" :selectUpdator="selectElementsUpdator" eventName="table-font-changed" @table-font-changed="onTableFontChanged"/>
           </li>
           <li>
-            <InputFont labelName="Settings" :fontFamily="settingsFontFamily" :selectZIndex="98" eventName="settings-font-changed" @settings-font-changed="settingsFontChangedHandler"/>
+            <InputFont labelName="Settings" :fontFamily="settingsFontFamily" :selectZIndex="98" :selectUpdator="selectElementsUpdator" eventName="settings-font-changed" @settings-font-changed="onSettingsFontChanged"/>
           </li>
         </ul>
       </div>
@@ -53,16 +53,16 @@
         <SettingsIcon imgType="number" targetID="numberSettingsList" @settingsIconClick="settingsIconClickHandler"/>
         <ul id="numberSettingsList" class="mx-1 my-2 px-0 scale-down-ver-top">
           <li>
-            <InputNumber labelName="Rows" :fontFamily="settingsFontFamily" :defaultValue="rows" :minValue="1" :maxValue="50" eventName="rows-changed" @rows-changed="rowsChangedHandler"/>
+            <InputNumber labelName="Rows" :fontFamily="settingsFontFamily" :defaultValue="rows" :minValue="1" :maxValue="50" eventName="rows-changed" @rows-changed="onRowsChanged"/>
           </li>
           <li>
-            <InputNumber labelName="Columns" :fontFamily="settingsFontFamily" :defaultValue="cols" :minValue="1" :maxValue="50" eventName="cols-changed" @cols-changed="colsChangedHandler"/>
+            <InputNumber labelName="Columns" :fontFamily="settingsFontFamily" :defaultValue="cols" :minValue="1" :maxValue="50" eventName="cols-changed" @cols-changed="onColsChanged"/>
           </li>
           <li>
-            <InputNumber labelName="Mines" :fontFamily="settingsFontFamily" :defaultValue="mines" :minValue="minimumMines" :maxValue="maximumMines" eventName="mines-changed" @mines-changed="minesChangedHandler"/>
+            <InputNumber labelName="Mines" :fontFamily="settingsFontFamily" :defaultValue="mines" :minValue="minimumMines" :maxValue="maximumMines" eventName="mines-changed" @mines-changed="onMinesChanged"/>
           </li>
           <li>
-            <InputNumber labelName="Cell Size" :fontFamily="settingsFontFamily" :defaultValue="cellSize" :minValue="20" :maxValue="40" eventName="cell-size-changed" @cell-size-changed="cellSizeChangedHandler"/>
+            <InputNumber labelName="Cell Size" :fontFamily="settingsFontFamily" :defaultValue="cellSize" :minValue="20" :maxValue="40" eventName="cell-size-changed" @cell-size-changed="onCellSizeChanged"/>
           </li>
         </ul>
       </div>
@@ -71,22 +71,22 @@
         <SettingsIcon imgType="color" targetID="colorSettingsList" @settingsIconClick="settingsIconClickHandler"/>
         <ul id="colorSettingsList" class="mx-1 my-2 px-0 scale-down-ver-top">
           <li>
-            <InputColor labelName="Default" :fontFamily="settingsFontFamily" :defaultValue="defaultColor" eventName="def-color-changed" @def-color-changed="defColorChangedHandler"/>
+            <InputColor labelName="Default" :fontFamily="settingsFontFamily" :defaultValue="defaultColor" eventName="def-color-changed" @def-color-changed="onDefColorChanged"/>
           </li>
           <li>
-            <InputColor labelName="Revealed" :fontFamily="settingsFontFamily" :defaultValue="revealedColor" eventName="rev-color-changed" @rev-color-changed="revColorChangedHandler"/>
+            <InputColor labelName="Revealed" :fontFamily="settingsFontFamily" :defaultValue="revealedColor" eventName="rev-color-changed" @rev-color-changed="onRevColorChanged"/>
           </li>
           <li>
-            <InputColor labelName="Marked" :fontFamily="settingsFontFamily" :defaultValue="markedColor" eventName="mark-color-changed" @mark-color-changed="markColorChangedHandler"/>
+            <InputColor labelName="Marked" :fontFamily="settingsFontFamily" :defaultValue="markedColor" eventName="mark-color-changed" @mark-color-changed="onMarkColorChanged"/>
           </li>
           <li>
-            <InputColor labelName="X-Lost" :fontFamily="settingsFontFamily" :defaultValue="bombLostColor" eventName="bomb-lost-color-changed" @bomb-lost-color-changed="bombLostColorChangedHandler"/>
+            <InputColor labelName="X-Lost" :fontFamily="settingsFontFamily" :defaultValue="bombLostColor" eventName="bomb-lost-color-changed" @bomb-lost-color-changed="onBombLostColorChanged"/>
           </li>
           <li>
-            <InputColor labelName="X-Won" :fontFamily="settingsFontFamily" :defaultValue="bombWonColor" eventName="bomb-won-color-changed" @bomb-won-color-changed="bombWonColorChangedHandler"/>
+            <InputColor labelName="X-Won" :fontFamily="settingsFontFamily" :defaultValue="bombWonColor" eventName="bomb-won-color-changed" @bomb-won-color-changed="onBombWonColorChanged"/>
           </li>
           <li>
-            <InputColor labelName="Numbers" :fontFamily="settingsFontFamily" :defaultValue="minesNumberColor" eventName="mines-number-color-changed" @mines-number-color-changed="minesNumberColorChangedHandler"/>
+            <InputColor labelName="Numbers" :fontFamily="settingsFontFamily" :defaultValue="minesNumberColor" eventName="mines-number-color-changed" @mines-number-color-changed="onMinesNumberColorChanged"/>
           </li>
         </ul>
       </div>
@@ -125,6 +125,7 @@ export default {
       cols: 10,
       mines: 20,
       cellSize: 25,
+      selectElementsUpdator: 0,
       defaultColor: '#ff7f50',
       revealedColor: '#9acd32',
       markedColor: '#914d03',
@@ -217,57 +218,60 @@ export default {
     rightClickHandler (data) {
       if (!this.isGameOver) this.toggleMarker(data);
     },
-    rowsChangedHandler (data) {
+    onRowsChanged (data) {
       this.rows = data;
       console.log(`Rows number set to ${this.rows}`);
     },
-    colsChangedHandler (data) {
+    onColsChanged (data) {
       this.cols = data;
       console.log(`Cols number set to ${this.cols}`);
     },
-    minesChangedHandler (data) {
+    onMinesChanged (data) {
       this.mines = data;
       console.log(`Mines number set to ${this.mines}`);
     },
-    cellSizeChangedHandler (size) {
+    onCellSizeChanged (size) {
       this.cellSize = size;
       console.log(`Cell Size set to ${this.cellSize}`);
     },
-    defColorChangedHandler (color) {
+    onDefColorChanged (color) {
       this.defaultColor = `${color}`;
       console.log(`Default color set to ${this.defaultColor}`);
     },
-    revColorChangedHandler (color) {
+    onRevColorChanged (color) {
       this.revealedColor = `${color}`;
       console.log(`Revealed color set to ${this.revealedColor}`);
     },
-    markColorChangedHandler (color) {
+    onMarkColorChanged (color) {
       this.markedColor = `${color}`;
       console.log(`Marked color set to ${this.markedColor}`);
     },
-    bombLostColorChangedHandler (color) {
+    onBombLostColorChanged (color) {
       this.bombLostColor = `${color}`;
       console.log(`Bomb-Lost color set to ${this.bombLostColor}`);
     },
-    bombWonColorChangedHandler (color) {
+    onBombWonColorChanged (color) {
       this.bombWonColor = `${color}`;
       console.log(`Bomb-Lost color set to ${this.bombWonColor}`);
     },
-    minesNumberColorChangedHandler (color) {
+    onMinesNumberColorChanged (color) {
       this.minesNumberColor = `${color}`;
       console.log(`Mines-Number color set to ${this.minesNumberColor}`);
     },
-    infoFontChangedHandler (font) {
+    onInfoFontChanged (font) {
       this.infoFontFamily = `${font}`;
-      console.log(`Information font set to ${this.infoFontFamily}`);
+      this.selectElementsUpdator++;
+      // console.log(`Information font set to ${this.infoFontFamily}`);
     },
-    tableFontChangedHandler (font) {
+    onTableFontChanged (font) {
       this.tableFontFamily = `${font}`;
-      console.log(`Table font set to ${this.tableFontFamily}`);
+      this.selectElementsUpdator++;
+      // console.log(`Table font set to ${this.tableFontFamily}`);
     },
-    settingsFontChangedHandler (font) {
+    onSettingsFontChanged (font) {
       this.settingsFontFamily = `${font}`;
-      console.log(`Settings font set to ${this.settingsFontFamily}`);
+      this.selectElementsUpdator++;
+      // console.log(`Settings font set to ${this.settingsFontFamily}`);
     },
     settingsIconClickHandler (target, image) {
       var targetClassList = document.getElementById(target).classList;
