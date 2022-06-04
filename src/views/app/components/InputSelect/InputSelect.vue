@@ -5,7 +5,7 @@
       <img :id="`${removeSpace(labelName)}SelectArrow`" :src="require('./assets/arrow.svg')"/>
       </span>
     <ul :id="`${removeSpace(labelName)}DataUl`" class="d-flex flex-column scale-down-ver-top" :style="dataUlStyle">
-      <li v-for="item in dataListArray" :key="item.index" :id="`${removeSpace(labelName)}${removeSpace(item)}`" :style="{'border-color':dataUlBorderColor}" @click="dataItemClickHandler(item)">
+      <li v-for="item in dataListArray" :key="item.index" :id="`${removeSpace(labelName)}${removeSpace(item)}`" :style="{'border-color':dataUlBorderColor}" @mousedown="preventDefaultEvents" @click="onDataItemClick(item)">
         {{ item }}
       </li>
     </ul>
@@ -86,7 +86,7 @@ export default {
           this.selectedSpan.focus();
         } 
     },
-    dataItemClickHandler(item) {
+    onDataItemClick(item) {
       this.selectedValue = item.toString();
       this.selectedText = this.selectedValue;
     },

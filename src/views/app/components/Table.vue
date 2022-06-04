@@ -436,7 +436,8 @@ hr {
   }
   
   #fontSettingsList li {
-    transform: translateX(-43px);
+    position: relative;
+    right: 43px;
   }
 }
 
