@@ -1,6 +1,6 @@
 <template>
   <router-view
-    @screen-width-change="screenWidthChangeHandler"
+    @screen-width-change="onScreenWidthChange"
   ></router-view>
 </template>
 
@@ -13,10 +13,23 @@ export default {
       sizeHistoryArray: [],
     };
   },
-
+  watcher: {
+    docHasFocus(val) {
+      console.log(val)
+    }
+  },
+  computed: {
+    docHasFocus() {
+      return document.hasFocus();
+    },
+  },
   methods: {
     // Utility Methods
 
+    preventDefaultEvents (e) {
+      e = e || window.event;
+      e.preventDefault();
+    },
     // Triggers different window size classes on resize
     windowWidthClassEmitter() {
       var windowWidth = window.innerWidth;
@@ -41,7 +54,7 @@ export default {
 
     // Event Handler Methods
 
-    screenWidthChangeHandler(sizeClass) {
+    onScreenWidthChange(sizeClass) {
       this.sizeHistoryArray.push(sizeClass);
       this.sizeHistoryArray.shift();
       if (
@@ -60,7 +73,9 @@ export default {
     this.sizeHistoryArray.push(initialSize);
     console.log("created:", this.sizeHistoryArray);
   },
-
+  updated() {
+      console.log(this.docHasFocus)
+  },
   emits: ['screen-width-change'],
 };
 </script>

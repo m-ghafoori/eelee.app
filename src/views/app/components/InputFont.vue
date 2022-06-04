@@ -1,31 +1,16 @@
 <template>
-        <div class="font-div hoverable d-flex justify-content-center align-items-center">
-            <span class="font-label-span d-flex justify-content-center align-items-center" :style="labelStyle" @mousedown="preventDefaultEvents" @click="labelClickHandler">{{labelName}}</span>
-<!--             
-            <select 
-            :id="labelName" 
-            class="hoverable"
-            :style="{'font-family' : fontFamily}"
-            @change="onSelectedChanged"
-            @mousedown="inputClickHandler"
-            @focus="inputFocusHandler"
-            @blur="inputBlurHandler">
-                <option class="" v-for="font in fontsArray" :key="font.index">{{font}}</option>
-            </select> -->
-
-            <InputSelect class="input-select" :labelName="labelName" :dataListArray="fontsArray" :zIndex="selectZIndex" :updatorNum="selectUpdator" @selected-changed="onSelectedChanged" />
-
+        <div class="font-div hoverable d-flex justify-content-center align-items-center" @mouseleave="onDivMouseLeave">
+            <span :id="`${removeSpace(labelName)}LabelSpan`" class="label-span font-label-span d-flex justify-content-center align-items-center" :style="labelStyle" @mousedown="preventDefaultEvents" @click="onLabelClick">{{labelName}}</span>
+            <InputSelect class="input-select" :labelName="labelName" :dataListArray="fontsArray" :zIndex="selectZIndex" :updatorNum="selectUpdator" @selected-changed="onSelectedChanged" @selected-focused="onSelectFocus" @selected-blured="onSelectBlur"/>
         </div>
 </template>
 
 <script>
-import Button from './Button.vue'
 import InputSelect from './InputSelect/InputSelect.vue'
 
 export default {
     name: 'InputFont',
     components: {
-        Button,
         InputSelect,
     },
     props: {
@@ -37,7 +22,8 @@ export default {
     },
     data () {
         return {
-            fontInput: Object,
+            labelSpan: Object,
+            selectInput: Object,
             placeHolder: String,
             labelColor: 'black',
             labelBorderColor: 'black',
@@ -46,47 +32,53 @@ export default {
         }
     },
     computed: {
+        // Styles
+
         labelStyle() {
             return {
+                outline : 'none',
                 color : `${this.labelColor}`,
                 'border-color' : `${this.labelBorderColor}`,
             }
         },
     },
     methods: {
+        // Utility Methods
+        
         preventDefaultEvents (e) {
             e = e || window.event;
             e.preventDefault();
         },
+        removeSpace(str) {
+            str = str.replace(/ /g, '');
+            return str;
+        },
         onSelectedChanged (val) {
-            // console.log(val);
-            // var fontIndex = event.srcElement.options.selectedIndex;
             this.$emit(this.eventName, val);
         },
-        labelClickHandler() {
-            if (this.lastActiveElement != this.fontInput.id) {
-                this.fontInput.focus();
+        onDivMouseLeave () {
+            setTimeout(() => {
+                this.selectInput.blur();
+            }, 300);
+        },
+        onLabelClick() {
+            if (this.lastActiveElement == this.selectInput.id) {
+                this.selectInput.blur();
             } else {
-                this.fontInput.blur();
+                this.selectInput.focus();
             }
         },
-        inputSelectHandler(e) {
-            console.log('select handler:', e)
-        },
-        inputClickHandler(e) {
-            console.log('click handler:', e)
-        },
-        inputFocusHandler() {
+        onSelectFocus() {
             this.labelColor = 'red';
             this.labelBorderColor = 'red';
-            console.log('focus',this.lastActiveElement, this.fontInput.id);
-            this.lastActiveElement = this.fontInput.id;
+            console.log('focus',this.lastActiveElement, this.selectInput.id);
+            this.lastActiveElement = this.selectInput.id;
             console.log(`last active set to: ${this.lastActiveElement}`);
         },
-        inputBlurHandler() {
+        onSelectBlur() {
             this.labelColor = 'black';
             this.labelBorderColor = 'black';
-            console.log('blur',this.lastActiveElement, this.fontInput.id);
+            console.log('blur',this.lastActiveElement, this.selectInput.id);
             this.lastActiveElement = 'none';
             console.log(`last active set to: ${this.lastActiveElement}`);
         },
@@ -95,45 +87,26 @@ export default {
         this.placeHolder = this.fontFamily;
     },
     mounted() {
-    this.fontInput = document.getElementById(`${this.labelName}`);
+    this.labelSpan = document.getElementById(`${this.removeSpace(this.labelName)}LabelSpan`);
+    this.selectInput = document.getElementById(`selected${this.removeSpace(this.labelName)}`);
     },
 }
 </script>
 
 <style scoped>
 
-div, span, select {
+div, span {
     background: transparent;
 }
 
-select {
-    height: 30px;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-    border-right: 0;
-    border-left: 0;
-    padding: 3px 0;
-    min-width: 50%;
-    max-width: 100%;
-}
-
-select:focus, select:active { 
-    outline: none !important;
-    color: red;
-    border-color: red;
-    box-shadow: 0 0 0 ;
-}
-
 .font-div {
-    width: 190px;
+    width: 200px;
     position: relative;
     padding: 0;
     margin: 5px 0;
 }
 
 .font-label-span {
-    height: 30px;
-    width: 95px;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
     margin: 5px 0;
@@ -141,8 +114,10 @@ select:focus, select:active {
 
 .input-select {
     position: absolute;
+    width: 100px;
+    height: 30px;
     top: 5px;
-    right: -38px;
+    right: -35px;
 }
 
 @media screen and (max-width: 576px) {
@@ -155,7 +130,7 @@ select:focus, select:active {
 @media (min-width:576px) and (max-width: 768px) {
     
     .font-div {
-        width: 95px;
+        width: 100px;
         flex-direction: column !important;
     }
 

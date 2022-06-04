@@ -1,11 +1,11 @@
 <template>
   <div class="select-div d-flex flex-column">
-    <span :id="`selected${removeSpace(labelName)}`" class="d-flex justify-content-between align-items-center select-selected-span" @click="selectedSpanClickHandler" @focus="selectedFocus"
+    <span :id="`selected${removeSpace(labelName)}`" class="d-flex justify-content-between align-items-center select-selected-span" tabindex="0" :style="selectedSpanStyle" @mousedown="preventDefaultEvents" @click="onSelectedSpanClick" @focus="onSelectedSpanFocus" @blur="onSelectedSpanBlur"
       ><span :id="`selected${removeSpace(labelName)}Option`">{{selectedText}}</span>
-      <img src="./assets/arrow.svg"/>
+      <img :id="`${removeSpace(labelName)}SelectArrow`" :src="require('./assets/arrow.svg')"/>
       </span>
     <ul :id="`${removeSpace(labelName)}DataUl`" class="d-flex flex-column scale-down-ver-top" :style="dataUlStyle">
-      <li v-for="item in dataListArray" :key="item.index" :id="`${removeSpace(labelName)}${removeSpace(item)}`" @click="dataItemClickHandler(item)">
+      <li v-for="item in dataListArray" :key="item.index" :id="`${removeSpace(labelName)}${removeSpace(item)}`" :style="{'border-color':dataUlBorderColor}" @click="dataItemClickHandler(item)">
         {{ item }}
       </li>
     </ul>
@@ -23,11 +23,18 @@ export default {
   },
   data() {
     return {
-      selectedText: 'Select',
       selectedValue: String,
+      selectedText: 'Select',
+      selectedColor: 'black',
+      selectedBorderColor: 'black',
+      dataUlBorderColor: 'black',
+      lastActiveElement: 'none',
+      docHasFocus: Boolean,
+      blurOnMouseDown: false,
       selectedSpan: Object,
       selectedOption: Object,
       dataUl: Object,
+      arrowImage: Object,
     };
   },
   watch: {
@@ -37,77 +44,127 @@ export default {
     updatorNum() {
       this.selectedText = this.selectedValue;
     },
-  },
-  methods: {
-    selectedSpanClickHandler() {
-        // First, check if the current input list is expanded, and if it is, collapse it
-        if (this.dataUl.classList.contains('select-open')) {
-            this.dataUl.classList.remove('scale-up-ver-top');
-            this.dataUl.classList.add('scale-down-ver-top');
-            this.dataUl.classList.remove('select-open');
-        } else {
-            // Now we want to expand the currnet input list, but before that,
-            // we should check to collapse any other input list that is already expanded
-            if (document.getElementsByClassName('select-open').item(0)) {
-              document.getElementsByClassName('select-open').item(0).classList.remove('scale-up-ver-top');
-              document.getElementsByClassName('select-open').item(0).classList.add('scale-down-ver-top');
-              document.getElementsByClassName('select-open').item(0).classList.remove('select-open');
-            }
-            // Now we expand the current input list
-            this.dataUl.classList.remove('scale-down-ver-top');
-            this.dataUl.classList.add('scale-up-ver-top');
-            this.dataUl.classList.add('select-open');
-        }
-    },
-    dataItemClickHandler(item) {
-      this.selectedValue = item.toString();
-      this.selectedText = this.selectedValue;
-      this.selectedSpanClickHandler();
-    },
-
-    removeSpace(str) {
-      str = str.replace(/ /g, '');
-      return str;
-    },
-    selectedFocus() {
-      console.log(document.activeElement.tagName)
-    },
-    selectedTextUpdator() {
-      if (this.selectedOption.offsetWidth > 68) {
-        this.selectedText = `${this.selectedText.substr(0, this.selectedText.length-4)}...`;
+    docHasFocus(val) {
+      if (!val) {
+        this.blurOnMouseDown = true;
+        console.log('watcher called on blurOnMouseDown:', this.blurOnMouseDown)
       }
     },
   },
   computed: {
-      dataUlStyle() {
-          return {
-              'z-index' : this.zIndex,
-          }
-      },
+    // Utilities
+
+
+
+    // Styles
+
+    selectedSpanStyle() {
+        return {
+            outline: 'none',
+            color: `${this.selectedColor}`,
+            'border-color': `${this.selectedBorderColor}`,
+        }
+    },
+    dataUlStyle() {
+        return {
+            'border-color' : this.dataUlBorderColor,
+            'z-index' : this.zIndex,
+        }
+    },
+  },
+  methods: {
+    preventDefaultEvents (e) {
+        e = e || window.event;
+        e.preventDefault();
+    },
+    onSelectedSpanClick() {
+      if (this.lastActiveElement == this.selectedSpan.id) {
+        console.log(`onSelectSpanClick: lastActive: ${this.lastActiveElement}, this id:${this.selectedSpan.id}`);
+        this.selectedSpan.blur();
+      } else {
+          console.log(`onSelectSpanClick: lastActive: ${this.lastActiveElement}, this id:${this.selectedSpan.id}`);
+          this.selectedSpan.focus();
+        } 
+    },
+    dataItemClickHandler(item) {
+      this.selectedValue = item.toString();
+      this.selectedText = this.selectedValue;
+    },
+    removeSpace(str) {
+      str = str.replace(/ /g, '');
+      return str;
+    },
+    onSelectedSpanFocus() {
+      if (!this.blurOnMouseDown) {
+        this.selectedColor = 'red';
+        this.selectedBorderColor = 'red';
+        this.arrowImage.setAttribute('src', require('./assets/arrowFocused.svg'));
+        this.lastActiveElement = this.selectedSpan.id;
+        // First we should check to collapse any other input list that is already expanded
+        if (document.getElementsByClassName('select-open').item(0)) {
+          document.getElementsByClassName('select-open').item(0).classList.remove('scale-up-ver-top');
+          document.getElementsByClassName('select-open').item(0).classList.add('scale-down-ver-top');
+          document.getElementsByClassName('select-open').item(0).classList.remove('select-open');
+        }
+        // Now we expand the current input list
+        this.dataUlBorderColor = 'red';
+        this.dataUl.classList.remove('scale-down-ver-top');
+        this.dataUl.classList.add('scale-up-ver-top');
+        this.dataUl.classList.add('select-open');
+        this.$emit('selected-focused');
+      } else {
+          this.selectedSpan.blur();
+          setTimeout(() => {
+            this.blurOnMouseDown = false;
+          }, 50);
+        }
+    },
+    onSelectedSpanBlur() {
+      if (!this.blurOnMouseDown) {
+        this.selectedColor = 'black';
+        this.selectedBorderColor = 'black';
+        this.arrowImage.setAttribute('src', require('./assets/arrow.svg'));
+        this.lastActiveElement = 'none';
+        // Collapse the current input list
+        this.dataUlBorderColor = 'black';
+        this.dataUl.classList.remove('scale-up-ver-top');
+        this.dataUl.classList.add('scale-down-ver-top');
+        this.dataUl.classList.remove('select-open');
+        this.$emit('selected-blured');
+      }
+    },
+    selectedTextUpdator() {
+      if (this.selectedOption.offsetWidth > 72) {
+        this.selectedText = `${this.selectedText.substr(0, this.selectedText.length-4)}...`;
+      }
+    },
   },
   mounted() {
     this.selectedSpan = document.getElementById(`selected${this.removeSpace(this.labelName)}`);
     this.selectedOption = document.getElementById(`selected${this.removeSpace(this.labelName)}Option`);
     this.dataUl = document.getElementById(`${this.removeSpace(this.labelName)}DataUl`);
+    this.arrowImage = document.getElementById(`${this.removeSpace(this.labelName)}SelectArrow`);
     this.selectedValue = this.dataListArray[0];
     this.selectedText = this.selectedValue;
+    this.docHasFocus = document.hasFocus();
   },
   updated() {
     this.selectedTextUpdator();
+    this.docHasFocus = document.hasFocus();
   },
-  emits: ['selected-changed']
+  emits: ['selected-changed', 'selected-focused', 'selected-blured']
 };
 </script>
 
 <style scoped>
 .select-div {
-  width: 95px;
+  width: 100px;
   height: 30px;
   position: relative;
 }
 
 .select-selected-span {
-    width: 95px;
+    width: 100px;
     height: 30px;
     position: absolute;
     top: 0;
@@ -120,10 +177,10 @@ export default {
 }
 
 ul {
-    width: 95px;
+    width: 100px;
     position: absolute;
     top: 30px;
-    border: 2px solid black;
+    border: 2px solid;
     border-top: 0;
     border-bottom: 0;
     border-radius: 0 0 10px 10px;
@@ -140,15 +197,19 @@ img {
 }
 
 li {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid red;
   padding: 2%;
   font-size: 14px;
-  width: 95px;
+  width: 100%;
   overflow-wrap: break-word;
 }
 
 li:nth-last-of-type(1) {
   border-bottom: 0;
+}
+
+li:hover {
+  color: red;
 }
 
 @media (max-width:576px) {

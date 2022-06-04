@@ -20,8 +20,8 @@
               :bombCol="bombColor"
               :minesNumCol="minesNumberColor"
               :defSize="cellSize"
-              @left-click="leftClickHandler"
-              @right-click="rightClickHandler"/>
+              @left-click="onLeftClick"
+              @right-click="onRightClick"/>
             </td>
           </tr>
         </tbody>
@@ -29,64 +29,64 @@
       <div id="recordDiv">Record</div>
     </div>
   
-    <NewGame label="New Game" :fontFamily="tableFontFamily" :fontSize="cellSize" :rowsNum="rows" :colsNum="cols" :minesNum="mines" @new-game="newGame"/>
+    <NewGame label="New Game" :fontFamily="tableFontFamily" :fontSize="cellSize" :rowsNum="rows" :colsNum="cols" :minesNum="mines" @new-game="onNewGame"/>
     <hr>
 
     <div id="settings" class="d-flex flex-column" :style="settingsStyle">
 
       <div id="fontSettings" class="d-flex flex-column justify-content-start align-items-center">
-        <SettingsIcon imgType="font" targetID="fontSettingsList" @settingsIconClick="settingsIconClickHandler"/>
+        <SettingsIcon imgType="font" targetID="fontSettingsList" @settingsIconClick="onSettingsIconClick"/>
         <ul id="fontSettingsList" class="mx-1 my-2 px-0 scale-down-ver-top">
           <li>
-            <InputFont labelName="Information" :fontFamily="settingsFontFamily" :selectZIndex="100" :selectUpdator="selectElementsUpdator" eventName="info-font-changed" @info-font-changed="onInfoFontChanged"/>
+            <InputFont labelName="Info" :fontFamily="settingsFontFamily" :selectZIndex="100" :selectUpdator="selectElementsUpdator" eventName="info-font-change" @info-font-change="onInfoFontChange"/>
           </li>
           <li>
-            <InputFont labelName="Table" :fontFamily="settingsFontFamily" :selectZIndex="99" :selectUpdator="selectElementsUpdator" eventName="table-font-changed" @table-font-changed="onTableFontChanged"/>
+            <InputFont labelName="Table" :fontFamily="settingsFontFamily" :selectZIndex="99" :selectUpdator="selectElementsUpdator" eventName="table-font-change" @table-font-change="onTableFontChange"/>
           </li>
           <li>
-            <InputFont labelName="Settings" :fontFamily="settingsFontFamily" :selectZIndex="98" :selectUpdator="selectElementsUpdator" eventName="settings-font-changed" @settings-font-changed="onSettingsFontChanged"/>
+            <InputFont labelName="Settings" :fontFamily="settingsFontFamily" :selectZIndex="98" :selectUpdator="selectElementsUpdator" eventName="settings-font-change" @settings-font-change="onSettingsFontChange"/>
           </li>
         </ul>
       </div>
 
       <div id="numberSettings" class="d-flex flex-column justify-content-start align-items-center">
-        <SettingsIcon imgType="number" targetID="numberSettingsList" @settingsIconClick="settingsIconClickHandler"/>
+        <SettingsIcon imgType="number" targetID="numberSettingsList" @settingsIconClick="onSettingsIconClick"/>
         <ul id="numberSettingsList" class="mx-1 my-2 px-0 scale-down-ver-top">
           <li>
-            <InputNumber labelName="Rows" :fontFamily="settingsFontFamily" :defaultValue="rows" :minValue="1" :maxValue="50" eventName="rows-changed" @rows-changed="onRowsChanged"/>
+            <InputNumber labelName="Rows" :fontFamily="settingsFontFamily" :defaultValue="rows" :minValue="1" :maxValue="50" eventName="rows-change" @rows-change="onRowsChange"/>
           </li>
           <li>
-            <InputNumber labelName="Columns" :fontFamily="settingsFontFamily" :defaultValue="cols" :minValue="1" :maxValue="50" eventName="cols-changed" @cols-changed="onColsChanged"/>
+            <InputNumber labelName="Columns" :fontFamily="settingsFontFamily" :defaultValue="cols" :minValue="1" :maxValue="50" eventName="cols-change" @cols-change="onColsChange"/>
           </li>
           <li>
-            <InputNumber labelName="Mines" :fontFamily="settingsFontFamily" :defaultValue="mines" :minValue="minimumMines" :maxValue="maximumMines" eventName="mines-changed" @mines-changed="onMinesChanged"/>
+            <InputNumber labelName="Mines" :fontFamily="settingsFontFamily" :defaultValue="mines" :minValue="minimumMines" :maxValue="maximumMines" eventName="mines-change" @mines-change="onMinesChange"/>
           </li>
           <li>
-            <InputNumber labelName="Cell Size" :fontFamily="settingsFontFamily" :defaultValue="cellSize" :minValue="20" :maxValue="40" eventName="cell-size-changed" @cell-size-changed="onCellSizeChanged"/>
+            <InputNumber labelName="Cell Size" :fontFamily="settingsFontFamily" :defaultValue="cellSize" :minValue="20" :maxValue="40" eventName="cell-size-change" @cell-size-change="onCellSizeChange"/>
           </li>
         </ul>
       </div>
 
       <div id="colorSettings" class="d-flex flex-column justify-content-start align-items-center">
-        <SettingsIcon imgType="color" targetID="colorSettingsList" @settingsIconClick="settingsIconClickHandler"/>
+        <SettingsIcon imgType="color" targetID="colorSettingsList" @settingsIconClick="onSettingsIconClick"/>
         <ul id="colorSettingsList" class="mx-1 my-2 px-0 scale-down-ver-top">
           <li>
-            <InputColor labelName="Default" :fontFamily="settingsFontFamily" :defaultValue="defaultColor" eventName="def-color-changed" @def-color-changed="onDefColorChanged"/>
+            <InputColor labelName="Default" :fontFamily="settingsFontFamily" :defaultValue="defaultColor" eventName="def-color-change" @def-color-change="onDefColorChange"/>
           </li>
           <li>
-            <InputColor labelName="Revealed" :fontFamily="settingsFontFamily" :defaultValue="revealedColor" eventName="rev-color-changed" @rev-color-changed="onRevColorChanged"/>
+            <InputColor labelName="Revealed" :fontFamily="settingsFontFamily" :defaultValue="revealedColor" eventName="rev-color-change" @rev-color-change="onRevColorChange"/>
           </li>
           <li>
-            <InputColor labelName="Marked" :fontFamily="settingsFontFamily" :defaultValue="markedColor" eventName="mark-color-changed" @mark-color-changed="onMarkColorChanged"/>
+            <InputColor labelName="Marked" :fontFamily="settingsFontFamily" :defaultValue="markedColor" eventName="mark-color-change" @mark-color-change="onMarkColorChange"/>
           </li>
           <li>
-            <InputColor labelName="X-Lost" :fontFamily="settingsFontFamily" :defaultValue="bombLostColor" eventName="bomb-lost-color-changed" @bomb-lost-color-changed="onBombLostColorChanged"/>
+            <InputColor labelName="X-Lost" :fontFamily="settingsFontFamily" :defaultValue="bombLostColor" eventName="bomb-lost-color-change" @bomb-lost-color-change="onBombLostColorChange"/>
           </li>
           <li>
-            <InputColor labelName="X-Won" :fontFamily="settingsFontFamily" :defaultValue="bombWonColor" eventName="bomb-won-color-changed" @bomb-won-color-changed="onBombWonColorChanged"/>
+            <InputColor labelName="X-Won" :fontFamily="settingsFontFamily" :defaultValue="bombWonColor" eventName="bomb-won-color-change" @bomb-won-color-change="onBombWonColorChange"/>
           </li>
           <li>
-            <InputColor labelName="Numbers" :fontFamily="settingsFontFamily" :defaultValue="minesNumberColor" eventName="mines-number-color-changed" @mines-number-color-changed="onMinesNumberColorChanged"/>
+            <InputColor labelName="Numbers" :fontFamily="settingsFontFamily" :defaultValue="minesNumberColor" eventName="mines-number-color-change" @mines-number-color-change="onMinesNumberColorChange"/>
           </li>
         </ul>
       </div>
@@ -176,6 +176,9 @@ export default {
       if (!this.isGameOver) return 'Marked Cells :';
       else return 'Wrong Marks :';
     },
+
+    // Styles
+    
     infoStyle: function () {
       return {
         'font-family': `${this.infoFontFamily}`
@@ -196,7 +199,6 @@ export default {
   },
   watch: {
     rows() {
-      // console.log(`rows changed to ${val}`);
       this.mines = this.minimumMines;
       console.log(`mines set to ${this.mines}`);
     },
@@ -206,82 +208,8 @@ export default {
     }
   },
   methods: {
-    leftClickHandler (data) {
-      if (!this.isGameOver) {
-        if (!this.isGameRunning) {
-          this.resetTimer = false;
-          this.isGameRunning = true;
-        }
-        this.findMines(data);
-        }
-    },
-    rightClickHandler (data) {
-      if (!this.isGameOver) this.toggleMarker(data);
-    },
-    onRowsChanged (data) {
-      this.rows = data;
-      console.log(`Rows number set to ${this.rows}`);
-    },
-    onColsChanged (data) {
-      this.cols = data;
-      console.log(`Cols number set to ${this.cols}`);
-    },
-    onMinesChanged (data) {
-      this.mines = data;
-      console.log(`Mines number set to ${this.mines}`);
-    },
-    onCellSizeChanged (size) {
-      this.cellSize = size;
-      console.log(`Cell Size set to ${this.cellSize}`);
-    },
-    onDefColorChanged (color) {
-      this.defaultColor = `${color}`;
-      console.log(`Default color set to ${this.defaultColor}`);
-    },
-    onRevColorChanged (color) {
-      this.revealedColor = `${color}`;
-      console.log(`Revealed color set to ${this.revealedColor}`);
-    },
-    onMarkColorChanged (color) {
-      this.markedColor = `${color}`;
-      console.log(`Marked color set to ${this.markedColor}`);
-    },
-    onBombLostColorChanged (color) {
-      this.bombLostColor = `${color}`;
-      console.log(`Bomb-Lost color set to ${this.bombLostColor}`);
-    },
-    onBombWonColorChanged (color) {
-      this.bombWonColor = `${color}`;
-      console.log(`Bomb-Lost color set to ${this.bombWonColor}`);
-    },
-    onMinesNumberColorChanged (color) {
-      this.minesNumberColor = `${color}`;
-      console.log(`Mines-Number color set to ${this.minesNumberColor}`);
-    },
-    onInfoFontChanged (font) {
-      this.infoFontFamily = `${font}`;
-      this.selectElementsUpdator++;
-      // console.log(`Information font set to ${this.infoFontFamily}`);
-    },
-    onTableFontChanged (font) {
-      this.tableFontFamily = `${font}`;
-      this.selectElementsUpdator++;
-      // console.log(`Table font set to ${this.tableFontFamily}`);
-    },
-    onSettingsFontChanged (font) {
-      this.settingsFontFamily = `${font}`;
-      this.selectElementsUpdator++;
-      // console.log(`Settings font set to ${this.settingsFontFamily}`);
-    },
-    settingsIconClickHandler (target, image) {
-      var targetClassList = document.getElementById(target).classList;
-      var imageClassList = document.getElementById(image).classList;
+    // Utility Methods
 
-      targetClassList.toggle('scale-down-ver-top')
-      targetClassList.toggle('scale-up-ver-top')
-      imageClassList.toggle('rotate-center')
-      imageClassList.toggle('reverse-rotate-center')
-    },
     sumArrayElements (array) {
         var reducer = (previousValue, currentValue) => previousValue + currentValue;
         var sum = array.reduce(reducer);
@@ -303,6 +231,9 @@ export default {
         var isEqual = (logSum == 0 ? true : false);
         return isEqual;
     },
+
+    // Main Functionality
+
     toggleMarker (cell) {
         if (cell.isRevealed) {
         } else {
@@ -351,12 +282,91 @@ export default {
       this.isGameRunning = false;
       this.isGameOver = true;
     },
-    newGame (array, minesN) {
+
+    // Event Handlers
+
+    onLeftClick (data) {
+      if (!this.isGameOver) {
+        if (!this.isGameRunning) {
+          this.resetTimer = false;
+          this.isGameRunning = true;
+        }
+        this.findMines(data);
+        }
+    },
+    onRightClick (data) {
+      if (!this.isGameOver) this.toggleMarker(data);
+    },
+    onNewGame (array, minesN) {
       this.resetTimer = true;
       this.isGameOver = false;
       this.cellsRowFormatArray = array;
       this.minesCounter = minesN;
-    }
+    },
+    onRowsChange (data) {
+      this.rows = data;
+      console.log(`Rows number set to ${this.rows}`);
+    },
+    onColsChange (data) {
+      this.cols = data;
+      console.log(`Cols number set to ${this.cols}`);
+    },
+    onMinesChange (data) {
+      this.mines = data;
+      console.log(`Mines number set to ${this.mines}`);
+    },
+    onCellSizeChange (size) {
+      this.cellSize = size;
+      console.log(`Cell Size set to ${this.cellSize}`);
+    },
+    onDefColorChange (color) {
+      this.defaultColor = `${color}`;
+      console.log(`Default color set to ${this.defaultColor}`);
+    },
+    onRevColorChange (color) {
+      this.revealedColor = `${color}`;
+      console.log(`Revealed color set to ${this.revealedColor}`);
+    },
+    onMarkColorChange (color) {
+      this.markedColor = `${color}`;
+      console.log(`Marked color set to ${this.markedColor}`);
+    },
+    onBombLostColorChange (color) {
+      this.bombLostColor = `${color}`;
+      console.log(`Bomb-Lost color set to ${this.bombLostColor}`);
+    },
+    onBombWonColorChange (color) {
+      this.bombWonColor = `${color}`;
+      console.log(`Bomb-Lost color set to ${this.bombWonColor}`);
+    },
+    onMinesNumberColorChange (color) {
+      this.minesNumberColor = `${color}`;
+      console.log(`Mines-Number color set to ${this.minesNumberColor}`);
+    },
+    onInfoFontChange (font) {
+      this.infoFontFamily = `${font}`;
+      this.selectElementsUpdator++;
+      // console.log(`Information font set to ${this.infoFontFamily}`);
+    },
+    onTableFontChange (font) {
+      this.tableFontFamily = `${font}`;
+      this.selectElementsUpdator++;
+      // console.log(`Table font set to ${this.tableFontFamily}`);
+    },
+    onSettingsFontChange (font) {
+      this.settingsFontFamily = `${font}`;
+      this.selectElementsUpdator++;
+      // console.log(`Settings font set to ${this.settingsFontFamily}`);
+    },
+    onSettingsIconClick (target, image) {
+      var targetClassList = document.getElementById(target).classList;
+      var imageClassList = document.getElementById(image).classList;
+
+      targetClassList.toggle('scale-down-ver-top')
+      targetClassList.toggle('scale-up-ver-top')
+      imageClassList.toggle('rotate-center')
+      imageClassList.toggle('reverse-rotate-center')
+    },
   },
   created () {
     try {
@@ -366,7 +376,6 @@ export default {
       console.log(error.message)
     }
   },
-  emits: ['left-click', 'right-click', 'new-game', 'info-font-changed', 'table-font-changed', 'settings-font-changed']
 }
 </script>
 
@@ -424,6 +433,10 @@ hr {
   #info {
     flex-direction: row !important;
     justify-content: space-between !important;
+  }
+  
+  #fontSettingsList li {
+    transform: translateX(-43px);
   }
 }
 

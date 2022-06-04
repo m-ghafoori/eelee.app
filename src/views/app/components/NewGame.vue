@@ -25,7 +25,7 @@ export default {
         btnStyle() {
             return {
                 'font-family': `${this.fontFamily}`,
-                'font-size': `${this.fontSize/1.5}px`,
+                'font-size': `${this.fontSize/1.8}px`,
             }
         },
     },

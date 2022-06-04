@@ -18,6 +18,11 @@ body {
   color: white;
 }
 
+.label-span {
+  width: 100px;
+  height: 30px;
+}
+
 /* Animated Background */
 
 .animated-bg {
