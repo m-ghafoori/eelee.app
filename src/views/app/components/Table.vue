@@ -36,7 +36,7 @@
 
       <div id="fontSettings" class="d-flex flex-column justify-content-start align-items-center">
         <SettingsIcon imgType="font" targetID="fontSettingsList" @settingsIconClick="onSettingsIconClick"/>
-        <ul id="fontSettingsList" class="mx-1 my-2 px-0 scale-down-ver-top">
+        <ul id="fontSettingsList" class="settings-list mx-1 my-2 px-0 scale-down-ver-top">
           <li>
             <InputFont labelName="Info" :fontFamily="settingsFontFamily" :selectZIndex="100" :selectUpdator="selectElementsUpdator" eventName="info-font-change" @info-font-change="onInfoFontChange"/>
           </li>
@@ -51,7 +51,7 @@
 
       <div id="numberSettings" class="d-flex flex-column justify-content-start align-items-center">
         <SettingsIcon imgType="number" targetID="numberSettingsList" @settingsIconClick="onSettingsIconClick"/>
-        <ul id="numberSettingsList" class="mx-1 my-2 px-0 scale-down-ver-top">
+        <ul id="numberSettingsList" class="settings-list mx-1 my-2 px-0 scale-down-ver-top">
           <li>
             <InputNumber labelName="Rows" :fontFamily="settingsFontFamily" :defaultValue="rows" :minValue="1" :maxValue="50" eventName="rows-change" @rows-change="onRowsChange"/>
           </li>
@@ -69,7 +69,7 @@
 
       <div id="colorSettings" class="d-flex flex-column justify-content-start align-items-center">
         <SettingsIcon imgType="color" targetID="colorSettingsList" @settingsIconClick="onSettingsIconClick"/>
-        <ul id="colorSettingsList" class="mx-1 my-2 px-0 scale-down-ver-top">
+        <ul id="colorSettingsList" class="settings-list mx-1 my-2 px-0 scale-down-ver-top">
           <li>
             <InputColor labelName="Default" :fontFamily="settingsFontFamily" :defaultValue="defaultColor" eventName="def-color-change" @def-color-change="onDefColorChange"/>
           </li>
@@ -403,8 +403,7 @@ export default {
 
 #fontSettings, #numberSettings, #colorSettings {
   min-width: 233px;
-  margin: 10px;
-  margin-bottom: 0;
+  margin: 45px 10px 0 10px;
 }
 
 td {
@@ -450,6 +449,10 @@ hr {
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
+  #settings {
+    width: 70vw;
+  }
+
   #fontSettings, #numberSettings, #colorSettings {
     min-width: 114px;
   }

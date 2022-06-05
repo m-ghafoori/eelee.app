@@ -1,10 +1,10 @@
 <template>
     <div class="color-div hoverable d-flex justify-content-center align-items-center">
         <span class="label-span color-label-span d-flex justify-content-center align-items-center" :style="labelStyle" @mousedown="preventDefaultEvents" @click="onLabelClick">{{labelName}}</span>
-        <div class="color-input-div d-flex align-items-center">
+        <div class="input-div d-flex align-items-center">
             <input
             :id="removeSpace(labelName)"
-            class="hoverable"
+            class="input hoverable"
             v-model="inputValue"
             :placeholder="placeHolder"
             type="color"
@@ -142,10 +142,8 @@ div, span, input {
 input {
     width: 39px;
     height: 30px;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-    border-right: 0;
-    border-left: 0;
+    border: 0;
+    border-right: 2px solid;
     margin-right: 1px;
 }
 
@@ -158,11 +156,11 @@ input:focus, input:active {
 .color-div {
     padding: 0;
     margin: 5px 0;
+    margin-bottom: auto;
 }
 
 .color-label-span {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-left: 2px solid black;
     margin: 5px 0;
 }
 
@@ -175,18 +173,22 @@ input:focus, input:active {
 @media (min-width:576px) and (max-width: 768px) {
     input {
         margin-right: 0;
+        border-left: 2px solid;
+        border-bottom: 2px solid;
     }
 
     .color-div {
         flex-direction: column !important;
     }
 
-    .color-input-div {
+    .input-div {
         align-self: center;
     }
 
     .color-label-span {
         width: 80px;
+        border-right: 2px solid;
+        border-top: 2px solid;
         margin: 10px 0 5px 0;
     }
 }

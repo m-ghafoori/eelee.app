@@ -1,10 +1,10 @@
 <template>
     <div class="number-div hoverable d-flex justify-content-center align-items-center">
         <span class="label-span number-label-span d-flex justify-content-center align-items-center" :style="labelStyle" @mousedown="preventDefaultEvents" @click="onLabelClick">{{labelName}}</span>
-        <div class="number-input-div d-flex align-items-center">
+        <div class="input-div d-flex align-items-center">
             <input
             :id="removeSpace(labelName)"
-            class=""
+            class="input"
             :style="{'font-family' : fontFamily}"
             v-model="inputValue"
             type="number"
@@ -138,10 +138,8 @@ div, span, input {
 input {
     width: 49px;
     height: 30px;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-    border-right: 0;
-    border-left: 0;
+    border: 0;
+    border-right: 2px solid;
     margin-right: 1px;
     text-align: center;
 }
@@ -161,11 +159,11 @@ input[type=number]::-webkit-outer-spin-button:hover {
 .number-div {
     padding: 0;
     margin: 5px 0;
+    margin-bottom: auto;
 }
 
 .number-label-span {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-left: 2px solid;
     margin: 5px 0;
 }
 
@@ -177,6 +175,8 @@ input[type=number]::-webkit-outer-spin-button:hover {
 
 @media (min-width:576px) and (max-width: 768px) {
     input {
+        border-left: 2px solid;
+        border-bottom: 2px solid;
         margin-right: 0;
         padding-left: 10px;
     }
@@ -185,12 +185,14 @@ input[type=number]::-webkit-outer-spin-button:hover {
         flex-direction: column !important;
     }
 
-    .number-input-div {
+    .input-div {
         align-self: center;
     }
 
     .number-label-span {
         width: 80px;
+        border-right: 2px solid;
+        border-top: 2px solid;
         margin: 10px 0 5px 0;
     }
 }

@@ -104,11 +104,11 @@ div, span {
     position: relative;
     padding: 0;
     margin: 5px 0;
+    margin-bottom: auto;
 }
 
 .font-label-span {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-left: 2px solid black;
     margin: 5px 0;
 }
 
@@ -135,7 +135,9 @@ div, span {
     }
 
     .font-label-span {
-        width: 100%;
+        width: 120px;
+        border-right: 2px solid;
+        border-top: 2px solid;
         margin: 10px 0 5px 0;
     }
 

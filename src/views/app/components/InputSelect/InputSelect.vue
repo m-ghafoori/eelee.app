@@ -1,6 +1,6 @@
 <template>
   <div class="select-div d-flex flex-column">
-    <span :id="`selected${removeSpace(labelName)}`" class="d-flex justify-content-between align-items-center select-selected-span" tabindex="0" :style="selectedSpanStyle" @mousedown="preventDefaultEvents" @click="onSelectedSpanClick" @focus="onSelectedSpanFocus" @blur="onSelectedSpanBlur"
+    <span :id="`selected${removeSpace(labelName)}`" class="d-flex justify-content-between align-items-center select-selected-span input" tabindex="0" :style="selectedSpanStyle" @mousedown="preventDefaultEvents" @click="onSelectedSpanClick" @focus="onSelectedSpanFocus" @blur="onSelectedSpanBlur"
       ><span :id="`selected${removeSpace(labelName)}Option`">{{selectedText}}</span>
       <img :id="`${removeSpace(labelName)}SelectArrow`" :src="require('./assets/arrow.svg')"/>
       </span>
@@ -169,10 +169,7 @@ export default {
     position: absolute;
     top: 0;
     background: transparent;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-    border-right: 0;
-    border-left: 0;
+    border-right: 2px solid;
     padding: 3px 3px 3px 6px;
 }
 
@@ -212,9 +209,17 @@ li:hover {
   color: red;
 }
 
-@media (max-width:576px) {
+@media (max-width: 576px) {
   .select-selected-span {
     justify-content: flex-end !important;
   }
 }
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .select-selected-span {
+    border: 2px solid;
+    border-top: 0;
+  }
+}
+
 </style>
