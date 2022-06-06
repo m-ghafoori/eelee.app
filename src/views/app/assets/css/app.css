@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Timer;
+  src: url('../fonts/digital-7.ttf');
+}
+
 body {
     background-image: repeating-linear-gradient(to bottom right, #91ffff, #d4ffff 48%, #91ffff 54%);
     overflow-y: scroll;
@@ -7,6 +12,7 @@ body {
 .digital {
   background: transparent;
   color: #ffe11f;
+  font-size: calc(1vw + 1.5vh);
   height: 25px;
   width: 25px;
   text-align: center;
@@ -16,6 +22,28 @@ body {
 .counter {
   background: transparent;
   color: white;
+  font-size: calc(1vw + 1.5vh);
+}
+
+.timer {
+  font-family: 'Timer';
+  font-size: calc(1vw + 1.8vh);
+}
+
+.running .counter {
+  color: greenyellow !important;
+}
+
+.stopped .counter {
+  color: rgb(255, 107, 107) !important;
+}
+
+.running .digital {
+  color: white !important;
+}
+
+.stopped .digital {
+  color: greenyellow !important;
 }
 
 .label-span {

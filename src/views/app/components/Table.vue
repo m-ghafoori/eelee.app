@@ -1,8 +1,8 @@
 <template>
   <div id="mainDiv" class="d-flex flex-column align-items-center">
-    <div id="info" class="animated-bg d-flex flex-column justify-content-center" :style="infoStyle">
+    <div id="info" class="animated-bg d-flex flex-column justify-content-center align-items-center" :style="infoStyle">
       <span class="counter">Mines Number :&nbsp;<span class="digital">{{minesCounter}}</span></span>
-      <Timer :isRunning="isGameRunning" :isresetNeeded="resetTimer"/>
+      <Timer class="timer" :isRunning="isGameRunning" :isresetNeeded="resetTimer"/>
       <span class="counter">{{marksCounterLabel}}&nbsp;<span class="digital">{{marksCounter}}</span></span>
     </div>
     <hr>
@@ -137,7 +137,8 @@ export default {
       settingsFontFamily: 'Baloo',
       isGameRunning: false,
       isGameOver: false,
-      resetTimer: false
+      resetTimer: false,
+      timer: Object,
     }
   },
   computed: {
@@ -205,7 +206,12 @@ export default {
     cols() {
       this.mines = this.minimumMines;
       console.log(`mines set to ${this.mines}`);
-    }
+    },
+    isGameRunning(val) {
+      if (val) {
+        this.timer.classList.add('running');
+      }
+    },
   },
   methods: {
     // Utility Methods
@@ -281,6 +287,8 @@ export default {
         });
       this.isGameRunning = false;
       this.isGameOver = true;
+      this.timer.classList.remove('running');
+      this.timer.classList.add('stopped');
     },
 
     // Event Handlers
@@ -302,6 +310,7 @@ export default {
       this.isGameOver = false;
       this.cellsRowFormatArray = array;
       this.minesCounter = minesN;
+      this.timer.classList.remove('stopped');
     },
     onRowsChange (data) {
       this.rows = data;
@@ -375,6 +384,9 @@ export default {
     } catch (error) {
       console.log(error.message)
     }
+  },
+  mounted() {
+    this.timer = document.getElementsByClassName('timer').item(0);
   },
 }
 </script>
