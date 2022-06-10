@@ -1,7 +1,7 @@
 <template>
   <div id="bodyDiv" class='lg-wide-screen'>
 
-    <div id="mainContainer" class="d-flex flex-column lg-wide-screen">
+    <div id="mainContainer" class="invisible d-flex flex-column lg-wide-screen">
       <header
         id="header"
         class="d-flex align-items-center"
@@ -10,13 +10,13 @@
       >
         <router-link
           id="logo"
-          class="hoverable animate__animated"
+          class="invisible hoverable animate__animated"
           to="/"
           @mouseenter="logoMouseEnter"
           @mouseleave="logoMouseLeave"
           >EELee</router-link
         >
-        <div id="headerNavbar" class="d-flex align-items-center">
+        <div id="headerNavbar" class="invisible d-flex align-items-center">
 
           <router-link
             id="appNav"
@@ -46,7 +46,7 @@
         <div id="orderDiv" class="animate__animated animate__slower">
           <router-link
             id="orderLink"
-            class="hoverable animate__animated"
+            class="invisible hoverable animate__animated"
             to="/"
             @mouseenter="orderLinkMouseEnter"
             @mouseleave="orderLinkMouseLeave"
@@ -60,7 +60,7 @@
 
         <div
           id="donateDiv"
-          class="hoverable animate__animated animate__slower"
+          class="invisible hoverable animate__animated animate__slower"
         >
           <router-link id="donateSpan" class="hoverable" to="/">
             <img
@@ -73,11 +73,13 @@
             />
           </router-link>
         </div>
+
+        <div id="skipAnimations" class="hoverable vibrate-1" @mouseenter="onSkipAnimationsMouseEnter" @mouseleave="onSkipAnimationsMouseLeave" @click="onSkipAnimationsClick">Skip Initial Animations >>></div>
       </section>
 
       <footer id="footer" class="vibrate-1">
-        <span id="footerNote" class="">&copy; 2022 - EELee App Design</span>
-        <ul id="footerUl" class="hoverable">
+        <router-link to="/portfolio" id="footerNote" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+        <ul id="footerUl" class="invisible hoverable">
           <li id="linkedinNav" class="animate__animated">
             <img
               id="linkedinIcon"
@@ -120,15 +122,22 @@ export default {
   data() {
     return {
 
+      //#mainContainer Variables
+      mainContainerInitRef: Function,
+
       //#header Variables
-      intervalRef: Function,
-      initialIntervalRef: Function,
-      logoTimeOutRef: Function,
-      appNavTimeOutRef: Function,
-      portNavTimeOutRef: Function,
-      orderNavTimeOutRef: Function,
+      headerInitRef: Function,
+      headerNavsInitRef: Function,
+      headerLoopInitIntervalRef: Function,
+      headerLoopIntervalRef: Function,
+      headerInitWindref: Function,
+      logoTimeoutRef: Function,
+      appNavTimeoutRef: Function,
+      portNavTimeoutRef: Function,
+      orderNavTimeoutRef: Function,
 
       //#orderDiv Variables
+      orderLinkInitRef: Function,
       linkAnimationList: [
         "animate__shakeX",
         "animate__shakeY",
@@ -139,15 +148,17 @@ export default {
       linkIntervalRef: Function,
 
       //#donateDiv Variables
+      donateDivInitRef: Function,
       donateAnimationList: ["animate__jello", "vibrate-3"],
       donateAnimationIndex: 0,
       donateIntervalRef: Function,
 
       //#footerUl Variables
+      footerUlInitRef: Function,
       footerFirstIntervalRef: Function,
       footerSecondIntervalRef: Function,
 
-      //Element Object References
+      //Elements Object References
       headerNavbar: Object,
       logo: Object,
       appNav: Object,
@@ -155,6 +166,7 @@ export default {
       orderNav: Object,
       orderDiv: Object,
       donateSpan: Object,
+      skipAnimations: Object,
       footerUl: Object,
       linkedinNav: Object,
       emailNav: Object,
@@ -165,8 +177,9 @@ export default {
       headerNavsList: Array,
       footerNavsList: Array,
       invisibleElemsList: Array,
-      timeOutRefsList: [this.logoTimeOutRef, this.appNavTimeOutRef, this.portNavTimeOutRef, this.orderNavTimeOutRef, this.visibilityTimeOutRef, this.vibrationTimeOutRef],
-      intervalRefsList: [this.intervalRef, this.initialIntervalRef, this.linkIntervalRef, this.donateIntervalRef, this.footerFirstIntervalRef, this.footerSecondIntervalRef],
+      initTimeoutRefsList: Array,
+      timeoutRefsList: Array,
+      intervalRefsList: Array,
     };
   },
 
@@ -212,18 +225,22 @@ export default {
       }
     },
 
+    timeoutLog() {
+      
+    },
+
     // Creates wind effect on header icons with customizable delays
     windEffect(initialDelay, beforeApp, beforePort, beforeOrder) {
-      this.logoTimeOutRef = setTimeout(() => {
+      this.logoTimeoutRef = setTimeout(() => {
         this.logo.classList.add("shake-top");
 
-        this.appNavTimeOutRef = setTimeout(() => {
+        this.appNavTimeoutRef = setTimeout(() => {
           this.appNav.classList.add("shake-top");
 
-          this.portNavTimeOutRef = setTimeout(() => {
+          this.portNavTimeoutRef = setTimeout(() => {
             this.portNav.classList.add("shake-top");
 
-            this.orderNavTimeOutRef = setTimeout(() => {
+            this.orderNavTimeoutRef = setTimeout(() => {
               this.orderNav.classList.add("shake-top");
             }, beforeOrder);
           }, beforePort);
@@ -233,11 +250,11 @@ export default {
 
     // Clears wind effect timeouts
     clearWindEffect() {
-      clearTimeout(this.logoTimeOutRef);
-      clearTimeout(this.orderNavTimeOutRef);
-      clearTimeout(this.portNavTimeOutRef);
-      clearTimeout(this.appNavTimeOutRef);
-      clearInterval(this.intervalRef);
+      clearTimeout(this.logoTimeoutRef);
+      clearTimeout(this.orderNavTimeoutRef);
+      clearTimeout(this.portNavTimeoutRef);
+      clearTimeout(this.appNavTimeoutRef);
+      clearInterval(this.headerLoopIntervalRef);
       this.headerNavsList.forEach((item) => {
         item.classList.remove("shake-top");
       });
@@ -248,28 +265,37 @@ export default {
     // Starts initial appearance animations
     startAnimations() {
       console.log("animations started",new Date().getMilliseconds());
-      this.invisibleElemsList.forEach(element => {
-        element.classList.add('invisible');
-      });
-      this.timeOutRefsList.forEach(ref => {
-        clearTimeout(ref);
-      });
-      this.intervalRefsList.forEach(ref => {
-        clearInterval(ref);
-      });
       this.mainContainerInitAppear();
       this.headerInitAppear();
       this.headerInitWind();
       this.headerAnimationLoop();
       this.footerUlInitAppear();
-      this.donateDivInitAppear();
       this.orderLinkInitAppear();
+      this.donateDivInitAppear();
     },
 
     // Loads home page with running animation without replaying initial animations,
     // when resizing the window
     showRunningHome() {
       console.log('running home called', new Date().getUTCMilliseconds());
+      this.timeoutRefsList = [this.logoTimeoutRef, this.appNavTimeoutRef, this.portNavTimeoutRef, this.orderNavTimeoutRef];
+      this.intervalRefsList = [this.headerLoopIntervalRef, this.headerLoopInitIntervalRef, this.linkIntervalRef, this.donateIntervalRef, this.footerFirstIntervalRef, this.footerSecondIntervalRef];
+      this.initTimeoutRefsList = [this.mainContainerInitRef, this.headerInitRef, this.headerInitWindref, this.headerNavsInitRef, this.footerUlInitRef, this.orderLinkInitRef, this.donateDivInitRef];
+      this.invisibleElemsList.forEach(element => {
+        element.classList.remove('invisible');
+      });
+      this.timeoutRefsList.forEach(ref => {
+        clearTimeout(ref);
+        // console.log(`${ref} cleared`)
+      });
+      this.intervalRefsList.forEach(ref => {
+        clearInterval(ref);
+        // console.log(`${ref} cleared`)
+      });
+      this.initTimeoutRefsList.forEach(ref => {
+        clearTimeout(ref);
+        // console.log(`${ref} cleared`)
+      });
       this.headerMouseLeave();
       this.orderLinkMouseLeave();
       this.donateMouseLeave();
@@ -278,9 +304,10 @@ export default {
 
     // Starts mainContainer animation
     mainContainerInitAppear() {
-      setTimeout(() => {
-        this.mainContainer.parentElement.classList.remove("d-none");
-        this.mainContainer.classList.remove("d-none");
+      console.log("mainContainerInitAppear called",new Date().getMilliseconds());
+      this.mainContainerInitRef = setTimeout(() => {
+        // this.mainContainer.parentElement.classList.remove("invisible");
+        this.mainContainer.classList.remove("invisible");
         this.mainContainer.classList.add(
           "d-flex",
           "flex-column",
@@ -291,10 +318,11 @@ export default {
 
     // Initial Header Animations
     headerInitAppear() {
-      setTimeout(() => {
+      console.log("headerInitAppear called",new Date().getMilliseconds());
+      this.headerInitRef = setTimeout(() => {
         this.logo.classList.remove("invisible");
         this.logo.classList.add("text-focus-in");
-        setTimeout(() => {
+        this.headerNavsInitRef = setTimeout(() => {
           for (let i = 1; i < 4; i++) {
             this.headerNavbar.classList.remove("invisible");
             this.headerNavsList[i].classList.add("navbar-tracking-in-expand");
@@ -305,7 +333,8 @@ export default {
 
     // Sets the first wind effect on header
     headerInitWind() {
-      setTimeout(() => {
+      console.log("headerInitWind called",new Date().getMilliseconds());
+      this.headerInitWindref = setTimeout(() => {
         this.headerNavsList.forEach((item) => {
           item.classList.remove(
             "navbar-tracking-in-expand",
@@ -320,7 +349,8 @@ export default {
 
     // Header Running Animation Loop
     headerAnimationLoop() {
-      this.initialIntervalRef = setInterval(() => {
+      console.log("headerAnimationLoop called",new Date().getMilliseconds());
+      this.headerLoopInitIntervalRef = setInterval(() => {
         this.clearWindEffect();
         this.windEffect(1000, 900, 450, 450);
       }, 33000);
@@ -328,7 +358,8 @@ export default {
 
     // Initial footerUl Animation
     footerUlInitAppear() {
-      setTimeout(() => {
+      console.log("footerUlInitAppear called",new Date().getMilliseconds());
+      this.footerUlInitRef = setTimeout(() => {
         this.footerUl.classList.remove("invisible");
         this.footerUl.classList.add("bounce-in-left");
 
@@ -344,33 +375,10 @@ export default {
       }, 8500);
     },
 
-    // Initial donateDiv Animation
-    donateDivInitAppear() {
-      setTimeout(() => {
-        this.donateSpan.parentElement.classList.remove("invisible");
-        this.donateSpan.parentElement.classList.add("shake-horizontal");
-        this.donateSpan.firstElementChild.classList.add("slide-in-bottom");
-
-        this.donateIntervalRef = setInterval(() => {
-          this.donateSpan.firstElementChild.classList.remove("slide-in-bottom");
-          this.donateSpan.firstElementChild.classList.remove(
-            this.donateAnimationList[this.donateAnimationIndex]
-          );
-          this.donateAnimationIndex = this.nextNumber(
-            this.donateAnimationIndex,
-            this.donateAnimationList.length,
-            false
-          );
-          this.donateSpan.firstElementChild.classList.add(
-            this.donateAnimationList[this.donateAnimationIndex]
-          );
-        }, 18000);
-      }, 20000);
-    },
-
     // Initial orderLink Animation
     orderLinkInitAppear() {
-      setTimeout(() => {
+      console.log("orderLinkInitAppear called",new Date().getMilliseconds());
+      this.orderLinkInitRef = setTimeout(() => {
         this.orderDiv.firstElementChild.classList.remove("invisible");
         this.orderDiv.firstElementChild.classList.add(
           "animate__slower",
@@ -397,19 +405,49 @@ export default {
       }, 11500);
     },
 
+    // Initial donateDiv Animation
+    donateDivInitAppear() {
+      console.log("donateDivInitAppear called",new Date().getMilliseconds());
+      this.donateDivInitRef = setTimeout(() => {
+        this.donateSpan.parentElement.classList.remove("invisible");
+        this.donateSpan.parentElement.classList.add("shake-horizontal");
+        this.donateSpan.firstElementChild.classList.add("slide-in-bottom");
+        this.skipAnimations.classList.remove('vibrate-1');
+        this.skipAnimations.classList.add('bounce-out-left');
+        setTimeout(() => {
+          this.skipAnimations.classList.add('invisible')
+        }, 5000);
+
+        this.donateIntervalRef = setInterval(() => {
+          this.donateSpan.firstElementChild.classList.remove("slide-in-bottom");
+          this.donateSpan.firstElementChild.classList.remove(
+            this.donateAnimationList[this.donateAnimationIndex]
+          );
+          this.donateAnimationIndex = this.nextNumber(
+            this.donateAnimationIndex,
+            this.donateAnimationList.length,
+            false
+          );
+          this.donateSpan.firstElementChild.classList.add(
+            this.donateAnimationList[this.donateAnimationIndex]
+          );
+        }, 18000);
+      }, 20000);
+    },
+
     // Event Handler Methods
 
     // Header Section Handlers
 
     // Stops header animation loop
     headerMouseEnter() {
-      clearInterval(this.initialIntervalRef);
+      clearInterval(this.headerLoopInitIntervalRef);
       this.clearWindEffect();
     },
 
     // Resets the header animation loop
     headerMouseLeave() {
-      this.intervalRef = setInterval(() => {
+      this.headerLoopIntervalRef = setInterval(() => {
         this.headerNavsList.forEach((item) => {
           item.classList.remove(
             "navbar-tracking-in-expand",
@@ -475,6 +513,29 @@ export default {
           this.linkAnimationList[this.linkAnimationIndex]
         );
       }, 25000);
+    },
+
+    // skipAnimations Handlers
+
+    onSkipAnimationsMouseEnter() {
+      this.skipAnimations.classList.remove('vibrate-1', 'scale-down-center');
+      this.skipAnimations.classList.add('scale-up-center');
+    },
+    onSkipAnimationsMouseLeave() {
+      this.skipAnimations.classList.remove('scale-up-center');
+      this.skipAnimations.classList.add('scale-down-center');
+      setTimeout(() => {
+        this.skipAnimations.classList.remove('scale-down-center');
+        this.skipAnimations.classList.add('vibrate-1');
+      }, 500);
+    },
+    onSkipAnimationsClick() {
+      this.showRunningHome();
+      this.skipAnimations.classList.remove('scale-up-center');
+      this.skipAnimations.classList.add('puff-out-hor');
+      setTimeout(() => {
+        this.skipAnimations.classList.add('d-none');
+      }, 1500);
     },
 
     // donateDiv Handlers
@@ -611,6 +672,7 @@ export default {
     this.orderNav = document.getElementById("orderNav");
     this.orderDiv = document.getElementById("orderDiv");
     this.donateSpan = document.getElementById("donateSpan");
+    this.skipAnimations = document.getElementById("skipAnimations");
     this.footerUl = document.getElementById("footerUl");
     this.linkedinNav = document.getElementById("linkedinNav");
     this.emailNav = document.getElementById("emailNav");
@@ -618,8 +680,8 @@ export default {
     this.mainContainer = document.getElementById("mainContainer");
     this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
     this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
-    this.invisibleElemsList = [this.logo, this.headerNavbar, this.orderDiv.firstElementChild, this.donateSpan.parentElement, this.footerUl];
-    this.showRunningHome();
+    this.invisibleElemsList = [this.mainContainer, this.logo, this.headerNavbar, this.orderDiv.firstElementChild, this.donateSpan.parentElement, this.footerUl];
+    this.startAnimations();
   },
   
   created() {

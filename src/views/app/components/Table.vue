@@ -288,7 +288,7 @@ export default {
       this.isGameRunning = false;
       this.isGameOver = true;
       this.timer.classList.remove('running');
-      this.timer.classList.add('stopped');
+      this.didPlayerWin ? this.timer.classList.add('won') : this.timer.classList.add('lost');
     },
 
     // Event Handlers
@@ -308,9 +308,10 @@ export default {
     onNewGame (array, minesN) {
       this.resetTimer = true;
       this.isGameOver = false;
+      this.isGameRunning = false;
       this.cellsRowFormatArray = array;
       this.minesCounter = minesN;
-      this.timer.classList.remove('stopped');
+      this.timer.classList.remove('running', 'won', 'lost');
     },
     onRowsChange (data) {
       this.rows = data;

@@ -7,10 +7,10 @@
 
 /**
  * ----------------------------------------
- * @animation text-shadow-drop-center
+ * @animation text-shine
  * ----------------------------------------
  */
-@-webkit-keyframes text-shadow-drop-center {
+@-webkit-keyframes text-shine {
   0% {
     text-shadow: 0 0 0 rgb(255, 255, 255, 1);
   }
@@ -24,7 +24,7 @@
   }
 }
 
-@keyframes text-shadow-drop-center {
+@keyframes text-shine {
   0% {
     text-shadow: 0 0 0 rgb(255, 255, 255, 1);
   }
@@ -38,9 +38,9 @@
   }
 }
 
-.text-shadow-drop-center {
-  -webkit-animation: text-shadow-drop-center 12s infinite both ease-in-out;
-  animation: text-shadow-drop-center 12s infinite both ease-in-out;
+.text-shine {
+  -webkit-animation: text-shine 12s infinite both ease-in-out;
+  animation: text-shine 12s infinite both ease-in-out;
 }
 
 
@@ -54,10 +54,10 @@
 
 /**
  * ----------------------------------------
- * @animation text-shadow-logo
+ * @animation text-shine-logo
  * ----------------------------------------
  */
-@-webkit-keyframes text-shadow-logo {
+@-webkit-keyframes text-shine-logo {
   0% {
     text-shadow: 0 0 0 #a2e5ff;
   }
@@ -71,7 +71,7 @@
   }
 }
 
-@keyframes text-shadow-logo {
+@keyframes text-shine-logo {
   0% {
     text-shadow: 0 0 0 #a2e5ff;
   }
@@ -85,9 +85,9 @@
   }
 }
 
-.text-shadow-logo {
-  -webkit-animation: text-shadow-logo 8s infinite both ease-in-out;
-  animation: text-shadow-logo 8s infinite both ease-in-out;
+.text-shine-logo {
+  -webkit-animation: text-shine-logo 8s infinite both ease-in-out;
+  animation: text-shine-logo 8s infinite both ease-in-out;
 }
 
 
@@ -137,14 +137,65 @@
   animation: footer-shadow 2.8s infinite both ease-in-out;
 }
 
-.moon-shadow {
-  -webkit-animation: footer-shadow 6s infinite both ease-in-out;
+.order-centeral-shine {
   animation: footer-shadow 6s infinite both ease-in-out;
+  -webkit-animation: footer-shadow 6s infinite both ease-in-out;
 }
 
-.shake-horizontal {
-  -webkit-animation: shake-horizontal 2s both;
-  animation: shake-horizontal 2s both;
+@keyframes order-centeral-appear {
+  0% {
+    transform: translateY(500%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.order-centeral-appear {
+  animation: order-centeral-appear 4s 1 ease-out;
+  -webkit-animation: order-centeral-appear 4s 1 ease both;
+}
+
+@keyframes donate-bounce-out {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate(0, -400%);
+    opacity: 0.3;
+  }
+}
+
+.donate-bounce-out {
+  animation: donate-bounce-out 0.4s 1 linear both;
+  -webkit-animation: donate-bounce-out 0.4s 1 linear both;
+}
+
+@keyframes donate-bounce-in {
+  0% {
+    transform: translate(0, -400%);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+.donate-bounce-in {
+  animation: donate-bounce-in 1s 1 ease-in both;
+  -webkit-animation: donate-bounce-in 1s 1 ease-in both;
+}
+
+.donate-shadow {
+  -webkit-animation: footer-shadow 6s infinite both ease-in-out;
+  animation: footer-shadow 6s infinite both ease-in-out;
 }
 
 /* ----------------------------------------------
@@ -231,6 +282,10 @@
   }
 }
 
+.shake-horizontal {
+  -webkit-animation: shake-horizontal 2s both;
+  animation: shake-horizontal 2s both;
+}
 
 /* Linear Wipe */
 .linear-wipe {
@@ -251,4 +306,55 @@
   100% {
     background-position: 0px 50%;
   }
+}
+
+@keyframes cloud-move {
+  0% {
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: translate(100%, 100%);
+    opacity: 0;
+  }
+}
+
+.cloud-move {
+  animation: cloud-move 10s 1 ease both;
+}
+
+@keyframes cover-fade {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.cover-fade {
+  animation: cover-fade 6s 1 ease both;
+}
+
+.fade-skip {
+  animation: cover-fade 2s 1 ease both;
+}
+
+@keyframes star-appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.star-appear {
+  animation: star-appear 6s 1 ease both;
+}
+
+.footer-appear {
+  animation: star-appear 20s 1 ease both;
 }

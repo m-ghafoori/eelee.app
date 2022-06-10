@@ -34,15 +34,21 @@ body {
   color: greenyellow !important;
 }
 
-.stopped .counter {
-  color: rgb(255, 107, 107) !important;
+.lost .counter {
+  color: orangered !important;
+}
+.won .counter {
+  color: rgb(18, 255, 255) !important;
 }
 
 .running .digital {
   color: white !important;
 }
 
-.stopped .digital {
+.lost .digital {
+  color: orange !important;
+}
+.won .digital {
   color: greenyellow !important;
 }
 

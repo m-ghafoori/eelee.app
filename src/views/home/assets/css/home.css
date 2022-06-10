@@ -48,7 +48,6 @@
     text-decoration: none;
     color: #f1f0d8 !important;
     margin-left: 30%;
-    transform: scale(1.15);
 }
 
 .nav-link:hover {
@@ -146,6 +145,22 @@
     transform: rotate(-5deg) !important;
 }
 
+#skipAnimations {
+    width: max-content;
+    color: #f1f0d8;
+    font-family: 'Gluten', cursive;
+    font-size: 1.2em;
+    margin-left: 90px;
+}
+
+#skipAnimations:hover {
+    color: orange;
+}
+
+#skipAnimations:active {
+    color: rgb(255, 97, 39);
+}
+
 /* Footer Section */
 
 #footer {
@@ -173,6 +188,7 @@
     font-family: 'Gluten', cursive;
     color: #1369b9;
     text-align: flex-start;
+    text-decoration: none;
     flex-grow: 1;
     align-self: flex-end;
 }
