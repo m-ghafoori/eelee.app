@@ -35,7 +35,7 @@
           <router-link
             id="orderNav"
             class="nav-link hoverable animate__animated"
-            to="/"
+            to="/order"
           >
             Let's App!
           </router-link>

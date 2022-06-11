@@ -3,8 +3,9 @@
     <header id="p-header" class="d-flex align-items-center">
       <router-link id="p-logo" class="hoverable" to="/">EELee</router-link>
         <router-link id="p-homeNav" class="p-nav-link hoverable" to="/">Home</router-link>
-        <router-link id="p-appNav" class="p-nav-link hoverable" to="/">App</router-link>
-        <router-link id="p-orderNav" class="p-nav-link hoverable" to="/">Order Now!</router-link>
+        <router-link id="p-appNav" class="p-nav-link hoverable" to="/app">App</router-link>
+        <router-link id="p-donateNav" class="p-nav-link hoverable" to="/app">Donate</router-link>
+        <router-link id="p-orderNav" class="p-nav-link hoverable" to="/order">Order Now!</router-link>
     </header>
     <section id="p-homePage" class="">
       <div id="p-homeHeader" class="p-animated-bg">Home Page</div>

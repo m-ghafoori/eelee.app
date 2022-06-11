@@ -1,0 +1,130 @@
+#o-body {
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+}
+
+/* Header */
+
+/* Classes */
+
+.o-nav-link {
+    font-family: 'Poiret One', cursive;
+    font-weight: 1000;
+    font-size: calc(1.5vw + 2vh);
+    color: #0d8a6f;
+    margin: 1vw 2vw;
+    text-decoration: none;
+}
+
+.o-nav-link:hover {
+    color: #fb4a85;
+}
+
+/* ID Tags */
+
+#o-header {
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+}
+
+#o-logo {
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: 1000;
+    font-size: calc(2vw + 3vh);
+    color: #b42857;
+    margin: 1vw 2vw;
+    text-decoration: none;
+}
+
+#o-logo:hover {
+    color: #2ec7a6;
+}
+
+/* Showcase Section */
+
+/* ID Tags */
+
+#o-showcase {
+    width: 70%;
+    position: relative;
+    align-self: center;
+    top: 15vh;
+    font-size: calc(1.8vw + 0.8vh);
+    margin: 5vh 0;
+}
+
+#o-showcase h3{
+    font-family: 'Josefin Slab';
+    color: #f93879;
+    margin-top: 0;
+}
+
+#o-showcase p{
+    font-family: 'Nanum Myeongjo';
+    color: #0b7a62;
+    line-height: 8vh;
+    margin: 0;
+}
+
+#o-showcase h4{
+    width: fit-content;
+    font-family: 'Josefin Slab';
+    color: #f93879;
+    align-self: flex-end;
+    margin-top: 0;
+}
+
+/* Footer */
+
+/* ID Tags */
+
+#o-footer {
+    width: 40%;
+    height: 15vh;
+    position: fixed;
+    bottom: 0;
+    align-self: center;
+    margin-bottom: 3vh;
+}
+
+#o-footerNav {
+    width: 100%;
+    height: 8vh;
+    margin-bottom: 3vh;
+}
+
+#o-footerNote {
+    width: fit-content;
+    height: fit-content;
+    text-decoration: none;
+    font-family: 'Gluten', cursive;
+    font-size: calc(1vw + 1.5vh);
+    white-space: nowrap;
+    color: #d8215e;
+}
+
+#o-footerNote:hover {
+    color: #2ec7a6;
+}
+
+/* Media Queries */
+
+@media (max-width: 320px) {
+    #o-footer {
+        width: 70%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 576px) {
+    #o-footer {
+        width: 60%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    #o-footer {
+        width: 50%;
+    }
+}

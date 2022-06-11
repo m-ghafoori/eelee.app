@@ -14,15 +14,15 @@
         </header>
 
         <section id="m-showcase" class="">
-          <ul id="m-navUl" class="invisible hoverable">
+          <ul id="m-navUl" class="invisible">
             <li class="">
-              <span id="m-portNav" class="text-shine" h="#"
-                >Portfolio</span
+              <router-link id="m-portNav" to="/portfolio" class="text-shine hoverable"
+                >Portfolio</router-link
               >
             </li>
             <li class="">
-              <span id="m-appNav" class="text-shine" h="#"
-                >App</span
+              <router-link id="m-appNav" to="/app" class="text-shine hoverable"
+                >App</router-link
               >
             </li>
           </ul>
@@ -31,14 +31,14 @@
             <div id="m-orderDiv" class="">
               <span id="m-orderCenteral" class="invisible"
                 >
-                <router-link to="/app" class="hoverable"> Need A Web App ??? </router-link>
+                <router-link to="/order" class="hoverable"> Need A Web App ??? </router-link>
                 </span
               >
-              <span id="m-orderRight" class="text-shine-logo hoverable">
+              <router-link id="m-orderRight" to="/order" class="text-shine-logo hoverable">
                 <span id="m-orderRightTop" class="invisible">Click to <br /></span>
                 <span id="m-orderRightStar" class="invisible">c</span>
                 <span id="m-orderRightBottom" class="invisible">RDER</span>
-              </span>
+              </router-link>
             </div>
 
             <div id="m-donateDiv" class="invisible">
@@ -57,7 +57,7 @@
         <footer id="m-footer" class="d-flex justify-content-around">
           <span id="m-skipAnimations">Tap on screen<br>To skip animations</span>
           <ul id="m-footerUl">
-            <li id="m-telegramNav" h="#" class="invisible">
+            <li id="m-telegramNav" class="invisible">
               <img
                 id="m-telegramIcon"
                 class="footer-shadow hoverable"
@@ -66,7 +66,7 @@
                 :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)"
               />
             </li>
-            <li id="m-emailNav" h="#" class="invisible">
+            <li id="m-emailNav" class="invisible">
               <img
                 id="m-emailIcon"
                 class="footer-shadow hoverable"
@@ -75,7 +75,7 @@
                 :src="require(`./assets/images/svg/email-${widthClass}.svg`)"
               />
             </li>
-            <li id="m-linkedinNav" h="#" class="invisible">
+            <li id="m-linkedinNav" class="invisible">
               <img
                 id="m-linkedinIcon"
                 class="footer-shadow hoverable"
