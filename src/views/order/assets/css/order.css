@@ -44,14 +44,15 @@
 
 /* Showcase Section */
 
+/* Classes */
+
 /* ID Tags */
 
 #o-showcase {
-    width: 70%;
     position: relative;
     align-self: center;
     top: 15vh;
-    font-size: calc(1.8vw + 0.8vh);
+    font-size: calc(1.5vw + 0.8vh);
     margin: 5vh 0;
 }
 

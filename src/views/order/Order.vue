@@ -9,14 +9,61 @@
       </header>
 
       <section id="o-showcase" class="d-flex flex-column align-items-start">
-          <h3>To Order Your App:</h3>
+        <Slideshow uniqueLabel="Agreement" :slidesNumber="5" :loopMode="false" >
+            <!-- <template #title1>
+                <h3>first title</h3>
+            </template>
+            <template #content1>
+                <p>first line</p>
+            </template> -->
+            <template #title1>
+                <h3>First</h3>
+            </template>
+            <template #content1>
+                <p>First, you fill our form and tell us what you want... <br>
+            Then, we contact you within 2 days... <br>
+            If everything was okay, we have a deal! <br>
+            Now, Please read our terms :)</p>
+            </template>
+            <template #title2>
+                <h3>Second</h3>
+            </template>
+            <template #content2>
+                <p>Second text</p>
+            </template>
+            <template #title3>
+                <h3>Third</h3>
+            </template>
+            <template #content3>
+                <p>Third text</p>
+            </template>
+            <template #title4>
+                <h3>Fourth</h3>
+            </template>
+            <template #content4>
+                <p>Fourth text</p>
+            </template>
+            <template #title5>
+                <h3>Fifth</h3>
+            </template>
+            <template #content5>
+                <p>Fifth text</p>
+            </template>
+            <template #finish>
+                <h3>Finish</h3>
+            </template>
+            <template #inactive>
+                <p>Finished text</p>
+            </template>
+        </Slideshow>
+          <!-- <h3>To Order Your App:</h3>
           <p>
             First, you fill our form and tell us what you want... <br>
             Then, we contact you within 2 days... <br>
             If everything was okay, we have a deal! <br>
             Now, Please read our terms :)
           </p>
-          <h4>Terms and Conditions >>></h4>
+          <h4>Terms and Conditions >>></h4> -->
       </section>
 
       <footer id="o-footer" class="d-flex flex-column justify-content-around align-items-center">
@@ -31,8 +78,14 @@
 </template>
 
 <script>
+import Slideshow from '@/components/Slideshow/Slideshow.vue'
+
 export default {
     name: 'Order',
+
+    components: {
+        Slideshow,
+    },
 
     data() {
         return {
