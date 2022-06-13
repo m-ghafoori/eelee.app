@@ -1,6 +1,7 @@
 :root {
-    --home-lg-width: 50vw;
-    --home-md-width: 22vw;
+    --home-lg-width: 40vw;
+    --home-md-width: 18vw;
+    --app-width: 40vw;
 }
 
 /* Classes */
@@ -8,8 +9,8 @@
 .p-nav-link {
     font-family: 'Poiret One', cursive;
     font-weight: 1000;
-    font-size: calc(1vw + 3vh);
-    color: rgb(46, 113, 15);
+    font-size: calc(1vw + 1.5vh);
+    color: #2e710f;
     margin: 1vw 2vw;
     text-decoration: none;
 }
@@ -49,19 +50,21 @@
     height: 20%;
     position: absolute;
     bottom: -20%;
-    background: linear-gradient(to bottom, rgba(255, 215, 0, 0), rgba(255, 215, 0, 0.4) 50%, rgba(255, 215, 0, 1));
+    background: linear-gradient(to bottom, #ffd70000, #ffd70066 50%, rgba(255, 215, 0, 1));
     z-index: 1;
 }
 
-.p-home-paragraph {
+.p-paragraph {
     font-family: 'Courgette', cursive;
     font-size: 2.3vw;
-    color: rgb(106, 36, 172);
+    color: #6a24ac;
+    margin: 5%;
 }
 
 /* ID Tags */
 
 #p-body {
+    width: inherit;
     min-width: 320px;
     height: 100%;
     position: relative;
@@ -76,62 +79,93 @@
     height: 10vh;
     background-image: linear-gradient(gold, goldenrod);
     position: fixed;
+    padding: 0 2vw;
     z-index: 1000;
 }
 
 #p-logo {
     font-family: 'Fredericka the Great', cursive;
-    font-size: calc(1.5vw + 4vh);
-    color: indigo;
+    font-size: calc(1.5vw + 2.5vh);
+    color: #4b0082;
     margin: 1vw;
     text-decoration: none;
 }
 
 #p-logo:hover {
-    color: rgb(46, 113, 15);
+    color: #2e710f;
 }
 
-/* Home Section */
+/* Main Section */
 
-#p-homePage {
-    width: 90%;
-    height: 84vw;
-    border: 2px solid rgb(199, 136, 9);
-    border-bottom: 0;
-    border-radius: 3.2rem 3.2rem 2.2rem 2.2rem;
-    align-self: center;
+#p-mainPage {
+    width: 80%;
+    height: fit-content;
     position: relative;
     top: 15vh;
-    margin-bottom: 10%;
+    border: 2px solid #c78809;
+    border-bottom: 0;
+    border-radius: 3.2rem 3.2rem 0 0;
+    margin-bottom: 15vh;
 }
 
-#p-homeHeader {
-    border-bottom: 2px solid rgb(199, 136, 9);
+#p-mainHeader {
+    /* border-bottom: 2px solid #c78809; */
     border-radius: 3rem 3rem 0 0;
     min-width: 100%;
     min-height: 12%;
     font-family: 'Rock Salt', cursive;
     text-align: center;
     padding: auto;
-    color: rgb(27, 117, 33);
+    color: #1b7521;
 }
+/* 
+#p-mainPar {
+    margin: 5%;
+} */
 
-#p-homeBody {
-    margin: 4%;
-}
-
-#p-homeFirstPar {
-    margin: 0 3% 8% 3%;
-}
+/* Home Section */
 
 #p-homeSecondPar {
-    margin: 12% 3% 0 3%;
+    margin-top: 15%;
+}
+
+/* #p-homeImgContainer {
+    width: 90%;
+} */
+
+#p-homePage {
+    width: 90%;
+    height: inherit;
+    border-left: 2px solid #c78809;
+    margin: 10vh 0;
+    position: relative;
+    left: 5%;
+}
+
+#p-homeFlexColBox {
+    border-right: 2px solid #c78809;
+}
+
+#p-homeHeader {
+    border: 2px solid #c78809;
+    border-left: 0;
+    border-radius: 0 3rem 3rem 0;
+    height: fit-content;
+    width: 11.11%;
+    font-family: 'Rock Salt', cursive;
+    text-align: center;
+    padding: 2%;
+    color: rgb(27, 117, 33);
+    font-size: 2.5vw;
+    writing-mode: vertical-rl;
+    display: inline-block;
+    text-orientation: upright;
 }
 
 #p-homeLgDiv {
     width: var(--home-lg-width);
     height: calc(var(--home-lg-width)*0.467);
-    background-image: linear-gradient(to bottom, rgba(255, 215, 0, 0) 70%, rgba(255, 215, 0, 0.7) 98%, rgb(255, 239, 146)), url('../images/homeLg.png');
+    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeLg.png');
     transform: rotateY(-12deg);
 }
 
@@ -154,7 +188,7 @@
 #p-homeMdDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
-    background-image: linear-gradient(to bottom, rgba(255, 215, 0, 0) 70%, rgba(255, 215, 0, 0.7) 98%, rgb(255, 239, 146)), url('../images/homeMd.png');
+    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeMd.png');
     transform: rotateY(12deg);
 }
 
@@ -162,23 +196,23 @@
 
 #p-appPage {
     width: 90%;
-    height: 70vw;
-    border-left: 2px solid rgb(199, 136, 9);
-    border-radius: 2.2rem 0 0 2.2rem;
-    align-self: center;
-    margin-bottom: 10%;
+    height: inherit;
+    border-right: 2px solid #c78809;
+    border-radius: 0 0 0 2.2rem;
+    margin-bottom: 10vh;
     position: relative;
+    right: 5%;
 }
 
 #p-appHeader {
-    border: 2px solid rgb(199, 136, 9);
-    border-radius: 0 3rem 3rem 0;
-    height: 70vw;
-    width: 10%;
+    border: 2px solid #c78809;
+    border-radius: 3rem 0 0 3rem;
+    min-height: fit-content;
+    width: 11.11%;
     font-family: 'Rock Salt', cursive;
     text-align: center;
     padding: 2%;
-    color: rgb(27, 117, 33);
+    color: #1b7521;
     font-size: 2.5vw;
     writing-mode: vertical-rl;
     display: inline-block;
@@ -186,47 +220,43 @@
 }
 
 #p-appFlexColBox {
-    width: 90%;
+    width: 88%;
 }
 
 #p-appFirstPar {
-    margin-left: 5%;
     width: 20%;
     text-align: center;
 }
 
-#p-appSecondPar {
-    margin: 12% 3% 0 3%;
-}
-
 #p-appTxtImgContainer {
-    min-width: 86vw;
+    /* width: 88%; */
     justify-content: start;
-    margin: 5%;
+    /* margin: 5%; */
+    margin-top: 0;
 }
 
 #p-appImageContainer {
-    width: var(--home-lg-width);
-    height: calc(var(--home-lg-width)*0.467);
-    margin: 0 4%;
+    width: var(--app-width);
+    height: calc(var(--app-width)*1.038);
+    margin-right: 4%;
 }
 
 #p-appImgDiv {
     align-self: flex-end;
-    width: var(--home-lg-width);
-    height: calc(var(--home-lg-width)*0.467);
-    background-image: linear-gradient(to bottom, rgba(255, 215, 0, 0) 70%, rgba(255, 215, 0, 0.7) 98%, rgb(255, 239, 146)), url('../images/homeLg.png');
+    width: var(--app-width);
+    height: calc(var(--app-width)*1.038);
+    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/app.png');
 }
 
 /* Media Queries */
 
 @media (min-width: 992px) {
 
-    #p-homePage {
-        height: 70vw;
+    #p-mainPage {
+        height: 25vw;
     }
 
-    #p-homeHeader {
+    #p-mainHeader {
         font-size: 2.5vw;
         padding: 1.5vw;
     }
@@ -234,11 +264,11 @@
 
 @media (min-width:768px) and (max-width: 992px) {
 
-    #p-homePage {
-        height: 75vw;
+    #p-mainPage {
+        height: 25vw;
     }
 
-    #p-homeHeader {
+    #p-mainHeader {
         font-size: 3vw;
         padding: 1.5vw;
     }
@@ -246,18 +276,18 @@
 
 @media (min-width:576px) and (max-width: 768px) {
 
-    #p-homePage {
-        height: 78vw;
+    #p-mainPage {
+        height: 28vw;
     }
 
-    #p-homeHeader {
+    #p-mainHeader {
         font-size: 4vw;
         padding: 1.5vw;
     }
 }
 
 @media (min-width: 320px) and (max-width: 576px) {
-    #p-homeHeader {
+    #p-mainHeader {
         font-size: 5.5vw;
         padding: 3vw;
     }
@@ -265,7 +295,7 @@
 }
 
 @media (max-width: 320px) {
-    #p-homeHeader {
+    #p-mainHeader {
         font-size: 5.5vw;
         padding: 3vw;
     }

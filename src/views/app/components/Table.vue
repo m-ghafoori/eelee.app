@@ -7,7 +7,7 @@
     </div>
     <hr>
     <div id="gameDiv" class="d-flex justify-content-between">
-      <div id="accountDiv">Account</div>
+      <div id="accountDiv"></div>
       <div id="tableDiv">
         <tbody class="table hoverable" :style="tableStyle">
           <tr v-for="rowObj in cellsRowFormatArray" :key="rowObj.id">
@@ -26,7 +26,7 @@
           </tr>
         </tbody>
       </div>
-      <div id="recordDiv">Record</div>
+      <div id="recordDiv"></div>
     </div>
   
     <NewGame label="New Game" :fontFamily="tableFontFamily" :fontSize="cellSize" :rowsNum="rows" :colsNum="cols" :minesNum="mines" @new-game="onNewGame"/>
@@ -182,7 +182,7 @@ export default {
     
     infoStyle: function () {
       return {
-        'font-family': `${this.infoFontFamily}`
+        'font-family': `${this.infoFontFamily}`,
       }
     },
     tableStyle: function () {

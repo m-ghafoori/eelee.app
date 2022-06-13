@@ -150,7 +150,7 @@ export default {
 <style scoped>
 
 .slideshow {
-    background: #ff94d2;
+    background: #ffdaf0;
 }
 
 .slideshow-active {
@@ -164,7 +164,7 @@ export default {
 .slideshow-title {
     width: inherit;
     height: 15%;
-    background: #a8ffd8;
+    background: #cbffe8;
     text-align: center;
     position: sticky;
     top: 0;
@@ -180,7 +180,7 @@ export default {
 }
 
 .slideshow-navigation {
-    background: #a8ffd8;
+    background: #cbffe8;
     width: 100%;
     height: 18%;
     position: relative;
@@ -193,8 +193,12 @@ export default {
     left: 0;
 }
 
-.slideshow-navigation {
+.slideshow-next {
     position: relative;
     right: 0;
+}
+
+.slideshow-inactive {
+    background: #fff;
 }
 </style>

@@ -22,8 +22,7 @@
             <template #content1>
                 <p>First, you fill our form and tell us what you want... <br>
             Then, we contact you within 2 days... <br>
-            If everything was okay, we have a deal! <br>
-            Now, Please read our terms :)</p>
+            If everything was okay, we have a deal! <br></p>
             </template>
             <template #title2>
                 <h3>Second</h3>
