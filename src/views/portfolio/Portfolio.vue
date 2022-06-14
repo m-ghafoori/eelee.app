@@ -8,14 +8,16 @@
         <router-link id="p-orderNav" class="p-nav-link hoverable" to="/order">Order Now!</router-link>
     </header>
 
-    <section id="p-mainPage" class="">
+    <section id="p-mainPage" class="invisible">
       <div id="p-mainHeader" class="p-animated-bg">About EELee</div>
         <p id="p-mainPar" class="p-paragraph">
           EELee App Design is a full stack web app development group,
           mainly focused on designing frontend by modern JavaScript frameworks like Vue.js
+          <br><br>
+          Scroll down to discover more about our work...
         </p>
     </section>
-    <section id="p-homePage" class="d-flex">
+    <section id="p-homePage" class="invisible d-flex">
       <div
         id="p-homeFlexColBox"
         class="d-flex flex-column justify-content-between align-items-center"
@@ -39,7 +41,7 @@
       </div>
       <div id="p-homeHeader" class="p-animated-bg">Home&nbsp;Page</div>
     </section>
-    <section id="p-appPage" class="d-flex">
+    <section id="p-appPage" class="invisible d-flex">
       <div id="p-appHeader" class="p-animated-bg">App&nbsp;Sample</div>
       <div
         id="p-appFlexColBox"
@@ -68,6 +70,86 @@
 export default {
   name: 'Portfolio',
 
+  data() {
+    return {
+      // Loading Variables
+      loadMain: false,
+      loadHome: false,
+      loadApp: false,
+      loadPort: false,
+
+      // Element Object Refs
+      bodyDiv: Object,
+      mainPage: Object,
+      homePage: Object,
+      appPage: Object,
+      portPage: Object,
+      orderPage: Object,
+    }
+  },
+
+  watch: {
+    loadMain(val) {
+      if (val) {
+        this.mainPage.classList.remove('invisible');
+        this.mainPage.classList.add('slide-in-down');
+      }
+    },
+    loadHome(val) {
+      if (val) {
+        this.homePage.classList.remove('invisible');
+        this.homePage.classList.add('scale-up-hor-right');
+      }
+    },
+    loadApp(val) {
+      if (val) {
+        this.appPage.classList.remove('invisible');
+        this.appPage.classList.add('scale-up-hor-left');
+      }
+    },
+    loadPort(val) {},
+  },
+
+  methods: {
+    // Event Handlers
+
+    onLoad() {
+      setTimeout(() => {
+        this.loadMain = true;
+      }, 500);
+      if (!this.loadHome) {
+        if ((1 - (this.mainPage.offsetHeight - window.scrollY)/window.innerHeight) > 0.63) {
+          setTimeout(() => {
+            this.loadHome = true;
+          }, 2000);
+        }
+      }
+      if (!this.loadApp) {
+        if ((window.innerHeight*0.35 + this.mainPage.offsetHeight + this.homePage.offsetHeight + this.appPage.offsetHeight*0.3) < (window.innerHeight + window.scrollY)) {
+          setTimeout(() => {
+            this.loadApp = true;
+          }, 1000);
+        }
+      }
+    },
+
+    onScroll() {
+      if (!this.loadHome) {
+        var remainingHeightHome = (1 - (this.mainPage.offsetHeight - window.scrollY)/window.innerHeight); 
+        if (remainingHeightHome > 0.63) {
+          this.loadHome = true;
+        }
+      }
+      if (!this.loadApp) {
+         var remainingHeightApp = (window.innerHeight*0.35 + this.mainPage.offsetHeight + this.homePage.offsetHeight + this.appPage.offsetHeight*0.3); 
+        if (remainingHeightApp < (window.innerHeight + window.scrollY)) {
+          this.loadApp = true;
+        }
+      }
+      // console.log(remainingHeightApp)
+      // console.log((window.innerHeight + window.scrollY))
+    }
+  },
   // computed: {
   //   homeStyle() {
   //     return {
@@ -76,12 +158,22 @@ export default {
   //   }
   // },
 
-  // created() {
-  //   // console.log(document.getElementById('p-body'))
-  // },
+  created() {
+    document.addEventListener('scroll', this.onScroll)
+  },
+
+  mounted() {
+    this.bodyDiv = document.getElementById('p-body');
+    this.mainPage = document.getElementById('p-mainPage');
+    this.homePage = document.getElementById('p-homePage');
+    this.appPage = document.getElementById('p-appPage');
+    this.onLoad();
+    console.log(this.mainPage.offsetHeight, this.homePage.offsetHeight, window.innerHeight)
+  },
 };
 </script>
 
 <style scoped>
-@import 'assets/css/portfolio.css'
+@import 'assets/css/portfolio.css';
+@import 'assets/css/portfolio-animations.css';
 </style>

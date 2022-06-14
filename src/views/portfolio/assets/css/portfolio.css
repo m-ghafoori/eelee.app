@@ -118,10 +118,10 @@
     padding: auto;
     color: #1b7521;
 }
-/* 
+
 #p-mainPar {
-    margin: 5%;
-} */
+    height: fit-content;
+}
 
 /* Home Section */
 
@@ -251,10 +251,10 @@
 /* Media Queries */
 
 @media (min-width: 992px) {
-
+/* 
     #p-mainPage {
         height: 25vw;
-    }
+    } */
 
     #p-mainHeader {
         font-size: 2.5vw;
@@ -264,9 +264,9 @@
 
 @media (min-width:768px) and (max-width: 992px) {
 
-    #p-mainPage {
+    /* #p-mainPage {
         height: 25vw;
-    }
+    } */
 
     #p-mainHeader {
         font-size: 3vw;
@@ -276,9 +276,9 @@
 
 @media (min-width:576px) and (max-width: 768px) {
 
-    #p-mainPage {
+    /* #p-mainPage {
         height: 28vw;
-    }
+    } */
 
     #p-mainHeader {
         font-size: 4vw;
@@ -288,7 +288,7 @@
 
 @media (min-width: 320px) and (max-width: 576px) {
     #p-mainHeader {
-        font-size: 5.5vw;
+        font-size: 4.5vw;
         padding: 3vw;
     }
 
@@ -296,7 +296,7 @@
 
 @media (max-width: 320px) {
     #p-mainHeader {
-        font-size: 5.5vw;
+        font-size: 4.5vw;
         padding: 3vw;
     }
 }
