@@ -1,8 +1,8 @@
 <template>
   <div id="m-body" class="" @click="skipInitAnimations">
 
-    <div id="m-containerWrapper" class="d-flex">
-      <div id="m-mainContainer" class="">
+    <!-- <div id="m-containerWrapper" class="d-flex"> -->
+      <div id="m-mainContainer" class="d-flex flex-column justify-content-around">
         <div id="m-bodyCover">
           
         </div>
@@ -13,27 +13,29 @@
           <span id="m-logoRight" class="invisible">ee</span>
         </header>
 
-        <section id="m-showcase" class="">
-          <ul id="m-navUl" class="invisible">
-            <li class="">
-              <router-link id="m-portNav" to="/portfolio" class="text-shine hoverable"
-                >Portfolio</router-link
-              >
-            </li>
-            <li class="">
-              <router-link id="m-appNav" to="/app" class="text-shine hoverable"
-                >App</router-link
-              >
-            </li>
-          </ul>
+        <section id="m-showcase" class="d-flex flex-column justify-content-between align-items-center">
 
-          <div id="m-centralDiv" class="">
-            <div id="m-orderDiv" class="">
-              <span id="m-orderCenteral" class="invisible"
+          <div id="m-orderDiv" class="invisible"
                 >
                 <router-link to="/order" class="hoverable"> Need A Web App ??? </router-link>
-                </span
+                </div
               >
+
+          <div id="m-centralDiv" class="d-flex justify-content-between align-items-start">
+            <ul id="m-navUl" class="invisible">
+              <li class="">
+                <router-link id="m-portNav" to="/portfolio" class="text-shine hoverable"
+                  >Portfolio</router-link
+                >
+              </li>
+              <li class="">
+                <router-link id="m-appNav" to="/app" class="text-shine hoverable"
+                  >App</router-link
+                >
+              </li>
+            </ul>
+            <div id="m-orderCentral" class="d-flex align-items-center">
+              
               <router-link id="m-orderRight" to="/order" class="text-shine-logo hoverable">
                 <span id="m-orderRightTop" class="invisible">Click to <br /></span>
                 <span id="m-orderRightStar" class="invisible">c</span>
@@ -41,21 +43,26 @@
               </router-link>
             </div>
 
-            <div id="m-donateDiv" class="invisible">
-              <img
-                id="m-donateIcon"
-                class="donate-shadow hoverable"
-                @mouseenter="donateIconMouseEnter"
-                @mouseleave="donateIconMouseLeave"
-                :src="require(`./assets/images/svg/donate-${widthClass}.svg`)"
-                alt=""
-              />
-            </div>
+          </div>
+
+          <div id="m-donateDiv" class="invisible">
+            <img
+              id="m-donateIcon"
+              class="donate-shadow hoverable"
+              @mouseenter="donateIconMouseEnter"
+              @mouseleave="donateIconMouseLeave"
+              :src="require(`./assets/images/svg/donate-${widthClass}.svg`)"
+              alt=""
+            />
           </div>
         </section>
 
+        <section id="m-notes" class="d-flex justify-content-between align-items-end">
+          <span id="m-skipAnimations" :style="skipStyle">Tap on screen<br>To skip animations</span>
+          <router-link id="m-footerNote" to="/portfolio" class="hoverable" :style="noteStyle">&copy; 2022 - EELee App Design</router-link>
+        </section>
+
         <footer id="m-footer" class="d-flex justify-content-around">
-          <span id="m-skipAnimations">Tap on screen<br>To skip animations</span>
           <ul id="m-footerUl">
             <li id="m-telegramNav" class="invisible">
               <img
@@ -85,10 +92,9 @@
               />
             </li>
           </ul>
-          <router-link id="m-footerNote" to="/portfolio" class="text-shine-logo hoverable">&copy; 2022 - EELee App Design</router-link>
         </footer>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -100,6 +106,13 @@ export default {
 
   data() {
     return {
+      // screenRatio: Number,
+      skipTop: 0,
+      noteTop: 0,
+      skipBottom: 0,
+      noteBottom: 0,
+      skipColor: '#a2e5ff',
+      noteColor: '#a2e5ff',
 
       isPageFullyLoaded: false,
 
@@ -112,8 +125,8 @@ export default {
       bodyCoverSecondRef: Function,
       donateFirstRef: Function,
       donateSecondRef: Function,
-      orderCenteralFirstRef: Function,
-      orderCenteralSecondRef: Function,
+      orderDivFirstRef: Function,
+      orderDivSecondRef: Function,
       orderRightStarRef: Function,
       orderRightTextRef: Function,
       emailNavRef: Function,
@@ -129,8 +142,8 @@ export default {
       logoMoon: Object,
       logoLeft: Object,
       logoRight: Object,
+      orderCentral: Object,
       orderDiv: Object,
-      orderCenteral: Object,
       orderRight: Object,
       orderRightTop: Object,
       orderRightStar: Object,
@@ -139,7 +152,7 @@ export default {
       appNav: Object,
       portNav: Object,
       donateDiv: Object,
-      footer: Object,
+      footerNote: Object,
       skipAnimations: Object,
       linkedinNav: Object,
       emailNav: Object,
@@ -161,11 +174,33 @@ export default {
           this.skipAnimations.classList.add('invisible');
         }, 2000);
       }
-    }
+    },
+    // widthClass(val) {
+    //   if (val == 'md' || val == 'sm') this.footerNote.classList.add('text-shine-logo');
+    //   else this.footerNote.classList.remove('text-shine-logo');
+    // },
+    // screenRatio(val) {
+    //   console.log(val)
+    // },
   },
 
   computed: {
     widthClass() {return this.windowWidthClassEmitter()},
+    // screenRatio() {return (window.innerWidth/window.innerHeight)},
+    skipStyle() {
+      return {
+        'top': `${this.skipTop}px`,
+        'bottom': `${this.skipBottom}px`,
+        'color': `${this.skipColor}`
+      }
+    },
+    noteStyle() {
+        return {
+          'top': `${this.noteTop}px`,
+          'bottom': `${this.noteBottom}px`,
+          'color': `${this.noteColor}`
+        }
+    },
   },
 
   methods: {
@@ -186,6 +221,9 @@ export default {
     // Triggers different window size classes on resize
     windowWidthClassEmitter() {
       var windowWidth = window.innerWidth;
+      var windowHeight = window.innerHeight;
+      // this.screenRatio = windowWidth/windowHeight;
+      console.log(this.footerNote.offsetTop)
 
       switch (true) {
         case windowWidth < 320:
@@ -210,6 +248,51 @@ export default {
       }
     },
 
+    skipUpdator() {
+      if ((window.innerWidth/window.innerHeight) > 0.8) {
+        this.skipTop = 0;
+        this.skipColor = '#a2e5ff';
+        if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.5) {
+          this.skipBottom++;
+        }
+        if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.4) {
+          this.skipBottom--;
+        }
+      } else {
+        this.skipBottom = 0;
+        this.skipColor = '#f8cc09';
+        // this.skipBottom = this.skipBottom*(-1);
+        if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.75) {
+          this.skipTop++;
+        }
+        if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.8) {
+          this.skipTop--;
+        }
+      }
+    },
+    noteUpdator() {
+      if ((window.innerWidth/window.innerHeight) > 0.8) {
+        this.noteTop = 0;
+        this.noteColor = '#a2e5ff';
+        if ((this.footerNote.offsetTop/window.innerHeight) > 0.5) {
+          this.noteBottom++;
+        }
+        if ((this.footerNote.offsetTop/window.innerHeight) < 0.4) {
+          this.noteBottom--;
+        }
+      } else {
+        this.noteBottom = 0;
+        this.noteColor = '#f8cc09';
+        // this.noteBottom = this.noteBottom*(-1);
+        if ((this.footerNote.offsetTop/window.innerHeight) < 0.75) {
+          this.noteTop++;
+        }
+        if ((this.footerNote.offsetTop/window.innerHeight) > 0.8) {
+          this.noteTop--;
+        }
+      }
+    },
+
     // Main Functionality
 
     // Starts initial appearance animations
@@ -220,7 +303,7 @@ export default {
       this.logoInitAppear();
       this.bodyCoverFade();
       this.donateDivInitBounce();
-      this.orderCenteralInitAppear();
+      this.orderDivInitAppear();
       this.footerInitAppear();
       this.navUlInitAppear();
       this.orderRightInitAppear();
@@ -239,8 +322,8 @@ export default {
           this.bodyCoverSecondRef,
           this.donateFirstRef,
           this.donateSecondRef,
-          this.orderCenteralFirstRef,
-          this.orderCenteralSecondRef,
+          this.orderDivFirstRef,
+          this.orderDivSecondRef,
           this.orderRightStarRef,
           this.orderRightTextRef,
           this.emailNavRef,
@@ -257,8 +340,8 @@ export default {
         this.invisibleElemsList.forEach(element => {
           element.classList.remove('invisible');
         });
-        this.orderCenteral.classList.remove('order-centeral-appear');
-        this.orderCenteral.classList.add('order-centeral-shine');
+        this.orderDiv.classList.remove('order-central-appear');
+        this.orderDiv.classList.add('order-central-shine');
       }
     },
     
@@ -308,14 +391,14 @@ export default {
       }, 6000);
     },
     
-    // Initial orderCenteral Appearance
-    orderCenteralInitAppear() {
-      this.orderCenteralFirstRef = setTimeout(() => {
-        this.orderCenteral.classList.remove('invisible');
-        this.orderCenteral.classList.add('order-centeral-appear');
-        this.orderCenteralSecondRef = setTimeout(() => {
-          this.orderCenteral.classList.remove('order-centeral-appear');
-          this.orderCenteral.classList.add('order-centeral-shine');
+    // Initial orderDiv Appearance
+    orderDivInitAppear() {
+      this.orderDivFirstRef = setTimeout(() => {
+        this.orderDiv.classList.remove('invisible');
+        this.orderDiv.classList.add('order-central-appear');
+        this.orderDivSecondRef = setTimeout(() => {
+          this.orderDiv.classList.remove('order-central-appear');
+          this.orderDiv.classList.add('order-central-shine');
         }, 4000);
       }, 5500);
     },
@@ -436,8 +519,8 @@ export default {
     this.logoLeft = document.getElementById("m-logoLeft");
     this.logoMoon = document.getElementById("m-logoMoon");
     this.logoRight = document.getElementById("m-logoRight");
+    this.orderCentral = document.getElementById("m-orderCentral");
     this.orderDiv = document.getElementById("m-orderDiv");
-    this.orderCenteral = document.getElementById("m-orderCenteral");
     this.orderRight = document.getElementById("m-orderRight");
     this.orderRightTop = document.getElementById("m-orderRightTop");
     this.orderRightStar = document.getElementById("m-orderRightStar");
@@ -446,14 +529,23 @@ export default {
     this.appNav = document.getElementById("m-appNav");
     this.portNav = document.getElementById("m-portNav");
     this.donateDiv = document.getElementById("m-donateDiv");
-    this.footer = document.getElementById("m-footer");
+    this.footerNote = document.getElementById("m-footerNote");
     this.skipAnimations = document.getElementById("m-skipAnimations");
     this.linkedinNav = document.getElementById("m-linkedinNav");
     this.emailNav = document.getElementById("m-emailNav");
     this.telegramNav = document.getElementById("m-telegramNav");
     this.initVisibleElemsList = [this.bodyCover, this.headerCover, this.skipAnimations];
-    this.invisibleElemsList = [this.logoLeft, this.logoMoon, this.logoRight, this.orderCenteral, this.orderRightTop, this.orderRightStar, this.orderRightBottom, this.navUl, this.donateDiv, this.linkedinNav, this.emailNav, this.telegramNav];
+    this.invisibleElemsList = [this.logoLeft, this.logoMoon, this.logoRight, this.orderDiv, this.orderRightTop, this.orderRightStar, this.orderRightBottom, this.navUl, this.donateDiv, this.linkedinNav, this.emailNav, this.telegramNav];
     this.startAnimations();
+    // this.skipUpdator();
+    // this.noteUpdator();
+  },
+
+  updated() {
+    this.skipUpdator();
+    console.log('skipBottom:',this.skipBottom)
+    this.noteUpdator();
+    console.log('noteBottom:',this.noteBottom)
   },
 };
 </script>

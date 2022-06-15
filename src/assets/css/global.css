@@ -5,11 +5,15 @@
 }
 
 html {
+    width: inherit;
+    height: inherit;
     min-height: 100vh;
     cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 body {
+    width: inherit;
+    height: inherit;
     overflow-x: hidden;
     margin: 0;
     background: #02021b;

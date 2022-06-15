@@ -127,18 +127,20 @@
 
 #donateDiv {
     font-family: 'Pacifico', regular !important;
-    align-items: center;
+    /* align-items: flex-end; */
     align-self: flex-end;
     position: relative;
     overflow: hidden;
     display: inline;
     float: right;
-    width: 140px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     margin-right: 400px;
 }
 
-#donateSpan {
+#donateLink {
+    width: fit-content;
+    height: fit-content;
     font-family: 'Pacifico', regular !important;
     position: absolute;
     margin-top: 0px;

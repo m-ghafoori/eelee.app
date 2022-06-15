@@ -47,7 +47,7 @@
           <router-link
             id="orderLink"
             class="invisible hoverable animate__animated"
-            to="/"
+            to="/order"
             @mouseenter="orderLinkMouseEnter"
             @mouseleave="orderLinkMouseLeave"
             href="#"
@@ -60,9 +60,9 @@
 
         <div
           id="donateDiv"
-          class="invisible hoverable animate__animated animate__slower"
+          class="invisible d-flex align-items-end animate__animated"
         >
-          <router-link id="donateSpan" class="hoverable" to="/">
+          <router-link id="donateLink" class="hoverable" to="/">
             <img
               id="donateIcon"
               class="animate__animated"
@@ -165,7 +165,7 @@ export default {
       portNav: Object,
       orderNav: Object,
       orderDiv: Object,
-      donateSpan: Object,
+      donateLink: Object,
       skipAnimations: Object,
       footerUl: Object,
       linkedinNav: Object,
@@ -409,9 +409,9 @@ export default {
     donateDivInitAppear() {
       console.log("donateDivInitAppear called",new Date().getMilliseconds());
       this.donateDivInitRef = setTimeout(() => {
-        this.donateSpan.parentElement.classList.remove("invisible");
-        this.donateSpan.parentElement.classList.add("shake-horizontal");
-        this.donateSpan.firstElementChild.classList.add("slide-in-bottom");
+        this.donateLink.parentElement.classList.remove("invisible");
+        this.donateLink.parentElement.classList.add("shake-horizontal");
+        this.donateLink.firstElementChild.classList.add("slide-in-bottom");
         this.skipAnimations.classList.remove('vibrate-1');
         this.skipAnimations.classList.add('bounce-out-left');
         setTimeout(() => {
@@ -419,8 +419,8 @@ export default {
         }, 5000);
 
         this.donateIntervalRef = setInterval(() => {
-          this.donateSpan.firstElementChild.classList.remove("slide-in-bottom");
-          this.donateSpan.firstElementChild.classList.remove(
+          this.donateLink.firstElementChild.classList.remove("slide-in-bottom");
+          this.donateLink.firstElementChild.classList.remove(
             this.donateAnimationList[this.donateAnimationIndex]
           );
           this.donateAnimationIndex = this.nextNumber(
@@ -428,7 +428,7 @@ export default {
             this.donateAnimationList.length,
             false
           );
-          this.donateSpan.firstElementChild.classList.add(
+          this.donateLink.firstElementChild.classList.add(
             this.donateAnimationList[this.donateAnimationIndex]
           );
         }, 18000);
@@ -542,24 +542,24 @@ export default {
 
     donateMouseEnter() {
       clearInterval(this.donateIntervalRef);
-      this.donateSpan.firstElementChild.classList.remove(
+      this.donateLink.firstElementChild.classList.remove(
         this.donateAnimationList[this.donateAnimationIndex],
         'slide-in-bottom'
       );
-      this.donateSpan.firstElementChild.setAttribute(
+      this.donateLink.firstElementChild.setAttribute(
         "src",
         require(`./assets/images/svg/donate-hover.svg`)
       );
     },
 
     donateMouseLeave() {
-      this.donateSpan.firstElementChild.setAttribute(
+      this.donateLink.firstElementChild.setAttribute(
         "src",
         require(`./assets/images/svg/donate.svg`)
       );
       this.donateIntervalRef = setInterval(() => {
-        this.donateSpan.firstElementChild.classList.remove("slide-top");
-        this.donateSpan.firstElementChild.classList.remove(
+        this.donateLink.firstElementChild.classList.remove("slide-top");
+        this.donateLink.firstElementChild.classList.remove(
           this.donateAnimationList[this.donateAnimationIndex]
         );
         this.donateAnimationIndex = this.nextNumber(
@@ -567,7 +567,7 @@ export default {
           this.donateAnimationList.length,
           false
         );
-        this.donateSpan.firstElementChild.classList.add(
+        this.donateLink.firstElementChild.classList.add(
           this.donateAnimationList[this.donateAnimationIndex]
         );
       }, 16000);
@@ -671,7 +671,7 @@ export default {
     this.portNav = document.getElementById("portNav");
     this.orderNav = document.getElementById("orderNav");
     this.orderDiv = document.getElementById("orderDiv");
-    this.donateSpan = document.getElementById("donateSpan");
+    this.donateLink = document.getElementById("donateLink");
     this.skipAnimations = document.getElementById("skipAnimations");
     this.footerUl = document.getElementById("footerUl");
     this.linkedinNav = document.getElementById("linkedinNav");
@@ -680,7 +680,7 @@ export default {
     this.mainContainer = document.getElementById("mainContainer");
     this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
     this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
-    this.invisibleElemsList = [this.mainContainer, this.logo, this.headerNavbar, this.orderDiv.firstElementChild, this.donateSpan.parentElement, this.footerUl];
+    this.invisibleElemsList = [this.mainContainer, this.logo, this.headerNavbar, this.orderDiv.firstElementChild, this.donateLink.parentElement, this.footerUl];
     this.startAnimations();
   },
   

@@ -128,7 +128,7 @@ export default {
         if ((window.innerHeight*0.35 + this.mainPage.offsetHeight + this.homePage.offsetHeight + this.appPage.offsetHeight*0.3) < (window.innerHeight + window.scrollY)) {
           setTimeout(() => {
             this.loadApp = true;
-          }, 1000);
+          }, 3500);
         }
       }
     },
