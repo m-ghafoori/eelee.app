@@ -49,10 +49,6 @@ body {
     position: relative;
     background: url("../images/background.jpg") no-repeat center;
     background-size: cover;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 #m-bodyCover {
@@ -68,14 +64,12 @@ body {
 /* Header Section */
 
 #m-header {
-    height: 15vh;
+    height: 12vh;
     font-family: Logo-Font;
     color: #b2ffff !important;
-    font-size: 6vw;
+    font-size: calc(3vw + 3vh);
     position: relative;
     z-index: 2000;
-    display: flex;
-    justify-content: center;
     margin-bottom: 2vh;
 }
 
@@ -99,7 +93,7 @@ body {
 
 #m-logoMoon {
     font-family: "Illustrated";
-    font-size: 4.5vw;
+    font-size: calc(2vw + 2vh);
     padding-top: calc(1vh + 1vw);
     text-shadow: 0 0 28px #a2e5ff;
 }
@@ -116,48 +110,11 @@ body {
     margin: 0;
 }
 
-#m-navUl {
-    width: 18vw;
-    margin: 0 0 0 2vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-#m-navUl li{
-    width: fit-content;
-    height: fit-content;
-    margin: calc(4vw + 2vh) 0;
-    transform: rotate(-33deg);
-}
-
-#m-portNav, #m-appNav {
-    font-family: "Pandora";
-    font-size: 2.5vw;
-    letter-spacing: 0.42vw;
-    text-decoration: none;
-    color: #a2e5ff !important;
-}
-
-#m-portNav:hover, #m-appNav:hover {
-    color: #27b595 !important;
-}
-
-#m-centralDiv {
-    width: 100%;
-    height: fit-content;
-}
-
-#m-orderCentral {
-    width: 30%;
-    height: 100%;
-}
-
 #m-orderDiv {
-    width: 70%;
+    width: 80%;
     max-height: calc(3vh + 3vw);
     font-family: "Creepster", cursive;
-    font-size: calc(2vw + 2vh);
+    font-size: calc(2vw + 3vh);
     text-align: center;
     background: linear-gradient(to bottom, #ffe56f, #ff0000);
     -webkit-background-clip: text;
@@ -165,6 +122,8 @@ body {
     -webkit-text-fill-color: transparent;
     letter-spacing: 0.8vw;
     white-space: nowrap;
+    position: relative;
+    bottom: 5vh;
     /* margin-left: 5vw; */
 }
 
@@ -180,6 +139,40 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+#m-centralDiv {
+    width: 100%;
+    height: fit-content;
+}
+
+#m-navUl {
+    width: 18vw;
+    margin: 0 0 0 2vw;
+}
+
+#m-navUl li{
+    width: fit-content;
+    height: fit-content;
+    margin: calc(4vw + 2vh) 0;
+    transform: rotate(-33deg);
+}
+
+#m-portNav, #m-appNav {
+    font-family: "Pandora";
+    font-size: calc(1vw + 2vh);
+    letter-spacing: 0.42vw;
+    text-decoration: none;
+    color: #a2e5ff !important;
+}
+
+#m-portNav:hover, #m-appNav:hover {
+    color: #27b595 !important;
+}
+
+#m-orderCentral {
+    width: 30%;
+    height: 100%;
 }
 
 #m-orderRight {
@@ -234,7 +227,7 @@ body {
     white-space: nowrap;
     line-height: 5vh;
     text-align: end;
-    transform: rotate(-40deg);
+    /* transform: rotate(-40deg); */
     position: relative;
     left: 1vh;
     z-index: 4000;
@@ -263,9 +256,6 @@ body {
     width: 40%;
     height: 100%;
     max-height: fit-content;
-    display: flex;
-    justify-content: space-between;
-    align-self: center;
 }
 
 #m-telegramNav {
@@ -285,9 +275,9 @@ body {
 /* Media Queries */
 
 @media (max-width: 768px) {
-    #m-footer {
+    /* #m-footer {
         margin-top: 5vh;
-    }
+    } */
 /* 
     #m-footerNote {
         color: red;
@@ -301,7 +291,7 @@ body {
     } */
 
     #m-footer {
-        margin-top: 9vh;
+        margin-bottom: 2vh;
     }
 
     #m-footerUl {

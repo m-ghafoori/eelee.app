@@ -6,7 +6,7 @@
         <div id="m-bodyCover">
           
         </div>
-        <header id="m-header" class="text-shine-logo">
+        <header id="m-header" class="d-flex justify-content-center text-shine-logo">
           <div id="m-headerCover"></div>
           <span id="m-logoLeft" class="invisible">ee</span>
           <span id="m-logoMoon" class="invisible">f </span>
@@ -22,19 +22,19 @@
               >
 
           <div id="m-centralDiv" class="d-flex justify-content-between align-items-start">
-            <ul id="m-navUl" class="invisible">
+            <ul id="m-navUl" class="invisible d-flex flex-column justify-content-end">
               <li class="">
-                <router-link id="m-portNav" to="/portfolio" class="text-shine hoverable"
-                  >Portfolio</router-link
-                >
-              </li>
-              <li class="">
-                <router-link id="m-appNav" to="/app" class="text-shine hoverable"
+                <router-link id="m-portNav" to="/app" class="text-shine hoverable"
                   >App</router-link
                 >
               </li>
+              <li class="">
+                <router-link id="m-appNav" to="/portfolio" class="text-shine hoverable"
+                  >Portfolio</router-link
+                >
+              </li>
             </ul>
-            <div id="m-orderCentral" class="d-flex align-items-center">
+            <div id="m-orderCentral" class="d-flex justify-content-around align-items-center">
               
               <router-link id="m-orderRight" to="/order" class="text-shine-logo hoverable">
                 <span id="m-orderRightTop" class="invisible">Click to <br /></span>
@@ -45,7 +45,7 @@
 
           </div>
 
-          <div id="m-donateDiv" class="invisible">
+          <div id="m-donateDiv" class="invisible" :style="donateStyle">
             <img
               id="m-donateIcon"
               class="donate-shadow hoverable"
@@ -63,7 +63,7 @@
         </section>
 
         <footer id="m-footer" class="d-flex justify-content-around">
-          <ul id="m-footerUl">
+          <ul id="m-footerUl" class="d-flex justify-content-between align-items-center">
             <li id="m-telegramNav" class="invisible">
               <img
                 id="m-telegramIcon"
@@ -107,10 +107,13 @@ export default {
   data() {
     return {
       // screenRatio: Number,
-      skipTop: 0,
-      noteTop: 0,
+      // donateTop: 0,
+      // skipTop: 0,
+      // noteTop: 0,
+      donateBottom: 0,
       skipBottom: 0,
       noteBottom: 0,
+      skipRotation: -40,
       skipColor: '#a2e5ff',
       noteColor: '#a2e5ff',
 
@@ -186,18 +189,25 @@ export default {
 
   computed: {
     widthClass() {return this.windowWidthClassEmitter()},
-    // screenRatio() {return (window.innerWidth/window.innerHeight)},
+    // screenRatio() {return this.screenRatio},
+    donateStyle() {
+      return {
+        // 'top': `${this.donateTop}px`,
+        'bottom': `${this.donateBottom}vh`,
+      }
+    },
     skipStyle() {
       return {
-        'top': `${this.skipTop}px`,
-        'bottom': `${this.skipBottom}px`,
+        // 'top': `${this.skipTop}vh`,
+        'bottom': `${this.skipBottom}vh`,
+        'transform': `rotate(${this.skipRotation}deg)`,
         'color': `${this.skipColor}`
       }
     },
     noteStyle() {
         return {
-          'top': `${this.noteTop}px`,
-          'bottom': `${this.noteBottom}px`,
+          // 'top': `${this.noteTop}vh`,
+          'bottom': `${this.noteBottom}vh`,
           'color': `${this.noteColor}`
         }
     },
@@ -221,9 +231,9 @@ export default {
     // Triggers different window size classes on resize
     windowWidthClassEmitter() {
       var windowWidth = window.innerWidth;
-      var windowHeight = window.innerHeight;
+      // var windowHeight = window.innerHeight;
       // this.screenRatio = windowWidth/windowHeight;
-      console.log(this.footerNote.offsetTop)
+      // console.log(this.footerNote.offsetTop)
 
       switch (true) {
         case windowWidth < 320:
@@ -248,47 +258,59 @@ export default {
       }
     },
 
+    donateUpdator() {
+        if ((this.donateDiv.offsetTop/window.innerHeight) > 0.6) {
+          this.donateBottom++;
+        }
+        if ((this.donateDiv.offsetTop/window.innerHeight) < 0.5) {
+          this.donateBottom--;
+        }
+    },
+
     skipUpdator() {
-      if ((window.innerWidth/window.innerHeight) > 0.8) {
-        this.skipTop = 0;
+      if ((window.innerWidth/window.innerHeight) > 1)
+        this.skipRotation = -37;
+        else this.skipRotation = -40;
+      if ((window.innerWidth/window.innerHeight) > 0.85) {
+        // this.skipTop = 0;
         this.skipColor = '#a2e5ff';
-        if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.5) {
+        if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.7) {
           this.skipBottom++;
         }
-        if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.4) {
+        if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.65) {
           this.skipBottom--;
         }
       } else {
-        this.skipBottom = 0;
+        // this.skipBottom = 0;
         this.skipColor = '#f8cc09';
         // this.skipBottom = this.skipBottom*(-1);
-        if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.75) {
-          this.skipTop++;
+        if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.8) {
+          this.skipBottom--;
         }
-        if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.8) {
-          this.skipTop--;
+        if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.85) {
+          this.skipBottom++;
         }
       }
     },
     noteUpdator() {
       if ((window.innerWidth/window.innerHeight) > 0.8) {
-        this.noteTop = 0;
+        // this.noteTop = 0;
         this.noteColor = '#a2e5ff';
-        if ((this.footerNote.offsetTop/window.innerHeight) > 0.5) {
+        if ((this.footerNote.offsetTop/window.innerHeight) > 0.7) {
           this.noteBottom++;
         }
-        if ((this.footerNote.offsetTop/window.innerHeight) < 0.4) {
+        if ((this.footerNote.offsetTop/window.innerHeight) < 0.65) {
           this.noteBottom--;
         }
       } else {
-        this.noteBottom = 0;
+        // this.noteBottom = 0;
         this.noteColor = '#f8cc09';
         // this.noteBottom = this.noteBottom*(-1);
         if ((this.footerNote.offsetTop/window.innerHeight) < 0.75) {
-          this.noteTop++;
+          this.noteBottom--;
         }
         if ((this.footerNote.offsetTop/window.innerHeight) > 0.8) {
-          this.noteTop--;
+          this.noteBottom++;
         }
       }
     },
@@ -537,15 +559,18 @@ export default {
     this.initVisibleElemsList = [this.bodyCover, this.headerCover, this.skipAnimations];
     this.invisibleElemsList = [this.logoLeft, this.logoMoon, this.logoRight, this.orderDiv, this.orderRightTop, this.orderRightStar, this.orderRightBottom, this.navUl, this.donateDiv, this.linkedinNav, this.emailNav, this.telegramNav];
     this.startAnimations();
-    // this.skipUpdator();
-    // this.noteUpdator();
+    this.donateUpdator();
+    this.skipUpdator();
+    this.noteUpdator();
   },
 
   updated() {
+    this.donateUpdator();
+    // console.log('donateBottom:',this.donateBottom);
     this.skipUpdator();
-    console.log('skipBottom:',this.skipBottom)
+    // console.log('skipBottom:',this.skipBottom);
     this.noteUpdator();
-    console.log('noteBottom:',this.noteBottom)
+    // console.log('noteBottom:',this.noteBottom);
   },
 };
 </script>
