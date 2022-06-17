@@ -45,7 +45,7 @@
 
           </div>
 
-          <div id="m-donateDiv" class="invisible" :style="donateStyle">
+          <router-link to="/donate" id="m-donateLink" class="invisible" :style="donateStyle">
             <img
               id="m-donateIcon"
               class="donate-shadow hoverable"
@@ -54,7 +54,7 @@
               :src="require(`./assets/images/svg/donate-${widthClass}.svg`)"
               alt=""
             />
-          </div>
+          </router-link>
         </section>
 
         <section id="m-notes" class="d-flex justify-content-between align-items-end">
@@ -114,8 +114,8 @@ export default {
       skipBottom: 0,
       noteBottom: 0,
       skipRotation: -40,
-      skipColor: '#a2e5ff',
-      noteColor: '#a2e5ff',
+      skipColor: String,
+      noteColor: String,
 
       isPageFullyLoaded: false,
 
@@ -154,7 +154,7 @@ export default {
       navUl: Object,
       appNav: Object,
       portNav: Object,
-      donateDiv: Object,
+      donateLink: Object,
       footerNote: Object,
       skipAnimations: Object,
       linkedinNav: Object,
@@ -178,13 +178,14 @@ export default {
         }, 2000);
       }
     },
-    // widthClass(val) {
-    //   if (val == 'md' || val == 'sm') this.footerNote.classList.add('text-shine-logo');
-    //   else this.footerNote.classList.remove('text-shine-logo');
-    // },
-    // screenRatio(val) {
-    //   console.log(val)
-    // },
+    skipColor(val) {
+      if (val == '#a2e5ff') this.skipAnimations.classList.add('text-shine-logo');
+      else this.skipAnimations.classList.remove('text-shine-logo');
+    },
+    noteColor(val) {
+      if (val == '#a2e5ff') this.footerNote.classList.add('text-shine-logo');
+      else this.footerNote.classList.remove('text-shine-logo');
+    },
   },
 
   computed: {
@@ -259,10 +260,10 @@ export default {
     },
 
     donateUpdator() {
-        if ((this.donateDiv.offsetTop/window.innerHeight) > 0.6) {
+        if ((this.donateLink.offsetTop/window.innerHeight) > 0.6) {
           this.donateBottom++;
         }
-        if ((this.donateDiv.offsetTop/window.innerHeight) < 0.5) {
+        if ((this.donateLink.offsetTop/window.innerHeight) < 0.5) {
           this.donateBottom--;
         }
     },
@@ -324,7 +325,7 @@ export default {
       this.headerCloudMove();
       this.logoInitAppear();
       this.bodyCoverFade();
-      this.donateDivInitBounce();
+      this.donateLinkInitBounce();
       this.orderDivInitAppear();
       this.footerInitAppear();
       this.navUlInitAppear();
@@ -401,14 +402,14 @@ export default {
       }, 4000);
     },
     
-    // Initial donateDiv Bounce
-    donateDivInitBounce() {
+    // Initial donateLink Bounce
+    donateLinkInitBounce() {
       this.donateFirstRef = setTimeout(() => {
-        this.donateDiv.classList.remove('invisible');
-        this.donateDiv.classList.add('donate-bounce-out');
+        this.donateLink.classList.remove('invisible');
+        this.donateLink.classList.add('donate-bounce-out');
         this.donateSecondRef = setTimeout(() => {
-          this.donateDiv.classList.remove('donate-bounce-out');
-          this.donateDiv.classList.add('donate-bounce-in');
+          this.donateLink.classList.remove('donate-bounce-out');
+          this.donateLink.classList.add('donate-bounce-in');
         }, 1500);
       }, 6000);
     },
@@ -460,9 +461,9 @@ export default {
       this.navUlRef = setTimeout(() => {
         this.navUl.classList.remove('invisible');
         this.navUl.classList.add('star-appear');
-        setTimeout(() => {
           this.isPageFullyLoaded = true;
-        }, 2000);
+        // setTimeout(() => {
+        // }, 100);
       }, 14000);
     },
 
@@ -471,14 +472,14 @@ export default {
     // Showcase Section Handlers
 
     donateIconMouseEnter() {
-      this.donateDiv.firstElementChild.setAttribute(
+      this.donateLink.firstElementChild.setAttribute(
         "src",
         require(`./assets/images/svg/donate-hover-${this.widthClass}.svg`)
       );
     },
 
     donateIconMouseLeave() {
-      this.donateDiv.firstElementChild.setAttribute(
+      this.donateLink.firstElementChild.setAttribute(
         "src",
         require(`./assets/images/svg/donate-${this.widthClass}.svg`)
       );
@@ -550,14 +551,14 @@ export default {
     this.navUl = document.getElementById("m-navUl");
     this.appNav = document.getElementById("m-appNav");
     this.portNav = document.getElementById("m-portNav");
-    this.donateDiv = document.getElementById("m-donateDiv");
+    this.donateLink = document.getElementById("m-donateLink");
     this.footerNote = document.getElementById("m-footerNote");
     this.skipAnimations = document.getElementById("m-skipAnimations");
     this.linkedinNav = document.getElementById("m-linkedinNav");
     this.emailNav = document.getElementById("m-emailNav");
     this.telegramNav = document.getElementById("m-telegramNav");
     this.initVisibleElemsList = [this.bodyCover, this.headerCover, this.skipAnimations];
-    this.invisibleElemsList = [this.logoLeft, this.logoMoon, this.logoRight, this.orderDiv, this.orderRightTop, this.orderRightStar, this.orderRightBottom, this.navUl, this.donateDiv, this.linkedinNav, this.emailNav, this.telegramNav];
+    this.invisibleElemsList = [this.logoLeft, this.logoMoon, this.logoRight, this.orderDiv, this.orderRightTop, this.orderRightStar, this.orderRightBottom, this.navUl, this.donateLink, this.linkedinNav, this.emailNav, this.telegramNav];
     this.startAnimations();
     this.donateUpdator();
     this.skipUpdator();

@@ -4,7 +4,7 @@
       <router-link id="p-logo" class="hoverable" to="/">EELee</router-link>
         <router-link id="p-homeNav" class="p-nav-link hoverable" to="/">Home</router-link>
         <router-link id="p-appNav" class="p-nav-link hoverable" to="/app">App</router-link>
-        <router-link id="p-donateNav" class="p-nav-link hoverable" to="/app">Donate</router-link>
+        <router-link id="p-donateNav" class="p-nav-link hoverable" to="/donate">Donate</router-link>
         <router-link id="p-orderNav" class="p-nav-link hoverable" to="/order">Order Now!</router-link>
     </header>
 

@@ -1,0 +1,162 @@
+#d-body {
+    width: 100vw;
+    height: 100vh;
+    background: #3ca05d;
+}
+
+/* Header */
+
+/* Classes */
+
+.d-nav-link {
+    font-family: 'Poiret One', cursive;
+    font-weight: 1000;
+    font-size: calc(1.5vw + 2vh);
+    color: #ffffff;
+    margin: 1vw 2vw;
+    text-decoration: none;
+}
+
+.d-nav-link:hover {
+    color: #ffbf1f;
+}
+
+/* ID Tags */
+
+#d-header {
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+}
+
+#d-logo {
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: 1000;
+    font-size: calc(2vw + 3vh);
+    color: #ffbf1f;
+    margin: 1vw 2vw;
+    text-decoration: none;
+}
+
+#d-logo:hover {
+    color: #cf2860;
+}
+
+/* Showcase Section */
+
+/* Classes */
+
+/* ID Tags */
+
+#d-showcase {
+    width: 70vw;
+    position: relative;
+    align-self: center;
+    top: 15vh;
+    font-size: calc(1.5vw + 0.8vh);
+    margin: 5vh 0;
+}
+
+#d-showcase h3{
+    font-family: 'Josefin Slab';
+    color: #f93879;
+    margin-top: 0;
+}
+
+#d-showcase p{
+    font-family: 'Nanum Myeongjo';
+    color: #0b7a62;
+    line-height: 8vh;
+    margin: 0;
+}
+
+#d-showcase h4{
+    width: fit-content;
+    font-family: 'Josefin Slab';
+    color: #f93879;
+    align-self: flex-end;
+    margin-top: 0;
+}
+
+#d-donationForm {
+    width: inherit;
+    font-family: 'Gluten', cursive;
+    font-size: calc(1vw + 3vh);
+    color: #fff;
+    align-self: center;
+}
+
+#d-donationInput {
+    width: 95px;
+    height: inherit;
+    background: transparent;
+    font-family: 'Josefin Slab';
+    color: #ffbf1f;
+    border: 1px solid #fff;
+    border-radius: 1rem;
+    padding: 1% 2%;
+    margin: 2%;
+}
+
+#d-donateButton {
+    font-family: 'Josefin Slab', cursive;
+    font-size: calc(2vw + 2vh);
+    color: #fff;
+    border: 1px solid #ffbf1f;
+    border-radius: 2rem;
+    background: transparent;
+    padding: calc(1vw + 1vh);
+    margin-top: 5%;
+}
+/* Footer */
+
+/* ID Tags */
+
+#d-footer {
+    width: 40%;
+    height: 15vh;
+    position: fixed;
+    bottom: 0;
+    align-self: center;
+    margin-bottom: 3vh;
+}
+
+#d-footerNav {
+    width: 100%;
+    height: 8vh;
+    margin-bottom: 3vh;
+}
+
+#d-footerNote {
+    width: fit-content;
+    height: fit-content;
+    text-decoration: none;
+    font-family: 'Gluten', cursive;
+    font-size: calc(1vw + 1.5vh);
+    white-space: nowrap;
+    color: #ffffff;
+}
+
+#d-footerNote:hover {
+    color: #cf2860;
+}
+
+/* Media Queries */
+
+@media (max-width: 320px) {
+    #d-footer {
+        width: 70%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 576px) {
+    #d-footer {
+        width: 60%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    #d-footer {
+        width: 50%;
+    }
+}

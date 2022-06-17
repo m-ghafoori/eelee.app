@@ -62,7 +62,7 @@
           id="donateDiv"
           class="invisible d-flex align-items-end animate__animated"
         >
-          <router-link id="donateLink" class="hoverable" to="/">
+          <router-link id="donateLink" class="hoverable" to="/donate">
             <img
               id="donateIcon"
               class="animate__animated"
