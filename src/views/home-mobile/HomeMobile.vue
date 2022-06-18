@@ -73,7 +73,8 @@
                 :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)"
               />
             </li>
-            <li id="m-emailNav" class="invisible">
+            <li>
+            <router-link to="contact" id="m-emailNav" class="invisible">
               <img
                 id="m-emailIcon"
                 class="footer-shadow hoverable"
@@ -81,6 +82,7 @@
                 @mouseleave="emailNavMouseLeave"
                 :src="require(`./assets/images/svg/email-${widthClass}.svg`)"
               />
+            </router-link>
             </li>
             <li id="m-linkedinNav" class="invisible">
               <img

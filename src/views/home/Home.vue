@@ -89,14 +89,16 @@
               :src="require('./assets/images/svg/linkedin.svg')"
             />
           </li>
-          <li id="emailNav" class="animate__animated">
-            <img
-              id="emailIcon"
-              class="animate__animated"
-              @mouseenter="emailMouseEnter"
-              @mouseleave="emailMouseLeave"
-              :src="require('./assets/images/svg/email.svg')"
-            />
+          <li>
+            <router-link to="contact" id="emailNav" class="hoverable animate__animated">
+              <img
+                id="emailIcon"
+                class="animate__animated"
+                @mouseenter="emailMouseEnter"
+                @mouseleave="emailMouseLeave"
+                :src="require('./assets/images/svg/email.svg')"
+              />
+            </router-link>
           </li>
           <li id="telegramNav" class="animate__animated">
             <img
@@ -612,11 +614,11 @@ export default {
         "src",
         require("./assets/images/svg/email-hover.svg")
       );
-      this.emailNav.classList.add("animate__headShake");
+      this.emailNav.firstElementChild.classList.add("animate__headShake");
     },
 
     emailMouseLeave() {
-      this.emailNav.classList.remove("animate__headShake");
+      this.emailNav.firstElementChild.classList.remove("animate__headShake");
       this.emailNav.firstElementChild.setAttribute(
         "src",
         require("./assets/images/svg/email.svg")

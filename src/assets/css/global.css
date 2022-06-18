@@ -5,15 +5,15 @@
 }
 
 html {
-    width: inherit;
-    height: inherit;
+    width: 100%;
+    height: 100%;
     min-height: 100vh;
     cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 body {
-    width: inherit;
-    height: inherit;
+    width: 100%;
+    height: 100%;
     overflow-x: hidden;
     margin: 0;
     background: #02021b;
@@ -22,6 +22,11 @@ body {
 ul {
     list-style: none;
     padding: 0;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
 }
 
 /* Classes */

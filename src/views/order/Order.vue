@@ -68,7 +68,9 @@
       <footer id="o-footer" class="d-flex flex-column justify-content-around align-items-center">
           <div id="o-footerNav" class="d-flex justify-content-between align-items-center">
             <img id="o-linkedinNav" class="hoverable" :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
-            <img id="o-emailNav" class="hoverable" :src="require(`./assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+            <router-link to="/contact">
+                <img id="o-emailNav" class="hoverable" :src="require(`./assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+            </router-link>
             <img id="o-telegramNav" class="hoverable" :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
           <router-link id="o-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
