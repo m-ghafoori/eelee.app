@@ -25,7 +25,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <span id="c-attachFile" @click="onAttachClick">Attach</span>
                     <input id="c-attachInput" ref="attachInput" type="file" @change="onFileUpload">
-                    <p>{{fileName}}</p>
+                    <p id="c-fileNamePar">{{fileName}}</p>
                 </div>
                 <span id="c-sendEmail">Send</span>
             </div>
@@ -60,6 +60,10 @@ export default {
             widthClass: String,
             attachedFile: Object,
             fileName: '',
+
+            //
+            messageButtons: Object,
+            fileNamePar: Object,
         }
     },
 
@@ -81,6 +85,27 @@ export default {
             else if (windowWidth < 768) this.widthClass = 'sm';
             else if (windowWidth < 992) this.widthClass = 'md';
             else this.widthClass = 'lg';
+            this.fileNameUpdator();
+        },
+
+        // Main Functionality
+
+        // Updates the fileName to fit the textarea
+        fileNameUpdator() {
+            if (this.fileName == '') {} else {
+                if (this.fileNamePar.offsetWidth/this.messageButtons.offsetWidth < 0.3 && this.fileName != this.attachedFile.name) this.fileName = this.attachedFile.name;
+                if (this.fileNamePar.offsetWidth/this.messageButtons.offsetWidth > 0.45) {
+                    var lastCharIndex = this.fileName.lastIndexOf('.');
+                    var namePart = this.fileName.substr(0, lastCharIndex-3);
+                    var extentionPart = this.fileName.substr(lastCharIndex, this.fileName.length-lastCharIndex);
+                    this.fileName = `${namePart}${extentionPart}`;
+                } else if (this.fileName != this.attachedFile.name) {
+                    var lastCharIndex = this.fileName.lastIndexOf('.');
+                    var namePart = this.fileName.substr(0, lastCharIndex-3);
+                    var extentionPart = this.fileName.substr(lastCharIndex, this.fileName.length-lastCharIndex);
+                    this.fileName = `${namePart}...${extentionPart}`;
+                }
+            }
         },
 
         // Event Handlers
@@ -123,6 +148,16 @@ export default {
 
     beforeMount() {
         this.windowWidthClassEmitter();
+    },
+
+    mounted() {
+        this.messageButtons = document.getElementById('c-messageButtons');
+        this.fileNamePar = document.getElementById('c-fileNamePar');
+    },
+
+    updated() {
+        this.fileNameUpdator();
+        // console.log('updated', this.fileName);
     },
 }
 </script>
