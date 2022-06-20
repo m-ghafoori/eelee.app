@@ -53,9 +53,6 @@ export default {
             str = str.replace(/ /g, '');
             return str;
         },
-        onSelectedChanged (val) {
-            this.$emit(this.eventName, val);
-        },
         onDivMouseLeave () {
             setTimeout(() => {
                 this.selectInput.blur();
@@ -67,6 +64,9 @@ export default {
             } else {
                 this.selectInput.focus();
             }
+        },
+        onSelectedChanged (val) {
+            this.$emit(this.eventName, val);
         },
         onSelectFocus() {
             this.labelColor = 'red';

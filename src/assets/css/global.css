@@ -65,6 +65,14 @@ ul {
     justify-content: center !important;
 }
 
+.justify-content-start {
+    justify-content: flex-start !important;
+}
+
+.justify-content-end {
+    justify-content: flex-end !important;
+}
+
 .justify-content-between {
     justify-content: space-between !important;
 }
@@ -83,6 +91,18 @@ ul {
 
 .align-items-end {
     align-items: flex-end !important;
+}
+
+.align-self-center {
+    align-self: center !important;
+}
+
+.align-self-start {
+    align-self: flex-start !important;
+}
+
+.align-self-end {
+    align-self: flex-end !important;
 }
 
 .flex-grow-1 {
