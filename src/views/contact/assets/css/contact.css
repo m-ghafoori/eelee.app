@@ -1,3 +1,11 @@
+html {
+    cursor: url('../images/svg/pointer.svg'), auto;
+}
+
+.hoverable {
+    cursor: url('../images/svg/pointer-hover.svg'), auto;
+}
+
 #c-body {
     width: 100vw;
     min-height: 100%;
@@ -57,12 +65,6 @@
 #c-logo:hover {
     color: #2ec7a6;
 }
-/* 
-#c-headerNavbar {
-    max-width: fit-content;
-    height: fit-content;
-    margin: auto 0;
-} */
 
 #c-menuButton {
     width: 25px;
@@ -87,10 +89,6 @@
 /* Showcase Section */
 
 /* Classes */
-
-.c-vertical-menu-active {
-    opacity: 0.2;
-}
 
 /* ID Tags */
 

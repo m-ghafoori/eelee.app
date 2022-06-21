@@ -168,7 +168,6 @@ export default {
     text-align: center;
     position: sticky;
     top: 0;
-    z-index: 10000;
     padding-top: 1.5%;
 }
 

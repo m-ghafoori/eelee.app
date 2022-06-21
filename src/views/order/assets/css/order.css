@@ -1,3 +1,11 @@
+html {
+    cursor: url('../images/svg/pointer.svg'), auto;
+}
+
+.hoverable {
+    cursor: url('../images/svg/pointer-hover.svg'), auto;
+}
+
 #o-body {
     width: 100vw;
     height: 100vh;
@@ -21,25 +29,62 @@
     color: #fb4a85;
 }
 
+.o-nav-link:active {
+    color: #49a8f0;
+}
+
+.o-vertical-menu {
+    width: fit-content !important;
+    height: 60vh !important;
+    font-size: calc(3vw + 1.5vh) !important;
+    top: 10vh !important;
+    align-self: flex-start !important;
+}
+
 /* ID Tags */
 
 #o-header {
     width: 100vw;
     height: 10vh;
     position: fixed;
+    padding-top: 1vh;
+    margin-bottom: 2vh;
+    z-index: 200;
 }
 
 #o-logo {
+    width: 18vw;
+    height: fit-content;
     font-family: 'Fredericka the Great', cursive;
     font-weight: 1000;
     font-size: calc(2vw + 3vh);
     color: #b42857;
-    margin: 1vw 2vw;
+    margin: auto 2vw;
     text-decoration: none;
 }
 
 #o-logo:hover {
     color: #2ec7a6;
+}
+
+#o-menuButton {
+    width: 25px;
+    height: 25px;
+    margin: auto 2vw;
+}
+
+#o-headerUl {
+    width: 78vw;
+    height: inherit;
+    font-size: calc(1.5vw + 2vh);
+    position: relative;
+    margin: 0;
+}
+
+#o-headerUl li {
+    width: fit-content;
+    height: fit-content;
+    margin:auto 0;
 }
 
 /* Showcase Section */
@@ -54,6 +99,15 @@
     top: 15vh;
     font-size: calc(1.5vw + 0.8vh);
     margin: 5vh 0;
+}
+
+#o-formCover {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0.8;
+    position: absolute;
+    z-index: 100;
 }
 
 #o-showcase h3{
