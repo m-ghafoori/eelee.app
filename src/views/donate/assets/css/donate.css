@@ -1,3 +1,11 @@
+html {
+    cursor: url('../images/svg/pointer.svg'), auto;
+}
+
+.hoverable {
+    cursor: url('../images/svg/pointer-hover.svg'), auto;
+}
+
 #d-body {
     width: 100vw;
     height: 100vh;
@@ -23,14 +31,6 @@
 
 .d-nav-link:active {
     color: #cf2860;
-}
-
-.d-vertical-menu {
-    width: fit-content !important;
-    height: 60vh !important;
-    font-size: calc(3vw + 1.5vh) !important;
-    top: 10vh !important;
-    align-self: flex-start !important;
 }
 
 /* ID Tags */
@@ -147,6 +147,11 @@
 #d-donateButton:hover {
     color: #ffbf1f;
     border-color: #fff;
+}
+
+#d-donateButton:active {
+    color: #cf2860;
+    border-color: #cf2860;
 }
 /* Footer */
 

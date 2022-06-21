@@ -24,26 +24,31 @@
             </span>
       </header>
 
-      <section id="c-contactForm" class="d-flex flex-column align-items-start">
+      <section id="c-showcase" class="d-flex flex-column align-items-start">
         <div id="c-formCover" class="d-none"></div>
-        <p id="c-contactPar">You can fill the form below or email us to <span id="c-contactEmail">"eelee.app@gmail.com"</span></p>
-        <div class="c-clientInfo">
-            <label for="clientName">Name:</label>
-            <input type="text" name="clientName" id="c-clientName" v-model="clientName" :style="clientNameStyle" @click="onClientNameClick" required>
+        <div id="c-messagereceived" class="d-none">
+            Thanks! <br><br><br> Your message has been received. <br><br><br> We will contact you in two days :)
         </div>
-        <div class="c-clientInfo">
-            <label for="clientEmail">Email:</label>
-            <input type="email" name="clientEmail" id="c-clientEmail" v-model="clientEmail" :style="clientEmailStyle" @click="onClientEmailClick" required>
-        </div>
-        <div id="c-messageDiv" class="d-flex flex-column justify-content-between align-items-center">
-            <textarea name="clientMessage" id="c-clientMessage" cols="90" rows="10" v-model="clientMessage" :style="clientMessageStyle" @click="onClientMessageClick" required></textarea>
-            <div id="c-messageButtons" class="d-flex justify-content-between align-items-center">
-                <div class="d-flex justify-content-between align-items-center">
-                    <span id="c-attachFile" @click="onAttachClick">Attach</span>
-                    <input id="c-attachInput" type="file" @change="onFileUpload">
-                    <p id="c-fileNamePar">{{fileName}}</p>
+        <div id="c-contactForm" class="d-flex flex-column align-items-start">
+            <p id="c-contactPar">You can fill the form below or email us to <span id="c-contactEmail">"eelee.app@gmail.com"</span></p>
+            <div class="c-clientInfo">
+                <label for="clientName">Name:</label>
+                <input type="text" name="clientName" id="c-clientName" v-model="clientName" :style="clientNameStyle" @click="onClientNameClick" required>
+            </div>
+            <div class="c-clientInfo">
+                <label for="clientEmail">Email:</label>
+                <input type="email" name="clientEmail" id="c-clientEmail" v-model="clientEmail" :style="clientEmailStyle" @click="onClientEmailClick" required>
+            </div>
+            <div id="c-messageDiv" class="d-flex flex-column justify-content-between align-items-center">
+                <textarea name="clientMessage" id="c-clientMessage" cols="90" rows="10" v-model="clientMessage" :style="clientMessageStyle" @click="onClientMessageClick" required></textarea>
+                <div id="c-messageButtons" class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span id="c-attachFile" class="hoverable" @click="onAttachClick">Attach</span>
+                        <input id="c-attachInput" type="file" @change="onFileUpload">
+                        <p id="c-fileNamePar">{{fileName}}</p>
+                    </div>
+                    <span id="c-sendMessage" class="hoverable" @click="onSendMessageClick">Send</span>
                 </div>
-                <span id="c-sendMessage" @click="onSendMessageClick">Send</span>
             </div>
         </div>
       </section>
@@ -98,8 +103,11 @@ export default {
             headerUl: Object,
             menuButton: Object,
             menuImg: Object,
-            contactForm: Object,
+            showcase: Object,
             formCover: Object,
+            messagereceived: Object,
+            contactPar: Object,
+            contactForm: Object,
             clientNameInput: Object,
             clientEmailInput: Object,
             clientMessageInput: Object,
@@ -118,11 +126,13 @@ export default {
         isVerticalMenuExpanded(val) {
             if (val) {
                 this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button-hover.svg`));
-                this.headerUl.classList.remove('invisible');
+                this.headerUl.classList.remove('invisible', 'scale-down-ver-top');
+                this.headerUl.classList.add('scale-up-ver-top');
                 this.formCover.classList.remove('d-none');
             } else {
                 this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button.svg`));
-                this.headerUl.classList.add('invisible');
+                this.headerUl.classList.remove('scale-up-ver-top');
+                this.headerUl.classList.add('scale-down-ver-top');
                 this.formCover.classList.add('d-none');
             }
         },
@@ -258,11 +268,11 @@ export default {
             if (window.innerWidth < 576) {
                 // this.headerNavbar.classList.add('flex-column');
                 this.headerUl.classList.remove('align-items-center');
-                this.headerUl.classList.add('invisible', 'flex-column', 'align-items-end', 'c-vertical-menu');
+                this.headerUl.classList.add('invisible', 'flex-column', 'align-items-end', 'vertical-menu');
                 this.menuButton.classList.remove('d-none');
             } else {
                 // this.headerNavbar.classList.remove('flex-column');
-                this.headerUl.classList.remove('invisible', 'flex-column', 'align-items-end', 'c-vertical-menu');
+                this.headerUl.classList.remove('invisible', 'scale-down-ver-top', 'flex-column', 'align-items-end', 'vertical-menu');
                 this.headerUl.classList.add('align-items-center');
                 this.menuButton.classList.add('d-none');
             }
@@ -311,9 +321,12 @@ export default {
                 for (const entry of messageFormData.entries()) {
                     console.log(entry);
                 }
+                this.contactForm.classList.remove('d-flex');
+                this.contactForm.classList.add('d-none');
+                this.messagereceived.classList.remove('d-none');
             }
             // var messageForm = document.createElement('form');
-            // this.contactForm.appendChild(messageForm);
+            // this.showcase.appendChild(messageForm);
             // messageForm.setAttribute('method', 'POST');
             // messageForm.setAttribute('action', 'https://webhook.site/767019c1-1d04-4f24-b4ef-77ce3235f8e0');
             // messageForm.appendChild(this.clientNameInput);
@@ -369,8 +382,11 @@ export default {
         this.headerUl = document.getElementById('c-headerUl');
         this.menuButton = document.getElementById('c-menuButton');
         this.menuImg = document.getElementById('c-menuImg');
-        this.contactForm = document.getElementById('c-contactForm');
+        this.showcase = document.getElementById('c-showcase');
         this.formCover = document.getElementById('c-formCover');
+        this.messagereceived = document.getElementById('c-messagereceived');
+        this.contactPar = document.getElementById('c-contactPar');
+        this.contactForm = document.getElementById('c-contactForm');
         this.clientNameInput = document.getElementById('c-clientName');
         this.clientEmailInput = document.getElementById('c-clientEmail');
         this.clientMessageInput = document.getElementById('c-clientMessage');

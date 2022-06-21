@@ -57,7 +57,7 @@ export default {
             sizeHistoryArray: [],
             isMounted: false,
             isVerticalMenuExpanded: false,
-            donationAmount: 0,
+            donationAmount: 3,
 
             // Elements Object Refs
             headerUl: Object,
@@ -75,11 +75,13 @@ export default {
         isVerticalMenuExpanded(val) {
             if (val) {
                 this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button-hover.svg`));
-                this.headerUl.classList.remove('invisible');
+                this.headerUl.classList.remove('invisible', 'scale-down-ver-top');
+                this.headerUl.classList.add('scale-up-ver-top');
                 this.formCover.classList.remove('d-none');
             } else {
                 this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button.svg`));
-                this.headerUl.classList.add('invisible');
+                this.headerUl.classList.remove('scale-up-ver-top');
+                this.headerUl.classList.add('scale-down-ver-top');
                 this.formCover.classList.add('d-none');
             }
         },
@@ -137,11 +139,11 @@ export default {
             if (window.innerWidth < 576) {
                 // this.headerNavbar.classList.add('flex-column');
                 this.headerUl.classList.remove('align-items-center');
-                this.headerUl.classList.add('invisible', 'flex-column', 'align-items-end', 'd-vertical-menu');
+                this.headerUl.classList.add('invisible', 'flex-column', 'align-items-end', 'vertical-menu');
                 this.menuButton.classList.remove('d-none');
             } else {
                 // this.headerNavbar.classList.remove('flex-column');
-                this.headerUl.classList.remove('invisible', 'flex-column', 'align-items-end', 'd-vertical-menu');
+                this.headerUl.classList.remove('invisible', 'scale-down-ver-top', 'flex-column', 'align-items-end', 'vertical-menu');
                 this.headerUl.classList.add('align-items-center');
                 this.menuButton.classList.add('d-none');
             }

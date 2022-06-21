@@ -32,14 +32,6 @@ html {
     color: #49a8f0;
 }
 
-.c-vertical-menu {
-    width: fit-content !important;
-    height: 60vh !important;
-    font-size: calc(3vw + 1.5vh) !important;
-    top: 10vh !important;
-    align-self: flex-start !important;
-}
-
 /* ID Tags */
 
 #c-header {
@@ -92,7 +84,7 @@ html {
 
 /* ID Tags */
 
-#c-contactForm {
+#c-showcase {
     width: 86vw;
     height: 60vh;
     position: relative;
@@ -110,12 +102,21 @@ html {
     position: absolute;
     z-index: 100;
 }
-/* 
-#c-contactForm h3{
-    font-family: 'Josefin Slab';
-    color: #f93879;
-    margin-top: 0;
-} */
+
+#c-messagereceived {
+    width: inherit;
+    height: 60%;
+    font-family: 'Gluten';
+    font-size: calc(2vw + 1vh);
+    color: #0d8a6f;
+    text-align: center;
+    margin: auto;
+}
+
+#c-contactForm{
+    width: inherit;
+    height: inherit;
+}
 
 #c-contactPar{
     height: 10vh;
@@ -148,6 +149,10 @@ html {
     color: #ba0340;
     padding: 1.5vh 1vh 1vh 1vh;
     margin-right: 1vh;
+}
+
+.c-clientInfo label:hover {
+    cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 .c-clientInfo input {
@@ -215,6 +220,14 @@ html {
     text-align: center;
 }
 
+#c-messageButtons span:hover{
+    color: #2ec7a6;
+}
+
+#c-messageButtons span:active{
+    color: #0479d3;
+}
+
 #c-messageButtons input{
     display: none;
 }
@@ -224,7 +237,7 @@ html {
     text-align: center;
 } */
 /* 
-#c-contactForm h4{
+#c-showcase h4{
     width: fit-content;
     font-family: 'Josefin Slab';
     color: #f93879;
