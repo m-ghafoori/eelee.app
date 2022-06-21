@@ -29,21 +29,21 @@
         <p id="c-contactPar">You can fill the form below or email us to <span id="c-contactEmail">"eelee.app@gmail.com"</span></p>
         <div class="c-clientInfo">
             <label for="clientName">Name:</label>
-            <input type="text" name="clientName" id="c-clientName">
+            <input type="text" name="clientName" id="c-clientName" v-model="clientName" :style="clientNameStyle" @click="onClientNameClick" required>
         </div>
         <div class="c-clientInfo">
             <label for="clientEmail">Email:</label>
-            <input type="email" name="clientEmail" id="c-clientEmail">
+            <input type="email" name="clientEmail" id="c-clientEmail" v-model="clientEmail" :style="clientEmailStyle" @click="onClientEmailClick" required>
         </div>
         <div id="c-messageDiv" class="d-flex flex-column justify-content-between align-items-center">
-            <textarea name="messageText" id="c-messageText" cols="90" rows="10"></textarea>
+            <textarea name="clientMessage" id="c-clientMessage" cols="90" rows="10" v-model="clientMessage" :style="clientMessageStyle" @click="onClientMessageClick" required></textarea>
             <div id="c-messageButtons" class="d-flex justify-content-between align-items-center">
                 <div class="d-flex justify-content-between align-items-center">
                     <span id="c-attachFile" @click="onAttachClick">Attach</span>
-                    <input id="c-attachInput" ref="attachInput" type="file" @change="onFileUpload">
+                    <input id="c-attachInput" type="file" @change="onFileUpload">
                     <p id="c-fileNamePar">{{fileName}}</p>
                 </div>
-                <span id="c-sendEmail">Send</span>
+                <span id="c-sendMessage" @click="onSendMessageClick">Send</span>
             </div>
         </div>
       </section>
@@ -74,12 +74,23 @@ export default {
     data() {
         return {
             headerUlLeftPosition: Number,
-            attachedFile: Object,
             widthClass: String,
             sizeHistoryArray: [],
+            clientName: '',
+            clientEmail: '',
+            clientLastEnteredEmail: '',
+            clientMessage: '',
+            clientNameColor: '#0b7a62',
+            clientEmailColor: '#0b7a62',
+            clientMessageColor: '#0b7a62',
             fileName: '',
+            attachedFile: {'name':''},
             isMounted: false,
             isVerticalMenuExpanded: false,
+            showNoNameError: false,
+            showNoEmailError: false,
+            showInvalidEmailError: false,
+            showNoMessageError: false,
 
             //
             header: Object,
@@ -89,8 +100,17 @@ export default {
             menuImg: Object,
             contactForm: Object,
             formCover: Object,
+            clientNameInput: Object,
+            clientEmailInput: Object,
+            clientMessageInput: Object,
+            attachInput: Object,
             messageButtons: Object,
             fileNamePar: Object,
+
+            // Footer
+            linkedinNav: Object,
+            emailNav: Object,
+            telegramNav: Object,
         }
     },
 
@@ -105,7 +125,48 @@ export default {
                 this.headerUl.classList.add('invisible');
                 this.formCover.classList.add('d-none');
             }
-        }
+        },
+        clientEmail(val) {
+            if (val != 'Email is required.' && val != `"${this.clientLastEnteredEmail}" is not a valid email address.`)
+            this.clientLastEnteredEmail = val;
+            // console.log(this.clientLastEnteredEmail);
+        },
+        showNoNameError(val) {
+            if (val) {
+                this.clientName = 'Name is required.';
+                this.clientNameColor = '#ff0000';
+            } else {
+                this.clientName = '';
+                this.clientNameColor = '#0b7a62';
+            }
+        },
+        showNoEmailError(val) {
+            if (val) {
+                this.clientEmail = 'Email is required.';
+                this.clientEmailColor = '#ff0000';
+            } else {
+                this.clientEmail = '';
+                this.clientEmailColor = '#0b7a62';
+            }
+        },
+        showInvalidEmailError(val) {
+            if (val) {
+                this.clientEmail = `"${this.clientEmail}" is not a valid email address.`;
+                this.clientEmailColor = '#ff0000';
+            } else {
+                this.clientEmail = this.clientLastEnteredEmail;
+                this.clientEmailColor = '#0b7a62';
+            }
+        },
+        showNoMessageError(val) {
+            if (val) {
+                this.clientMessage = 'Message is required.';
+                this.clientMessageColor = '#ff0000';
+            } else {
+                this.clientMessage = '';
+                this.clientMessageColor = '#0b7a62';
+            }
+        },
     },
 
     computed: {
@@ -113,6 +174,21 @@ export default {
         headerUlStyle() {
             return {
                 'left': `${this.headerUlLeftPosition}px`,
+            }
+        },
+        clientNameStyle() {
+            return {
+                'color': `${this.clientNameColor}`,
+            }
+        },
+        clientEmailStyle() {
+            return {
+                'color': `${this.clientEmailColor}`,
+            }
+        },
+        clientMessageStyle() {
+            return {
+                'color': `${this.clientMessageColor}`,
             }
         },
     },
@@ -207,9 +283,45 @@ export default {
             console.log(this.attachedFile);
             this.fileName = this.attachedFile.name;
         },
-
         onAttachClick() {
-            this.$refs.attachInput.click();
+            this.attachInput.click();
+        },
+        onClientNameClick() {
+            if (this.showNoNameError) this.showNoNameError = false;
+        },
+        onClientEmailClick() {
+            if (this.showNoEmailError) this.showNoEmailError = false;
+            if (this.showInvalidEmailError) this.showInvalidEmailError = false;
+        },
+        onClientMessageClick() {
+            if (this.showNoMessageError) this.showNoMessageError = false;
+        },
+        onSendMessageClick() {
+            if (this.clientName == '') this.showNoNameError = true;
+            if (this.clientEmail == '') this.showNoEmailError = true;
+            if (this.clientMessage == '') this.showNoMessageError = true;
+            if (!this.clientEmailInput.validity.valid && this.clientEmail != '') this.showInvalidEmailError = true;
+            if (!this.showNoNameError && !this.showNoEmailError && !this.showNoMessageError && this.clientEmailInput.validity.valid) {
+                // console.log(this.clientEmailInput.validity.valid);
+                var messageFormData = new FormData();
+                messageFormData.append('name', this.clientName);
+                messageFormData.append('email', this.clientEmail);
+                messageFormData.append('message', this.clientMessage);
+                messageFormData.append('attachment', this.attachedFile);
+                for (const entry of messageFormData.entries()) {
+                    console.log(entry);
+                }
+            }
+            // var messageForm = document.createElement('form');
+            // this.contactForm.appendChild(messageForm);
+            // messageForm.setAttribute('method', 'POST');
+            // messageForm.setAttribute('action', 'https://webhook.site/767019c1-1d04-4f24-b4ef-77ce3235f8e0');
+            // messageForm.appendChild(this.clientNameInput);
+            // messageForm.appendChild(this.clientEmailInput);
+            // messageForm.appendChild(this.clientMessageInput);
+            // messageForm.appendChild(this.attachInput);
+            // messageForm.submit();
+
         },
 
         // Footer
@@ -224,22 +336,22 @@ export default {
             if (!this.isVerticalMenuExpanded) this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button.svg`));
         },
         onLinkedinMouseEnter() {
-            this.$refs.linkedinNav.setAttribute('src', require(`./assets/images/svg/linkedin-hover-${this.widthClass}.svg`));
+            this.linkedinNav.setAttribute('src', require(`./assets/images/svg/linkedin-hover-${this.widthClass}.svg`));
         },
         onLinkedinMouseLeave() {
-            this.$refs.linkedinNav.setAttribute('src', require(`./assets/images/svg/linkedin-${this.widthClass}.svg`));
+            this.linkedinNav.setAttribute('src', require(`./assets/images/svg/linkedin-${this.widthClass}.svg`));
         },
         onEmailMouseEnter() {
-            this.$refs.emailNav.setAttribute('src', require(`./assets/images/svg/email-hover-${this.widthClass}.svg`));
+            this.emailNav.setAttribute('src', require(`./assets/images/svg/email-hover-${this.widthClass}.svg`));
         },
         onEmailMouseLeave() {
-            this.$refs.emailNav.setAttribute('src', require(`./assets/images/svg/email-${this.widthClass}.svg`));
+            this.emailNav.setAttribute('src', require(`./assets/images/svg/email-${this.widthClass}.svg`));
         },
         onTelegramMouseEnter() {
-            this.$refs.telegramNav.setAttribute('src', require(`./assets/images/svg/telegram-hover-${this.widthClass}.svg`));
+            this.telegramNav.setAttribute('src', require(`./assets/images/svg/telegram-hover-${this.widthClass}.svg`));
         },
         onTelegramMouseLeave() {
-            this.$refs.telegramNav.setAttribute('src', require(`./assets/images/svg/telegram-${this.widthClass}.svg`));
+            this.telegramNav.setAttribute('src', require(`./assets/images/svg/telegram-${this.widthClass}.svg`));
         },
     },
     
@@ -259,8 +371,15 @@ export default {
         this.menuImg = document.getElementById('c-menuImg');
         this.contactForm = document.getElementById('c-contactForm');
         this.formCover = document.getElementById('c-formCover');
+        this.clientNameInput = document.getElementById('c-clientName');
+        this.clientEmailInput = document.getElementById('c-clientEmail');
+        this.clientMessageInput = document.getElementById('c-clientMessage');
+        this.attachInput = document.getElementById('c-attachInput');
         this.messageButtons = document.getElementById('c-messageButtons');
         this.fileNamePar = document.getElementById('c-fileNamePar');
+        this.linkedinNav = document.getElementById('c-linkedinNav');
+        this.emailNav = document.getElementById('c-emailNav');
+        this.telegramNav = document.getElementById('c-telegramNav');
         this.windowWidthClassEmitter();
         this.headerNavDisplay();
         this.headerUlLeftCalculator();

@@ -143,23 +143,28 @@
 }
 
 .c-clientInfo label {
-    width: 15%;
+    width: fit-content;
     height: inherit;
     font-family: 'Gluten';
     font-size: calc(0.8vw + 2.2vh);
     color: #ba0340;
-    padding: 1vh;
+    padding: 1.5vh 1vh 1vh 1vh;
     margin-right: 1vh;
 }
 
 .c-clientInfo input {
-    width: 65%;
-    height: inherit;
+    width: 50%;
+    height: 90%;
     font-family: 'Courgette', cursive;
     font-size: calc(1.5vw + 1.5vh);
-    color: #0b7a62;
     border: 1px solid #b42857;
-    margin: 0 20% 0 0;
+    padding: 1%;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.c-clientInfo input:focus {
+    outline: none;
 }
 
 #c-messageDiv {
@@ -170,20 +175,19 @@
     /* flex-grow: 1; */
 }
 
-#c-messageText {
+#c-clientMessage {
     width: 99%;
     height: 80%;
     overflow-y: auto;
     resize: none;
     font-family: 'Courgette', cursive;
-    font-size: calc(1vw + 1vh);
-    color: #0b7a62;
+    font-size: calc(1vw + 1.5vh);
     border: none;
-    padding: 0 3%;
+    padding: 0 2vh;
     margin: 3% 0;
 }
 
-#c-messageText:focus {
+#c-clientMessage:focus {
     outline: none;
 }
 
