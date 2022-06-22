@@ -45,7 +45,7 @@
       <div id="p-appHeader" class="p-animated-bg">App&nbsp;Sample</div>
       <div
         id="p-appFlexColBox"
-        class="d-flex flex-column justify-content-between align-items-center"
+        class="d-flex flex-column justify-content-between align-items-center flex-grow-1"
       >
         <div id="p-appTxtImgContainer" class="d-flex justify-content-between">
           <p id="p-appFirstPar" class="p-paragraph flex-grow-1">
@@ -63,6 +63,54 @@
         </p>
       </div>
     </section>
+
+    <section id="p-portPage" class="invisible d-flex">
+      <div
+        id="p-portFlexColBox"
+        class="d-flex flex-column justify-content-between align-items-center flex-grow-1"
+      >
+        <div id="p-portTxtImgContainer" class="d-flex justify-content-between">
+          <div id="p-portImageContainer" class="">
+            <div id="p-portImgDiv" class="reflection d-inline-block"></div>
+          </div>
+          <p id="p-portFirstPar" class="p-paragraph flex-grow-1">
+            This is the classic "MineSweeper" game... But, it has a modern
+            design and everything is customizable! <br><br>
+            You can change everything from game-specific numbers, to colors and
+            fonts of every element, without disturbing the game play... <br><br>
+            It's really nice! Give it a try :)
+          </p>
+        </div>
+        <p id="p-portSecondPar" class="p-paragraph flex-grow-1">
+        </p>
+      </div>
+      <div id="p-portHeader" class="p-animated-bg">Portfolio</div>
+    </section>
+
+    <section id="p-othersPage" class="invisible d-flex">
+      <div id="p-othersHeader" class="p-animated-bg">Other&nbsp;Pages</div>
+      <div
+        id="p-othersFlexColBox"
+        class="d-flex flex-column justify-content-between align-items-center"
+      >
+          <p id="p-othersFirstPar" class="p-paragraph flex-grow-1">
+            Two distinct responsive home pages for different screen sizes!
+          </p>
+        <div id="p-othersImgContainer" class="d-flex justify-content-center align-items-center">
+          <div id="p-othersMdParentDiv" class="">
+            <div id="p-othersMdDiv" class="reflection"></div>
+          </div>
+          <div id="p-othersLgParentDiv" class="">
+            <div id="p-othersLgDiv" class="reflection"></div>
+          </div>
+        </div>
+        <p id="p-othersSecondPar" class="p-paragraph flex-grow-1">
+          They both have artistic designs along with animated elements. <br />
+          Two samples for clients who are interested in this type of user
+          interface design...
+        </p>
+      </div>
+    </section>    
   </div>
 </template>
 
@@ -72,11 +120,21 @@ export default {
 
   data() {
     return {
+      widthClass: String,
+
       // Loading Variables
       loadMain: false,
       loadHome: false,
       loadApp: false,
       loadPort: false,
+      loadOthers: false,
+
+      // Loading Height Points
+      vh: Number,
+      remainingHeightHome: Number,
+      remainingHeightApp: Number,
+      remainingHeightPort: Number,
+      remainingHeightOthers: Number,
 
       // Element Object Refs
       bodyDiv: Object,
@@ -84,7 +142,7 @@ export default {
       homePage: Object,
       appPage: Object,
       portPage: Object,
-      orderPage: Object,
+      othersPage: Object,
     }
   },
 
@@ -98,68 +156,75 @@ export default {
     loadHome(val) {
       if (val) {
         this.homePage.classList.remove('invisible');
-        this.homePage.classList.add('scale-up-hor-right');
+        this.homePage.classList.add('slide-in-left');
       }
     },
     loadApp(val) {
       if (val) {
         this.appPage.classList.remove('invisible');
-        this.appPage.classList.add('scale-up-hor-left');
+        this.appPage.classList.add('slide-in-right');
       }
     },
-    loadPort(val) {},
+    loadPort(val) {
+      if (val) {
+        this.portPage.classList.remove('invisible');
+        this.portPage.classList.add('slide-in-left');
+      }
+    },
+    loadOthers(val) {
+      if (val) {
+        this.othersPage.classList.remove('invisible');
+        this.othersPage.classList.add('slide-in-right');
+      }
+    },
   },
 
   methods: {
+    // Utility Methods
+
+    // Triggers different window size classes on resize
+    windowWidthClassEmitter() {
+        var windowWidth = window.innerWidth;
+
+        if (windowWidth < 320) this.widthClass = 'xxs';
+        else if (windowWidth < 576) this.widthClass = 'xs';
+        else if (windowWidth < 768) this.widthClass = 'sm';
+        else if (windowWidth < 992) this.widthClass = 'md';
+        else this.widthClass = 'lg';
+        this.vh = window.innerHeight/100;
+        this.remainingHeightHome = (this.vh*25 + this.mainPage.offsetHeight + this.homePage.offsetHeight*0.3);
+        this.remainingHeightApp = (this.remainingHeightHome + this.homePage.offsetHeight*0.7 + this.vh*10 + this.appPage.offsetHeight*0.3);
+        this.remainingHeightPort = (this.remainingHeightApp + this.appPage.offsetHeight*0.7 + this.vh*10 + this.portPage.offsetHeight*0.3);
+        this.remainingHeightOthers = (this.remainingHeightPort + this.portPage.offsetHeight*0.7 + this.vh*10 + this.portPage.offsetHeight*0.3);
+        this.onScroll();
+    },
+  
     // Event Handlers
 
     onLoad() {
-      setTimeout(() => {
-        this.loadMain = true;
-      }, 500);
-      if (!this.loadHome) {
-        if ((1 - (this.mainPage.offsetHeight - window.scrollY)/window.innerHeight) > 0.63) {
-          setTimeout(() => {
-            this.loadHome = true;
-          }, 2000);
-        }
-      }
-      if (!this.loadApp) {
-        if ((window.innerHeight*0.35 + this.mainPage.offsetHeight + this.homePage.offsetHeight + this.appPage.offsetHeight*0.3) < (window.innerHeight + window.scrollY)) {
-          setTimeout(() => {
-            this.loadApp = true;
-          }, 3500);
-        }
-      }
+      this.loadMain = true;
     },
 
     onScroll() {
-      if (!this.loadHome) {
-        var remainingHeightHome = (1 - (this.mainPage.offsetHeight - window.scrollY)/window.innerHeight); 
-        if (remainingHeightHome > 0.63) {
+      var screenBottom = (window.innerHeight + window.scrollY);
+      if (!this.loadHome && (screenBottom > this.remainingHeightHome)) {
           this.loadHome = true;
-        }
       }
-      if (!this.loadApp) {
-         var remainingHeightApp = (window.innerHeight*0.35 + this.mainPage.offsetHeight + this.homePage.offsetHeight + this.appPage.offsetHeight*0.3); 
-        if (remainingHeightApp < (window.innerHeight + window.scrollY)) {
+      if (!this.loadApp && (screenBottom > this.remainingHeightApp)) {
           this.loadApp = true;
-        }
       }
-      // console.log(remainingHeightApp)
-      // console.log((window.innerHeight + window.scrollY))
+      if (!this.loadPort && (screenBottom > this.remainingHeightPort)) {
+          this.loadPort = true;
+      }
+      if (!this.loadOthers && (screenBottom > this.remainingHeightOthers)) {
+          this.loadOthers = true;
+      }
     }
   },
-  // computed: {
-  //   homeStyle() {
-  //     return {
-  //       'width': `90vw`
-  //     }
-  //   }
-  // },
 
   created() {
-    document.addEventListener('scroll', this.onScroll)
+    window.addEventListener("resize", this.windowWidthClassEmitter);
+    document.addEventListener('scroll', this.onScroll);
   },
 
   mounted() {
@@ -167,8 +232,10 @@ export default {
     this.mainPage = document.getElementById('p-mainPage');
     this.homePage = document.getElementById('p-homePage');
     this.appPage = document.getElementById('p-appPage');
+    this.portPage = document.getElementById('p-portPage');
+    this.othersPage = document.getElementById('p-othersPage');
+    this.windowWidthClassEmitter();
     this.onLoad();
-    console.log(this.mainPage.offsetHeight, this.homePage.offsetHeight, window.innerHeight)
   },
 };
 </script>

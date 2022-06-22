@@ -137,7 +137,7 @@ export default {
             }
         },
         clientEmail(val) {
-            if (val != 'Email is required.' && val != `"${this.clientLastEnteredEmail}" is not a valid email address.`)
+            if (val != 'Email is required.' && val != `"${this.clientLastEnteredEmail}" is not valid.`)
             this.clientLastEnteredEmail = val;
             // console.log(this.clientLastEnteredEmail);
         },
@@ -161,7 +161,7 @@ export default {
         },
         showInvalidEmailError(val) {
             if (val) {
-                this.clientEmail = `"${this.clientEmail}" is not a valid email address.`;
+                this.clientEmail = `"${this.clientEmail}" is not valid.`;
                 this.clientEmailColor = '#ff0000';
             } else {
                 this.clientEmail = this.clientLastEnteredEmail;

@@ -159,7 +159,7 @@ html {
     width: 50%;
     height: 90%;
     font-family: 'Courgette', cursive;
-    font-size: calc(1.5vw + 1.5vh);
+    font-size: calc(1vw + 1.5vh);
     border: 1px solid #b42857;
     padding: 1%;
     margin: 0;
