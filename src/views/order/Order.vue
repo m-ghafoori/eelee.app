@@ -17,7 +17,7 @@
                 </li>
             </ul>
             <span id="o-menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="o-menuImg" class="hoverable" :src="require(`./assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+                <img id="o-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
@@ -67,11 +67,11 @@
 
       <footer id="o-footer" class="d-flex flex-column justify-content-around align-items-center">
           <div id="o-footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="o-linkedinNav" class="hoverable" :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+            <img id="o-linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="/contact">
-                <img id="o-emailNav" class="hoverable" :src="require(`./assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="o-emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="o-telegramNav" class="hoverable" :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="o-telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
           <router-link id="o-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer>
@@ -110,12 +110,12 @@ export default {
     watch: {
         isVerticalMenuExpanded(val) {
             if (val) {
-                this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button-hover.svg`));
+                this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button-hover.svg`));
                 this.headerUl.classList.remove('invisible', 'scale-down-ver-top');
                 this.headerUl.classList.add('scale-up-ver-top');
                 this.formCover.classList.remove('d-none');
             } else {
-                this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button.svg`));
+                this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button.svg`));
                 this.headerUl.classList.remove('scale-up-ver-top');
                 this.headerUl.classList.add('scale-down-ver-top');
                 this.formCover.classList.add('d-none');
@@ -201,28 +201,28 @@ export default {
             this.isVerticalMenuExpanded = !this.isVerticalMenuExpanded;
         },
         onMenuImgMouseEnter() {
-            this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button-hover.svg`));
+            this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button-hover.svg`));
         },
         onMenuImgMouseLeave() {
-            if (!this.isVerticalMenuExpanded) this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button.svg`));
+            if (!this.isVerticalMenuExpanded) this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button.svg`));
         },
         onLinkedinMouseEnter() {
-            this.linkedinNav.setAttribute('src', require(`./assets/images/svg/linkedin-hover-${this.widthClass}.svg`));
+            this.linkedinNav.setAttribute('src', require(`@/assets/images/svg/linkedin-hover-${this.widthClass}.svg`));
         },
         onLinkedinMouseLeave() {
-            this.linkedinNav.setAttribute('src', require(`./assets/images/svg/linkedin-${this.widthClass}.svg`));
+            this.linkedinNav.setAttribute('src', require(`@/assets/images/svg/linkedin-${this.widthClass}.svg`));
         },
         onEmailMouseEnter() {
-            this.emailNav.setAttribute('src', require(`./assets/images/svg/email-hover-${this.widthClass}.svg`));
+            this.emailNav.setAttribute('src', require(`@/assets/images/svg/email-hover-${this.widthClass}.svg`));
         },
         onEmailMouseLeave() {
-            this.emailNav.setAttribute('src', require(`./assets/images/svg/email-${this.widthClass}.svg`));
+            this.emailNav.setAttribute('src', require(`@/assets/images/svg/email-${this.widthClass}.svg`));
         },
         onTelegramMouseEnter() {
-            this.telegramNav.setAttribute('src', require(`./assets/images/svg/telegram-hover-${this.widthClass}.svg`));
+            this.telegramNav.setAttribute('src', require(`@/assets/images/svg/telegram-hover-${this.widthClass}.svg`));
         },
         onTelegramMouseLeave() {
-            this.telegramNav.setAttribute('src', require(`./assets/images/svg/telegram-${this.widthClass}.svg`));
+            this.telegramNav.setAttribute('src', require(`@/assets/images/svg/telegram-${this.widthClass}.svg`));
         },
     },
     

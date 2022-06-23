@@ -57,6 +57,130 @@ body {
   height: 30px;
 }
 
+/* Header */
+
+/* Classes */
+
+.a_nav-link {
+  font-family: 'Poiret One', cursive;
+  font-weight: 1000;
+  color: #0d8a6f;
+  margin: 1vw 2vw;
+  text-decoration: none;
+}
+
+.a_nav-link:hover {
+  color: #fb4a85;
+}
+
+.a_nav-link:active {
+  color: #49a8f0;
+}
+
+/* ID Tags */
+
+#a_header {
+  width: 100vw;
+  height: 10vh;
+  position: fixed;
+  padding-top: 1vh;
+  margin-bottom: 2vh;
+  z-index: 200;
+}
+
+#a_logo {
+  width: 18vw;
+  height: fit-content;
+  font-family: 'Fredericka the Great', cursive;
+  font-weight: 1000;
+  font-size: calc(2vw + 3vh);
+  color: #b42857;
+  margin: auto 2vw;
+  text-decoration: none;
+}
+
+#a_logo:hover {
+  color: #2ec7a6;
+}
+
+#a_menuButton {
+  width: 25px;
+  height: 25px;
+  margin: auto calc(2vw + 16px) auto 2vw;
+}
+
+#a_headerUl {
+  width: 78vw;
+  height: inherit;
+  font-size: calc(1.5vw + 2vh);
+  position: relative;
+  margin: 0;
+}
+
+#a_headerUl li {
+  width: fit-content;
+  height: fit-content;
+  margin:auto 0;
+}
+
+/* Showcase Section */
+
+/* Classes */
+
+/* ID Tags */
+
+#a_showcase {
+  width: 86vw;
+  height: 60vh;
+  position: relative;
+  align-self: flex-start;
+  top: 15vh;
+  font-size: calc(0.5vw + 2.2vh);
+  margin: 0 7vw;
+}
+
+#a_formCover {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 0.8;
+  position: absolute;
+  z-index: 100;
+}
+
+/* Footer */
+
+/* ID Tags */
+
+#a_footer {
+  width: 40%;
+  height: 18vh;
+  position: fixed;
+  bottom: 0;
+  align-self: center;
+  padding: 1.5vh;
+}
+
+#a_footerNav {
+  width: 100%;
+  height: 8vh;
+  margin-bottom: 3vh;
+}
+
+#a_footerNote {
+  width: fit-content;
+  height: fit-content;
+  text-decoration: none;
+  font-family: 'Gluten', cursive;
+  font-size: calc(1vw + 1.5vh);
+  white-space: nowrap;
+  color: #d8215e;
+}
+
+#a_footerNote:hover {
+  color: #2ec7a6;
+}
+
 @media (max-width: 576px), (min-width: 768px) {
   
   .settings-list {

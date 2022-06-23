@@ -20,7 +20,7 @@
                 </li>
             </ul>
             <span id="c-menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="c-menuImg" class="hoverable" :src="require(`./assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+                <img id="c-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
@@ -55,11 +55,11 @@
 
       <footer id="c-footer" class="d-flex flex-column justify-content-around align-items-center">
           <div id="c-footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="c-linkedinNav" ref="linkedinNav" class="hoverable" :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+            <img id="c-linkedinNav" ref="linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="contact">
-                <img id="c-emailNav" ref="emailNav" class="hoverable" :src="require(`./assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="c-emailNav" ref="emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="c-telegramNav" ref="telegramNav" class="hoverable" :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="c-telegramNav" ref="telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
           <router-link id="c-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer>
@@ -78,8 +78,9 @@ export default {
 
     data() {
         return {
-            headerUlLeftPosition: Number,
             widthClass: String,
+            vw: Number,
+            headerUlLeftPosition: Number,
             sizeHistoryArray: [],
             clientName: '',
             clientEmail: '',
@@ -99,7 +100,7 @@ export default {
 
             //
             header: Object,
-            headerNavbar: Object,
+            logo: Object,
             headerUl: Object,
             menuButton: Object,
             menuImg: Object,
@@ -125,12 +126,12 @@ export default {
     watch: {
         isVerticalMenuExpanded(val) {
             if (val) {
-                this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button-hover.svg`));
+                this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button-hover.svg`));
                 this.headerUl.classList.remove('invisible', 'scale-down-ver-top');
                 this.headerUl.classList.add('scale-up-ver-top');
                 this.formCover.classList.remove('d-none');
             } else {
-                this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button.svg`));
+                this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button.svg`));
                 this.headerUl.classList.remove('scale-up-ver-top');
                 this.headerUl.classList.add('scale-down-ver-top');
                 this.formCover.classList.add('d-none');
@@ -223,10 +224,8 @@ export default {
         headerUlLeftCalculator() {
             if (window.innerWidth > 576) this.headerUlLeftPosition = 0;
             else {
-                var vw = window.innerWidth/100;
-                this.headerUlLeftPosition = ((100*vw-(26*vw+25+this.headerUl.offsetWidth))/2+4*vw+25);
+                this.headerUlLeftPosition = ((window.innerWidth - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
             }
-            console.log(this.headerUlLeftPosition);
         },
 
         // Triggers different window size classes on resize
@@ -239,8 +238,11 @@ export default {
             else if (windowWidth < 992) this.widthClass = 'md';
             else this.widthClass = 'lg';
             this.sizeHistoryUpdator(this.widthClass);
-            this.fileNameUpdator();
-            if (this.isMounted) this.headerUlLeftCalculator();
+            if (this.isMounted) {
+                this.vw = windowWidth/100;
+                this.headerUlLeftCalculator();
+                this.fileNameUpdator();
+            }
         },
 
         // Main Functionality
@@ -343,28 +345,28 @@ export default {
             this.isVerticalMenuExpanded = !this.isVerticalMenuExpanded;
         },
         onMenuImgMouseEnter() {
-            this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button-hover.svg`));
+            this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button-hover.svg`));
         },
         onMenuImgMouseLeave() {
-            if (!this.isVerticalMenuExpanded) this.menuImg.setAttribute('src', require(`./assets/images/svg/menu-button.svg`));
+            if (!this.isVerticalMenuExpanded) this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button.svg`));
         },
         onLinkedinMouseEnter() {
-            this.linkedinNav.setAttribute('src', require(`./assets/images/svg/linkedin-hover-${this.widthClass}.svg`));
+            this.linkedinNav.setAttribute('src', require(`@/assets/images/svg/linkedin-hover-${this.widthClass}.svg`));
         },
         onLinkedinMouseLeave() {
-            this.linkedinNav.setAttribute('src', require(`./assets/images/svg/linkedin-${this.widthClass}.svg`));
+            this.linkedinNav.setAttribute('src', require(`@/assets/images/svg/linkedin-${this.widthClass}.svg`));
         },
         onEmailMouseEnter() {
-            this.emailNav.setAttribute('src', require(`./assets/images/svg/email-hover-${this.widthClass}.svg`));
+            this.emailNav.setAttribute('src', require(`@/assets/images/svg/email-hover-${this.widthClass}.svg`));
         },
         onEmailMouseLeave() {
-            this.emailNav.setAttribute('src', require(`./assets/images/svg/email-${this.widthClass}.svg`));
+            this.emailNav.setAttribute('src', require(`@/assets/images/svg/email-${this.widthClass}.svg`));
         },
         onTelegramMouseEnter() {
-            this.telegramNav.setAttribute('src', require(`./assets/images/svg/telegram-hover-${this.widthClass}.svg`));
+            this.telegramNav.setAttribute('src', require(`@/assets/images/svg/telegram-hover-${this.widthClass}.svg`));
         },
         onTelegramMouseLeave() {
-            this.telegramNav.setAttribute('src', require(`./assets/images/svg/telegram-${this.widthClass}.svg`));
+            this.telegramNav.setAttribute('src', require(`@/assets/images/svg/telegram-${this.widthClass}.svg`));
         },
     },
     
@@ -378,7 +380,7 @@ export default {
 
     mounted() {
         this.header = document.getElementById('c-header');
-        this.headerNavbar = document.getElementById('c-headerNavbar');
+        this.logo = document.getElementById('c-logo');
         this.headerUl = document.getElementById('c-headerUl');
         this.menuButton = document.getElementById('c-menuButton');
         this.menuImg = document.getElementById('c-menuImg');
@@ -396,10 +398,10 @@ export default {
         this.linkedinNav = document.getElementById('c-linkedinNav');
         this.emailNav = document.getElementById('c-emailNav');
         this.telegramNav = document.getElementById('c-telegramNav');
+        this.isMounted = true;
         this.windowWidthClassEmitter();
         this.headerNavDisplay();
         this.headerUlLeftCalculator();
-        this.isMounted = true;
     },
 
     updated() {

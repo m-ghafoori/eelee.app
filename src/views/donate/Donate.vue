@@ -53,6 +53,7 @@ export default {
     data() {
         return {
             widthClass: String,
+            vw: Number,
             headerUlLeftPosition: Number,
             sizeHistoryArray: [],
             isMounted: false,
@@ -61,6 +62,7 @@ export default {
 
             // Elements Object Refs
             headerUl: Object,
+            logo: Object,
             menuButton: Object,
             menuImg: Object,
             formCover: Object,
@@ -121,17 +123,18 @@ export default {
             else if (windowWidth < 992) this.widthClass = 'md';
             else this.widthClass = 'lg';
             this.sizeHistoryUpdator(this.widthClass);
-            if (this.isMounted) this.headerUlLeftCalculator();
+            if (this.isMounted) {
+                this.vw = window.innerWidth/100;
+                this.headerUlLeftCalculator();
+            }
         },
       
         // Calculates the pixel numbers for left property of headerUl
         headerUlLeftCalculator() {
             if (window.innerWidth > 576) this.headerUlLeftPosition = 0;
             else {
-                var vw = window.innerWidth/100;
-                this.headerUlLeftPosition = ((100*vw-(26*vw+25+this.headerUl.offsetWidth))/2+4*vw+25);
+                this.headerUlLeftPosition = ((window.innerWidth - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
             }
-            console.log(this.headerUlLeftPosition);
         },
 
         // Determines how header navbar should be displayed
@@ -229,6 +232,7 @@ export default {
 
     mounted() {
         this.headerUl = document.getElementById('d-headerUl');
+        this.logo = document.getElementById('d-logo');
         this.menuButton = document.getElementById('d-menuButton');
         this.menuImg = document.getElementById('d-menuImg');
         this.formCover = document.getElementById('d-formCover');
@@ -236,10 +240,10 @@ export default {
         this.linkedinNav = document.getElementById('d-linkedinNav');
         this.emailNav = document.getElementById('d-emailNav');
         this.telegramNav = document.getElementById('d-telegramNav');
+        this.isMounted = true;
         this.windowWidthClassEmitter();
         this.headerNavDisplay();
         this.headerUlLeftCalculator();
-        this.isMounted = true;
     },
 }
 </script>
