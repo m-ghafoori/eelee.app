@@ -1,67 +1,67 @@
 <template>
-  <div id="c-body" class="d-flex flex-column justify-content-between" @mousedown="onBodyDivMouseDown">
-      <header id="c-header" class="d-flex justify-content-between align-items-center">
-        <router-link id="c-logo" to="/" class="hoverable">EELee</router-link>
-            <ul id="c-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
+  <div id="idpc-body" class="d-flex flex-column justify-content-between" @mousedown="onBodyDivMouseDown">
+      <header id="idpc-header" class="d-flex justify-content-between align-items-center">
+        <router-link id="idpc-logo" to="/" class="hoverable">EELee</router-link>
+            <ul id="idpc-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
                 <li>
-                    <router-link to="/" class="c-nav-link hoverable" @mouseup="onNavLinkMouseUp">Home</router-link>
+                    <router-link to="/" class="idpc-nav-link hoverable" @mouseup="onNavLinkMouseUp">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/portfolio" class="c-nav-link hoverable" @mouseup="onNavLinkMouseUp">Portfolio</router-link>
+                    <router-link to="/portfolio" class="idpc-nav-link hoverable" @mouseup="onNavLinkMouseUp">Portfolio</router-link>
                 </li>
                 <li>
-                    <router-link to="/app" class="c-nav-link hoverable" @mouseup="onNavLinkMouseUp">App</router-link>
+                    <router-link to="/app" class="idpc-nav-link hoverable" @mouseup="onNavLinkMouseUp">App</router-link>
                 </li>
                 <li>
-                    <router-link to="/donate" class="c-nav-link hoverable" @mouseup="onNavLinkMouseUp">Donate</router-link>
+                    <router-link to="/donate" class="idpc-nav-link hoverable" @mouseup="onNavLinkMouseUp">Donate</router-link>
                 </li>
                 <li>
-                    <router-link to="/order" class="c-nav-link hoverable" @mouseup="onNavLinkMouseUp">Order Now!</router-link>
+                    <router-link to="/order" class="idpc-nav-link hoverable" @mouseup="onNavLinkMouseUp">Order Now!</router-link>
                 </li>
             </ul>
-            <span id="c-menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="c-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+            <span id="idpc-menuButton" class="d-none" @click="onMenuButtonClick">
+                <img id="idpc-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
-      <section id="c-showcase" class="d-flex flex-column align-items-start">
-        <div id="c-formCover" class="d-none"></div>
-        <div id="c-messagereceived" class="d-none">
+      <section id="idpc-showcase" class="d-flex flex-column align-items-start">
+        <div id="idpc-formCover" class="d-none"></div>
+        <div id="idpc-messagereceived" class="d-none">
             Thanks! <br><br><br> Your message has been received. <br><br><br> We will contact you in two days :)
         </div>
-        <div id="c-contactForm" class="d-flex flex-column align-items-start">
-            <p id="c-contactPar">You can fill the form below or email us to <span id="c-contactEmail">"eelee.app@gmail.com"</span></p>
-            <div class="c-clientInfo">
+        <div id="idpc-contactForm" class="d-flex flex-column align-items-start">
+            <p id="idpc-contactPar">You can fill the form below or email us to <span id="idpc-contactEmail">"eelee.app@gmail.com"</span></p>
+            <div class="idpc-clientInfo">
                 <label for="clientName">Name:</label>
-                <input type="text" name="clientName" id="c-clientName" v-model="clientName" :style="clientNameStyle" @click="onClientNameClick" required>
+                <input type="text" name="clientName" id="idpc-clientName" v-model="clientName" :style="clientNameStyle" @click="onClientNameClick" required>
             </div>
-            <div class="c-clientInfo">
+            <div class="idpc-clientInfo">
                 <label for="clientEmail">Email:</label>
-                <input type="email" name="clientEmail" id="c-clientEmail" v-model="clientEmail" :style="clientEmailStyle" @click="onClientEmailClick" required>
+                <input type="email" name="clientEmail" id="idpc-clientEmail" v-model="clientEmail" :style="clientEmailStyle" @click="onClientEmailClick" required>
             </div>
-            <div id="c-messageDiv" class="d-flex flex-column justify-content-between align-items-center">
-                <textarea name="clientMessage" id="c-clientMessage" cols="90" rows="10" v-model="clientMessage" :style="clientMessageStyle" @click="onClientMessageClick" required></textarea>
-                <div id="c-messageButtons" class="d-flex justify-content-between align-items-center">
+            <div id="idpc-messageDiv" class="d-flex flex-column justify-content-between align-items-center">
+                <textarea name="clientMessage" id="idpc-clientMessage" cols="90" rows="10" v-model="clientMessage" :style="clientMessageStyle" @click="onClientMessageClick" required></textarea>
+                <div id="idpc-messageButtons" class="d-flex justify-content-between align-items-center">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span id="c-attachFile" class="hoverable" @click="onAttachClick">Attach</span>
-                        <input id="c-attachInput" type="file" @change="onFileUpload">
-                        <p id="c-fileNamePar">{{fileName}}</p>
+                        <span id="idpc-attachFile" class="hoverable" @click="onAttachClick">Attach</span>
+                        <input id="idpc-attachInput" type="file" @change="onFileUpload">
+                        <p id="idpc-fileNamePar">{{fileName}}</p>
                     </div>
-                    <span id="c-sendMessage" class="hoverable" @click="onSendMessageClick">Send</span>
+                    <span id="idpc-sendMessage" class="hoverable" @click="onSendMessageClick">Send</span>
                 </div>
             </div>
         </div>
       </section>
 
-      <footer id="c-footer" class="d-flex flex-column justify-content-around align-items-center">
-          <div id="c-footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="c-linkedinNav" ref="linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+      <footer id="idpc-footer" class="d-flex flex-column justify-content-around align-items-center">
+          <div id="idpc-footerNav" class="d-flex justify-content-between align-items-center">
+            <img id="idpc-linkedinNav" ref="linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="contact">
-                <img id="c-emailNav" ref="emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="idpc-emailNav" ref="emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="c-telegramNav" ref="telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="idpc-telegramNav" ref="telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
-          <router-link id="c-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+          <router-link id="idpc-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer>
   </div>
 </template>
@@ -140,7 +140,6 @@ export default {
         clientEmail(val) {
             if (val != 'Email is required.' && val != `"${this.clientLastEnteredEmail}" is not valid.`)
             this.clientLastEnteredEmail = val;
-            // console.log(this.clientLastEnteredEmail);
         },
         showNoNameError(val) {
             if (val) {
@@ -211,7 +210,6 @@ export default {
         sizeHistoryUpdator(sizeClass) {
             this.sizeHistoryArray.push(sizeClass);
             if (this.sizeHistoryArray.length > 2) this.sizeHistoryArray.shift();
-            console.log('sizeHistoryArray:', this.sizeHistoryArray);
             if (this.sizeHistoryArray.includes('sm') && this.sizeHistoryArray.includes('xs')) {
                 if (this.isVerticalMenuExpanded) this.isVerticalMenuExpanded = false;
                 setTimeout(() => {
@@ -224,7 +222,7 @@ export default {
         headerUlLeftCalculator() {
             if (window.innerWidth > 576) this.headerUlLeftPosition = 0;
             else {
-                this.headerUlLeftPosition = ((window.innerWidth - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
+                this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
             }
         },
 
@@ -284,7 +282,7 @@ export default {
 
         onBodyDivMouseDown($event) {
             if (this.isVerticalMenuExpanded) {
-                if ((!$event.target.classList.contains('c-nav-link')) && ($event.target.id != 'c-menuImg')) this.isVerticalMenuExpanded = false;
+                if ((!$event.target.classList.contains('idpc-nav-link')) && ($event.target.id != 'idpc-menuImg')) this.isVerticalMenuExpanded = false;
             }
         },
         onNavLinkMouseUp() {
@@ -292,7 +290,6 @@ export default {
         },
         onFileUpload($event) {
             this.attachedFile = $event.target.files[0];
-            console.log(this.attachedFile);
             this.fileName = this.attachedFile.name;
         },
         onAttachClick() {
@@ -314,29 +311,15 @@ export default {
             if (this.clientMessage == '') this.showNoMessageError = true;
             if (!this.clientEmailInput.validity.valid && this.clientEmail != '') this.showInvalidEmailError = true;
             if (!this.showNoNameError && !this.showNoEmailError && !this.showNoMessageError && this.clientEmailInput.validity.valid) {
-                // console.log(this.clientEmailInput.validity.valid);
                 var messageFormData = new FormData();
                 messageFormData.append('name', this.clientName);
                 messageFormData.append('email', this.clientEmail);
                 messageFormData.append('message', this.clientMessage);
                 messageFormData.append('attachment', this.attachedFile);
-                for (const entry of messageFormData.entries()) {
-                    console.log(entry);
-                }
                 this.contactForm.classList.remove('d-flex');
                 this.contactForm.classList.add('d-none');
                 this.messagereceived.classList.remove('d-none');
             }
-            // var messageForm = document.createElement('form');
-            // this.showcase.appendChild(messageForm);
-            // messageForm.setAttribute('method', 'POST');
-            // messageForm.setAttribute('action', 'https://webhook.site/767019c1-1d04-4f24-b4ef-77ce3235f8e0');
-            // messageForm.appendChild(this.clientNameInput);
-            // messageForm.appendChild(this.clientEmailInput);
-            // messageForm.appendChild(this.clientMessageInput);
-            // messageForm.appendChild(this.attachInput);
-            // messageForm.submit();
-
         },
 
         // Footer
@@ -379,25 +362,25 @@ export default {
     },
 
     mounted() {
-        this.header = document.getElementById('c-header');
-        this.logo = document.getElementById('c-logo');
-        this.headerUl = document.getElementById('c-headerUl');
-        this.menuButton = document.getElementById('c-menuButton');
-        this.menuImg = document.getElementById('c-menuImg');
-        this.showcase = document.getElementById('c-showcase');
-        this.formCover = document.getElementById('c-formCover');
-        this.messagereceived = document.getElementById('c-messagereceived');
-        this.contactPar = document.getElementById('c-contactPar');
-        this.contactForm = document.getElementById('c-contactForm');
-        this.clientNameInput = document.getElementById('c-clientName');
-        this.clientEmailInput = document.getElementById('c-clientEmail');
-        this.clientMessageInput = document.getElementById('c-clientMessage');
-        this.attachInput = document.getElementById('c-attachInput');
-        this.messageButtons = document.getElementById('c-messageButtons');
-        this.fileNamePar = document.getElementById('c-fileNamePar');
-        this.linkedinNav = document.getElementById('c-linkedinNav');
-        this.emailNav = document.getElementById('c-emailNav');
-        this.telegramNav = document.getElementById('c-telegramNav');
+        this.header = document.getElementById('idpc-header');
+        this.logo = document.getElementById('idpc-logo');
+        this.headerUl = document.getElementById('idpc-headerUl');
+        this.menuButton = document.getElementById('idpc-menuButton');
+        this.menuImg = document.getElementById('idpc-menuImg');
+        this.showcase = document.getElementById('idpc-showcase');
+        this.formCover = document.getElementById('idpc-formCover');
+        this.messagereceived = document.getElementById('idpc-messagereceived');
+        this.contactPar = document.getElementById('idpc-contactPar');
+        this.contactForm = document.getElementById('idpc-contactForm');
+        this.clientNameInput = document.getElementById('idpc-clientName');
+        this.clientEmailInput = document.getElementById('idpc-clientEmail');
+        this.clientMessageInput = document.getElementById('idpc-clientMessage');
+        this.attachInput = document.getElementById('idpc-attachInput');
+        this.messageButtons = document.getElementById('idpc-messageButtons');
+        this.fileNamePar = document.getElementById('idpc-fileNamePar');
+        this.linkedinNav = document.getElementById('idpc-linkedinNav');
+        this.emailNav = document.getElementById('idpc-emailNav');
+        this.telegramNav = document.getElementById('idpc-telegramNav');
         this.isMounted = true;
         this.windowWidthClassEmitter();
         this.headerNavDisplay();
@@ -406,8 +389,6 @@ export default {
 
     updated() {
         this.fileNameUpdator();
-        // this.headerNavDisplay();
-        // console.log('updated', this.fileName);
     },
 }
 </script>

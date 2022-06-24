@@ -1,41 +1,41 @@
 <template>
-<div id="a_body" @mousedown="onBodyDivMouseDown">
-        <header id="a_header" class="d-flex justify-content-between align-items-center">
-        <router-link id="a_logo" to="/" class="hoverable">EELee</router-link>
-            <ul id="a_headerUl" class="d-flex align-items-center" :style="headerUlStyle">
+<div id="idpa-body" class="d-flex flex-column justify-content-between align-items-center" @mousedown="onBodyDivMouseDown">
+        <header id="idpa-header" class="d-flex justify-content-between align-items-center">
+        <router-link id="idpa-logo" to="/" class="hoverable">EELee</router-link>
+            <ul id="idpa-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
                 <li>
-                    <router-link to="/" class="a_nav-link hoverable" @mouseup="onNavLinkMouseUp">Home</router-link>
+                    <router-link to="/" class="idpa-nav-link hoverable" @mouseup="onNavLinkMouseUp">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/portfolio" class="a_nav-link hoverable" @mouseup="onNavLinkMouseUp">Portfolio</router-link>
+                    <router-link to="/portfolio" class="idpa-nav-link hoverable" @mouseup="onNavLinkMouseUp">Portfolio</router-link>
                 </li>
                 <li>
-                    <router-link to="/donate" class="a_nav-link hoverable" @mouseup="onNavLinkMouseUp">Donate</router-link>
+                    <router-link to="/donate" class="idpa-nav-link hoverable" @mouseup="onNavLinkMouseUp">Donate</router-link>
                 </li>
                 <li>
-                    <router-link to="/order" class="a_nav-link hoverable" @mouseup="onNavLinkMouseUp">Order Now!</router-link>
+                    <router-link to="/order" class="idpa-nav-link hoverable" @mouseup="onNavLinkMouseUp">Order Now!</router-link>
                 </li>
             </ul>
-            <span id="a_menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="a_menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+            <span id="idpa-menuButton" class="d-none" @click="onMenuButtonClick">
+                <img id="idpa-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
-      <section id="a_showcase">
-        <div id="a_formCover" class="d-none"></div>
+      <section id="idpa-showcase">
+        <div id="idpa-formCover" class="d-none"></div>
         <Table
         @contextmenu="preventDefaultEvents"/>
       </section>
 
-        <footer id="a_footer" class="d-flex flex-column justify-content-around align-items-center">
-          <div id="a_footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="a_linkedinNav" ref="linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+        <footer id="idpa-footer" class="d-flex flex-column justify-content-around align-items-center">
+          <div id="idpa-footerNav" class="d-flex justify-content-between align-items-center">
+            <img id="idpa-linkedinNav" ref="linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="contact">
-                <img id="a_emailNav" ref="emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="idpa-emailNav" ref="emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="a_telegramNav" ref="telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="idpa-telegramNav" ref="telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
-          <router-link id="a_footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+          <router-link id="idpa-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer>
 
 </div>
@@ -107,7 +107,6 @@ export default {
     sizeHistoryUpdator(sizeClass) {
         this.sizeHistoryArray.push(sizeClass);
         if (this.sizeHistoryArray.length > 2) this.sizeHistoryArray.shift();
-        console.log('sizeHistoryArray:', this.sizeHistoryArray);
         if (this.sizeHistoryArray.includes('sm') && this.sizeHistoryArray.includes('xs')) {
             if (this.isVerticalMenuExpanded) this.isVerticalMenuExpanded = false;
             setTimeout(() => {
@@ -127,7 +126,7 @@ export default {
         else this.widthClass = 'lg';
         this.sizeHistoryUpdator(this.widthClass);
         if (this.isMounted) {
-          this.vw = window.innerWidth/100;
+          this.vw = document.body.clientWidth/100;
           this.headerUlLeftCalculator();
         }
     },
@@ -136,9 +135,8 @@ export default {
     headerUlLeftCalculator() {
         if (window.innerWidth > 576) this.headerUlLeftPosition = 0;
         else {
-            this.headerUlLeftPosition = ((window.innerWidth - (this.vw*8 + 16 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
+            this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
         }
-        console.log(this.headerUlLeftPosition);
     },
 
     // Determines how header navbar should be displayed
@@ -160,7 +158,7 @@ export default {
 
     onBodyDivMouseDown($event) {
         if (this.isVerticalMenuExpanded) {
-            if ((!$event.target.classList.contains('a_nav-link')) && ($event.target.id != 'a_menuImg')) this.isVerticalMenuExpanded = false;
+            if ((!$event.target.classList.contains('idpa-nav-link')) && ($event.target.id != 'idpa-menuImg')) this.isVerticalMenuExpanded = false;
         }
     },
     onNavLinkMouseUp() {
@@ -207,16 +205,17 @@ export default {
     },
 
     mounted() {
-        this.headerUl = document.getElementById('a_headerUl');
-        this.logo = document.getElementById('a_logo');
-        this.menuButton = document.getElementById('a_menuButton');
-        this.menuImg = document.getElementById('a_menuImg');
-        this.formCover = document.getElementById('a_formCover');
-        this.donationForm = document.getElementById('a_donationForm');
-        this.linkedinNav = document.getElementById('a_linkedinNav');
-        this.emailNav = document.getElementById('a_emailNav');
-        this.telegramNav = document.getElementById('a_telegramNav');
+        this.headerUl = document.getElementById('idpa-headerUl');
+        this.logo = document.getElementById('idpa-logo');
+        this.menuButton = document.getElementById('idpa-menuButton');
+        this.menuImg = document.getElementById('idpa-menuImg');
+        this.formCover = document.getElementById('idpa-formCover');
+        this.donationForm = document.getElementById('idpa-donationForm');
+        this.linkedinNav = document.getElementById('idpa-linkedinNav');
+        this.emailNav = document.getElementById('idpa-emailNav');
+        this.telegramNav = document.getElementById('idpa-telegramNav');
         this.isMounted = true;
+        document.body.style.overflow = 'auto';
         this.windowWidthClassEmitter();
         this.headerNavDisplay();
         this.headerUlLeftCalculator();

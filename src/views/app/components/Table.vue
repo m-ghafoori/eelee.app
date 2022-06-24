@@ -29,7 +29,7 @@
       <div id="recordDiv"></div>
     </div>
   
-    <NewGame label="New Game" :fontFamily="tableFontFamily" :fontSize="cellSize" :rowsNum="rows" :colsNum="cols" :minesNum="mines" @new-game="onNewGame"/>
+    <NewGame label="New Game" :fontFamily="tableFontFamily" :rowsNum="rows" :colsNum="cols" :minesNum="mines" @new-game="onNewGame"/>
     <hr>
 
     <div id="settings" class="d-flex flex-column" :style="settingsStyle">
@@ -62,7 +62,7 @@
             <InputNumber labelName="Mines" :fontFamily="settingsFontFamily" :defaultValue="mines" :minValue="minimumMines" :maxValue="maximumMines" eventName="mines-change" @mines-change="onMinesChange"/>
           </li>
           <li>
-            <InputNumber labelName="Cell Size" :fontFamily="settingsFontFamily" :defaultValue="cellSize" :minValue="20" :maxValue="40" eventName="cell-size-change" @cell-size-change="onCellSizeChange"/>
+            <InputNumber labelName="Cell Size" :fontFamily="settingsFontFamily" :defaultValue="cellSize" :minValue="10" :maxValue="40" eventName="cell-size-change" @cell-size-change="onCellSizeChange"/>
           </li>
         </ul>
       </div>
@@ -138,8 +138,24 @@ export default {
       isGameRunning: false,
       isGameOver: false,
       resetTimer: false,
+      tableDiv: Object,
       timer: Object,
     }
+  },
+  watch: {
+    rows() {
+      this.mines = this.minimumMines;
+      console.log(`mines set to ${this.mines}`);
+    },
+    cols() {
+      this.mines = this.minimumMines;
+      console.log(`mines set to ${this.mines}`);
+    },
+    isGameRunning(val) {
+      if (val) {
+        this.timer.classList.add('running');
+      }
+    },
   },
   computed: {
     didPlayerWin: function () {
@@ -198,21 +214,6 @@ export default {
       }
     },
   },
-  watch: {
-    rows() {
-      this.mines = this.minimumMines;
-      console.log(`mines set to ${this.mines}`);
-    },
-    cols() {
-      this.mines = this.minimumMines;
-      console.log(`mines set to ${this.mines}`);
-    },
-    isGameRunning(val) {
-      if (val) {
-        this.timer.classList.add('running');
-      }
-    },
-  },
   methods: {
     // Utility Methods
 
@@ -239,6 +240,16 @@ export default {
     },
 
     // Main Functionality
+
+    // Adjusts table width to fit in window
+    tableWidthUpdator() {
+      if (this.tableDiv.offsetWidth > window.innerWidth*0.6 && this.cellSize > 10) {
+        this.cellSize--;
+      }
+      if (this.tableDiv.offsetWidth < window.innerWidth*0.3 && this.cellSize < 40) {
+        this.cellSize++;
+      }
+    },
 
     toggleMarker (cell) {
         if (cell.isRevealed) {
@@ -379,6 +390,7 @@ export default {
     },
   },
   created () {
+    window.addEventListener("resize", this.tableWidthUpdator);
     try {
       this.cellsRowFormatArray = startNewGame(this.rows, this.cols, this.mines);
       this.minesCounter = this.mines;
@@ -387,7 +399,12 @@ export default {
     }
   },
   mounted() {
+    this.tableDiv = document.getElementById('tableDiv');
     this.timer = document.getElementsByClassName('timer').item(0);
+    // this.tableWidthUpdator();
+  },
+  updated() {
+    this.tableWidthUpdator();
   },
 }
 </script>

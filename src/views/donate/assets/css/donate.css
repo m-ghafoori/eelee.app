@@ -6,7 +6,7 @@ html {
     cursor: url('../images/svg/pointer-hover.svg'), auto;
 }
 
-#d-body {
+#idpd-body {
     width: 100vw;
     height: 100vh;
     background: #3ca05d;
@@ -16,7 +16,7 @@ html {
 
 /* Classes */
 
-.d-nav-link {
+.idpd-nav-link {
     font-family: 'Poiret One', cursive;
     font-weight: 1000;
     font-size: calc(1.5vw + 2vh);
@@ -25,18 +25,18 @@ html {
     text-decoration: none;
 }
 
-.d-nav-link:hover {
+.idpd-nav-link:hover {
     color: #ffbf1f;
 }
 
-.d-nav-link:active {
+.idpd-nav-link:active {
     color: #cf2860;
 }
 
 /* ID Tags */
 
-#d-header {
-    width: 100vw;
+#idpd-header {
+    width: 98vw;
     height: 10vh;
     position: fixed;
     padding-top: 1vh;
@@ -44,7 +44,7 @@ html {
     z-index: 200;
 }
 
-#d-logo {
+#idpd-logo {
     width: 18vw;
     height: fit-content;
     font-family: 'Fredericka the Great', cursive;
@@ -55,17 +55,17 @@ html {
     text-decoration: none;
 }
 
-#d-logo:hover {
+#idpd-logo:hover {
     color: #fff;
 }
 
-#d-menuButton {
+#idpd-menuButton {
     width: 25px;
     height: 25px;
     margin: auto 2vw;
 }
 
-#d-headerUl {
+#idpd-headerUl {
     width: 78vw;
     height: inherit;
     font-size: calc(1.5vw + 2vh);
@@ -73,7 +73,7 @@ html {
     margin: 0;
 }
 
-#d-headerUl li {
+#idpd-headerUl li {
     width: fit-content;
     height: fit-content;
     margin:auto 0;
@@ -85,15 +85,16 @@ html {
 
 /* ID Tags */
 
-#d-showcase {
+#idpd-showcase {
     width: 86vw;
+    height: 50vh;
     position: relative;
     align-self: center;
     top: 15vh;
     margin: 5vh 0;
 }
 
-#d-formCover {
+#idpd-formCover {
     width: 100%;
     height: 100%;
     background: #3ca05d;
@@ -102,24 +103,25 @@ html {
     z-index: 100;
 }
 
-#d-donationForm {
+#idpd-donationForm {
     width: inherit;
+    height: 40%;
     font-family: 'Gluten', cursive;
-    font-size: calc(2vw + 2vh);
+    font-size: calc(3vw + 2vh);
     color: #fff;
     align-self: center;
 }
 
-#d-donationForm * {
+#idpd-donationForm * {
     margin: 1vw;
 }
 
-#d-donationInput {
-    width: 110px;
-    height: calc(2vw + 2vh);
+#idpd-donationInput {
+    width: calc(10vw + 10vh);
+    height: calc(3vw + 2vh);
     background: transparent;
     font-family: 'Josefin Slab';
-    font-size: calc(1vw + 1vh);
+    font-size: calc(2vw + 1vh);
     color: #ffbf1f;
     border: 1px solid #fff;
     border-radius: 1rem;
@@ -127,13 +129,13 @@ html {
     margin: 2%;
 }
 
-#d-donationInput:focus {
+#idpd-donationInput:focus {
     color: #fff;
     outline: none;
     border-color: #ffbf1f;
 }
 
-#d-donateButton {
+#idpd-donateButton {
     font-family: 'Josefin Slab', cursive;
     font-size: calc(2vw + 2vh);
     color: #fff;
@@ -144,12 +146,12 @@ html {
     margin-top: 5%;
 }
 
-#d-donateButton:hover {
+#idpd-donateButton:hover {
     color: #ffbf1f;
     border-color: #fff;
 }
 
-#d-donateButton:active {
+#idpd-donateButton:active {
     color: #cf2860;
     border-color: #cf2860;
 }
@@ -157,22 +159,22 @@ html {
 
 /* ID Tags */
 
-#d-footer {
-    width: 40%;
-    height: 15vh;
+#idpd-footer {
+    width: 40vw;
+    height: 18vh;
     position: fixed;
     bottom: 0;
     align-self: center;
-    margin-bottom: 3vh;
+    padding-bottom: 3vh;
 }
 
-#d-footerNav {
+#idpd-footerNav {
     width: 100%;
     height: 8vh;
     margin-bottom: 3vh;
 }
 
-#d-footerNote {
+#idpd-footerNote {
     width: fit-content;
     height: fit-content;
     text-decoration: none;
@@ -182,7 +184,7 @@ html {
     color: #ffffff;
 }
 
-#d-footerNote:hover {
+#idpd-footerNote:hover {
     color: #ffbf1f;
 }
 
@@ -190,24 +192,24 @@ html {
 
 @media (max-width: 320px) {
     
-    #d-donationForm {
+    /* #idpd-donationForm {
         flex-direction: column !important;
-    }
+    } */
 
 
-    #d-footer {
-        width: 70%;
+    #idpd-footer {
+        width: 70vw;
     }
 }
 
 @media (min-width: 320px) and (max-width: 576px) {
-    #d-footer {
-        width: 60%;
+    #idpd-footer {
+        width: 60vw;
     }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-    #d-footer {
-        width: 50%;
+    #idpd-footer {
+        width: 50vw;
     }
 }

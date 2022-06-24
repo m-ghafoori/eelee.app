@@ -10,7 +10,7 @@ html {
     min-height: 100vh;
     position: relative;
     cursor: url('../images/svg/pointer.svg'), auto;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 body {

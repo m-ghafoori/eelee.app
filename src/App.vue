@@ -73,6 +73,9 @@ export default {
     this.sizeHistoryArray.push(initialSize);
     console.log("created:", this.sizeHistoryArray);
   },
+  mounted() {
+    document.body.style.overflow = 'hidden';
+  },
   updated() {
       console.log(this.docHasFocus)
   },

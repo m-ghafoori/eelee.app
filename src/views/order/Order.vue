@@ -1,28 +1,28 @@
 <template>
-  <div id="o-body" class="d-flex flex-column justify-content-between" @mousedown="onBodyDivMouseDown">
-      <header id="o-header" class="d-flex justify-content-between align-items-center">
-          <router-link id="o-logo" to="/" class="hoverable">EELee</router-link>
-            <ul id="o-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
+  <div id="idpo-body" class="d-flex flex-column justify-content-between" @mousedown="onBodyDivMouseDown">
+      <header id="idpo-header" class="d-flex justify-content-between align-items-center">
+          <router-link id="idpo-logo" to="/" class="hoverable">EELee</router-link>
+            <ul id="idpo-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
                 <li>
-                    <router-link to="/" class="o-nav-link hoverable" @mouseup="onNavLinkMouseUp">Home</router-link>
+                    <router-link to="/" class="idpo-nav-link hoverable" @mouseup="onNavLinkMouseUp">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/portfolio" class="o-nav-link hoverable" @mouseup="onNavLinkMouseUp">Portfolio</router-link>
+                    <router-link to="/portfolio" class="idpo-nav-link hoverable" @mouseup="onNavLinkMouseUp">Portfolio</router-link>
                 </li>
                 <li>
-                    <router-link to="/app" class="o-nav-link hoverable" @mouseup="onNavLinkMouseUp">App</router-link>
+                    <router-link to="/app" class="idpo-nav-link hoverable" @mouseup="onNavLinkMouseUp">App</router-link>
                 </li>
                 <li>
-                    <router-link to="/donate" class="o-nav-link hoverable" @mouseup="onNavLinkMouseUp">Donate</router-link>
+                    <router-link to="/donate" class="idpo-nav-link hoverable" @mouseup="onNavLinkMouseUp">Donate</router-link>
                 </li>
             </ul>
-            <span id="o-menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="o-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+            <span id="idpo-menuButton" class="d-none" @click="onMenuButtonClick">
+                <img id="idpo-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
-      <section id="o-showcase" class="d-flex flex-column align-items-start">
-        <div id="o-formCover" class="d-none"></div>
+      <section id="idpo-showcase" class="d-flex flex-column align-items-start">
+        <div id="idpo-formCover" class="d-none"></div>
         <Slideshow uniqueLabel="Agreement" :slidesNumber="5" :loopMode="false" >
             <template #title1>
                 <h3>First</h3>
@@ -65,15 +65,15 @@
         </Slideshow>
       </section>
 
-      <footer id="o-footer" class="d-flex flex-column justify-content-around align-items-center">
-          <div id="o-footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="o-linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+      <footer id="idpo-footer" class="d-flex flex-column justify-content-around align-items-center">
+          <div id="idpo-footerNav" class="d-flex justify-content-between align-items-center">
+            <img id="idpo-linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="/contact">
-                <img id="o-emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="idpo-emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="o-telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="idpo-telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
-          <router-link id="o-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+          <router-link id="idpo-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer>
   </div>
 </template>
@@ -91,6 +91,7 @@ export default {
     data() {
         return {
             widthClass: String,
+            vw: Number,
             headerUlLeftPosition: Number,
             sizeHistoryArray: [],
             isMounted: false,
@@ -98,6 +99,7 @@ export default {
 
             // Elements Object Refs
             headerUl: Object,
+            logo: Object,
             menuButton: Object,
             menuImg: Object,
             formCover: Object,
@@ -138,7 +140,6 @@ export default {
         sizeHistoryUpdator(sizeClass) {
             this.sizeHistoryArray.push(sizeClass);
             if (this.sizeHistoryArray.length > 2) this.sizeHistoryArray.shift();
-            console.log('sizeHistoryArray:', this.sizeHistoryArray);
             if (this.sizeHistoryArray.includes('sm') && this.sizeHistoryArray.includes('xs')) {
                 if (this.isVerticalMenuExpanded) this.isVerticalMenuExpanded = false;
                 setTimeout(() => {
@@ -157,28 +158,27 @@ export default {
             else if (windowWidth < 992) this.widthClass = 'md';
             else this.widthClass = 'lg';
             this.sizeHistoryUpdator(this.widthClass);
-            if (this.isMounted) this.headerUlLeftCalculator();
+            if (this.isMounted) {
+                this.vw = windowWidth/100;
+                this.headerUlLeftCalculator();
+            }
         },
       
         // Calculates the pixel numbers for left property of headerUl
         headerUlLeftCalculator() {
             if (window.innerWidth > 576) this.headerUlLeftPosition = 0;
             else {
-                var vw = window.innerWidth/100;
-                this.headerUlLeftPosition = ((100*vw-(26*vw+25+this.headerUl.offsetWidth))/2+4*vw+25);
+                this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
             }
-            console.log(this.headerUlLeftPosition);
         },
 
         // Determines how header navbar should be displayed
         headerNavDisplay() {
             if (window.innerWidth < 576) {
-                // this.headerNavbar.classList.add('flex-column');
                 this.headerUl.classList.remove('align-items-center');
                 this.headerUl.classList.add('invisible', 'flex-column', 'align-items-end', 'vertical-menu');
                 this.menuButton.classList.remove('d-none');
             } else {
-                // this.headerNavbar.classList.remove('flex-column');
                 this.headerUl.classList.remove('invisible', 'scale-down-ver-top', 'flex-column', 'align-items-end', 'vertical-menu');
                 this.headerUl.classList.add('align-items-center');
                 this.menuButton.classList.add('d-none');
@@ -191,7 +191,7 @@ export default {
 
         onBodyDivMouseDown($event) {
             if (this.isVerticalMenuExpanded) {
-                if ((!$event.target.classList.contains('o-nav-link')) && ($event.target.id != 'o-menuImg')) this.isVerticalMenuExpanded = false;
+                if ((!$event.target.classList.contains('idpo-nav-link')) && ($event.target.id != 'idpo-menuImg')) this.isVerticalMenuExpanded = false;
             }
         },
         onNavLinkMouseUp() {
@@ -235,17 +235,18 @@ export default {
     },
 
     mounted() {
-        this.headerUl = document.getElementById('o-headerUl');
-        this.menuButton = document.getElementById('o-menuButton');
-        this.menuImg = document.getElementById('o-menuImg');
-        this.formCover = document.getElementById('o-formCover');
-        this.linkedinNav = document.getElementById('o-linkedinNav');
-        this.emailNav = document.getElementById('o-emailNav');
-        this.telegramNav = document.getElementById('o-telegramNav');
+        this.headerUl = document.getElementById('idpo-headerUl');
+        this.logo = document.getElementById('idpo-logo');
+        this.menuButton = document.getElementById('idpo-menuButton');
+        this.menuImg = document.getElementById('idpo-menuImg');
+        this.formCover = document.getElementById('idpo-formCover');
+        this.linkedinNav = document.getElementById('idpo-linkedinNav');
+        this.emailNav = document.getElementById('idpo-emailNav');
+        this.telegramNav = document.getElementById('idpo-telegramNav');
+        this.isMounted = true;
         this.windowWidthClassEmitter();
         this.headerNavDisplay();
         this.headerUlLeftCalculator();
-        this.isMounted = true;
     },
 }
 </script>

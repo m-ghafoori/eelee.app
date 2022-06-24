@@ -6,7 +6,7 @@ html {
     cursor: url('../images/svg/pointer-hover.svg'), auto;
 }
 
-#c-body {
+#idpc-body {
     width: 100vw;
     min-height: 100%;
     background: #ffffff;
@@ -16,7 +16,7 @@ html {
 
 /* Classes */
 
-.c-nav-link {
+.idpc-nav-link {
     font-family: 'Poiret One', cursive;
     font-weight: 1000;
     color: #0d8a6f;
@@ -24,18 +24,18 @@ html {
     text-decoration: none;
 }
 
-.c-nav-link:hover {
+.idpc-nav-link:hover {
     color: #fb4a85;
 }
 
-.c-nav-link:active {
+.idpc-nav-link:active {
     color: #49a8f0;
 }
 
 /* ID Tags */
 
-#c-header {
-    width: 100vw;
+#idpc-header {
+    width: 98vw;
     height: 10vh;
     position: fixed;
     padding-top: 1vh;
@@ -43,7 +43,7 @@ html {
     z-index: 200;
 }
 
-#c-logo {
+#idpc-logo {
     width: 18vw;
     height: fit-content;
     font-family: 'Fredericka the Great', cursive;
@@ -54,17 +54,17 @@ html {
     text-decoration: none;
 }
 
-#c-logo:hover {
+#idpc-logo:hover {
     color: #2ec7a6;
 }
 
-#c-menuButton {
+#idpc-menuButton {
     width: 25px;
     height: 25px;
     margin: auto 2vw;
 }
 
-#c-headerUl {
+#idpc-headerUl {
     width: 78vw;
     height: inherit;
     font-size: calc(1.5vw + 2vh);
@@ -72,7 +72,7 @@ html {
     margin: 0;
 }
 
-#c-headerUl li {
+#idpc-headerUl li {
     width: fit-content;
     height: fit-content;
     margin:auto 0;
@@ -84,7 +84,7 @@ html {
 
 /* ID Tags */
 
-#c-showcase {
+#idpc-showcase {
     width: 86vw;
     height: 60vh;
     position: relative;
@@ -94,7 +94,7 @@ html {
     margin: 0 7vw;
 }
 
-#c-formCover {
+#idpc-formCover {
     width: 100%;
     height: 100%;
     background: #fff;
@@ -103,7 +103,7 @@ html {
     z-index: 100;
 }
 
-#c-messagereceived {
+#idpc-messagereceived {
     width: inherit;
     height: 60%;
     font-family: 'Gluten';
@@ -113,26 +113,26 @@ html {
     margin: auto;
 }
 
-#c-contactForm{
+#idpc-contactForm{
     width: inherit;
     height: inherit;
 }
 
-#c-contactPar{
+#idpc-contactPar{
     height: 10vh;
     font-family: 'Nanum Myeongjo';
     color: #c20946;
     margin: 0;
 }
 
-#c-contactEmail{
+#idpc-contactEmail{
     height: 10vh;
     font-family: 'Gluten';
     color: #f76c9a;
     margin: 0;
 }
 
-.c-clientInfo {
+.idpc-clientInfo {
     width: inherit;
     height: 6vh;
     display: flex;
@@ -141,7 +141,7 @@ html {
     margin: 4vh 2vw 0 0;
 }
 
-.c-clientInfo label {
+.idpc-clientInfo label {
     width: fit-content;
     height: inherit;
     font-family: 'Gluten';
@@ -151,11 +151,11 @@ html {
     margin-right: 1vh;
 }
 
-.c-clientInfo label:hover {
+.idpc-clientInfo label:hover {
     cursor: url('../images/svg/pointer.svg'), auto;
 }
 
-.c-clientInfo input {
+.idpc-clientInfo input {
     width: 50%;
     height: 90%;
     font-family: 'Courgette', cursive;
@@ -166,11 +166,11 @@ html {
     flex-grow: 1;
 }
 
-.c-clientInfo input:focus {
+.idpc-clientInfo input:focus {
     outline: none;
 }
 
-#c-messageDiv {
+#idpc-messageDiv {
     width: inherit;
     height: 30vh;
     margin: 2vh 0;
@@ -178,7 +178,7 @@ html {
     /* flex-grow: 1; */
 }
 
-#c-clientMessage {
+#idpc-clientMessage {
     width: 99%;
     height: 80%;
     overflow-y: auto;
@@ -190,11 +190,11 @@ html {
     margin: 3% 0;
 }
 
-#c-clientMessage:focus {
+#idpc-clientMessage:focus {
     outline: none;
 }
 
-#c-messageButtons {
+#idpc-messageButtons {
     width: inherit;
     max-width: 100%;
     height: 15%;
@@ -202,7 +202,7 @@ html {
     padding: 0 2vw;
 }
 
-#c-messageButtons p {
+#idpc-messageButtons p {
     font-family: 'Gluten', cursive;
     font-size: calc(1vw + 1.5vh);
     color: #0b7a62;
@@ -211,7 +211,7 @@ html {
     text-align: center;
 }
 
-#c-messageButtons span{
+#idpc-messageButtons span{
     font-family: 'Josefin Slab', cursive;
     font-size: calc(1.5vw + 1.5vh);
     color: #f93879;
@@ -220,24 +220,24 @@ html {
     text-align: center;
 }
 
-#c-messageButtons span:hover{
+#idpc-messageButtons span:hover{
     color: #2ec7a6;
 }
 
-#c-messageButtons span:active{
+#idpc-messageButtons span:active{
     color: #0479d3;
 }
 
-#c-messageButtons input{
+#idpc-messageButtons input{
     display: none;
 }
 /* 
-#c-sendEmail {
+#idpc-sendEmail {
     padding: 0.2vw;
     text-align: center;
 } */
 /* 
-#c-showcase h4{
+#idpc-showcase h4{
     width: fit-content;
     font-family: 'Josefin Slab';
     color: #f93879;
@@ -249,22 +249,22 @@ html {
 
 /* ID Tags */
 
-#c-footer {
-    width: 40%;
+#idpc-footer {
+    width: 40vw;
     height: 18vh;
     position: fixed;
     bottom: 0;
     align-self: center;
-    padding: 1.5vh;
+    padding-bottom: 3vh;
 }
 
-#c-footerNav {
+#idpc-footerNav {
     width: 100%;
     height: 8vh;
     margin-bottom: 3vh;
 }
 
-#c-footerNote {
+#idpc-footerNote {
     width: fit-content;
     height: fit-content;
     text-decoration: none;
@@ -274,27 +274,27 @@ html {
     color: #d8215e;
 }
 
-#c-footerNote:hover {
+#idpc-footerNote:hover {
     color: #2ec7a6;
 }
 
 /* Media Queries */
 
 @media (max-width: 320px) {
-    #c-footer {
-        width: 70%;
+    #idpc-footer {
+        width: 70vw;
     }
 }
 
 @media (min-width: 320px) and (max-width: 576px) {
-    #c-footer {
-        width: 60%;
+    #idpc-footer {
+        width: 60vw;
     }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-    #c-footer {
-        width: 50%;
+    #idpc-footer {
+        width: 50vw;
     }
 }
 

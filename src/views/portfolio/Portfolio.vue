@@ -260,6 +260,7 @@ export default {
     this.portPage = document.getElementById('p_portPage');
     this.othersPage = document.getElementById('p_othersPage');
     this.isMounted = true;
+    document.body.style.overflow = 'auto';
     this.windowWidthClassEmitter();
     this.onLoad();
   },

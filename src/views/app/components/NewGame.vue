@@ -10,7 +10,6 @@ export default {
     props: {
         label: String,
         fontFamily: String,
-        fontSize: Number,
         rowsNum: Number,
         colsNum: Number,
         minesNum: Number,
@@ -25,7 +24,6 @@ export default {
         btnStyle() {
             return {
                 'font-family': `${this.fontFamily}`,
-                'font-size': `${this.fontSize/1.8}px`,
             }
         },
     },
@@ -49,6 +47,7 @@ button {
     background: orange;
     border: 1px solid orange;
     border-radius: 50%;
+    font-size: calc(1vw + 1.5vh);
     padding: 1vw 2vw;
     margin: 2vh 0;
 }

@@ -1,47 +1,47 @@
 <template>
-  <div id="d-body" class="d-flex flex-column justify-content-between" @mousedown="onBodyDivMouseDown">
-      <header id="d-header" class="d-flex justify-content-between align-items-center">
-          <router-link id="d-logo" to="/" class="hoverable">EELee</router-link>
-            <ul id="d-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
+  <div id="idpd-body" class="d-flex flex-column justify-content-between" @mousedown="onBodyDivMouseDown">
+      <header id="idpd-header" class="d-flex justify-content-between align-items-center">
+          <router-link id="idpd-logo" to="/" class="hoverable">EELee</router-link>
+            <ul id="idpd-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
                 <li>
-                    <router-link to="/" class="d-nav-link hoverable" @mouseup="onNavLinkMouseUp">Home</router-link>
+                    <router-link to="/" class="idpd-nav-link hoverable" @mouseup="onNavLinkMouseUp">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/portfolio" class="d-nav-link hoverable" @mouseup="onNavLinkMouseUp">Portfolio</router-link>
+                    <router-link to="/portfolio" class="idpd-nav-link hoverable" @mouseup="onNavLinkMouseUp">Portfolio</router-link>
                 </li>
                 <li>
-                    <router-link to="/app" class="d-nav-link hoverable" @mouseup="onNavLinkMouseUp">App</router-link>
+                    <router-link to="/app" class="idpd-nav-link hoverable" @mouseup="onNavLinkMouseUp">App</router-link>
                 </li>
                 <li>
-                    <router-link to="/order" class="d-nav-link hoverable" @mouseup="onNavLinkMouseUp">Order Now!</router-link>
+                    <router-link to="/order" class="idpd-nav-link hoverable" @mouseup="onNavLinkMouseUp">Order Now!</router-link>
                 </li>
             </ul>
-            <span id="d-menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="d-menuImg" class="hoverable" :src="require(`./assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+            <span id="idpd-menuButton" class="d-none" @click="onMenuButtonClick">
+                <img id="idpd-menuImg" class="hoverable" :src="require(`./assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
-      <section id="d-showcase" class="d-flex flex-column align-items-center">
-        <div id="d-formCover" class="d-none"></div>
-        <form id="d-donationForm" class="d-flex justify-content-center align-items-center" action="https://perfectmoney.is/api/step1.asp" method="post" target="_blank">
+      <section id="idpd-showcase" class="d-flex flex-column align-items-center">
+        <div id="idpd-formCover" class="d-none"></div>
+        <form id="idpd-donationForm" class="d-flex flex-column justify-content-center align-items-center" action="https://perfectmoney.is/api/step1.asp" method="post" target="_blank">
             <p>Help us by</p>
             <div class="d-flex align-items-center">
-                <input id="d-donationInput" v-model="donationAmount" type="number" name="PAYMENT_AMOUNT">
+                <input id="idpd-donationInput" v-model="donationAmount" type="number" name="PAYMENT_AMOUNT">
                 <label for="PAYMENT_AMOUNT">USD</label>
             </div>
         </form>
-        <button id="d-donateButton" class="hoverable" @click="onDonateClick">Donate</button>
+        <button id="idpd-donateButton" class="hoverable" @click="onDonateClick">Donate</button>
       </section>
 
-      <footer id="d-footer" class="d-flex flex-column justify-content-around align-items-center">
-          <div id="d-footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="d-linkedinNav" class="hoverable" :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+      <footer id="idpd-footer" class="d-flex flex-column justify-content-around align-items-center">
+          <div id="idpd-footerNav" class="d-flex justify-content-between align-items-center">
+            <img id="idpd-linkedinNav" class="hoverable" :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="/contact">
-                <img id="d-emailNav" class="hoverable" :src="require(`./assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="idpd-emailNav" class="hoverable" :src="require(`./assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="d-telegramNav" class="hoverable" :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="idpd-telegramNav" class="hoverable" :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
-          <router-link id="d-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+          <router-link id="idpd-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer>
   </div>
 </template>
@@ -104,7 +104,6 @@ export default {
         sizeHistoryUpdator(sizeClass) {
             this.sizeHistoryArray.push(sizeClass);
             if (this.sizeHistoryArray.length > 2) this.sizeHistoryArray.shift();
-            console.log('sizeHistoryArray:', this.sizeHistoryArray);
             if (this.sizeHistoryArray.includes('sm') && this.sizeHistoryArray.includes('xs')) {
                 if (this.isVerticalMenuExpanded) this.isVerticalMenuExpanded = false;
                 setTimeout(() => {
@@ -133,7 +132,7 @@ export default {
         headerUlLeftCalculator() {
             if (window.innerWidth > 576) this.headerUlLeftPosition = 0;
             else {
-                this.headerUlLeftPosition = ((window.innerWidth - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
+                this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
             }
         },
 
@@ -156,7 +155,7 @@ export default {
 
         onBodyDivMouseDown($event) {
             if (this.isVerticalMenuExpanded) {
-                if ((!$event.target.classList.contains('d-nav-link')) && ($event.target.id != 'd-menuImg')) this.isVerticalMenuExpanded = false;
+                if ((!$event.target.classList.contains('idpd-nav-link')) && ($event.target.id != 'idpd-menuImg')) this.isVerticalMenuExpanded = false;
             }
         },
         onNavLinkMouseUp() {
@@ -188,10 +187,10 @@ export default {
             PAYMENT_UNITS.setAttribute('value', 'USD');
             PAYMENT_URL.setAttribute('type', 'hidden');
             PAYMENT_URL.setAttribute('name', 'PAYMENT_URL');
-            PAYMENT_URL.setAttribute('value', 'https://webhook.site/b70bce10-e349-4f17-9abd-e631f667339d');
+            PAYMENT_URL.setAttribute('value', 'https://webhook.site/b70bce10-e349-4f17-9abidpd-e631f667339d');
             NOPAYMENT_URL.setAttribute('type', 'hidden');
             NOPAYMENT_URL.setAttribute('name', 'NOPAYMENT_URL');
-            NOPAYMENT_URL.setAttribute('value', 'https://webhook.site/b70bce10-e349-4f17-9abd-e631f667339d');
+            NOPAYMENT_URL.setAttribute('value', 'https://webhook.site/b70bce10-e349-4f17-9abidpd-e631f667339d');
             this.donationForm.appendChild(PAYEE_ACCOUNT);
             this.donationForm.appendChild(PAYEE_NAME);
             this.donationForm.appendChild(PAYMENT_UNITS);
@@ -231,15 +230,15 @@ export default {
     },
 
     mounted() {
-        this.headerUl = document.getElementById('d-headerUl');
-        this.logo = document.getElementById('d-logo');
-        this.menuButton = document.getElementById('d-menuButton');
-        this.menuImg = document.getElementById('d-menuImg');
-        this.formCover = document.getElementById('d-formCover');
-        this.donationForm = document.getElementById('d-donationForm');
-        this.linkedinNav = document.getElementById('d-linkedinNav');
-        this.emailNav = document.getElementById('d-emailNav');
-        this.telegramNav = document.getElementById('d-telegramNav');
+        this.headerUl = document.getElementById('idpd-headerUl');
+        this.logo = document.getElementById('idpd-logo');
+        this.menuButton = document.getElementById('idpd-menuButton');
+        this.menuImg = document.getElementById('idpd-menuImg');
+        this.formCover = document.getElementById('idpd-formCover');
+        this.donationForm = document.getElementById('idpd-donationForm');
+        this.linkedinNav = document.getElementById('idpd-linkedinNav');
+        this.emailNav = document.getElementById('idpd-emailNav');
+        this.telegramNav = document.getElementById('idpd-telegramNav');
         this.isMounted = true;
         this.windowWidthClassEmitter();
         this.headerNavDisplay();
