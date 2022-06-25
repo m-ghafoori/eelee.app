@@ -1,79 +1,93 @@
 <template>
-  <div id="p_body" class="d-flex flex-column align-items-center">
-    <header id="p_header" class="d-flex align-items-center">
-      <router-link id="p_logo" class="hoverable" to="/">EELee</router-link>
-        <router-link id="p_homeNav" class="p_nav-link hoverable" to="/">Home</router-link>
-        <router-link id="p_appNav" class="p_nav-link hoverable" to="/app">App</router-link>
-        <router-link id="p_donateNav" class="p_nav-link hoverable" to="/donate">Donate</router-link>
-        <router-link id="p_orderNav" class="p_nav-link hoverable" to="/order">Order Now!</router-link>
-    </header>
+  <div id="idpp-body" class="d-flex flex-column justify-content-between align-items-center" @mousedown="onBodyDivMouseDown">
+    <div id="idpp-bodyCover" class="d-none"></div>
+    <header id="idpp-header" class="d-flex justify-content-between align-items-center">
+          <router-link id="idpp-logo" to="/" class="hoverable">EELee</router-link>
+            <ul id="idpp-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
+                <li>
+                    <router-link to="/" class="idpp-nav-link hoverable">Home</router-link>
+                </li>
+                <li>
+                    <router-link to="/app" class="idpp-nav-link hoverable">App</router-link>
+                </li>
+                <li>
+                    <router-link to="/donate" class="idpp-nav-link hoverable">Donate</router-link>
+                </li>
+                <li>
+                    <router-link to="/order" class="idpp-nav-link hoverable">Order Now!</router-link>
+                </li>
+            </ul>
+            <span id="idpp-menuButton" class="d-none" @click="onMenuButtonClick">
+                <img id="idpp-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+            </span>
+      </header>
 
-    <section id="p_mainPage" class="invisible">
-      <div id="p_mainHeader" class="p_animated-bg">About EELee</div>
-        <p id="p_mainPar" class="p_paragraph">
+    <section id="idpp-mainPage" class="invisible">
+      <div id="idpp-mainHeader" class="idpp-animated-bg">About EELee</div>
+        <p id="idpp-mainPar" class="idpp-paragraph">
           EELee App Design is a full stack web app development group,
           mainly focused on designing frontend by modern JavaScript frameworks like Vue.js
           <br><br>
           Scroll down to discover more about our work...
         </p>
     </section>
-    <section id="p_homePage" class="invisible d-flex">
+    <section id="idpp-homePage" class="invisible d-flex">
       <div
-        id="p_homeFlexColBox"
+        id="idpp-homeFlexColBox"
         class="d-flex flex-column justify-content-between align-items-center"
       >
-          <p id="p_homeFirstPar" class="p_paragraph flex-grow-1">
+          <p id="idpp-homeFirstPar" class="idpp-paragraph flex-grow-1">
             Two distinct responsive home pages for different screen sizes!
           </p>
-        <div id="p_homeImageContainer" class="d-flex justify-content-center align-items-center">
-          <div id="p_homeMdParentDiv" class="">
-            <div id="p_homeMdDiv" class="reflection"></div>
+        <div id="idpp-homeImageContainer" class="d-flex justify-content-center align-items-center">
+          <div id="idpp-homeMdParentDiv" class="">
+            <div id="idpp-homeMdDiv" class="reflection"></div>
           </div>
-          <div id="p_homeLgParentDiv" class="">
-            <div id="p_homeLgDiv" class="reflection"></div>
+          <div id="idpp-homeLgParentDiv" class="">
+            <div id="idpp-homeLgDiv" class="reflection"></div>
           </div>
         </div>
-        <p id="p_homeSecondPar" class="p_paragraph flex-grow-1">
+        <p id="idpp-homeSecondPar" class="idpp-paragraph flex-grow-1">
           They both have artistic designs along with animated elements. <br />
           Two samples for clients who are interested in this type of user
           interface design...
         </p>
       </div>
-      <div id="p_homeHeader" class="p_animated-bg">Home&nbsp;Page</div>
+      <div id="idpp-homeHeader" class="idpp-animated-bg">Home&nbsp;Page</div>
     </section>
-    <section id="p_appPage" class="invisible d-flex">
-      <div id="p_appHeader" class="p_animated-bg">App&nbsp;Sample</div>
+    <section id="idpp-appPage" class="invisible d-flex">
+      <div id="idpp-appHeader" class="idpp-animated-bg">App&nbsp;Sample</div>
       <div
-        id="p_appFlexColBox"
+        id="idpp-appFlexColBox"
         class="d-flex flex-column justify-content-between align-items-center flex-grow-1"
       >
-        <div id="p_appTxtImgContainer" class="d-flex justify-content-between">
-          <p id="p_appFirstPar" class="p_paragraph flex-grow-1">
+        <div id="idpp-appTxtImgContainer" class="d-flex justify-content-between">
+          <p id="idpp-appFirstPar" class="idpp-paragraph flex-grow-1">
             This is the classic "MineSweeper" game... But, it has a modern
             design and everything is customizable! <br><br>
             You can change everything from game-specific numbers, to colors and
             fonts of every element, without disturbing the game play... <br><br>
             It's really nice! Give it a try :)
           </p>
-          <div id="p_appImageContainer" class="">
-            <div id="p_appImgDiv" class="reflection d-inline-block"></div>
+          <div id="idpp-appImageContainer" class="">
+            <div id="idpp-appImgDiv" class="reflection d-inline-block"></div>
           </div>
         </div>
-        <p id="p_appSecondPar" class="p_paragraph flex-grow-1">
+        <p id="idpp-appSecondPar" class="idpp-paragraph flex-grow-1">
         </p>
       </div>
     </section>
 
-    <section id="p_portPage" class="invisible d-flex">
+    <section id="idpp-portPage" class="invisible d-flex">
       <div
-        id="p_portFlexColBox"
+        id="idpp-portFlexColBox"
         class="d-flex flex-column justify-content-between align-items-center flex-grow-1"
       >
-        <div id="p_portTxtImgContainer" class="d-flex justify-content-between">
-          <div id="p_portImageContainer" class="">
-            <div id="p_portImgDiv" class="reflection d-inline-block"></div>
+        <div id="idpp-portTxtImgContainer" class="d-flex justify-content-between">
+          <div id="idpp-portImageContainer" class="">
+            <div id="idpp-portImgDiv" class="reflection d-inline-block"></div>
           </div>
-          <p id="p_portFirstPar" class="p_paragraph flex-grow-1">
+          <p id="idpp-portFirstPar" class="idpp-paragraph flex-grow-1">
             This is the classic "MineSweeper" game... But, it has a modern
             design and everything is customizable! <br><br>
             You can change everything from game-specific numbers, to colors and
@@ -81,36 +95,36 @@
             It's really nice! Give it a try :)
           </p>
         </div>
-        <p id="p_portSecondPar" class="p_paragraph flex-grow-1">
+        <p id="idpp-portSecondPar" class="idpp-paragraph flex-grow-1">
         </p>
       </div>
-      <div id="p_portHeader" class="p_animated-bg">Portfolio</div>
+      <div id="idpp-portHeader" class="idpp-animated-bg">Portfolio</div>
     </section>
 
-    <section id="p_othersPage" class="invisible d-flex">
-      <div id="p_othersHeader" class="p_animated-bg">Other&nbsp;Pages</div>
+    <section id="idpp-othersPage" class="invisible d-flex">
+      <div id="idpp-othersHeader" class="idpp-animated-bg">Other&nbsp;Pages</div>
       <div
-        id="p_othersFlexColBox"
+        id="idpp-othersFlexColBox"
         class="d-flex flex-column justify-content-between align-items-center"
       >
-          <p id="p_othersFirstPar" class="p_paragraph flex-grow-1">
+          <p id="idpp-othersFirstPar" class="idpp-paragraph flex-grow-1">
             Two distinct responsive home pages for different screen sizes!
           </p>
-        <div id="p_othersImageContainer" class="d-flex justify-content-center align-items-center">
-          <div id="p_othersLeftParentDiv" class="">
-            <div id="p_othersLeftDiv" class="reflection"></div>
+        <div id="idpp-othersImageContainer" class="d-flex justify-content-center align-items-center">
+          <div id="idpp-othersLeftParentDiv" class="">
+            <div id="idpp-othersLeftDiv" class="reflection"></div>
           </div>
-          <div id="p_othersMiddleParentDiv" class="">
-            <div id="p_othersMiddleDiv" class="reflection"></div>
+          <div id="idpp-othersMiddleParentDiv" class="">
+            <div id="idpp-othersMiddleDiv" class="reflection"></div>
           </div>
-          <div id="p_othersRightParentDiv" class="">
-            <div id="p_othersRightDiv" class="reflection"></div>
+          <div id="idpp-othersRightParentDiv" class="">
+            <div id="idpp-othersRightDiv" class="reflection"></div>
           </div>
-          <!-- <div id="p_othersLgParentDiv" class="">
-            <div id="p_othersLgDiv" class="reflection"></div>
+          <!-- <div id="idpp-othersLgParentDiv" class="">
+            <div id="idpp-othersLgDiv" class="reflection"></div>
           </div> -->
         </div>
-        <p id="p_othersSecondPar" class="p_paragraph flex-grow-1">
+        <p id="idpp-othersSecondPar" class="idpp-paragraph flex-grow-1">
           They both have artistic designs along with animated elements. <br />
           Two samples for clients who are interested in this type of user
           interface design...
@@ -118,15 +132,15 @@
       </div>
     </section>
 
-    <footer id="p_footer" class="d-flex flex-column justify-content-around align-items-center">
-          <div id="p_footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="p_linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+    <footer id="idpp-footer" class="d-flex flex-column justify-content-around align-items-center">
+          <div id="idpp-footerNav" class="d-flex justify-content-between align-items-center">
+            <img id="idpp-linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="/contact">
-                <img id="p_emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="idpp-emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="p_telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="idpp-telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
-          <router-link id="p_footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+          <router-link id="idpp-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer> 
   </div>
 </template>
@@ -138,17 +152,21 @@ export default {
   data() {
     return {
       widthClass: String,
-
+      vw: Number,
+      vh: Number,
+      headerUlLeftPosition: Number,
+      sizeHistoryArray: [],
+      isMounted: false,
+      isVerticalMenuExpanded: false,
+      
       // Loading Variables
       loadMain: false,
       loadHome: false,
       loadApp: false,
       loadPort: false,
       loadOthers: false,
-      isMounted: false,
 
       // Loading Height Points
-      vh: Number,
       remainingHeightHome: Number,
       remainingHeightApp: Number,
       remainingHeightPort: Number,
@@ -156,15 +174,38 @@ export default {
 
       // Element Object Refs
       bodyDiv: Object,
+      headerUl: Object,
+      logo: Object,
+      menuButton: Object,
+      menuImg: Object,
+      bodyCover: Object,
       mainPage: Object,
       homePage: Object,
       appPage: Object,
       portPage: Object,
       othersPage: Object,
+      
+            // Footer
+            linkedinNav: Object,
+            emailNav: Object,
+            telegramNav: Object,
     }
   },
 
   watch: {
+    isVerticalMenuExpanded(val) {
+        if (val) {
+            this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button-hover.svg`));
+            this.headerUl.classList.remove('invisible', 'scale-down-ver-top');
+            this.headerUl.classList.add('scale-up-ver-top');
+            this.bodyCover.classList.remove('d-none');
+        } else {
+            this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button.svg`));
+            this.headerUl.classList.remove('scale-up-ver-top');
+            this.headerUl.classList.add('scale-down-ver-top');
+            this.bodyCover.classList.add('d-none');
+        }
+    },
     loadMain(val) {
       if (val) {
         this.mainPage.classList.remove('invisible');
@@ -197,9 +238,29 @@ export default {
     },
   },
 
+  computed: {
+      headerUlStyle() {
+          return {
+              'left': `${this.headerUlLeftPosition}px`,
+          }
+      },
+  },
+
   methods: {
     // Utility Methods
-
+      
+        // Tracks width size changes by updating sizeHistoryArray 
+        sizeHistoryUpdator(sizeClass) {
+            this.sizeHistoryArray.push(sizeClass);
+            if (this.sizeHistoryArray.length > 2) this.sizeHistoryArray.shift();
+            if (this.sizeHistoryArray.includes('sm') && this.sizeHistoryArray.includes('xs')) {
+                if (this.isVerticalMenuExpanded) this.isVerticalMenuExpanded = false;
+                setTimeout(() => {
+                    this.headerNavDisplay();
+                }, 50);
+            }
+        },
+      
     // Triggers different window size classes on resize
     windowWidthClassEmitter() {
         var windowWidth = window.innerWidth;
@@ -209,8 +270,12 @@ export default {
         else if (windowWidth < 768) this.widthClass = 'sm';
         else if (windowWidth < 992) this.widthClass = 'md';
         else this.widthClass = 'lg';
+        this.sizeHistoryUpdator(this.widthClass);
         if (this.isMounted) {
             this.vh = window.innerHeight/100;
+            this.vw = document.body.clientWidth/100;
+            this.headerUlLeftCalculator();
+            this.headerNavDisplay();
             this.remainingHeightHome = (this.vh*25 + this.mainPage.offsetHeight + this.homePage.offsetHeight*0.3);
             this.remainingHeightApp = (this.remainingHeightHome + this.homePage.offsetHeight*0.7 + this.vh*10 + this.appPage.offsetHeight*0.3);
             this.remainingHeightPort = (this.remainingHeightApp + this.appPage.offsetHeight*0.7 + this.vh*10 + this.portPage.offsetHeight*0.3);
@@ -218,7 +283,30 @@ export default {
             this.onScroll();
         }
     },
-  
+       
+        // Calculates the pixel numbers for left property of headerUl
+        headerUlLeftCalculator() {
+            if (window.innerWidth >= 576) this.headerUlLeftPosition = 0;
+            else {
+              this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
+            }
+        },
+
+        // Determines how header navbar should be displayed
+        headerNavDisplay() {
+            if (window.innerWidth < 576) {
+                // this.headerNavbar.classList.add('flex-column');
+                this.headerUl.classList.remove('align-items-center');
+                this.headerUl.classList.add('invisible', 'flex-column', 'align-items-end', 'vertical-menu');
+                this.menuButton.classList.remove('d-none');
+            } else {
+                // this.headerNavbar.classList.remove('flex-column');
+                this.menuButton.classList.add('d-none');
+                this.headerUl.classList.remove('invisible', 'scale-down-ver-top', 'flex-column', 'align-items-end', 'vertical-menu');
+                this.headerUl.classList.add('align-items-center');
+            }
+        },
+
     // Event Handlers
 
     onLoad() {
@@ -239,13 +327,44 @@ export default {
       if (!this.loadOthers && (screenBottom > this.remainingHeightOthers)) {
           this.loadOthers = true;
       }
-    }
+    },
+            onBodyDivMouseDown($event) {
+            if (this.isVerticalMenuExpanded) {
+                if ((!$event.target.classList.contains('idpp-nav-link')) && ($event.target.id != 'idpp-menuImg')) this.isVerticalMenuExpanded = false;
+            }
+        },
+        onMenuButtonClick() {
+            this.isVerticalMenuExpanded = !this.isVerticalMenuExpanded;
+        },
+        onMenuImgMouseEnter() {
+            this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button-hover.svg`));
+        },
+        onMenuImgMouseLeave() {
+            if (!this.isVerticalMenuExpanded) this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button.svg`));
+        },
+                onLinkedinMouseEnter() {
+            this.linkedinNav.setAttribute('src', require(`@/assets/images/svg/linkedin-hover-${this.widthClass}.svg`));
+        },
+        onLinkedinMouseLeave() {
+            this.linkedinNav.setAttribute('src', require(`@/assets/images/svg/linkedin-${this.widthClass}.svg`));
+        },
+        onEmailMouseEnter() {
+            this.emailNav.setAttribute('src', require(`@/assets/images/svg/email-hover-${this.widthClass}.svg`));
+        },
+        onEmailMouseLeave() {
+            this.emailNav.setAttribute('src', require(`@/assets/images/svg/email-${this.widthClass}.svg`));
+        },
+        onTelegramMouseEnter() {
+            this.telegramNav.setAttribute('src', require(`@/assets/images/svg/telegram-hover-${this.widthClass}.svg`));
+        },
+        onTelegramMouseLeave() {
+            this.telegramNav.setAttribute('src', require(`@/assets/images/svg/telegram-${this.widthClass}.svg`));
+        },
   },
 
   created() {
     window.addEventListener("resize", this.windowWidthClassEmitter);
     document.addEventListener('scroll', this.onScroll);
-    this.windowWidthClassEmitter();
   },
 
   beforeMount() {
@@ -253,15 +372,25 @@ export default {
   },
 
   mounted() {
-    this.bodyDiv = document.getElementById('p_body');
-    this.mainPage = document.getElementById('p_mainPage');
-    this.homePage = document.getElementById('p_homePage');
-    this.appPage = document.getElementById('p_appPage');
-    this.portPage = document.getElementById('p_portPage');
-    this.othersPage = document.getElementById('p_othersPage');
+    this.bodyDiv = document.getElementById('idpp-body');
+    this.headerUl = document.getElementById('idpp-headerUl');
+    this.logo = document.getElementById('idpp-logo');
+    this.menuButton = document.getElementById('idpp-menuButton');
+    this.menuImg = document.getElementById('idpp-menuImg');
+    this.bodyCover = document.getElementById('idpp-bodyCover');
+    this.mainPage = document.getElementById('idpp-mainPage');
+    this.homePage = document.getElementById('idpp-homePage');
+    this.appPage = document.getElementById('idpp-appPage');
+    this.portPage = document.getElementById('idpp-portPage');
+    this.othersPage = document.getElementById('idpp-othersPage');
+            this.linkedinNav = document.getElementById('idpp-linkedinNav');
+        this.emailNav = document.getElementById('idpp-emailNav');
+        this.telegramNav = document.getElementById('idpp-telegramNav');
     this.isMounted = true;
-    document.body.style.overflow = 'auto';
+    document.body.style.overflowY = 'auto';
     this.windowWidthClassEmitter();
+    this.headerNavDisplay();
+    this.headerUlLeftCalculator();
     this.onLoad();
   },
 };

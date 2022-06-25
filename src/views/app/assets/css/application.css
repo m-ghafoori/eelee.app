@@ -216,6 +216,7 @@ body {
   #idpa-footer {
       width: 50vw;
   }
+}  
 
   .settings-list {
     display: flex;
@@ -240,7 +241,6 @@ body {
   .settings-list li:nth-last-of-type(1) .input {
     border-bottom: 2px solid;
   }
-}  
 
 
 

@@ -4,16 +4,16 @@
           <router-link id="idpd-logo" to="/" class="hoverable">EELee</router-link>
             <ul id="idpd-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
                 <li>
-                    <router-link to="/" class="idpd-nav-link hoverable" @mouseup="onNavLinkMouseUp">Home</router-link>
+                    <router-link to="/" class="idpd-nav-link hoverable">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/portfolio" class="idpd-nav-link hoverable" @mouseup="onNavLinkMouseUp">Portfolio</router-link>
+                    <router-link to="/portfolio" class="idpd-nav-link hoverable">Portfolio</router-link>
                 </li>
                 <li>
-                    <router-link to="/app" class="idpd-nav-link hoverable" @mouseup="onNavLinkMouseUp">App</router-link>
+                    <router-link to="/app" class="idpd-nav-link hoverable">App</router-link>
                 </li>
                 <li>
-                    <router-link to="/order" class="idpd-nav-link hoverable" @mouseup="onNavLinkMouseUp">Order Now!</router-link>
+                    <router-link to="/order" class="idpd-nav-link hoverable">Order Now!</router-link>
                 </li>
             </ul>
             <span id="idpd-menuButton" class="d-none" @click="onMenuButtonClick">
@@ -130,7 +130,7 @@ export default {
       
         // Calculates the pixel numbers for left property of headerUl
         headerUlLeftCalculator() {
-            if (window.innerWidth > 576) this.headerUlLeftPosition = 0;
+            if (window.innerWidth >= 576) this.headerUlLeftPosition = 0;
             else {
                 this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
             }
@@ -157,9 +157,6 @@ export default {
             if (this.isVerticalMenuExpanded) {
                 if ((!$event.target.classList.contains('idpd-nav-link')) && ($event.target.id != 'idpd-menuImg')) this.isVerticalMenuExpanded = false;
             }
-        },
-        onNavLinkMouseUp() {
-            this.isVerticalMenuExpanded = false;
         },
         onMenuButtonClick() {
             this.isVerticalMenuExpanded = !this.isVerticalMenuExpanded;

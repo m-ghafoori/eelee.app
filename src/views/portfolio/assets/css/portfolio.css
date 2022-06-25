@@ -4,9 +4,21 @@
     --app-width: 40vw;
 }
 
+html {
+    cursor: url('../images/svg/pointer.svg'), auto;
+}
+
+body {
+    height: max-content;
+    background: gold;
+}
 /* Classes */
 
-.p_nav-link {
+.hoverable {
+    cursor: url('../images/svg/pointer-hover.svg'), auto;
+}
+
+.idpp-nav-link {
     font-family: 'Poiret One', cursive;
     font-weight: 1000;
     font-size: calc(1vw + 1.5vh);
@@ -15,7 +27,7 @@
     text-decoration: none;
 }
 
-.p_nav-link:hover {
+.idpp-nav-link:hover {
     color: indigo;
 }
 
@@ -54,7 +66,7 @@
     z-index: 1;
 }
 
-.p_paragraph {
+.idpp-paragraph {
     font-family: 'Courgette', cursive;
     font-size: 2.3vw;
     color: #6a24ac;
@@ -63,7 +75,7 @@
 
 /* ID Tags */
 
-#p_body {
+#idpp-body {
     width: inherit;
     min-width: 320px;
     height: 100%;
@@ -72,32 +84,87 @@
     background-image: linear-gradient(goldenrod 10%, gold 30%);
 }
 
-/* Header Section */
-
-#p_header {
-    width: 100vw;
-    height: 10vh;
-    background-image: linear-gradient(gold, goldenrod);
-    position: fixed;
-    padding: 0 2vw;
-    z-index: 1000;
+#idpp-bodyCover {
+    width: 100%;
+    height: calc(100% - 10vh);
+    background-image: linear-gradient(goldenrod 10%, gold 30%);
+    opacity: 0.65;
+    position: absolute;
+    top: 10vh;
+    z-index: 100;
 }
 
-#p_logo {
-    font-family: 'Fredericka the Great', cursive;
-    font-size: calc(1.5vw + 2.5vh);
-    color: #4b0082;
-    margin: 1vw;
+/* Header */
+
+/* Classes */
+
+.idpp-nav-link {
+    font-family: 'Poiret One', cursive;
+    font-weight: 1000;
+    font-size: calc(1.5vw + 2vh);
+    color: #0d8a6f;
+    margin: 1vw 2vw;
     text-decoration: none;
 }
 
-#p_logo:hover {
-    color: #2e710f;
+.idpp-nav-link:hover {
+    color: #fb4a85;
+}
+
+.idpp-nav-link:active {
+    color: #49a8f0;
+}
+
+/* ID Tags */
+
+#idpp-header {
+    width: 98vw;
+    height: 10vh;
+    position: fixed;
+    padding-top: 1vh;
+    margin-bottom: 2vh;
+    z-index: 200;
+    background-image: linear-gradient(gold, goldenrod);
+}
+
+#idpp-logo {
+    width: 18vw;
+    height: fit-content;
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: 1000;
+    font-size: calc(2vw + 3vh);
+    color: #b42857;
+    margin: auto 2vw;
+    text-decoration: none;
+}
+
+#idpp-logo:hover {
+    color: #2ec7a6;
+}
+
+#idpp-menuButton {
+    width: 25px;
+    height: 25px;
+    margin: auto calc(2vw + 16px) auto 2vw;
+}
+
+#idpp-headerUl {
+    width: 78vw;
+    height: inherit;
+    font-size: calc(1.5vw + 2vh);
+    position: relative;
+    margin: 0;
+}
+
+#idpp-headerUl li {
+    width: fit-content;
+    height: fit-content;
+    margin:auto 0;
 }
 
 /* Main Section */
 
-#p_mainPage {
+#idpp-mainPage {
     width: 80%;
     height: fit-content;
     position: relative;
@@ -108,8 +175,8 @@
     margin-bottom: 15vh;
 }
 
-#p_mainHeader {
-    /* border-bottom: 2px solid #c78809; */
+#idpp-mainHeader {
+    border-bottom: 2px solid #c78809;
     border-radius: 3rem 3rem 0 0;
     min-width: 100%;
     min-height: 12%;
@@ -119,17 +186,17 @@
     color: #1b7521;
 }
 
-#p_mainPar {
+#idpp-mainPar {
     height: fit-content;
 }
 
 /* Home Section */
 
-#p_homeSecondPar {
+#idpp-homeSecondPar {
     margin-top: 15%;
 }
 
-#p_homePage {
+#idpp-homePage {
     width: 90%;
     height: inherit;
     border-left: 2px solid #c78809;
@@ -138,11 +205,11 @@
     left: 5%;
 }
 
-#p_homeFlexColBox {
+#idpp-homeFlexColBox {
     border-right: 2px solid #c78809;
 }
 
-#p_homeHeader {
+#idpp-homeHeader {
     border: 2px solid #c78809;
     border-left: 0;
     border-radius: 0 3rem 3rem 0;
@@ -158,14 +225,14 @@
     text-orientation: upright;
 }
 
-#p_homeLgDiv {
+#idpp-homeLgDiv {
     width: var(--home-lg-width);
     height: calc(var(--home-lg-width)*0.467);
     background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeLg.png');
     transform: rotateY(-12deg);
 }
 
-#p_homeLgParentDiv {
+#idpp-homeLgParentDiv {
     width: var(--home-lg-width);
     height: calc(var(--home-lg-width)*0.467);
     position: relative;
@@ -173,7 +240,7 @@
     margin: 0 5% 0 2%;
 }
 
-#p_homeMdParentDiv {
+#idpp-homeMdParentDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
     position: relative;
@@ -181,7 +248,7 @@
     margin-right: 2%;
 }
 
-#p_homeMdDiv {
+#idpp-homeMdDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
     background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeMd.png');
@@ -190,7 +257,7 @@
 
 /* App Section */
 
-#p_appPage {
+#idpp-appPage {
     width: 90%;
     height: inherit;
     border-right: 2px solid #c78809;
@@ -200,7 +267,7 @@
     right: 5%;
 }
 
-#p_appHeader {
+#idpp-appHeader {
     border: 2px solid #c78809;
     border-radius: 3rem 0 0 3rem;
     min-height: fit-content;
@@ -215,29 +282,29 @@
     text-orientation: upright;
 }
 
-#p_appFlexColBox {
+#idpp-appFlexColBox {
     width: 88%;
 }
 
-#p_appFirstPar {
+#idpp-appFirstPar {
     width: 20%;
     text-align: center;
 }
 
-#p_appTxtImgContainer {
+#idpp-appTxtImgContainer {
     /* width: 88%; */
     justify-content: start;
     /* margin: 5%; */
     margin-top: 0;
 }
 
-#p_appImageContainer {
+#idpp-appImageContainer {
     width: var(--app-width);
     height: calc(var(--app-width)*1.038);
     margin-right: 4%;
 }
 
-#p_appImgDiv {
+#idpp-appImgDiv {
     align-self: flex-end;
     width: var(--app-width);
     height: calc(var(--app-width)*1.038);
@@ -246,7 +313,7 @@
 
 /* Portfolio Section */
 
-#p_portPage {
+#idpp-portPage {
     width: 90%;
     height: inherit;
     border-left: 2px solid #c78809;
@@ -255,7 +322,7 @@
     left: 5%;
 }
 
-#p_portHeader {
+#idpp-portHeader {
     border: 2px solid #c78809;
     border-radius: 0 3rem 3rem 0;
     height: fit-content;
@@ -270,29 +337,29 @@
     text-orientation: upright;
 }
 
-#p_portFlexColBox {
+#idpp-portFlexColBox {
     width: 88%;
 }
 
-#p_portFirstPar {
+#idpp-portFirstPar {
     width: 20%;
     text-align: center;
 }
 
-#p_portTxtImgContainer {
+#idpp-portTxtImgContainer {
     /* width: 88%; */
     justify-content: end;
     /* margin: 5%; */
     margin-top: 0;
 }
 
-#p_portImageContainer {
+#idpp-portImageContainer {
     width: var(--app-width);
     height: calc(var(--app-width)*1.038);
     margin-left: 4%;
 }
 
-#p_portImgDiv {
+#idpp-portImgDiv {
     align-self: flex-start;
     width: var(--app-width);
     height: calc(var(--app-width)*1.038);
@@ -301,20 +368,19 @@
 
 /* Others Section */
 
-#p_othersSecondPar {
+#idpp-othersSecondPar {
     margin-top: 15%;
 }
 
-#p_othersPage {
+#idpp-othersPage {
     width: 90%;
     height: inherit;
     border-right: 2px solid #c78809;
-    margin-bottom: 10vh;
     position: relative;
     right: 5%;
 }
 
-#p_othersHeader {
+#idpp-othersHeader {
     border: 2px solid #c78809;
     border-radius: 3rem 0 0 3rem;
     min-height: fit-content;
@@ -328,18 +394,18 @@
     display: inline-block;
     text-orientation: upright;
 }
-#p_othersImageContainer {
+#idpp-othersImageContainer {
     width: 80%;
 }
 
-#p_othersLgDiv {
+#idpp-othersLgDiv {
     width: var(--home-lg-width);
     height: calc(var(--home-lg-width)*0.467);
     background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeLg.png');
     transform: rotateY(-12deg);
 }
 
-#p_othersLgParentDiv {
+#idpp-othersLgParentDiv {
     width: var(--home-lg-width);
     height: calc(var(--home-lg-width)*0.467);
     position: relative;
@@ -347,7 +413,7 @@
     margin: 0 5% 0 2%;
 }
 
-#p_othersLeftParentDiv {
+#idpp-othersLeftParentDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
     position: relative;
@@ -355,14 +421,14 @@
     margin: 5%;
 }
 
-#p_othersLeftDiv {
+#idpp-othersLeftDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
     background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeMd.png');
     transform: rotateY(12deg);
 }
 
-#p_othersMiddleParentDiv {
+#idpp-othersMiddleParentDiv {
     width: calc(var(--home-md-width)*0.95);
     height: calc(var(--home-md-width)*0.95);
     position: relative;
@@ -370,14 +436,14 @@
     margin: 5%;
 }
 
-#p_othersMiddleDiv {
+#idpp-othersMiddleDiv {
     width: calc(var(--home-md-width)*0.95);
     height: calc(var(--home-md-width)*0.95);
     background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeMd.png');
     /* transform: rotateY(-12deg); */
 }
 
-#p_othersRightParentDiv {
+#idpp-othersRightParentDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
     position: relative;
@@ -385,22 +451,55 @@
     margin: 5%;
 }
 
-#p_othersRightDiv {
+#idpp-othersRightDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
     background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeMd.png');
     transform: rotateY(-12deg);
 }
 
+/* Footer */
+
+/* ID Tags */
+
+#idpp-footer {
+    width: 40vw;
+    height: 18vh;
+    position: relative;
+    bottom: -20vh;
+    left: 8.33px;
+    padding-bottom: 3vh;
+}
+
+#idpp-footerNav {
+    width: 100%;
+    height: 8vh;
+    margin-bottom: 3vh;
+}
+
+#idpp-footerNote {
+    width: fit-content;
+    height: fit-content;
+    text-decoration: none;
+    font-family: 'Gluten', cursive;
+    font-size: calc(1vw + 1.5vh);
+    white-space: nowrap;
+    color: #d8215e;
+}
+
+#idpp-footerNote:hover {
+    color: #2ec7a6;
+}
+
 /* Media Queries */
 
 @media (min-width: 992px) {
 /* 
-    #p_mainPage {
+    #idpp-mainPage {
         height: 25vw;
     } */
 
-    #p_mainHeader {
+    #idpp-mainHeader {
         font-size: 2.5vw;
         padding: 1.5vw;
     }
@@ -408,11 +507,11 @@
 
 @media (min-width:768px) and (max-width: 992px) {
 
-    /* #p_mainPage {
+    /* #idpp-mainPage {
         height: 25vw;
     } */
 
-    #p_mainHeader {
+    #idpp-mainHeader {
         font-size: 3vw;
         padding: 1.5vw;
     }
@@ -420,28 +519,40 @@
 
 @media (min-width:576px) and (max-width: 768px) {
 
-    /* #p_mainPage {
+    /* #idpp-mainPage {
         height: 28vw;
     } */
 
-    #p_mainHeader {
+    #idpp-mainHeader {
         font-size: 4vw;
         padding: 1.5vw;
+    }
+
+    #idpo-footer {
+        width: 50vw;
     }
 }
 
 @media (min-width: 320px) and (max-width: 576px) {
-    #p_mainHeader {
+    #idpp-mainHeader {
         font-size: 4.5vw;
         padding: 3vw;
+    }
+
+    #idpp-footer {
+        width: 60vw;
     }
 
 }
 
 @media (max-width: 320px) {
-    #p_mainHeader {
+    #idpp-mainHeader {
         font-size: 4.5vw;
         padding: 3vw;
+    }
+
+    #idpo-footer {
+        width: 70vw;
     }
 }
 
