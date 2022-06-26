@@ -11,7 +11,7 @@
         <router-link
           id="logo"
           class="invisible hoverable animate__animated"
-          to="/"
+          to="/portfolio"
           @mouseenter="logoMouseEnter"
           @mouseleave="logoMouseLeave"
           >EELee</router-link
@@ -683,6 +683,7 @@ export default {
     this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
     this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
     this.invisibleElemsList = [this.mainContainer, this.logo, this.headerNavbar, this.orderDiv.firstElementChild, this.donateLink.parentElement, this.footerUl];
+    document.body.style.overflowY = 'auto';
     this.startAnimations();
   },
   

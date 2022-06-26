@@ -4,17 +4,9 @@
     --app-width: 40vw;
 }
 
-html {
-    cursor: url('../images/svg/pointer.svg'), auto;
-}
-
-body {
-    height: max-content;
-    background: gold;
-}
 /* Classes */
 
-.hoverable {
+.idpp-hoverable {
     cursor: url('../images/svg/pointer-hover.svg'), auto;
 }
 
@@ -76,22 +68,14 @@ body {
 /* ID Tags */
 
 #idpp-body {
-    width: inherit;
-    min-width: 320px;
-    height: 100%;
-    position: relative;
-    background-attachment: fixed;
-    background-image: linear-gradient(goldenrod 10%, gold 30%);
-}
-
-#idpp-bodyCover {
-    width: 100%;
-    height: calc(100% - 10vh);
-    background-image: linear-gradient(goldenrod 10%, gold 30%);
-    opacity: 0.65;
+    width: 100vw;
+    height: fit-content;
+    min-width: 250px;
+    min-height: 450px;
     position: absolute;
-    top: 10vh;
-    z-index: 100;
+    top: 0;
+    cursor: url('../images/svg/pointer.svg'), auto;
+    background: gold;
 }
 
 /* Header */
@@ -118,24 +102,25 @@ body {
 /* ID Tags */
 
 #idpp-header {
-    width: 98vw;
-    height: 10vh;
+    width: 100vw;
+    height: 60px;
+    min-width: 250px;
     position: fixed;
-    padding-top: 1vh;
-    margin-bottom: 2vh;
+    padding-top: 5px;
+    margin-bottom: 10px;
     z-index: 200;
-    background-image: linear-gradient(gold, goldenrod);
+    background: gold;
 }
 
 #idpp-logo {
-    width: 18vw;
+    width: 18%;
     height: fit-content;
     font-family: 'Fredericka the Great', cursive;
     font-weight: 1000;
-    font-size: calc(2vw + 3vh);
-    color: #b42857;
-    margin: auto 2vw;
+    font-size: calc(2vw + 1rem);
+    margin: auto 3vw auto 25px;
     text-decoration: none;
+    color: #b42857;
 }
 
 #idpp-logo:hover {
@@ -145,13 +130,13 @@ body {
 #idpp-menuButton {
     width: 25px;
     height: 25px;
-    margin: auto calc(2vw + 16px) auto 2vw;
+    margin: auto 40px auto 2vw;
 }
 
 #idpp-headerUl {
-    width: 78vw;
-    height: inherit;
-    font-size: calc(1.5vw + 2vh);
+    width: 78%;
+    height: 100%;
+    font-size: calc(1.5vw + 0.7rem);
     position: relative;
     margin: 0;
 }
@@ -173,6 +158,7 @@ body {
     border-bottom: 0;
     border-radius: 3.2rem 3.2rem 0 0;
     margin-bottom: 15vh;
+    opacity: 1;
 }
 
 #idpp-mainHeader {
@@ -203,6 +189,7 @@ body {
     margin: 10vh 0;
     position: relative;
     left: 5%;
+    opacity: 1;
 }
 
 #idpp-homeFlexColBox {
@@ -265,6 +252,7 @@ body {
     margin-bottom: 10vh;
     position: relative;
     right: 5%;
+    opacity: 1;
 }
 
 #idpp-appHeader {
@@ -320,6 +308,7 @@ body {
     margin-bottom: 10vh;
     position: relative;
     left: 5%;
+    opacity: 1;
 }
 
 #idpp-portHeader {
@@ -378,6 +367,8 @@ body {
     border-right: 2px solid #c78809;
     position: relative;
     right: 5%;
+    margin-bottom: 150px;
+    opacity: 1;
 }
 
 #idpp-othersHeader {
@@ -463,18 +454,19 @@ body {
 /* ID Tags */
 
 #idpp-footer {
-    width: 40vw;
-    height: 18vh;
-    position: relative;
-    bottom: -20vh;
-    left: 8.33px;
-    padding-bottom: 3vh;
+    width: 40%;
+    height: 105px;
+    min-width: 250px;
+    position: absolute;
+    bottom: 0;
+    align-self: center;
+    padding-bottom: 20px;
 }
 
 #idpp-footerNav {
     width: 100%;
-    height: 8vh;
-    margin-bottom: 3vh;
+    height: 45px;
+    margin-bottom: 20px;
 }
 
 #idpp-footerNote {
@@ -482,7 +474,7 @@ body {
     height: fit-content;
     text-decoration: none;
     font-family: 'Gluten', cursive;
-    font-size: calc(1vw + 1.5vh);
+    font-size: calc(1vw + 0.5rem);
     white-space: nowrap;
     color: #d8215e;
 }
@@ -529,7 +521,7 @@ body {
     }
 
     #idpo-footer {
-        width: 50vw;
+        width: 50%;
     }
 }
 
@@ -540,7 +532,7 @@ body {
     }
 
     #idpp-footer {
-        width: 60vw;
+        width: 60%;
     }
 
 }
@@ -552,7 +544,7 @@ body {
     }
 
     #idpo-footer {
-        width: 70vw;
+        width: 70%;
     }
 }
 

@@ -1,81 +1,16 @@
-html {
-    cursor: url('../images/svg/pointer.svg'), auto;
-}
-
-.hoverable {
+.idpc-hoverable {
     cursor: url('../images/svg/pointer-hover.svg'), auto;
 }
 
 #idpc-body {
     width: 100vw;
-    min-height: 100%;
+    height: 100%;
+    min-width: 250px;
+    min-height: 450px;
+    position: absolute;
+    top: 0;
     background: #ffffff;
-}
-
-/* Header */
-
-/* Classes */
-
-.idpc-nav-link {
-    font-family: 'Poiret One', cursive;
-    font-weight: 1000;
-    color: #0d8a6f;
-    margin: 1vw 2vw;
-    text-decoration: none;
-}
-
-.idpc-nav-link:hover {
-    color: #fb4a85;
-}
-
-.idpc-nav-link:active {
-    color: #49a8f0;
-}
-
-/* ID Tags */
-
-#idpc-header {
-    width: 98vw;
-    height: 10vh;
-    position: fixed;
-    padding-top: 1vh;
-    margin-bottom: 2vh;
-    z-index: 200;
-}
-
-#idpc-logo {
-    width: 18vw;
-    height: fit-content;
-    font-family: 'Fredericka the Great', cursive;
-    font-weight: 1000;
-    font-size: calc(2vw + 3vh);
-    color: #b42857;
-    margin: auto 2vw;
-    text-decoration: none;
-}
-
-#idpc-logo:hover {
-    color: #2ec7a6;
-}
-
-#idpc-menuButton {
-    width: 25px;
-    height: 25px;
-    margin: auto 2vw;
-}
-
-#idpc-headerUl {
-    width: 78vw;
-    height: inherit;
-    font-size: calc(1.5vw + 2vh);
-    position: relative;
-    margin: 0;
-}
-
-#idpc-headerUl li {
-    width: fit-content;
-    height: fit-content;
-    margin:auto 0;
+    cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 /* Showcase Section */
@@ -87,68 +22,63 @@ html {
 #idpc-showcase {
     width: 86vw;
     height: 60vh;
+    min-height: 300px;
+    max-height: 360px;
     position: relative;
     align-self: flex-start;
-    top: 15vh;
-    font-size: calc(0.5vw + 2.2vh);
-    margin: 0 7vw;
-}
-
-#idpc-formCover {
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    opacity: 0.8;
-    position: absolute;
-    z-index: 100;
+    top: 90px;
+    font-size: calc(0.5vw + 1rem);
+    margin: 0 7vw 20px 7vw;
 }
 
 #idpc-messagereceived {
     width: inherit;
     height: 60%;
     font-family: 'Gluten';
-    font-size: calc(2vw + 1vh);
+    font-size: calc(2vw + 0.5rem);
     color: #0d8a6f;
     text-align: center;
     margin: auto;
 }
 
 #idpc-contactForm{
-    width: inherit;
-    height: inherit;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    max-height: 360px;
 }
 
 #idpc-contactPar{
-    height: 10vh;
+    height: fit-content;
     font-family: 'Nanum Myeongjo';
     color: #c20946;
     margin: 0;
 }
 
 #idpc-contactEmail{
-    height: 10vh;
+    height: fit-content;
     font-family: 'Gluten';
     color: #f76c9a;
     margin: 0;
 }
 
 .idpc-clientInfo {
-    width: inherit;
-    height: 6vh;
+    width: 100%;
+    height: 10%;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
-    margin: 4vh 2vw 0 0;
+    margin: 20px 2vw 0 0;
 }
 
 .idpc-clientInfo label {
     width: fit-content;
-    height: inherit;
+    height: 100%;
     font-family: 'Gluten';
-    font-size: calc(0.8vw + 2.2vh);
+    font-size: calc(0.8vw + 1rem);
     color: #ba0340;
-    padding: 1.5vh 1vh 1vh 1vh;
-    margin-right: 1vh;
+    padding: 8px 5px 5px 5px;
+    margin-right: 5px;
 }
 
 .idpc-clientInfo label:hover {
@@ -156,12 +86,12 @@ html {
 }
 
 .idpc-clientInfo input {
-    width: 50%;
-    height: 90%;
+    max-width: 450px;
+    height: 100%;
     font-family: 'Courgette', cursive;
-    font-size: calc(1vw + 1.5vh);
+    font-size: calc(1vw + 0.6rem);
     border: 1px solid #b42857;
-    padding: 1%;
+    padding: 5px;
     margin: 0;
     flex-grow: 1;
 }
@@ -173,9 +103,11 @@ html {
 #idpc-messageDiv {
     width: inherit;
     height: 30vh;
-    margin: 2vh 0;
+    min-width: 195px;
+    min-height: 90px;
+    max-height: 180px;
+    margin: 10px 0;
     border: 1px solid #b42857;
-    /* flex-grow: 1; */
 }
 
 #idpc-clientMessage {
@@ -184,10 +116,10 @@ html {
     overflow-y: auto;
     resize: none;
     font-family: 'Courgette', cursive;
-    font-size: calc(1vw + 1.5vh);
+    font-size: calc(1vw + 0.6rem);
     border: none;
-    padding: 0 2vh;
-    margin: 3% 0;
+    padding: 0 10px;
+    margin: 15px 0;
 }
 
 #idpc-clientMessage:focus {
@@ -204,19 +136,21 @@ html {
 
 #idpc-messageButtons p {
     font-family: 'Gluten', cursive;
-    font-size: calc(1vw + 1.5vh);
+    font-size: calc(1vw + 0.6rem);
     color: #0b7a62;
     padding: 0.2vw;
-    margin: 0 1vw;
+    margin: 1vw;
+    margin-top: 0;
     text-align: center;
 }
 
 #idpc-messageButtons span{
     font-family: 'Josefin Slab', cursive;
-    font-size: calc(1.5vw + 1.5vh);
+    font-size: calc(1.5vw + 0.6rem);
     color: #f93879;
     padding: 0.2vw;
-    margin: 0 1vw;
+    margin: 1vw;
+    margin-top: 0;
     text-align: center;
 }
 
@@ -231,73 +165,44 @@ html {
 #idpc-messageButtons input{
     display: none;
 }
-/* 
-#idpc-sendEmail {
-    padding: 0.2vw;
-    text-align: center;
-} */
-/* 
-#idpc-showcase h4{
-    width: fit-content;
-    font-family: 'Josefin Slab';
-    color: #f93879;
-    align-self: flex-end;
-    margin-top: 0;
-} */
-
-/* Footer */
-
-/* ID Tags */
-
-#idpc-footer {
-    width: 40vw;
-    height: 18vh;
-    position: fixed;
-    bottom: 0;
-    align-self: center;
-    padding-bottom: 3vh;
-}
-
-#idpc-footerNav {
-    width: 100%;
-    height: 8vh;
-    margin-bottom: 3vh;
-}
-
-#idpc-footerNote {
-    width: fit-content;
-    height: fit-content;
-    text-decoration: none;
-    font-family: 'Gluten', cursive;
-    font-size: calc(1vw + 1.5vh);
-    white-space: nowrap;
-    color: #d8215e;
-}
-
-#idpc-footerNote:hover {
-    color: #2ec7a6;
-}
 
 /* Media Queries */
 
+@media (max-height:500px) {
+    #idpc-messageDiv {
+        height: 24vh;
+    }
+
+}
+
 @media (max-width: 320px) {
-    #idpc-footer {
-        width: 70vw;
+
+    #idpc-showcase {
+        top: 65px;
+    }
+
+    #idpc-messageDiv {
+        min-height: 100px;
     }
 }
 
 @media (min-width: 320px) and (max-width: 576px) {
-    #idpc-footer {
-        width: 60vw;
+
+    #idpc-showcase {
+        top: 70px;
+    }
+
+    #idpc-messageDiv {
+        min-height: 100px;
     }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-    #idpc-footer {
-        width: 50vw;
+    
+    #idpc-messageDiv {
+        height: 21vh;
     }
 }
-
 
 /* Animations */
 

@@ -1,41 +1,40 @@
 <template>
 <div id="idpa-body" class="d-flex flex-column justify-content-between align-items-center" @mousedown="onBodyDivMouseDown">
-        <header id="idpa-header" class="d-flex justify-content-between align-items-center">
-        <router-link id="idpa-logo" to="/" class="hoverable">EELee</router-link>
-            <ul id="idpa-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
+        <header id="idpa-header" class="header d-flex justify-content-between align-items-center">
+        <router-link id="idpa-logo" to="/" class="logo idpa-hoverable">EELee</router-link>
+            <ul id="idpa-headerUl" class="header-ul d-flex align-items-center" :style="headerUlStyle">
                 <li>
-                    <router-link to="/" class="idpa-nav-link hoverable">Home</router-link>
+                    <router-link to="/" class="nav-link idpa-hoverable">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/portfolio" class="idpa-nav-link hoverable">Portfolio</router-link>
+                    <router-link to="/portfolio" class="nav-link idpa-hoverable">Portfolio</router-link>
                 </li>
                 <li>
-                    <router-link to="/donate" class="idpa-nav-link hoverable">Donate</router-link>
+                    <router-link to="/donate" class="nav-link idpa-hoverable">Donate</router-link>
                 </li>
                 <li>
-                    <router-link to="/order" class="idpa-nav-link hoverable">Order Now!</router-link>
+                    <router-link to="/order" class="nav-link idpa-hoverable">Order Now!</router-link>
                 </li>
             </ul>
-            <span id="idpa-menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="idpa-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+            <span id="idpa-menuButton" class="menu-button d-none" @click="onMenuButtonClick">
+                <img id="idpa-menuImg" class="idpa-hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
       <section id="idpa-showcase">
-        <div id="idpa-formCover" class="d-none"></div>
         <Table
         @contextmenu="preventDefaultEvents"/>
       </section>
 
-        <footer id="idpa-footer" class="d-flex flex-column justify-content-around align-items-center">
-          <div id="idpa-footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="idpa-linkedinNav" ref="linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+        <footer id="idpa-footer" class="footer d-flex flex-column justify-content-around align-items-center">
+          <div id="idpa-footerNav" class="footer-nav d-flex justify-content-between align-items-center">
+            <img id="idpa-linkedinNav" ref="linkedinNav" class="idpa-hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="contact">
-                <img id="idpa-emailNav" ref="emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="idpa-emailNav" ref="emailNav" class="idpa-hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="idpa-telegramNav" ref="telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="idpa-telegramNav" ref="telegramNav" class="idpa-hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
-          <router-link id="idpa-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+          <router-link id="idpa-footerNote" to="/portfolio" class="footer-note idpa-hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer>
 
 </div>
@@ -60,11 +59,12 @@ export default {
       isVerticalMenuExpanded: false,
 
       // Elements Object Refs
-      headerUl: Object,
+      header: Object,
       logo: Object,
+      headerUl: Object,
       menuButton: Object,
       menuImg: Object,
-      formCover: Object,
+      showcase: Object,
       linkedinNav: Object,
       emailNav: Object,
       telegramNav: Object,
@@ -77,12 +77,12 @@ export default {
               this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button-hover.svg`));
               this.headerUl.classList.remove('invisible', 'scale-down-ver-top');
               this.headerUl.classList.add('scale-up-ver-top');
-              this.formCover.classList.remove('d-none');
+              this.showcase.style.opacity = '0.2';
           } else {
               this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button.svg`));
               this.headerUl.classList.remove('scale-up-ver-top');
               this.headerUl.classList.add('scale-down-ver-top');
-              this.formCover.classList.add('d-none');
+              this.showcase.style.opacity = '1';
           }
       },
   },
@@ -126,7 +126,7 @@ export default {
         else this.widthClass = 'lg';
         this.sizeHistoryUpdator(this.widthClass);
         if (this.isMounted) {
-          this.vw = document.body.clientWidth/100;
+          this.vw = windowWidth/100;
           this.headerUlLeftCalculator();
         }
     },
@@ -135,19 +135,17 @@ export default {
     headerUlLeftCalculator() {
         if (window.innerWidth >= 576) this.headerUlLeftPosition = 0;
         else {
-            this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
+            this.headerUlLeftPosition = ((this.header.offsetWidth - (this.vw*5 + 65 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
         }
     },
 
     // Determines how header navbar should be displayed
     headerNavDisplay() {
         if (window.innerWidth < 576) {
-            // this.headerNavbar.classList.add('flex-column');
             this.headerUl.classList.remove('align-items-center');
             this.headerUl.classList.add('invisible', 'flex-column', 'align-items-end', 'vertical-menu');
             this.menuButton.classList.remove('d-none');
         } else {
-            // this.headerNavbar.classList.remove('flex-column');
             this.headerUl.classList.remove('invisible', 'scale-down-ver-top', 'flex-column', 'align-items-end', 'vertical-menu');
             this.headerUl.classList.add('align-items-center');
             this.menuButton.classList.add('d-none');
@@ -158,7 +156,7 @@ export default {
 
     onBodyDivMouseDown($event) {
         if (this.isVerticalMenuExpanded) {
-            if ((!$event.target.classList.contains('idpa-nav-link')) && ($event.target.id != 'idpa-menuImg')) this.isVerticalMenuExpanded = false;
+            if ((!$event.target.classList.contains('nav-link')) && ($event.target.id != 'idpa-menuImg')) this.isVerticalMenuExpanded = false;
         }
     },
     onMenuButtonClick() {
@@ -202,17 +200,19 @@ export default {
     },
 
     mounted() {
-        this.headerUl = document.getElementById('idpa-headerUl');
+        this.header = document.getElementById('idpa-header');
         this.logo = document.getElementById('idpa-logo');
+        this.headerUl = document.getElementById('idpa-headerUl');
         this.menuButton = document.getElementById('idpa-menuButton');
         this.menuImg = document.getElementById('idpa-menuImg');
-        this.formCover = document.getElementById('idpa-formCover');
+        this.showcase = document.getElementById('idpa-showcase');
         this.donationForm = document.getElementById('idpa-donationForm');
         this.linkedinNav = document.getElementById('idpa-linkedinNav');
         this.emailNav = document.getElementById('idpa-emailNav');
         this.telegramNav = document.getElementById('idpa-telegramNav');
         this.isMounted = true;
-        document.body.style.overflow = 'auto';
+        document.body.style.overflowY = 'auto';
+        document.body.style.overflowX = 'hidden';
         this.windowWidthClassEmitter();
         this.headerNavDisplay();
         this.headerUlLeftCalculator();

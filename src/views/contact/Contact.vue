@@ -1,31 +1,30 @@
 <template>
-  <div id="idpc-body" class="d-flex flex-column justify-content-between" @mousedown="onBodyDivMouseDown">
-      <header id="idpc-header" class="d-flex justify-content-between align-items-center">
-        <router-link id="idpc-logo" to="/" class="hoverable">EELee</router-link>
-            <ul id="idpc-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
+  <div id="idpc-body" class="d-flex flex-column justify-content-between" @click="onBodyDivClick">
+      <header id="idpc-header" class="header d-flex justify-content-between align-items-center">
+        <router-link id="idpc-logo" to="/" class="logo idpc-hoverable">EELee</router-link>
+            <ul id="idpc-headerUl" class="header-ul d-flex align-items-center" :style="headerUlStyle">
                 <li>
-                    <router-link to="/" class="idpc-nav-link hoverable">Home</router-link>
+                    <router-link to="/" class="nav-link idpc-hoverable">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/portfolio" class="idpc-nav-link hoverable">Portfolio</router-link>
+                    <router-link to="/portfolio" class="nav-link idpc-hoverable">Portfolio</router-link>
                 </li>
                 <li>
-                    <router-link to="/app" class="idpc-nav-link hoverable">App</router-link>
+                    <router-link to="/app" class="nav-link idpc-hoverable">App</router-link>
                 </li>
                 <li>
-                    <router-link to="/donate" class="idpc-nav-link hoverable">Donate</router-link>
+                    <router-link to="/donate" class="nav-link idpc-hoverable">Donate</router-link>
                 </li>
                 <li>
-                    <router-link to="/order" class="idpc-nav-link hoverable">Order Now!</router-link>
+                    <router-link to="/order" class="nav-link idpc-hoverable">Order Now!</router-link>
                 </li>
             </ul>
-            <span id="idpc-menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="idpc-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+            <span id="idpc-menuButton" class="menu-button d-none" @click="onMenuButtonClick">
+                <img id="idpc-menuImg" class="idpc-hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
       <section id="idpc-showcase" class="d-flex flex-column align-items-start">
-        <div id="idpc-formCover" class="d-none"></div>
         <div id="idpc-messagereceived" class="d-none">
             Thanks! <br><br><br> Your message has been received. <br><br><br> We will contact you in two days :)
         </div>
@@ -43,38 +42,33 @@
                 <textarea name="clientMessage" id="idpc-clientMessage" cols="90" rows="10" v-model="clientMessage" :style="clientMessageStyle" @click="onClientMessageClick" required></textarea>
                 <div id="idpc-messageButtons" class="d-flex justify-content-between align-items-center">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span id="idpc-attachFile" class="hoverable" @click="onAttachClick">Attach</span>
+                        <span id="idpc-attachFile" class="idpc-hoverable" @click="onAttachClick">Attach</span>
                         <input id="idpc-attachInput" type="file" @change="onFileUpload">
                         <p id="idpc-fileNamePar">{{fileName}}</p>
                     </div>
-                    <span id="idpc-sendMessage" class="hoverable" @click="onSendMessageClick">Send</span>
+                    <span id="idpc-sendMessage" class="idpc-hoverable" @click="onSendMessageClick">Send</span>
                 </div>
             </div>
         </div>
       </section>
 
-      <footer id="idpc-footer" class="d-flex flex-column justify-content-around align-items-center">
-          <div id="idpc-footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="idpc-linkedinNav" ref="linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+      <footer id="idpc-footer" class="footer d-flex flex-column justify-content-around align-items-center">
+          <div id="idpc-footerNav" class="footer-nav d-flex justify-content-between align-items-center">
+            <img id="idpc-linkedinNav" ref="linkedinNav" class="idpc-hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="contact">
-                <img id="idpc-emailNav" ref="emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="idpc-emailNav" ref="emailNav" class="idpc-hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="idpc-telegramNav" ref="telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="idpc-telegramNav" ref="telegramNav" class="idpc-hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
-          <router-link id="idpc-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+          <router-link id="idpc-footerNote" to="/portfolio" class="footer-note idpc-hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer>
   </div>
 </template>
 
 <script>
-// import Slideshow from '@/components/Slideshow/Slideshow.vue'
 
 export default {
     name: 'Contact',
-
-    // components: {
-    //     Slideshow,
-    // },
 
     data() {
         return {
@@ -105,7 +99,6 @@ export default {
             menuButton: Object,
             menuImg: Object,
             showcase: Object,
-            formCover: Object,
             messagereceived: Object,
             contactPar: Object,
             contactForm: Object,
@@ -129,12 +122,12 @@ export default {
                 this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button-hover.svg`));
                 this.headerUl.classList.remove('invisible', 'scale-down-ver-top');
                 this.headerUl.classList.add('scale-up-ver-top');
-                this.formCover.classList.remove('d-none');
+                this.showcase.style.opacity = '0.2';
             } else {
                 this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button.svg`));
                 this.headerUl.classList.remove('scale-up-ver-top');
                 this.headerUl.classList.add('scale-down-ver-top');
-                this.formCover.classList.add('d-none');
+                this.showcase.style.opacity = '1';
             }
         },
         clientEmail(val) {
@@ -222,7 +215,7 @@ export default {
         headerUlLeftCalculator() {
             if (window.innerWidth >= 576) this.headerUlLeftPosition = 0;
             else {
-                this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
+                this.headerUlLeftPosition = ((this.header.offsetWidth - (this.vw*5 + 65 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
             }
         },
 
@@ -266,12 +259,10 @@ export default {
         // Determines how header navbar should be displayed
         headerNavDisplay() {
             if (window.innerWidth < 576) {
-                // this.headerNavbar.classList.add('flex-column');
                 this.headerUl.classList.remove('align-items-center');
                 this.headerUl.classList.add('invisible', 'flex-column', 'align-items-end', 'vertical-menu');
                 this.menuButton.classList.remove('d-none');
             } else {
-                // this.headerNavbar.classList.remove('flex-column');
                 this.headerUl.classList.remove('invisible', 'scale-down-ver-top', 'flex-column', 'align-items-end', 'vertical-menu');
                 this.headerUl.classList.add('align-items-center');
                 this.menuButton.classList.add('d-none');
@@ -280,9 +271,9 @@ export default {
 
         // Event Handlers
 
-        onBodyDivMouseDown($event) {
+        onBodyDivClick($event) {
             if (this.isVerticalMenuExpanded) {
-                if ((!$event.target.classList.contains('idpc-nav-link')) && ($event.target.id != 'idpc-menuImg')) this.isVerticalMenuExpanded = false;
+                if ((!$event.target.classList.contains('nav-link')) && ($event.target.id != 'idpc-menuImg')) this.isVerticalMenuExpanded = false;
             }
         },
         onMenuButtonClick() {
@@ -365,7 +356,6 @@ export default {
         this.menuButton = document.getElementById('idpc-menuButton');
         this.menuImg = document.getElementById('idpc-menuImg');
         this.showcase = document.getElementById('idpc-showcase');
-        this.formCover = document.getElementById('idpc-formCover');
         this.messagereceived = document.getElementById('idpc-messagereceived');
         this.contactPar = document.getElementById('idpc-contactPar');
         this.contactForm = document.getElementById('idpc-contactForm');
@@ -378,6 +368,7 @@ export default {
         this.linkedinNav = document.getElementById('idpc-linkedinNav');
         this.emailNav = document.getElementById('idpc-emailNav');
         this.telegramNav = document.getElementById('idpc-telegramNav');
+        document.body.style.overflow = 'auto';
         this.isMounted = true;
         this.windowWidthClassEmitter();
         this.headerNavDisplay();

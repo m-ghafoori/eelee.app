@@ -1,54 +1,54 @@
 <template>
-  <div id="m-body" class="" @click="skipInitAnimations">
+  <div id="idpm-body" class="" @click="skipInitAnimations">
 
-    <!-- <div id="m-containerWrapper" class="d-flex"> -->
-      <div id="m-mainContainer" class="d-flex flex-column justify-content-around">
-        <div id="m-bodyCover">
+    <!-- <div id="idpm-containerWrapper" class="d-flex"> -->
+      <div id="idpm-mainContainer" class="d-flex flex-column justify-content-around">
+        <div id="idpm-bodyCover">
           
         </div>
-        <header id="m-header" class="d-flex justify-content-center text-shine-logo">
-          <div id="m-headerCover"></div>
-          <span id="m-logoLeft" class="invisible">ee</span>
-          <span id="m-logoMoon" class="invisible">f </span>
-          <span id="m-logoRight" class="invisible">ee</span>
+        <header id="idpm-header" class="d-flex justify-content-center text-shine-logo">
+          <div id="idpm-headerCover"></div>
+          <span id="idpm-logoLeft" class="invisible">ee</span>
+          <span id="idpm-logoMoon" class="invisible">f </span>
+          <span id="idpm-logoRight" class="invisible">ee</span>
         </header>
 
-        <section id="m-showcase" class="d-flex flex-column justify-content-between align-items-center">
+        <section id="idpm-showcase" class="d-flex flex-column justify-content-between align-items-center">
 
-          <div id="m-orderDiv" class="invisible"
+          <div id="idpm-orderDiv" class="invisible"
                 >
-                <router-link to="/order" class="hoverable"> Need A Web App ??? </router-link>
+                <router-link to="/order" class="idpm-hoverable"> Need A Web App ??? </router-link>
                 </div
               >
 
-          <div id="m-centralDiv" class="d-flex justify-content-between align-items-start">
-            <ul id="m-navUl" class="invisible d-flex flex-column justify-content-end">
+          <div id="idpm-centralDiv" class="d-flex justify-content-between align-items-start">
+            <ul id="idpm-navUl" class="invisible d-flex flex-column justify-content-end">
               <li class="">
-                <router-link id="m-portNav" to="/app" class="text-shine hoverable"
+                <router-link id="idpm-portNav" to="/app" class="text-shine idpm-hoverable"
                   >App</router-link
                 >
               </li>
               <li class="">
-                <router-link id="m-appNav" to="/portfolio" class="text-shine hoverable"
+                <router-link id="idpm-appNav" to="/portfolio" class="text-shine idpm-hoverable"
                   >Portfolio</router-link
                 >
               </li>
             </ul>
-            <div id="m-orderCentral" class="d-flex justify-content-around align-items-center">
+            <div id="idpm-orderCentral" class="d-flex justify-content-around align-items-center">
               
-              <router-link id="m-orderRight" to="/order" class="text-shine-logo hoverable">
-                <span id="m-orderRightTop" class="invisible">Click to <br /></span>
-                <span id="m-orderRightStar" class="invisible">c</span>
-                <span id="m-orderRightBottom" class="invisible">RDER</span>
+              <router-link id="idpm-orderRight" to="/order" class="text-shine-logo idpm-hoverable">
+                <span id="idpm-orderRightTop" class="invisible">Click to <br /></span>
+                <span id="idpm-orderRightStar" class="invisible">c</span>
+                <span id="idpm-orderRightBottom" class="invisible">RDER</span>
               </router-link>
             </div>
 
           </div>
 
-          <router-link to="/donate" id="m-donateLink" class="invisible" :style="donateStyle">
+          <router-link to="/donate" id="idpm-donateLink" class="invisible" :style="donateStyle">
             <img
-              id="m-donateIcon"
-              class="donate-shadow hoverable"
+              id="idpm-donateIcon"
+              class="donate-shadow idpm-hoverable"
               @mouseenter="donateIconMouseEnter"
               @mouseleave="donateIconMouseLeave"
               :src="require(`./assets/images/svg/donate-${widthClass}.svg`)"
@@ -57,37 +57,37 @@
           </router-link>
         </section>
 
-        <section id="m-notes" class="d-flex justify-content-between align-items-end">
-          <span id="m-skipAnimations" :style="skipStyle">Tap on screen<br>To skip animations</span>
-          <router-link id="m-footerNote" to="/portfolio" class="hoverable" :style="noteStyle">&copy; 2022 - EELee App Design</router-link>
+        <section id="idpm-notes" class="d-flex justify-content-between align-items-end">
+          <span id="idpm-skipAnimations" :style="skipStyle">Tap on screen<br>To skip animations</span>
+          <router-link id="idpm-footerNote" to="/portfolio" class="idpm-hoverable" :style="noteStyle">&copy; 2022 - EELee App Design</router-link>
         </section>
 
-        <footer id="m-footer" class="d-flex justify-content-around">
-          <ul id="m-footerUl" class="d-flex justify-content-between align-items-center">
-            <li id="m-telegramNav" class="invisible">
+        <footer id="idpm-footer" class="d-flex justify-content-around">
+          <ul id="idpm-footerUl" class="d-flex justify-content-between align-items-center">
+            <li id="idpm-telegramNav" class="invisible">
               <img
-                id="m-telegramIcon"
-                class="footer-shadow hoverable"
+                id="idpm-telegramIcon"
+                class="footer-shadow idpm-hoverable"
                 @mouseenter="telegramNavMouseEnter"
                 @mouseleave="telegramNavMouseLeave"
                 :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)"
               />
             </li>
             <li>
-            <router-link to="contact" id="m-emailNav" class="invisible">
+            <router-link to="contact" id="idpm-emailNav" class="invisible">
               <img
-                id="m-emailIcon"
-                class="footer-shadow hoverable"
+                id="idpm-emailIcon"
+                class="footer-shadow idpm-hoverable"
                 @mouseenter="emailNavMouseEnter"
                 @mouseleave="emailNavMouseLeave"
                 :src="require(`./assets/images/svg/email-${widthClass}.svg`)"
               />
             </router-link>
             </li>
-            <li id="m-linkedinNav" class="invisible">
+            <li id="idpm-linkedinNav" class="invisible">
               <img
-                id="m-linkedinIcon"
-                class="footer-shadow hoverable"
+                id="idpm-linkedinIcon"
+                class="footer-shadow idpm-hoverable"
                 @mouseenter="linkedinNavMouseEnter"
                 @mouseleave="linkedinNavMouseLeave"
                 :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)"
@@ -537,28 +537,28 @@ export default {
   },
 
   mounted() {
-    this.containerWrapper = document.getElementById("m-containerWrapper");
-    this.mainContainer = document.getElementById("m-mainContainer");
-    this.bodyCover = document.getElementById("m-bodyCover");
-    this.headerCover = document.getElementById("m-headerCover");
-    this.logoLeft = document.getElementById("m-logoLeft");
-    this.logoMoon = document.getElementById("m-logoMoon");
-    this.logoRight = document.getElementById("m-logoRight");
-    this.orderCentral = document.getElementById("m-orderCentral");
-    this.orderDiv = document.getElementById("m-orderDiv");
-    this.orderRight = document.getElementById("m-orderRight");
-    this.orderRightTop = document.getElementById("m-orderRightTop");
-    this.orderRightStar = document.getElementById("m-orderRightStar");
-    this.orderRightBottom = document.getElementById("m-orderRightBottom");
-    this.navUl = document.getElementById("m-navUl");
-    this.appNav = document.getElementById("m-appNav");
-    this.portNav = document.getElementById("m-portNav");
-    this.donateLink = document.getElementById("m-donateLink");
-    this.footerNote = document.getElementById("m-footerNote");
-    this.skipAnimations = document.getElementById("m-skipAnimations");
-    this.linkedinNav = document.getElementById("m-linkedinNav");
-    this.emailNav = document.getElementById("m-emailNav");
-    this.telegramNav = document.getElementById("m-telegramNav");
+    this.containerWrapper = document.getElementById("idpm-containerWrapper");
+    this.mainContainer = document.getElementById("idpm-mainContainer");
+    this.bodyCover = document.getElementById("idpm-bodyCover");
+    this.headerCover = document.getElementById("idpm-headerCover");
+    this.logoLeft = document.getElementById("idpm-logoLeft");
+    this.logoMoon = document.getElementById("idpm-logoMoon");
+    this.logoRight = document.getElementById("idpm-logoRight");
+    this.orderCentral = document.getElementById("idpm-orderCentral");
+    this.orderDiv = document.getElementById("idpm-orderDiv");
+    this.orderRight = document.getElementById("idpm-orderRight");
+    this.orderRightTop = document.getElementById("idpm-orderRightTop");
+    this.orderRightStar = document.getElementById("idpm-orderRightStar");
+    this.orderRightBottom = document.getElementById("idpm-orderRightBottom");
+    this.navUl = document.getElementById("idpm-navUl");
+    this.appNav = document.getElementById("idpm-appNav");
+    this.portNav = document.getElementById("idpm-portNav");
+    this.donateLink = document.getElementById("idpm-donateLink");
+    this.footerNote = document.getElementById("idpm-footerNote");
+    this.skipAnimations = document.getElementById("idpm-skipAnimations");
+    this.linkedinNav = document.getElementById("idpm-linkedinNav");
+    this.emailNav = document.getElementById("idpm-emailNav");
+    this.telegramNav = document.getElementById("idpm-telegramNav");
     this.initVisibleElemsList = [this.bodyCover, this.headerCover, this.skipAnimations];
     this.invisibleElemsList = [this.logoLeft, this.logoMoon, this.logoRight, this.orderDiv, this.orderRightTop, this.orderRightStar, this.orderRightBottom, this.navUl, this.donateLink, this.linkedinNav, this.emailNav, this.telegramNav];
     this.startAnimations();

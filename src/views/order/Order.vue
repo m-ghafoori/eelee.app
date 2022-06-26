@@ -1,23 +1,23 @@
 <template>
   <div id="idpo-body" class="d-flex flex-column justify-content-between" @mousedown="onBodyDivMouseDown">
-      <header id="idpo-header" class="d-flex justify-content-between align-items-center">
-          <router-link id="idpo-logo" to="/" class="hoverable">EELee</router-link>
-            <ul id="idpo-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
+      <header id="idpo-header" class="header d-flex justify-content-between align-items-center">
+          <router-link id="idpo-logo" to="/" class="logo idpo-hoverable">EELee</router-link>
+            <ul id="idpo-headerUl" class="header-ul d-flex align-items-center" :style="headerUlStyle">
                 <li>
-                    <router-link to="/" class="idpo-nav-link hoverable">Home</router-link>
+                    <router-link to="/" class="nav-link idpo-hoverable">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/portfolio" class="idpo-nav-link hoverable">Portfolio</router-link>
+                    <router-link to="/portfolio" class="nav-link idpo-hoverable">Portfolio</router-link>
                 </li>
                 <li>
-                    <router-link to="/app" class="idpo-nav-link hoverable">App</router-link>
+                    <router-link to="/app" class="nav-link idpo-hoverable">App</router-link>
                 </li>
                 <li>
-                    <router-link to="/donate" class="idpo-nav-link hoverable">Donate</router-link>
+                    <router-link to="/donate" class="nav-link idpo-hoverable">Donate</router-link>
                 </li>
             </ul>
-            <span id="idpo-menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="idpo-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+            <span id="idpo-menuButton" class="menu-button d-none" @click="onMenuButtonClick">
+                <img id="idpo-menuImg" class="idpo-hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
@@ -65,15 +65,15 @@
         </Slideshow>
       </section>
 
-      <footer id="idpo-footer" class="d-flex flex-column justify-content-around align-items-center">
-          <div id="idpo-footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="idpo-linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+      <footer id="idpo-footer" class="footer d-flex flex-column justify-content-around align-items-center">
+          <div id="idpo-footerNav" class="footer-nav d-flex justify-content-between align-items-center">
+            <img id="idpo-linkedinNav" class="idpo-hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="/contact">
-                <img id="idpo-emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="idpo-emailNav" class="idpo-hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="idpo-telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="idpo-telegramNav" class="idpo-hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
-          <router-link id="idpo-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+          <router-link id="idpo-footerNote" to="/portfolio" class="footer-note idpo-hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer>
   </div>
 </template>
@@ -98,8 +98,9 @@ export default {
             isVerticalMenuExpanded: false,
 
             // Elements Object Refs
-            headerUl: Object,
+            header: Object,
             logo: Object,
+            headerUl: Object,
             menuButton: Object,
             menuImg: Object,
             formCover: Object,
@@ -168,7 +169,7 @@ export default {
         headerUlLeftCalculator() {
             if (window.innerWidth >= 576) this.headerUlLeftPosition = 0;
             else {
-                this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
+                this.headerUlLeftPosition = ((this.header.offsetWidth - (this.vw*5 + 65 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
             }
         },
 
@@ -191,7 +192,7 @@ export default {
 
         onBodyDivMouseDown($event) {
             if (this.isVerticalMenuExpanded) {
-                if ((!$event.target.classList.contains('idpo-nav-link')) && ($event.target.id != 'idpo-menuImg')) this.isVerticalMenuExpanded = false;
+                if ((!$event.target.classList.contains('nav-link')) && ($event.target.id != 'idpo-menuImg')) this.isVerticalMenuExpanded = false;
             }
         },
         onMenuButtonClick() {
@@ -232,8 +233,9 @@ export default {
     },
 
     mounted() {
-        this.headerUl = document.getElementById('idpo-headerUl');
+        this.header = document.getElementById('idpo-header');
         this.logo = document.getElementById('idpo-logo');
+        this.headerUl = document.getElementById('idpo-headerUl');
         this.menuButton = document.getElementById('idpo-menuButton');
         this.menuImg = document.getElementById('idpo-menuImg');
         this.formCover = document.getElementById('idpo-formCover');

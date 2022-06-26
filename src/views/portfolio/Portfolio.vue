@@ -1,24 +1,23 @@
 <template>
   <div id="idpp-body" class="d-flex flex-column justify-content-between align-items-center" @mousedown="onBodyDivMouseDown">
-    <div id="idpp-bodyCover" class="d-none"></div>
     <header id="idpp-header" class="d-flex justify-content-between align-items-center">
-          <router-link id="idpp-logo" to="/" class="hoverable">EELee</router-link>
+          <router-link id="idpp-logo" to="/" class="idpp-hoverable">EELee</router-link>
             <ul id="idpp-headerUl" class="d-flex align-items-center" :style="headerUlStyle">
                 <li>
-                    <router-link to="/" class="idpp-nav-link hoverable">Home</router-link>
+                    <router-link to="/" class="idpp-nav-link idpp-hoverable">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/app" class="idpp-nav-link hoverable">App</router-link>
+                    <router-link to="/app" class="idpp-nav-link idpp-hoverable">App</router-link>
                 </li>
                 <li>
-                    <router-link to="/donate" class="idpp-nav-link hoverable">Donate</router-link>
+                    <router-link to="/donate" class="idpp-nav-link idpp-hoverable">Donate</router-link>
                 </li>
                 <li>
-                    <router-link to="/order" class="idpp-nav-link hoverable">Order Now!</router-link>
+                    <router-link to="/order" class="idpp-nav-link idpp-hoverable">Order Now!</router-link>
                 </li>
             </ul>
             <span id="idpp-menuButton" class="d-none" @click="onMenuButtonClick">
-                <img id="idpp-menuImg" class="hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
+                <img id="idpp-menuImg" class="idpp-hoverable" :src="require(`@/assets/images/svg/menu-button.svg`)" alt="" @mouseenter="onMenuImgMouseEnter" @mouseleave="onMenuImgMouseLeave" >
             </span>
       </header>
 
@@ -134,13 +133,13 @@
 
     <footer id="idpp-footer" class="d-flex flex-column justify-content-around align-items-center">
           <div id="idpp-footerNav" class="d-flex justify-content-between align-items-center">
-            <img id="idpp-linkedinNav" class="hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
+            <img id="idpp-linkedinNav" class="idpp-hoverable" :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)" alt="" @mouseenter="onLinkedinMouseEnter" @mouseleave="onLinkedinMouseLeave">
             <router-link to="/contact">
-                <img id="idpp-emailNav" class="hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
+                <img id="idpp-emailNav" class="idpp-hoverable" :src="require(`@/assets/images/svg/email-${widthClass}.svg`)" alt="" @mouseenter="onEmailMouseEnter" @mouseleave="onEmailMouseLeave">
             </router-link>
-            <img id="idpp-telegramNav" class="hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
+            <img id="idpp-telegramNav" class="idpp-hoverable" :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)" alt="" @mouseenter="onTelegramMouseEnter" @mouseleave="onTelegramMouseLeave">
           </div>
-          <router-link id="idpp-footerNote" to="/portfolio" class="hoverable">&copy; 2022 - EELee App Design</router-link>
+          <router-link id="idpp-footerNote" to="/portfolio" class="idpp-hoverable">&copy; 2022 - EELee App Design</router-link>
       </footer> 
   </div>
 </template>
@@ -174,11 +173,11 @@ export default {
 
       // Element Object Refs
       bodyDiv: Object,
-      headerUl: Object,
+      header: Object,
       logo: Object,
+      headerUl: Object,
       menuButton: Object,
       menuImg: Object,
-      bodyCover: Object,
       mainPage: Object,
       homePage: Object,
       appPage: Object,
@@ -198,12 +197,16 @@ export default {
             this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button-hover.svg`));
             this.headerUl.classList.remove('invisible', 'scale-down-ver-top');
             this.headerUl.classList.add('scale-up-ver-top');
-            this.bodyCover.classList.remove('d-none');
+            for (const section of document.getElementsByTagName('section')) {
+              section.style.opacity = '0.2';
+            }
         } else {
             this.menuImg.setAttribute('src', require(`@/assets/images/svg/menu-button.svg`));
             this.headerUl.classList.remove('scale-up-ver-top');
             this.headerUl.classList.add('scale-down-ver-top');
-            this.bodyCover.classList.add('d-none');
+            for (const section of document.getElementsByTagName('section')) {
+              section.style.opacity = '1';
+            }
         }
     },
     loadMain(val) {
@@ -273,7 +276,7 @@ export default {
         this.sizeHistoryUpdator(this.widthClass);
         if (this.isMounted) {
             this.vh = window.innerHeight/100;
-            this.vw = document.body.clientWidth/100;
+            this.vw = window.innerWidth/100;
             this.headerUlLeftCalculator();
             this.headerNavDisplay();
             this.remainingHeightHome = (this.vh*25 + this.mainPage.offsetHeight + this.homePage.offsetHeight*0.3);
@@ -288,7 +291,7 @@ export default {
         headerUlLeftCalculator() {
             if (window.innerWidth >= 576) this.headerUlLeftPosition = 0;
             else {
-              this.headerUlLeftPosition = ((this.vw*98 - (this.vw*8 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
+              this.headerUlLeftPosition = ((this.header.offsetWidth - (this.vw*5 + 65 + this.logo.offsetWidth + this.menuButton.offsetWidth + this.headerUl.offsetWidth))/2 + this.vw*4 + this.menuButton.offsetWidth);
             }
         },
 
@@ -373,11 +376,11 @@ export default {
 
   mounted() {
     this.bodyDiv = document.getElementById('idpp-body');
-    this.headerUl = document.getElementById('idpp-headerUl');
+    this.header = document.getElementById('idpp-header');
     this.logo = document.getElementById('idpp-logo');
+    this.headerUl = document.getElementById('idpp-headerUl');
     this.menuButton = document.getElementById('idpp-menuButton');
     this.menuImg = document.getElementById('idpp-menuImg');
-    this.bodyCover = document.getElementById('idpp-bodyCover');
     this.mainPage = document.getElementById('idpp-mainPage');
     this.homePage = document.getElementById('idpp-homePage');
     this.appPage = document.getElementById('idpp-appPage');
@@ -387,7 +390,7 @@ export default {
         this.emailNav = document.getElementById('idpp-emailNav');
         this.telegramNav = document.getElementById('idpp-telegramNav');
     this.isMounted = true;
-    document.body.style.overflowY = 'auto';
+    document.body.style.overflowY = 'scroll';
     this.windowWidthClassEmitter();
     this.headerNavDisplay();
     this.headerUlLeftCalculator();
