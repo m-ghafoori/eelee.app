@@ -30,40 +30,45 @@
     background-color: #02021b;
     width: 100vw;
     height: 100vh;
-    /* min-width: 320px; */
+    min-width: 250px;
+    min-height: 450px;
     cursor: url("../images/svg/pointer.svg"), auto;
 }
 
 #idpm-mainContainer {
-    width: inherit;
-    height: inherit;
-    /* min-width: 320px; */
-    min-height: 90vh;
+    width: 100%;
+    height: 100%;
+    min-width: 250px;
+    min-height: 450px;
     position: relative;
     background: url("../images/background.jpg") no-repeat center;
     background-size: cover;
+    opacity: 1;
 }
 
 #idpm-bodyCover {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     right: 0;
     background: black;
     z-index: 1000;
+    opacity: 1;
 }
 
 /* Header Section */
 
 #idpm-header {
+    width: 100vw;
     height: 12vh;
+    min-height: 54px;
     font-family: Logo-Font;
     color: #b2ffff !important;
-    font-size: calc(3vw + 3vh);
+    font-size: calc(3vw + 0.7rem);
     position: relative;
     z-index: 2000;
-    margin-bottom: 2vh;
+    margin-bottom: 20px;
 }
 
 #idpm-headerCover {
@@ -77,7 +82,7 @@
 
 #idpm-logoLeft,
 #idpm-logoRight {
-    letter-spacing: calc(3vw + 3vh + 1.5vmin);
+    letter-spacing: calc(3vw + 1rem);
 }
 
 #idpm-logoRight {
@@ -86,8 +91,8 @@
 
 #idpm-logoMoon {
     font-family: "Illustrated";
-    font-size: calc(2vw + 2vh);
-    padding-top: calc(1vh + 1vw);
+    font-size: calc(2vw + 0.5rem);
+    padding-top: calc(1vw + 0.25rem);
     text-shadow: 0 0 28px #a2e5ff;
 }
 
@@ -99,15 +104,16 @@
 
 #idpm-showcase {
     width: 100vw;
-    height: 50vh;
+    height: 30vh;
+    min-height: 150px;
     margin: 0;
 }
 
 #idpm-orderDiv {
     width: fit-content;
-    max-height: calc(3vh + 3vw);
+    max-height: 40px;
     font-family: "Creepster", cursive;
-    font-size: calc(2vw + 3vh);
+    font-size: calc(2vw + 0.7rem);
     text-align: center;
     background: linear-gradient(to bottom, #ffe56f, #ff0000);
     -webkit-background-clip: text;
@@ -116,7 +122,7 @@
     letter-spacing: 0.8vw;
     white-space: nowrap;
     position: relative;
-    bottom: 4vh;
+    bottom: 20px;
     /* margin-left: 5vw; */
 }
 
@@ -140,20 +146,20 @@
 }
 
 #idpm-navUl {
-    width: 18vw;
+    width: 45%;
     margin: 0 0 0 2vw;
 }
 
 #idpm-navUl li{
     width: fit-content;
     height: fit-content;
-    margin: calc(4vw + 2vh) 0;
+    margin: calc(4vw + 0.5rem) 0;
     transform: rotate(-33deg);
 }
 
 #idpm-portNav, #idpm-appNav {
     font-family: "Pandora";
-    font-size: calc(1vw + 2vh);
+    font-size: calc(1vw + 0.5rem);
     letter-spacing: 0.42vw;
     text-decoration: none;
     color: #a2e5ff !important;
@@ -164,22 +170,22 @@
 }
 
 #idpm-orderCentral {
-    width: 30%;
+    width: 45%;
     height: 100%;
+    padding: 30px 0 0 8%;
 }
 
 #idpm-orderRight {
     font-family: "Star-Bold";
-    font-size: calc(2vw + 2vh);
+    font-size: calc(2vw + 0.5rem);
     white-space: nowrap;
     text-align: center;
     text-decoration: none;
     letter-spacing: 0.5vw;
     color: #b2ffff;
     width: fit-content;
-    /* max-height: 10vh; */
     transform: rotate(33deg);
-    /* margin: 10vh 5vw 0 0; */
+    flex-grow: 1;
 }
 
 #idpm-orderRight:hover {
@@ -188,20 +194,22 @@
 
 #idpm-orderRightStar {
     font-family: "Illustrated";
-    font-size: calc(2vw + 2vh);
+    font-size: calc(2vw + 0.5rem);
     letter-spacing: 0;
 }
 
-#idpm-donateLink {
-    width: fit-content;
+#idpm-donateDiv {
+    width: 100%;
     position: relative;
-    /* right: 12%; */
-    margin-top: auto;
+}
+
+#idpm-donateLink {
+    width: 100%;
 }
 
 #idpm-donateIcon {
     transform: rotate(150deg);
-    margin: 0 20%;
+    margin: 0 auto;
 }
 
 /* Notes Section */
@@ -210,7 +218,7 @@
     width: inherit;
     height: 1vh;
     font-family: 'Gluten', cursive;
-    font-size: calc(1vh + 1.2vw);
+    font-size: calc(1.2vw + 0.25rem);
 }
 
 #idpm-skipAnimations {
@@ -220,7 +228,6 @@
     white-space: nowrap;
     line-height: 5vh;
     text-align: end;
-    /* transform: rotate(-40deg); */
     position: relative;
     left: 1vh;
     z-index: 4000;
@@ -242,7 +249,7 @@
 
 #idpm-footer {
     width: 100%;
-    height: 18vh;
+    height: 105px;
 }
 
 #idpm-footerUl {
@@ -266,34 +273,22 @@
 }
 
 /* Media Queries */
-
-@media (max-width: 768px) {
-    /* #idpm-footer {
-        margin-top: 5vh;
-    } */
 /* 
-    #idpm-footerNote {
-        color: red;
-        align-self: center;
-    } */
-}
+@media (max-width: 250px) {
+    #idpm-footerUl {
+        padding-bottom: 30px;
+    }
+} */
 
 @media (max-width: 576px) {
-    /* #idpm-skipAnimations {
-        bottom: 7vw;
-    } */
 
     #idpm-footer {
-        margin-bottom: 2vh;
+        padding-bottom: 20px;
     }
 
     #idpm-footerUl {
         width: 50%;
-        height: 30vh;
+        height: 150px;
+        padding-bottom: 30px;
     }
-/* 
-    #idpm-footerNote {
-        color: red;
-        top: 10vw;
-    } */
 }

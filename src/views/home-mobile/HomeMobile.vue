@@ -36,7 +36,7 @@
             </ul>
             <div id="idpm-orderCentral" class="d-flex justify-content-around align-items-center">
               
-              <router-link id="idpm-orderRight" to="/order" class="text-shine-logo idpm-hoverable">
+              <router-link id="idpm-orderRight" to="/order" class="text-shine-logo idpm-hoverable align-self-start">
                 <span id="idpm-orderRightTop" class="invisible">Click to <br /></span>
                 <span id="idpm-orderRightStar" class="invisible">c</span>
                 <span id="idpm-orderRightBottom" class="invisible">RDER</span>
@@ -44,8 +44,10 @@
             </div>
 
           </div>
+        </section>
 
-          <router-link to="/donate" id="idpm-donateLink" class="invisible" :style="donateStyle">
+        <div id="idpm-donateDiv">
+          <router-link to="/donate" id="idpm-donateLink" class="invisible d-flex justify-content-center" :style="donateStyle">
             <img
               id="idpm-donateIcon"
               class="donate-shadow idpm-hoverable"
@@ -55,7 +57,7 @@
               alt=""
             />
           </router-link>
-        </section>
+        </div>
 
         <section id="idpm-notes" class="d-flex justify-content-between align-items-end">
           <span id="idpm-skipAnimations" :style="skipStyle">Tap on screen<br>To skip animations</span>
@@ -108,17 +110,12 @@ export default {
 
   data() {
     return {
-      // screenRatio: Number,
-      // donateTop: 0,
-      // skipTop: 0,
-      // noteTop: 0,
       donateBottom: 0,
       skipBottom: 0,
       noteBottom: 0,
       skipRotation: -40,
       skipColor: String,
       noteColor: String,
-
       isPageFullyLoaded: false,
 
       // Timeout References
@@ -192,16 +189,13 @@ export default {
 
   computed: {
     widthClass() {return this.windowWidthClassEmitter()},
-    // screenRatio() {return this.screenRatio},
     donateStyle() {
       return {
-        // 'top': `${this.donateTop}px`,
         'bottom': `${this.donateBottom}vh`,
       }
     },
     skipStyle() {
       return {
-        // 'top': `${this.skipTop}vh`,
         'bottom': `${this.skipBottom}vh`,
         'transform': `rotate(${this.skipRotation}deg)`,
         'color': `${this.skipColor}`
@@ -209,7 +203,6 @@ export default {
     },
     noteStyle() {
         return {
-          // 'top': `${this.noteTop}vh`,
           'bottom': `${this.noteBottom}vh`,
           'color': `${this.noteColor}`
         }
@@ -234,9 +227,6 @@ export default {
     // Triggers different window size classes on resize
     windowWidthClassEmitter() {
       var windowWidth = window.innerWidth;
-      // var windowHeight = window.innerHeight;
-      // this.screenRatio = windowWidth/windowHeight;
-      // console.log(this.footerNote.offsetTop)
 
       switch (true) {
         case windowWidth < 320:
@@ -262,58 +252,58 @@ export default {
     },
 
     donateUpdator() {
+      if (window.innerHeight > 450) {
         if ((this.donateLink.offsetTop/window.innerHeight) > 0.6) {
           this.donateBottom++;
         }
         if ((this.donateLink.offsetTop/window.innerHeight) < 0.5) {
           this.donateBottom--;
         }
+      }
     },
 
     skipUpdator() {
-      if ((window.innerWidth/window.innerHeight) > 1)
-        this.skipRotation = -37;
-        else this.skipRotation = -40;
-      if ((window.innerWidth/window.innerHeight) > 0.85) {
-        // this.skipTop = 0;
-        this.skipColor = '#a2e5ff';
-        if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.7) {
-          this.skipBottom++;
-        }
-        if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.65) {
-          this.skipBottom--;
-        }
-      } else {
-        // this.skipBottom = 0;
-        this.skipColor = '#f8cc09';
-        // this.skipBottom = this.skipBottom*(-1);
-        if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.8) {
-          this.skipBottom--;
-        }
-        if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.85) {
-          this.skipBottom++;
+      if (window.innerHeight > 450) {
+        if ((window.innerWidth/window.innerHeight) > 1)
+          this.skipRotation = -37;
+          else this.skipRotation = -40;
+        if ((window.innerWidth/window.innerHeight) > 0.85) {
+          this.skipColor = '#a2e5ff';
+          if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.7) {
+            this.skipBottom++;
+          }
+          if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.65) {
+            this.skipBottom--;
+          }
+        } else {
+          this.skipColor = '#f8cc09';
+          if ((this.skipAnimations.offsetTop/window.innerHeight) < 0.8) {
+            this.skipBottom--;
+          }
+          if ((this.skipAnimations.offsetTop/window.innerHeight) > 0.85) {
+            this.skipBottom++;
+          }
         }
       }
     },
     noteUpdator() {
-      if ((window.innerWidth/window.innerHeight) > 0.8) {
-        // this.noteTop = 0;
-        this.noteColor = '#a2e5ff';
-        if ((this.footerNote.offsetTop/window.innerHeight) > 0.7) {
-          this.noteBottom++;
-        }
-        if ((this.footerNote.offsetTop/window.innerHeight) < 0.65) {
-          this.noteBottom--;
-        }
-      } else {
-        // this.noteBottom = 0;
-        this.noteColor = '#f8cc09';
-        // this.noteBottom = this.noteBottom*(-1);
-        if ((this.footerNote.offsetTop/window.innerHeight) < 0.75) {
-          this.noteBottom--;
-        }
-        if ((this.footerNote.offsetTop/window.innerHeight) > 0.8) {
-          this.noteBottom++;
+      if (window.innerHeight > 450) {
+        if ((window.innerWidth/window.innerHeight) > 0.8) {
+          this.noteColor = '#a2e5ff';
+          if ((this.footerNote.offsetTop/window.innerHeight) > 0.7) {
+            this.noteBottom++;
+          }
+          if ((this.footerNote.offsetTop/window.innerHeight) < 0.65) {
+            this.noteBottom--;
+          }
+        } else {
+          this.noteColor = '#f8cc09';
+          if ((this.footerNote.offsetTop/window.innerHeight) < 0.75) {
+            this.noteBottom--;
+          }
+          if ((this.footerNote.offsetTop/window.innerHeight) > 0.8) {
+            this.noteBottom++;
+          }
         }
       }
     },
@@ -323,7 +313,6 @@ export default {
     // Starts initial appearance animations
     startAnimations() {
       console.log("animations started");
-      // this.containerWrapper.classList.add("d-flex");
       this.headerCloudMove();
       this.logoInitAppear();
       this.bodyCoverFade();
@@ -397,7 +386,7 @@ export default {
     // Initial bodyCover Fade Effect
     bodyCoverFade() {
       this.bodyCoverFirstRef = setTimeout(() => {
-        this.bodyCover.classList.add('cover-fade');
+        this.bodyCover.classList.add('fade-cover');
         this.bodyCoverSecondRef = setTimeout(() => {
           this.bodyCover.classList.add('invisible');
         }, 6000);
@@ -464,8 +453,6 @@ export default {
         this.navUl.classList.remove('invisible');
         this.navUl.classList.add('star-appear');
           this.isPageFullyLoaded = true;
-        // setTimeout(() => {
-        // }, 100);
       }, 14000);
     },
 

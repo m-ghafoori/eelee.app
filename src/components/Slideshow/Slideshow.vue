@@ -154,15 +154,17 @@ export default {
 }
 
 .slideshow-active {
-    position: relative;
     width: 70vw;
     height: 50vh;
+    min-width: 175px;
+    min-height: 220px;
+    position: relative;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
 .slideshow-title {
-    width: inherit;
+    width: 100%;
     height: 15%;
     background: #cbffe8;
     text-align: center;
@@ -172,7 +174,7 @@ export default {
 }
 
 .slideshow-content {
-    width: inherit;
+    width: 100%;
     height: fit-content;
     position: relative;
     padding: 1% 3%;

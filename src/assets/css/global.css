@@ -11,7 +11,6 @@ html {
     min-height: 100vh;
     position: relative;
     /* cursor: url('../images/svg/pointer.svg'), auto; */
-    /* overflow: hidden; */
 }
 
 body {
@@ -21,6 +20,7 @@ body {
     min-height: 450px;
     position: absolute;
     margin: 0;
+    overflow: hidden;
     /* background: #02021b; */
 }
 
@@ -254,6 +254,18 @@ ul {
 
 
 /* Media Queries */
+
+@media (max-height: 450px) {
+    body {
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 250px) {
+    body {
+        overflow-x: auto;
+    }
+}
 
 @media (max-width: 320px) {
     .footer {

@@ -323,22 +323,18 @@
   animation: cloud-move 10s 1 ease both;
 }
 
-@keyframes cover-fade {
-  0% {
-    opacity: 1;
-  }
-
+@keyframes fade-out {
   100% {
     opacity: 0;
   }
 }
 
-.cover-fade {
-  animation: cover-fade 6s 1 ease both;
+.fade-cover {
+  animation: fade-out 6s 1 ease both;
 }
 
 .fade-skip {
-  animation: cover-fade 2s 1 ease both;
+  animation: fade-out 2s 1 ease both;
 }
 
 @keyframes star-appear {

@@ -368,7 +368,6 @@ export default {
         this.linkedinNav = document.getElementById('idpc-linkedinNav');
         this.emailNav = document.getElementById('idpc-emailNav');
         this.telegramNav = document.getElementById('idpc-telegramNav');
-        document.body.style.overflow = 'auto';
         this.isMounted = true;
         this.windowWidthClassEmitter();
         this.headerNavDisplay();

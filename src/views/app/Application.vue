@@ -211,8 +211,6 @@ export default {
         this.emailNav = document.getElementById('idpa-emailNav');
         this.telegramNav = document.getElementById('idpa-telegramNav');
         this.isMounted = true;
-        document.body.style.overflowY = 'auto';
-        document.body.style.overflowX = 'hidden';
         this.windowWidthClassEmitter();
         this.headerNavDisplay();
         this.headerUlLeftCalculator();
