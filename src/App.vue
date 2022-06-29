@@ -1,7 +1,5 @@
 <template>
-  <router-view
-    @screen-width-change="onScreenWidthChange"
-  ></router-view>
+  <router-view @screen-width-change="onScreenWidthChange"></router-view>
 </template>
 
 <script>
@@ -15,8 +13,8 @@ export default {
   },
   watcher: {
     docHasFocus(val) {
-      console.log(val)
-    }
+      console.log(val);
+    },
   },
   computed: {
     docHasFocus() {
@@ -26,7 +24,7 @@ export default {
   methods: {
     // Utility Methods
 
-    preventDefaultEvents (e) {
+    preventDefaultEvents(e) {
       e = e || window.event;
       e.preventDefault();
     },
@@ -58,11 +56,11 @@ export default {
       this.sizeHistoryArray.push(sizeClass);
       this.sizeHistoryArray.shift();
       if (
-        this.sizeHistoryArray.includes('lg') &&
+        this.sizeHistoryArray.includes("lg") &&
         this.sizeHistoryArray[0] != this.sizeHistoryArray[1]
       ) {
-        if (this.$route.path == '/') this.$router.go('/home');
-        if (this.$route.path == '/home') this.$router.go('/');      
+        if (this.$route.path == "/") this.$router.go("/home");
+        if (this.$route.path == "/home") this.$router.go("/");
       }
     },
   },
@@ -73,13 +71,11 @@ export default {
     this.sizeHistoryArray.push(initialSize);
     console.log("created:", this.sizeHistoryArray);
   },
-  // mounted() {
-  //   document.body.style.overflow = 'hidden';
-  // },
+
   updated() {
-      console.log(this.docHasFocus)
+    console.log(this.docHasFocus);
   },
-  emits: ['screen-width-change'],
+  emits: ["screen-width-change"],
 };
 </script>
 

@@ -3,8 +3,6 @@
 }
 
 #idpo-body {
-    width: 100%;
-    height: 100%;
     background: #ffffff;
     cursor: url('../images/svg/pointer.svg'), auto;
 }
@@ -32,43 +30,23 @@
     z-index: 100;
 }
 
-#idpo-showcase h3{
+#idpo-showcase h3 {
     font-family: 'Josefin Slab';
     color: #f93879;
     margin-top: 0;
 }
 
-#idpo-showcase p{
+#idpo-showcase p {
     font-family: 'Nanum Myeongjo';
     color: #0b7a62;
     line-height: 8vh;
     margin: 0;
 }
 
-#idpo-showcase h4{
+#idpo-showcase h4 {
     width: fit-content;
     font-family: 'Josefin Slab';
     color: #f93879;
     align-self: flex-end;
     margin-top: 0;
 }
-
-/* Media Queries */
-/* 
-@media (max-width: 320px) {
-    #idpo-footer {
-        width: 70vw;
-    }
-}
-
-@media (min-width: 320px) and (max-width: 576px) {
-    #idpo-footer {
-        width: 60vw;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-    #idpo-footer {
-        width: 50vw;
-    }
-} */

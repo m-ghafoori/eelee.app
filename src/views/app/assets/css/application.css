@@ -6,11 +6,9 @@
 .idpa-hoverable {
   cursor: url('../images/svg/pointer-hover.svg'), auto;
 }
+
 #idpa-body {
-  width: 100%;
   height: fit-content;
-  min-width: 245px;
-  min-height: 100vh;
   background: #91ffff;
   cursor: url('../images/svg/pointer.svg'), auto;
 }
@@ -43,6 +41,7 @@
 .lost .counter {
   color: orangered !important;
 }
+
 .won .counter {
   color: rgb(18, 255, 255) !important;
 }
@@ -54,6 +53,7 @@
 .lost .digital {
   color: orange !important;
 }
+
 .won .digital {
   color: greenyellow !important;
 }
@@ -81,49 +81,29 @@
   padding: 2vh 1vw;
 }
 
-/* Media Queries */
-
-/* @media (max-width: 320px) {
-  #idpa-footer {
-      width: 70vw;
-  }
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
 }
 
-@media (min-width: 320px) and (max-width: 576px) {
-  #idpa-footer {
-      width: 60vw;
-  }
+.settings-list li:nth-of-type(1) .label-span {
+  border-top: 2px solid;
 }
 
-@media (min-width: 576px) and (max-width: 768px) {
-  #idpa-footer {
-      width: 50vw;
-  }
-}   */
+.settings-list li:nth-of-type(1) .input {
+  border-top: 2px solid;
+}
 
-  .settings-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex-grow: 1;
-  }
-  
-  .settings-list li:nth-of-type(1) .label-span {
-    border-top: 2px solid;
-  }
-  
-  .settings-list li:nth-of-type(1) .input {
-    border-top: 2px solid;
-  }
-  
-  .settings-list li:nth-last-of-type(1) .label-span {
-    border-bottom: 2px solid;
-  }
-  
-  .settings-list li:nth-last-of-type(1) .input {
-    border-bottom: 2px solid;
-  }
+.settings-list li:nth-last-of-type(1) .label-span {
+  border-bottom: 2px solid;
+}
+
+.settings-list li:nth-last-of-type(1) .input {
+  border-bottom: 2px solid;
+}
 
 
 
@@ -133,16 +113,18 @@
   background-size: 300% 300%;
   background-image: linear-gradient(-45deg, #3bade3 0%, #576fe6 25%, #250266 51%, #9844b7 100%);
   -webkit-animation: AnimateBG 30s ease infinite;
-          animation: AnimateBG 30s ease infinite;
+  animation: AnimateBG 30s ease infinite;
 }
 
 @-webkit-keyframes AnimateBG {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -152,9 +134,11 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -165,8 +149,8 @@
 /* Animations */
 
 .rotate-center {
-	-webkit-animation: rotate-center 0.3s ease-in-out both;
-	        animation: rotate-center 0.3s ease-in-out both;
+  -webkit-animation: rotate-center 0.3s ease-in-out both;
+  animation: rotate-center 0.3s ease-in-out both;
 }
 
 /* ----------------------------------------------
@@ -181,31 +165,34 @@
  * animation rotate-center
  * ----------------------------------------
  */
- @-webkit-keyframes rotate-center {
+@-webkit-keyframes rotate-center {
   0% {
     -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform: rotate(0);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
+
 @keyframes rotate-center {
   0% {
     -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform: rotate(0);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 
 .reverse-rotate-center {
-	-webkit-animation: reverse-rotate-center 0.7s ease-in-out both;
-	        animation: reverse-rotate-center 0.7s ease-in-out both;
+  -webkit-animation: reverse-rotate-center 0.7s ease-in-out both;
+  animation: reverse-rotate-center 0.7s ease-in-out both;
 }
 
 /* ----------------------------------------------
@@ -220,23 +207,26 @@
  * animation rotate-center
  * ----------------------------------------
  */
- @-webkit-keyframes reverse-rotate-center {
+@-webkit-keyframes reverse-rotate-center {
   0% {
     -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform: rotate(0);
   }
+
   100% {
     -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }
+
 @keyframes reverse-rotate-center {
   0% {
     -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform: rotate(0);
   }
+
   100% {
     -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
 }

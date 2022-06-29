@@ -4,23 +4,24 @@
     --app-width: 40vw;
 }
 
+@media (max-width: 250px) {
+    :root {
+        --home-lg-width: 100px;
+        --home-md-width: 45px;
+        --app-width: 100px;
+    }
+}
+
 /* Classes */
 
 .idpp-hoverable {
     cursor: url('../images/svg/pointer-hover.svg'), auto;
 }
 
-.idpp-nav-link {
-    font-family: 'Poiret One', cursive;
-    font-weight: 1000;
-    font-size: calc(1vw + 1.5vh);
-    color: #2e710f;
-    margin: 1vw 2vw;
-    text-decoration: none;
-}
-
-.idpp-nav-link:hover {
-    color: indigo;
+.page-flexbox {
+    width: 100%;
+    height: fit-content;
+    padding: calc(2vw + 0.7rem) 0;
 }
 
 .reflection {
@@ -60,117 +61,59 @@
 
 .idpp-paragraph {
     font-family: 'Courgette', cursive;
-    font-size: 2.3vw;
+    font-size: calc(1.5vw + 0.4rem);
     color: #6a24ac;
-    margin: 5%;
+    padding: 5%;
+    margin: 0;
+}
+
+.idpp-section-header {
+    width: 100%;
+    height: fit-content;
+}
+
+.idpp-header-border {
+    border: 1px solid #d8215e;
+    background: #d8215e;
+}
+
+.idpp-header-title {
+    font-family: 'Rock Salt', cursive;
+    text-align: center;
+    padding: 2%;
+    color: #1b7521;
+    font-size: calc(1.5vw + 0.5rem);
+    opacity: 1;
+}
+
+.idpp-section-page {
+    width: 100%;
+    height: fit-content;
+    border: 2px solid #d8215e;
+    border-top: 0;
+    margin-bottom: calc(5vw + 5vh);
+    position: relative;
 }
 
 /* ID Tags */
 
 #idpp-body {
-    width: 100vw;
     height: fit-content;
-    min-width: 250px;
-    min-height: 450px;
-    position: absolute;
-    top: 0;
+    background: gold;
     cursor: url('../images/svg/pointer.svg'), auto;
-    background: gold;
 }
 
-/* Header */
+/* Showcase */
 
-/* Classes */
-
-.idpp-nav-link {
-    font-family: 'Poiret One', cursive;
-    font-weight: 1000;
-    font-size: calc(1.5vw + 2vh);
-    color: #0d8a6f;
-    margin: 1vw 2vw;
-    text-decoration: none;
-}
-
-.idpp-nav-link:hover {
-    color: #fb4a85;
-}
-
-.idpp-nav-link:active {
-    color: #49a8f0;
-}
-
-/* ID Tags */
-
-#idpp-header {
-    width: 100vw;
-    height: 60px;
-    min-width: 250px;
-    position: fixed;
-    padding-top: 5px;
-    margin-bottom: 10px;
-    z-index: 200;
-    background: gold;
-}
-
-#idpp-logo {
-    width: 18%;
-    height: fit-content;
-    font-family: 'Fredericka the Great', cursive;
-    font-weight: 1000;
-    font-size: calc(2vw + 1rem);
-    margin: auto 3vw auto 25px;
-    text-decoration: none;
-    color: #b42857;
-}
-
-#idpp-logo:hover {
-    color: #2ec7a6;
-}
-
-#idpp-menuButton {
-    width: 25px;
-    height: 25px;
-    margin: auto 40px auto 2vw;
-}
-
-#idpp-headerUl {
-    width: 78%;
-    height: 100%;
-    font-size: calc(1.5vw + 0.7rem);
-    position: relative;
-    margin: 0;
-}
-
-#idpp-headerUl li {
-    width: fit-content;
-    height: fit-content;
-    margin:auto 0;
-}
-
-/* Main Section */
-
-#idpp-mainPage {
+#idpp-showcase {
     width: 80%;
     height: fit-content;
     position: relative;
-    top: 15vh;
-    border: 2px solid #c78809;
-    border-bottom: 0;
-    border-radius: 3.2rem 3.2rem 0 0;
-    margin-bottom: 15vh;
-    opacity: 1;
+    top: 10px;
+    margin: 80px auto;
 }
 
-#idpp-mainHeader {
-    border-bottom: 2px solid #c78809;
-    border-radius: 3rem 3rem 0 0;
-    min-width: 100%;
-    min-height: 12%;
-    font-family: 'Rock Salt', cursive;
-    text-align: center;
-    padding: auto;
-    color: #1b7521;
-}
+/* Main Section */
 
 #idpp-mainPar {
     height: fit-content;
@@ -180,36 +123,6 @@
 
 #idpp-homeSecondPar {
     margin-top: 15%;
-}
-
-#idpp-homePage {
-    width: 90%;
-    height: inherit;
-    border-left: 2px solid #c78809;
-    margin: 10vh 0;
-    position: relative;
-    left: 5%;
-    opacity: 1;
-}
-
-#idpp-homeFlexColBox {
-    border-right: 2px solid #c78809;
-}
-
-#idpp-homeHeader {
-    border: 2px solid #c78809;
-    border-left: 0;
-    border-radius: 0 3rem 3rem 0;
-    height: fit-content;
-    width: 11.11%;
-    font-family: 'Rock Salt', cursive;
-    text-align: center;
-    padding: 2%;
-    color: rgb(27, 117, 33);
-    font-size: 2.5vw;
-    writing-mode: vertical-rl;
-    display: inline-block;
-    text-orientation: upright;
 }
 
 #idpp-homeLgDiv {
@@ -244,45 +157,13 @@
 
 /* App Section */
 
-#idpp-appPage {
-    width: 90%;
-    height: inherit;
-    border-right: 2px solid #c78809;
-    border-radius: 0 0 0 2.2rem;
-    margin-bottom: 10vh;
-    position: relative;
-    right: 5%;
-    opacity: 1;
-}
-
-#idpp-appHeader {
-    border: 2px solid #c78809;
-    border-radius: 3rem 0 0 3rem;
-    min-height: fit-content;
-    width: 11.11%;
-    font-family: 'Rock Salt', cursive;
-    text-align: center;
-    padding: 2%;
-    color: #1b7521;
-    font-size: 2.5vw;
-    writing-mode: vertical-rl;
-    display: inline-block;
-    text-orientation: upright;
-}
-
-#idpp-appFlexColBox {
-    width: 88%;
-}
-
 #idpp-appFirstPar {
     width: 20%;
     text-align: center;
 }
 
 #idpp-appTxtImgContainer {
-    /* width: 88%; */
     justify-content: start;
-    /* margin: 5%; */
     margin-top: 0;
 }
 
@@ -301,44 +182,13 @@
 
 /* Portfolio Section */
 
-#idpp-portPage {
-    width: 90%;
-    height: inherit;
-    border-left: 2px solid #c78809;
-    margin-bottom: 10vh;
-    position: relative;
-    left: 5%;
-    opacity: 1;
-}
-
-#idpp-portHeader {
-    border: 2px solid #c78809;
-    border-radius: 0 3rem 3rem 0;
-    height: fit-content;
-    width: 11.11%;
-    font-family: 'Rock Salt', cursive;
-    text-align: center;
-    padding: 2%;
-    color: rgb(27, 117, 33);
-    font-size: 2.5vw;
-    writing-mode: vertical-rl;
-    display: inline-block;
-    text-orientation: upright;
-}
-
-#idpp-portFlexColBox {
-    width: 88%;
-}
-
 #idpp-portFirstPar {
     width: 20%;
     text-align: center;
 }
 
 #idpp-portTxtImgContainer {
-    /* width: 88%; */
     justify-content: end;
-    /* margin: 5%; */
     margin-top: 0;
 }
 
@@ -361,30 +211,6 @@
     margin-top: 15%;
 }
 
-#idpp-othersPage {
-    width: 90%;
-    height: inherit;
-    border-right: 2px solid #c78809;
-    position: relative;
-    right: 5%;
-    margin-bottom: 150px;
-    opacity: 1;
-}
-
-#idpp-othersHeader {
-    border: 2px solid #c78809;
-    border-radius: 3rem 0 0 3rem;
-    min-height: fit-content;
-    width: 11.11%;
-    font-family: 'Rock Salt', cursive;
-    text-align: center;
-    padding: 2%;
-    color: #1b7521;
-    font-size: 2.5vw;
-    writing-mode: vertical-rl;
-    display: inline-block;
-    text-orientation: upright;
-}
 #idpp-othersImageContainer {
     width: 80%;
 }
@@ -423,7 +249,6 @@
     width: calc(var(--home-md-width)*0.95);
     height: calc(var(--home-md-width)*0.95);
     position: relative;
-    /* perspective: 20rem; */
     margin: 5%;
 }
 
@@ -431,7 +256,6 @@
     width: calc(var(--home-md-width)*0.95);
     height: calc(var(--home-md-width)*0.95);
     background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeMd.png');
-    /* transform: rotateY(-12deg); */
 }
 
 #idpp-othersRightParentDiv {
@@ -449,102 +273,11 @@
     transform: rotateY(-12deg);
 }
 
-/* Footer */
-
-/* ID Tags */
-
-#idpp-footer {
-    width: 40%;
-    height: 105px;
-    min-width: 250px;
-    position: absolute;
-    bottom: 0;
-    align-self: center;
-    padding-bottom: 20px;
-}
-
-#idpp-footerNav {
-    width: 100%;
-    height: 45px;
-    margin-bottom: 20px;
-}
-
-#idpp-footerNote {
-    width: fit-content;
-    height: fit-content;
-    text-decoration: none;
-    font-family: 'Gluten', cursive;
-    font-size: calc(1vw + 0.5rem);
-    white-space: nowrap;
-    color: #d8215e;
-}
-
-#idpp-footerNote:hover {
-    color: #2ec7a6;
-}
-
 /* Media Queries */
 
-@media (min-width: 992px) {
-/* 
-    #idpp-mainPage {
-        height: 25vw;
-    } */
-
-    #idpp-mainHeader {
-        font-size: 2.5vw;
-        padding: 1.5vw;
-    }
-}
-
-@media (min-width:768px) and (max-width: 992px) {
-
-    /* #idpp-mainPage {
-        height: 25vw;
-    } */
-
-    #idpp-mainHeader {
-        font-size: 3vw;
-        padding: 1.5vw;
-    }
-}
-
-@media (min-width:576px) and (max-width: 768px) {
-
-    /* #idpp-mainPage {
-        height: 28vw;
-    } */
-
-    #idpp-mainHeader {
-        font-size: 4vw;
-        padding: 1.5vw;
-    }
-
-    #idpo-footer {
-        width: 50%;
-    }
-}
-
-@media (min-width: 320px) and (max-width: 576px) {
-    #idpp-mainHeader {
-        font-size: 4.5vw;
-        padding: 3vw;
-    }
-
-    #idpp-footer {
-        width: 60%;
-    }
-
-}
-
-@media (max-width: 320px) {
-    #idpp-mainHeader {
-        font-size: 4.5vw;
-        padding: 3vw;
-    }
-
-    #idpo-footer {
-        width: 70%;
+@media (max-width: 768px) {
+    .page-flexbox {
+        padding-bottom: 0;
     }
 }
 

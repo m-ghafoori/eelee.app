@@ -3,12 +3,6 @@
 }
 
 #idpd-body {
-    width: 100%;
-    height: 100%;
-    min-width: 250px;
-    min-height: 450px;
-    position: absolute;
-    top: 0;
     background: #3ca05d;
     cursor: url('../images/svg/pointer.svg'), auto;
 }
@@ -119,6 +113,7 @@
     color: #cf2860;
     border-color: #cf2860;
 }
+
 /* Footer */
 
 /* ID Tags */
@@ -138,24 +133,12 @@
         top: 90px;
     }
 }
-/* 
-@media (max-width: 320px) {
-
-}
-
-@media (min-width: 320px) and (max-width: 576px) {
-
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-
-} */
 
 @media (min-width: 768px) {
     #idpd-donationForm {
         font-size: calc(2vw + 0.8rem);
     }
-    
+
     #idpd-donateButton {
         font-size: calc(1.5vw + 0.8rem);
     }
