@@ -144,35 +144,44 @@
         id="idpc-footerNav"
         class="footer-nav d-flex justify-content-between align-items-center"
       >
-        <img
-          id="idpc-linkedinNav"
-          ref="linkedinNav"
+        <a
+          href="https://www.linkedin.com/"
+          target="blank"
           class="idpc-hoverable"
-          :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)"
-          alt=""
           @mouseenter="onLinkedinMouseEnter"
           @mouseleave="onLinkedinMouseLeave"
-        />
-        <router-link to="contact">
+        >
+          <img
+            id="idpc-linkedinNav"
+            :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)"
+            alt=""
+          />
+        </a>
+        <router-link
+          to="/contact"
+          class="idpc-hoverable"
+          @mouseenter="onEmailMouseEnter"
+          @mouseleave="onEmailMouseLeave"
+        >
           <img
             id="idpc-emailNav"
-            ref="emailNav"
-            class="idpc-hoverable"
             :src="require(`@/assets/images/svg/email-${widthClass}.svg`)"
             alt=""
-            @mouseenter="onEmailMouseEnter"
-            @mouseleave="onEmailMouseLeave"
           />
         </router-link>
-        <img
-          id="idpc-telegramNav"
-          ref="telegramNav"
+        <a
+          href="https://t.me"
+          target="blank"
           class="idpc-hoverable"
-          :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)"
-          alt=""
           @mouseenter="onTelegramMouseEnter"
           @mouseleave="onTelegramMouseLeave"
-        />
+        >
+          <img
+            id="idpc-telegramNav"
+            :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)"
+            alt=""
+          />
+        </a>
       </div>
       <router-link
         id="idpc-footerNote"

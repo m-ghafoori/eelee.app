@@ -38,7 +38,7 @@
               <router-link
                 id="idpm-portNav"
                 to="/app"
-                class="text-shine idpm-hoverable"
+                class="idpm-nav-link text-shine idpm-hoverable"
                 >App</router-link
               >
             </li>
@@ -46,7 +46,7 @@
               <router-link
                 id="idpm-appNav"
                 to="/portfolio"
-                class="text-shine idpm-hoverable"
+                class="idpm-nav-link text-shine idpm-hoverable"
                 >Portfolio</router-link
               >
             </li>

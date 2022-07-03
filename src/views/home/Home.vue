@@ -20,21 +20,21 @@
 
           <router-link
             id="appNav"
-            class="nav-link hoverable animate__animated"
+            class="idph-nav-link hoverable animate__animated"
             to="/app"
           >
             App
           </router-link>
           <router-link
             id="portNav"
-            class="nav-link hoverable animate__animated"
+            class="idph-nav-link hoverable animate__animated"
             to="/portfolio"
           >
             Portfolio
           </router-link>
           <router-link
             id="orderNav"
-            class="nav-link hoverable animate__animated"
+            class="idph-nav-link hoverable animate__animated"
             to="/order"
           >
             Let's App!

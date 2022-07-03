@@ -66,38 +66,47 @@
       "
     >
       <div
-        id="idpa-footerNav"
+        id="idpo-footerNav"
         class="footer-nav d-flex justify-content-between align-items-center"
       >
-        <img
-          id="idpa-linkedinNav"
-          ref="linkedinNav"
-          class="idpa-hoverable"
-          :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)"
-          alt=""
+        <a
+          href="https://www.linkedin.com/"
+          target="blank"
+          class="idpo-hoverable"
           @mouseenter="onLinkedinMouseEnter"
           @mouseleave="onLinkedinMouseLeave"
-        />
-        <router-link to="contact">
+        >
           <img
-            id="idpa-emailNav"
-            ref="emailNav"
-            class="idpa-hoverable"
+            id="idpo-linkedinNav"
+            :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)"
+            alt=""
+          />
+        </a>
+        <router-link
+          to="/contact"
+          class="idpo-hoverable"
+          @mouseenter="onEmailMouseEnter"
+          @mouseleave="onEmailMouseLeave"
+        >
+          <img
+            id="idpo-emailNav"
             :src="require(`@/assets/images/svg/email-${widthClass}.svg`)"
             alt=""
-            @mouseenter="onEmailMouseEnter"
-            @mouseleave="onEmailMouseLeave"
           />
         </router-link>
-        <img
-          id="idpa-telegramNav"
-          ref="telegramNav"
-          class="idpa-hoverable"
-          :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)"
-          alt=""
+        <a
+          href="https://t.me"
+          target="blank"
+          class="idpo-hoverable"
           @mouseenter="onTelegramMouseEnter"
           @mouseleave="onTelegramMouseLeave"
-        />
+        >
+          <img
+            id="idpo-telegramNav"
+            :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)"
+            alt=""
+          />
+        </a>
       </div>
       <router-link
         id="idpa-footerNote"

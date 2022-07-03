@@ -53,9 +53,9 @@
 
     <section id="idpo-showcase" class="d-flex flex-column align-items-start">
       <div id="idpo-formCover" class="d-none"></div>
-      <Slideshow uniqueLabel="Agreement" :slidesNumber="5" :loopMode="false">
+      <Slideshow uniqueLabel="Agreement" :slidesNumber="9" :loopMode="false">
         <template #title1>
-          <h3>First</h3>
+          <h3>How to Order</h3>
         </template>
         <template #content1>
           <p>
@@ -65,28 +65,96 @@
           </p>
         </template>
         <template #title2>
-          <h3>Second</h3>
+          <h3>Agreement Template</h3>
         </template>
         <template #content2>
-          <p>Second text</p>
+          <p>
+            Our agreement consist of six sections:<br />
+            1- Introducing the client and the project manager <br />
+            2- A description of the client's request <br />
+            3- Project manager's comments on the client's request <br />
+            4- The detailed process of the project, including the timeline and
+            payment dues <br />
+            5- Legal terms and conditions <br />
+            6- Signatures of both parties<br />
+            Keep reading to know more about these sections...
+          </p>
         </template>
         <template #title3>
-          <h3>Third</h3>
+          <h3>Introduction</h3>
         </template>
         <template #content3>
-          <p>Third text</p>
+          <p>
+            Nothing complicated... Just the names of the two "parties" of the
+            agreement, the client and the project manager :)
+          </p>
         </template>
         <template #title4>
-          <h3>Fourth</h3>
+          <h3>Client's Request</h3>
         </template>
         <template #content4>
-          <p>Fourth text</p>
+          <p>
+            Here you describe your request in details...<br />
+            Of course, your ideas will be safe and they will not be disclosed
+            anywhere.
+          </p>
         </template>
         <template #title5>
-          <h3>Fifth</h3>
+          <h3>Manager's Comments</h3>
         </template>
         <template #content5>
-          <p>Fifth text</p>
+          <p>
+            After you tell us your idea, we create a template for the project
+            and divide it into "stages".<br />
+            For small projects, usually it is two stages, the backend and the
+            frontend. But as the project gets sophisticated, the stages will
+            increase too.<br />
+            Additionally, we may have also some comments on the idea itself,
+            like some projections or suggestions.
+          </p>
+        </template>
+        <template #title6>
+          <h3>Project Process</h3>
+        </template>
+        <template #content6>
+          <p>
+            In this section, we will agree on the detailed process of project
+            completion.<br />
+            Every stage should have specific due time and payment to preserve
+            everyone's interest.
+          </p>
+        </template>
+        <template #title7>
+          <h3>Terms and Conditions</h3>
+        </template>
+        <template #content7>
+          <p>
+            Every agreement must have some terms to determine the commitments of
+            every party.<br />
+            Both parties want to make sure that they're ideas are safe, and what
+            happens if something goes wrong in the process, or even how they can
+            cencel the agreement if they changed their mind!<br />
+            All of these possible situations should be forseened in this
+            section.
+          </p>
+        </template>
+        <template #title8>
+          <h3>Signatures</h3>
+        </template>
+        <template #content8>
+          <p>
+            Finally, everyone should sign the agreement, right? :) <br />
+            Now, if you want to see a sample agreement, click
+            <a href="">here</a>. <br />
+            And if you want to take the first step of ordering your own web app,
+            please proceed to the next slide...
+          </p>
+        </template>
+        <template #title9>
+          <h3>Order Your Web App</h3>
+        </template>
+        <template #content9>
+          <p>Order Slide</p>
         </template>
         <template #finish>
           <h3>Finish</h3>
@@ -111,32 +179,44 @@
         id="idpo-footerNav"
         class="footer-nav d-flex justify-content-between align-items-center"
       >
-        <img
-          id="idpo-linkedinNav"
+        <a
+          href="https://www.linkedin.com/"
+          target="blank"
           class="idpo-hoverable"
-          :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)"
-          alt=""
           @mouseenter="onLinkedinMouseEnter"
           @mouseleave="onLinkedinMouseLeave"
-        />
-        <router-link to="/contact">
+        >
+          <img
+            id="idpo-linkedinNav"
+            :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)"
+            alt=""
+          />
+        </a>
+        <router-link
+          to="/contact"
+          class="idpo-hoverable"
+          @mouseenter="onEmailMouseEnter"
+          @mouseleave="onEmailMouseLeave"
+        >
           <img
             id="idpo-emailNav"
-            class="idpo-hoverable"
             :src="require(`@/assets/images/svg/email-${widthClass}.svg`)"
             alt=""
-            @mouseenter="onEmailMouseEnter"
-            @mouseleave="onEmailMouseLeave"
           />
         </router-link>
-        <img
-          id="idpo-telegramNav"
+        <a
+          href="https://t.me"
+          target="blank"
           class="idpo-hoverable"
-          :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)"
-          alt=""
           @mouseenter="onTelegramMouseEnter"
           @mouseleave="onTelegramMouseLeave"
-        />
+        >
+          <img
+            id="idpo-telegramNav"
+            :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)"
+            alt=""
+          />
+        </a>
       </div>
       <router-link
         id="idpo-footerNote"

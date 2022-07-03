@@ -95,35 +95,47 @@
       "
     >
       <div
-        id="idpd-footerNav"
+        id="idpo-footerNav"
         class="footer-nav d-flex justify-content-between align-items-center"
       >
-        <img
-          id="idpd-linkedinNav"
-          class="idpd-hoverable"
-          :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)"
-          alt=""
+        <a
+          href="https://www.linkedin.com/"
+          target="blank"
+          class="idpo-hoverable"
           @mouseenter="onLinkedinMouseEnter"
           @mouseleave="onLinkedinMouseLeave"
-        />
-        <router-link to="/contact">
+        >
           <img
-            id="idpd-emailNav"
-            class="idpd-hoverable"
-            :src="require(`./assets/images/svg/email-${widthClass}.svg`)"
+            id="idpo-linkedinNav"
+            :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)"
             alt=""
-            @mouseenter="onEmailMouseEnter"
-            @mouseleave="onEmailMouseLeave"
+          />
+        </a>
+        <router-link
+          to="/contact"
+          class="idpo-hoverable"
+          @mouseenter="onEmailMouseEnter"
+          @mouseleave="onEmailMouseLeave"
+        >
+          <img
+            id="idpo-emailNav"
+            :src="require(`@/assets/images/svg/email-${widthClass}.svg`)"
+            alt=""
           />
         </router-link>
-        <img
-          id="idpd-telegramNav"
-          class="idpd-hoverable"
-          :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)"
-          alt=""
+        <a
+          href="https://t.me"
+          target="blank"
+          class="idpo-hoverable"
           @mouseenter="onTelegramMouseEnter"
           @mouseleave="onTelegramMouseLeave"
-        />
+        >
+          <img
+            id="idpo-telegramNav"
+            :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)"
+            alt=""
+          />
+        </a>
       </div>
       <router-link
         id="idpd-footerNote"

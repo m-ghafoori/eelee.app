@@ -161,7 +161,7 @@ ul {
 }
 
 .logo {
-    width: 18%;
+    width: fit-content;
     height: fit-content;
     font-family: 'Fredericka the Great', cursive;
     font-weight: 1000;
