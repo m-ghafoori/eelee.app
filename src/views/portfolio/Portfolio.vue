@@ -690,7 +690,7 @@ export default {
       .getElementsByClassName("idpp-section-page")
       .item(0);
     this.isMounted = true;
-    document.body.parentElement.style.overflowY = "scroll";
+    document.body.parentElement.style.overflowY = "auto";
     this.windowWidthClassEmitter();
     this.headerNavDisplay();
     this.headerUlLeftCalculator();

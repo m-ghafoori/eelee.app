@@ -111,27 +111,6 @@
     margin-top: 22px;
 }
 
-#soundDiv {
-    min-width: 160px;
-    margin-left: 30px;
-    display: flex;
-    align-items: center;
-    align-self: flex-start;
-}
-
-#soundSpan {
-    display: inline-block;
-    margin-left: 4%;
-}
-
-#musicSpan {
-    margin-left: 30px;
-}
-
-#audioSpan {
-    margin-left: 30px
-}
-
 #donateDiv {
     font-family: 'Pacifico', regular !important;
     /* align-items: flex-end; */

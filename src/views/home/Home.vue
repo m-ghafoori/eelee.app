@@ -683,12 +683,16 @@ export default {
     this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
     this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
     this.invisibleElemsList = [this.mainContainer, this.logo, this.headerNavbar, this.orderDiv.firstElementChild, this.donateLink.parentElement, this.footerUl];
-    document.body.style.overflowY = 'auto';
+    document.body.parentElement.style.overflowY = 'auto';
     this.startAnimations();
   },
   
   created() {
     window.addEventListener("resize", this.windowWidthClassEmitter);
+  },
+
+  beforeUnmount() {
+    document.body.parentElement.style.overflowY = 'hidden';
   },
 };
 </script>

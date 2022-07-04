@@ -52,23 +52,22 @@
     </header>
 
     <section id="idpo-showcase" class="d-flex flex-column align-items-start">
-      <div id="idpo-formCover" class="d-none"></div>
       <Slideshow uniqueLabel="Agreement" :slidesNumber="9" :loopMode="false">
         <template #title1>
-          <h3>How to Order</h3>
+          <span>How to Order</span>
         </template>
         <template #content1>
-          <p>
+          <span>
             First, you fill our form and tell us what you want... <br />
             Then, we contact you within 2 days... <br />
-            If everything was okay, we have a deal! <br />
-          </p>
+            If everything was okay, then we have a deal! <br />
+          </span>
         </template>
         <template #title2>
-          <h3>Agreement Template</h3>
+          <span>Agreement Template</span>
         </template>
         <template #content2>
-          <p>
+          <span>
             Our agreement consist of six sections:<br />
             1- Introducing the client and the project manager <br />
             2- A description of the client's request <br />
@@ -78,32 +77,32 @@
             5- Legal terms and conditions <br />
             6- Signatures of both parties<br />
             Keep reading to know more about these sections...
-          </p>
+          </span>
         </template>
         <template #title3>
-          <h3>Introduction</h3>
+          <span>Introduction</span>
         </template>
         <template #content3>
-          <p>
+          <span>
             Nothing complicated... Just the names of the two "parties" of the
             agreement, the client and the project manager :)
-          </p>
+          </span>
         </template>
         <template #title4>
-          <h3>Client's Request</h3>
+          <span>Client's Request</span>
         </template>
         <template #content4>
-          <p>
+          <span>
             Here you describe your request in details...<br />
             Of course, your ideas will be safe and they will not be disclosed
             anywhere.
-          </p>
+          </span>
         </template>
         <template #title5>
-          <h3>Manager's Comments</h3>
+          <span>Manager's Comments</span>
         </template>
         <template #content5>
-          <p>
+          <span>
             After you tell us your idea, we create a template for the project
             and divide it into "stages".<br />
             For small projects, usually it is two stages, the backend and the
@@ -111,24 +110,24 @@
             increase too.<br />
             Additionally, we may have also some comments on the idea itself,
             like some projections or suggestions.
-          </p>
+          </span>
         </template>
         <template #title6>
-          <h3>Project Process</h3>
+          <span>Project Process</span>
         </template>
         <template #content6>
-          <p>
+          <span>
             In this section, we will agree on the detailed process of project
             completion.<br />
             Every stage should have specific due time and payment to preserve
             everyone's interest.
-          </p>
+          </span>
         </template>
         <template #title7>
-          <h3>Terms and Conditions</h3>
+          <span>Terms and Conditions</span>
         </template>
         <template #content7>
-          <p>
+          <span>
             Every agreement must have some terms to determine the commitments of
             every party.<br />
             Both parties want to make sure that they're ideas are safe, and what
@@ -136,31 +135,32 @@
             cencel the agreement if they changed their mind!<br />
             All of these possible situations should be forseened in this
             section.
-          </p>
+          </span>
         </template>
         <template #title8>
-          <h3>Signatures</h3>
+          <span>Signatures</span>
         </template>
         <template #content8>
-          <p>
+          <span>
             Finally, everyone should sign the agreement, right? :) <br />
             Now, if you want to see a sample agreement, click
             <a href="">here</a>. <br />
             And if you want to take the first step of ordering your own web app,
             please proceed to the next slide...
-          </p>
+          </span>
         </template>
         <template #title9>
-          <h3>Order Your Web App</h3>
+          <span>Order Your Web App</span>
         </template>
         <template #content9>
-          <p>Order Slide</p>
+          <span>Order Slide</span>
         </template>
         <template #finish>
-          <h3>Finish</h3>
+          <span>Submit</span>
         </template>
         <template #inactive>
-          <p>Finished text</p>
+          <span>Thank you for submitting your information&nbsp;:) <br><br>
+          We'll be in touch with you soon</span>
         </template>
       </Slideshow>
     </section>
@@ -253,7 +253,7 @@ export default {
       headerUl: Object,
       menuButton: Object,
       menuImg: Object,
-      formCover: Object,
+      showcase: Object,
       linkedinNav: Object,
       emailNav: Object,
       telegramNav: Object,
@@ -269,7 +269,7 @@ export default {
         );
         this.headerUl.classList.remove("invisible", "scale-down-ver-top");
         this.headerUl.classList.add("scale-up-ver-top");
-        this.formCover.classList.remove("d-none");
+        this.showcase.style.opacity = '0.2';
       } else {
         this.menuImg.setAttribute(
           "src",
@@ -277,7 +277,7 @@ export default {
         );
         this.headerUl.classList.remove("scale-up-ver-top");
         this.headerUl.classList.add("scale-down-ver-top");
-        this.formCover.classList.add("d-none");
+        this.showcase.style.opacity = '1';
       }
     },
   },
@@ -446,7 +446,7 @@ export default {
     this.headerUl = document.getElementById("idpo-headerUl");
     this.menuButton = document.getElementById("idpo-menuButton");
     this.menuImg = document.getElementById("idpo-menuImg");
-    this.formCover = document.getElementById("idpo-formCover");
+    this.showcase = document.getElementById("idpo-showcase");
     this.linkedinNav = document.getElementById("idpo-linkedinNav");
     this.emailNav = document.getElementById("idpo-emailNav");
     this.telegramNav = document.getElementById("idpo-telegramNav");
