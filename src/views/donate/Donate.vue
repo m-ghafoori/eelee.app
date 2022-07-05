@@ -71,6 +71,7 @@
             v-model="donationAmount"
             type="number"
             name="PAYMENT_AMOUNT"
+            min="1"
           />
           <label for="PAYMENT_AMOUNT">USD</label>
         </div>
@@ -95,44 +96,44 @@
       "
     >
       <div
-        id="idpo-footerNav"
+        id="idpd-footerNav"
         class="footer-nav d-flex justify-content-between align-items-center"
       >
         <a
           href="https://www.linkedin.com/"
           target="blank"
-          class="idpo-hoverable"
+          class="idpd-hoverable"
           @mouseenter="onLinkedinMouseEnter"
           @mouseleave="onLinkedinMouseLeave"
         >
           <img
-            id="idpo-linkedinNav"
-            :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)"
+            id="idpd-linkedinNav"
+            :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)"
             alt=""
           />
         </a>
         <router-link
           to="/contact"
-          class="idpo-hoverable"
+          class="idpd-hoverable"
           @mouseenter="onEmailMouseEnter"
           @mouseleave="onEmailMouseLeave"
         >
           <img
-            id="idpo-emailNav"
-            :src="require(`@/assets/images/svg/email-${widthClass}.svg`)"
+            id="idpd-emailNav"
+            :src="require(`./assets/images/svg/email-${widthClass}.svg`)"
             alt=""
           />
         </router-link>
         <a
           href="https://t.me"
           target="blank"
-          class="idpo-hoverable"
+          class="idpd-hoverable"
           @mouseenter="onTelegramMouseEnter"
           @mouseleave="onTelegramMouseLeave"
         >
           <img
-            id="idpo-telegramNav"
-            :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)"
+            id="idpd-telegramNav"
+            :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)"
             alt=""
           />
         </a>

@@ -52,7 +52,7 @@
     </header>
 
     <section id="idpo-showcase" class="d-flex flex-column align-items-start">
-      <Slideshow uniqueLabel="Agreement" :slidesNumber="9" :loopMode="false">
+      <Slideshow uniqueLabel="Agreement" :slidesNumber="9" :loopMode="false" @slideshow-finish="onSlideshowFinish">
         <template #title1>
           <span>How to Order</span>
         </template>
@@ -153,14 +153,68 @@
           <span>Order Your Web App</span>
         </template>
         <template #content9>
-          <span>Order Slide</span>
+          <div>
+            Now, before signing any agreement, please tell us how we can help
+            you...
+          </div>
+          <div class="idpo-input-field">
+            <span>Please describe your idea:</span>
+            <textarea
+              name="clientRequest"
+              id="idpo-clientRequest"
+              cols="90"
+              rows="10"
+              v-model="clientRequest"
+              @click="onClientRequestClick"
+              required
+            ></textarea>
+          </div>
+          <div class="idpo-input-field">
+            <span>How long can you wait (in weeks) to receive it?</span>
+            <input
+              type="number"
+              name="projectDuration"
+              id="idpo-projectDuration"
+              v-model="projectDuration"
+              min="1"
+              max="200"
+              @click="onProjectDurationClick"
+              required
+            />
+          </div>
+          <div class="idpo-input-field">
+            <span>Your budget (in USD) on this project:</span>
+            <input
+              type="number"
+              name="projectBudget"
+              id="idpo-projectBudget"
+              v-model="projectBudget"
+              min="500"
+              maxlength="7"
+              @click="onProjectBudgetClick"
+              required
+            />
+          </div>
+          <div class="idpo-input-field">
+            <span>Your email:</span>
+            <input
+              type="email"
+              ref="clientEmailInput"
+              id="idpo-clientEmail"
+              v-model="clientEmail"
+              @click="onClientEmailClick"
+              required
+            />
+          </div>
         </template>
         <template #finish>
           <span>Submit</span>
         </template>
         <template #inactive>
-          <span>Thank you for submitting your information&nbsp;:) <br><br>
-          We'll be in touch with you soon</span>
+          <span
+            >Thank you for submitting your information&nbsp;:) <br /><br />
+            We'll be in touch with you soon</span
+          >
         </template>
       </Slideshow>
     </section>
@@ -246,6 +300,18 @@ export default {
       sizeHistoryArray: [],
       isMounted: false,
       isVerticalMenuExpanded: false,
+      clientRequest: '',
+      clientEmail: '',
+      projectBudget: 4000,
+      projectDuration: 4,
+
+    // Error Handling Vars
+      noRequestError: false,
+      noEmailError: false,
+      invalidEmailError: false,
+      invalidDurationError: false,
+      invalidBudgetError: false,
+      allInputsValid: false,
 
       // Elements Object Refs
       header: Object,
@@ -269,7 +335,7 @@ export default {
         );
         this.headerUl.classList.remove("invisible", "scale-down-ver-top");
         this.headerUl.classList.add("scale-up-ver-top");
-        this.showcase.style.opacity = '0.2';
+        this.showcase.style.opacity = "0.2";
       } else {
         this.menuImg.setAttribute(
           "src",
@@ -277,8 +343,33 @@ export default {
         );
         this.headerUl.classList.remove("scale-up-ver-top");
         this.headerUl.classList.add("scale-down-ver-top");
-        this.showcase.style.opacity = '1';
+        this.showcase.style.opacity = "1";
       }
+    },
+    noRequestError(val) {
+        if (val) {
+            console.log('noRequestError', this.clientRequest);
+        }
+    },
+    noEmailError(val) {
+        if (val) {
+            console.log('noEmailError', this.clientEmail);
+        }
+    },
+    invalidEmailError(val) {
+        if (val) {
+            console.log('invalidEmailError', this.clientEmail);
+        }
+    },
+    invalidDurationError(val) {
+        if (val) {
+            console.log('invalidDurationError', this.projectDuration);
+        }
+    },
+    invalidBudgetError(val) {
+        if (val) {
+            console.log('invalidBudgetError', this.projectBudget);
+        }
     },
   },
 
@@ -394,6 +485,30 @@ export default {
           require(`@/assets/images/svg/menu-button.svg`)
         );
     },
+
+    // Order Form
+    onClientRequestClick() {
+        this.noRequestError = false;
+    },
+    onClientEmailClick() {
+        this.noEmailError = false;
+        this.invalidEmailError = false;
+    },
+    onProjectBudgetClick() {
+        this.invalidBudgetError = false;
+    },
+    onProjectDurationClick() {
+        this.invalidDurationError = false;
+    },
+    onSlideshowFinish() {
+        if (this.clientRequest == '') this.noRequestError = true;
+        if (this.clientEmail == '') this.noEmailError = true;
+        if (!this.$refs.clientEmailInput.validity.valid) this.invalidEmailError = true;
+        if (this.projectBudget < 500 || this.projectBudget > 9000000) this.invalidBudgetError = true;
+        if (this.projectDuration < 1 || this.projectDuration > 200) this.invalidDurationError = true;
+    },
+
+    // Footer
     onLinkedinMouseEnter() {
       this.linkedinNav.setAttribute(
         "src",

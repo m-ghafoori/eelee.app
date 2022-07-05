@@ -143,14 +143,19 @@ export default {
         onNextClick() {
             // console.log('next clicked');
             this.slideNum = this.nextNumber(this.slideNum, this.slidesNumber, true);
+            this.onNextMouseOut();
+            this.activeDiv.scrollTop = 0;
         },
         onFinishClick() {
             // console.log('finish clicked');
-            this.isActive = false;
+            this.$emit('slideshow-finish');
+            // this.isActive = false;
         },
         onPreviousClick() {
             // console.log('previous clicked');
             this.slideNum = this.previousNumber(this.slideNum, this.slidesNumber, true);
+            this.onPreviousMouseOut();
+            this.activeDiv.scrollTop = 0;
         },
         onPreviousMouseOver() {
             this.$refs.previousArrow.setAttribute('src', require(`./assets/arrow-left-hover-${this.widthClass}.svg`));
@@ -180,6 +185,8 @@ export default {
             this.previousSpan.classList.add('d-none');
         }
     },
+
+    emits: ['slideshow-finish']
 }
 </script>
 
@@ -264,7 +271,7 @@ export default {
     color: #fff;
     border-radius: 0.5rem;
     padding: 8px;
-    margin: 12px 1.5vw 10px 5px;
+    margin: 12px calc(3% + 10px);
 }
 /* 
 .slideshow-finish:hover {
