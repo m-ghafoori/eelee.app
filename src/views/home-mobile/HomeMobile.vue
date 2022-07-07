@@ -1,6 +1,5 @@
 <template>
   <div id="idpm-body" class="" @click="skipInitAnimations">
-    <!-- <div id="idpm-containerWrapper" class="d-flex"> -->
     <div
       id="idpm-mainContainer"
       class="d-flex flex-column justify-content-around"
@@ -141,7 +140,6 @@
         </ul>
       </footer>
     </div>
-    <!-- </div> -->
   </div>
 </template>
 
@@ -618,11 +616,8 @@ export default {
 
   updated() {
     this.donateUpdator();
-    // console.log('donateBottom:',this.donateBottom);
     this.skipUpdator();
-    // console.log('skipBottom:',this.skipBottom);
     this.noteUpdator();
-    // console.log('noteBottom:',this.noteBottom);
   },
 };
 </script>

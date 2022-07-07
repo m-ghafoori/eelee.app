@@ -12,9 +12,9 @@
         >EELee</router-link
       >
       <ul
-        id="idpc-headerUl"
-        class="header-ul d-flex align-items-center"
-        :style="headerUlStyle"
+        id="idpc-headerNav"
+        class="header-nav d-flex align-items-center"
+        :style="headerNavStyle"
       >
         <li>
           <router-link to="/" class="nav-link idpc-hoverable">Home</router-link>
@@ -201,7 +201,7 @@ export default {
     return {
       widthClass: String,
       vw: Number,
-      headerUlLeftPosition: Number,
+      headerNavLeftPosition: Number,
       sizeHistoryArray: [],
       clientName: "",
       clientEmail: "",
@@ -222,7 +222,7 @@ export default {
       //
       header: Object,
       logo: Object,
-      headerUl: Object,
+      headerNav: Object,
       menuButton: Object,
       menuImg: Object,
       showcase: Object,
@@ -250,16 +250,16 @@ export default {
           "src",
           require(`@/assets/images/svg/menu-button-hover.svg`)
         );
-        this.headerUl.classList.remove("invisible", "scale-down-ver-top");
-        this.headerUl.classList.add("scale-up-ver-top");
+        this.headerNav.classList.remove("invisible", "scale-down-ver-top");
+        this.headerNav.classList.add("scale-up-ver-top");
         this.showcase.style.opacity = "0.2";
       } else {
         this.menuImg.setAttribute(
           "src",
           require(`@/assets/images/svg/menu-button.svg`)
         );
-        this.headerUl.classList.remove("scale-up-ver-top");
-        this.headerUl.classList.add("scale-down-ver-top");
+        this.headerNav.classList.remove("scale-up-ver-top");
+        this.headerNav.classList.add("scale-down-ver-top");
         this.showcase.style.opacity = "1";
       }
     },
@@ -309,9 +309,9 @@ export default {
   },
 
   computed: {
-    headerUlStyle() {
+    headerNavStyle() {
       return {
-        left: `${this.headerUlLeftPosition}px`,
+        left: `${this.headerNavLeftPosition}px`,
       };
     },
     clientNameStyle() {
@@ -349,17 +349,17 @@ export default {
       }
     },
 
-    // Calculates the pixel numbers for left property of headerUl
-    headerUlLeftCalculator() {
-      if (window.innerWidth >= 576) this.headerUlLeftPosition = 0;
+    // Calculates the pixel numbers for left property of headerNav
+    headerNavLeftCalculator() {
+      if (window.innerWidth >= 576) this.headerNavLeftPosition = 0;
       else {
-        this.headerUlLeftPosition =
+        this.headerNavLeftPosition =
           (this.header.offsetWidth -
             (this.vw * 5 +
               65 +
               this.logo.offsetWidth +
               this.menuButton.offsetWidth +
-              this.headerUl.offsetWidth)) /
+              this.headerNav.offsetWidth)) /
             2 +
           this.vw * 4 +
           this.menuButton.offsetWidth;
@@ -378,7 +378,7 @@ export default {
       this.sizeHistoryUpdator(this.widthClass);
       if (this.isMounted) {
         this.vw = windowWidth / 100;
-        this.headerUlLeftCalculator();
+        this.headerNavLeftCalculator();
         this.fileNameUpdator();
       }
     },
@@ -421,8 +421,8 @@ export default {
     // Determines how header navbar should be displayed
     headerNavDisplay() {
       if (window.innerWidth < 576) {
-        this.headerUl.classList.remove("align-items-center");
-        this.headerUl.classList.add(
+        this.headerNav.classList.remove("align-items-center");
+        this.headerNav.classList.add(
           "invisible",
           "flex-column",
           "align-items-end",
@@ -430,14 +430,14 @@ export default {
         );
         this.menuButton.classList.remove("d-none");
       } else {
-        this.headerUl.classList.remove(
+        this.headerNav.classList.remove(
           "invisible",
           "scale-down-ver-top",
           "flex-column",
           "align-items-end",
           "vertical-menu"
         );
-        this.headerUl.classList.add("align-items-center");
+        this.headerNav.classList.add("align-items-center");
         this.menuButton.classList.add("d-none");
       }
     },
@@ -560,7 +560,7 @@ export default {
   mounted() {
     this.header = document.getElementById("idpc-header");
     this.logo = document.getElementById("idpc-logo");
-    this.headerUl = document.getElementById("idpc-headerUl");
+    this.headerNav = document.getElementById("idpc-headerNav");
     this.menuButton = document.getElementById("idpc-menuButton");
     this.menuImg = document.getElementById("idpc-menuImg");
     this.showcase = document.getElementById("idpc-showcase");
@@ -579,7 +579,7 @@ export default {
     this.isMounted = true;
     this.windowWidthClassEmitter();
     this.headerNavDisplay();
-    this.headerUlLeftCalculator();
+    this.headerNavLeftCalculator();
   },
 
   updated() {

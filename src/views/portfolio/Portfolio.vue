@@ -12,9 +12,9 @@
         >EELee</router-link
       >
       <ul
-        id="idpp-headerUl"
-        class="header-ul d-flex align-items-center"
-        :style="headerUlStyle"
+        id="idpp-headerNav"
+        class="header-nav d-flex align-items-center"
+        :style="headerNavStyle"
       >
         <li>
           <router-link to="/" class="nav-link idpp-hoverable">Home</router-link>
@@ -92,7 +92,7 @@
         <div
           id="idpp-homeFlexColBox"
           class="
-            page-flexbox
+            idpp-page-flexbox
             d-flex
             flex-column
             justify-content-between
@@ -107,10 +107,10 @@
             class="d-flex justify-content-center align-items-center"
           >
             <div id="idpp-homeMdParentDiv" class="">
-              <div id="idpp-homeMdDiv" class="reflection"></div>
+              <div id="idpp-homeMdDiv" class="idpp-reflection"></div>
             </div>
             <div id="idpp-homeLgParentDiv" class="">
-              <div id="idpp-homeLgDiv" class="reflection"></div>
+              <div id="idpp-homeLgDiv" class="idpp-reflection"></div>
             </div>
           </div>
           <p id="idpp-homeSecondPar" class="idpp-paragraph flex-grow-1">
@@ -138,7 +138,7 @@
         <div
           id="idpp-appFlexColBox"
           class="
-            page-flexbox
+            idpp-page-flexbox
             d-flex
             flex-column
             justify-content-between
@@ -159,7 +159,7 @@
               It's really nice! Give it a try :)
             </p>
             <div id="idpp-appImageContainer" class="">
-              <div id="idpp-appImgDiv" class="reflection d-inline-block"></div>
+              <div id="idpp-appImgDiv" class="idpp-reflection d-inline-block"></div>
             </div>
           </div>
           <p id="idpp-appSecondPar" class="idpp-paragraph flex-grow-1"></p>
@@ -183,7 +183,7 @@
         <div
           id="idpp-portFlexColBox"
           class="
-            page-flexbox
+            idpp-page-flexbox
             d-flex
             flex-column
             justify-content-between
@@ -196,7 +196,7 @@
             class="d-flex justify-content-between"
           >
             <div id="idpp-portImageContainer" class="">
-              <div id="idpp-portImgDiv" class="reflection d-inline-block"></div>
+              <div id="idpp-portImgDiv" class="idpp-reflection d-inline-block"></div>
             </div>
             <p id="idpp-portFirstPar" class="idpp-paragraph flex-grow-1">
               This is the classic "MineSweeper" game... But, it has a modern
@@ -228,7 +228,7 @@
         <div
           id="idpp-othersFlexColBox"
           class="
-            page-flexbox
+            idpp-page-flexbox
             d-flex
             flex-column
             justify-content-between
@@ -243,13 +243,13 @@
             class="d-flex justify-content-center align-items-center"
           >
             <div id="idpp-othersLeftParentDiv" class="">
-              <div id="idpp-othersLeftDiv" class="reflection"></div>
+              <div id="idpp-othersLeftDiv" class="idpp-reflection"></div>
             </div>
             <div id="idpp-othersMiddleParentDiv" class="">
-              <div id="idpp-othersMiddleDiv" class="reflection"></div>
+              <div id="idpp-othersMiddleDiv" class="idpp-reflection"></div>
             </div>
             <div id="idpp-othersRightParentDiv" class="">
-              <div id="idpp-othersRightDiv" class="reflection"></div>
+              <div id="idpp-othersRightDiv" class="idpp-reflection"></div>
             </div>
           </div>
           <p id="idpp-othersSecondPar" class="idpp-paragraph flex-grow-1">
@@ -332,8 +332,7 @@ export default {
     return {
       widthClass: String,
       vw: Number,
-      // vh: Number,
-      headerUlLeftPosition: Number,
+      headerNavLeftPosition: Number,
       sizeHistoryArray: [],
       isMounted: false,
       isVerticalMenuExpanded: false,
@@ -356,20 +355,10 @@ export default {
       bodyDiv: Object,
       header: Object,
       logo: Object,
-      headerUl: Object,
+      headerNav: Object,
       menuButton: Object,
       menuImg: Object,
       sectionPage: Object,
-      // mainPage: Object,
-      // mainHeader: Object,
-      // homePage: Object,
-      // homeHeader: Object,
-      // appPage: Object,
-      // appHeader: Object,
-      // portPage: Object,
-      // portHeader: Object,
-      // othersPage: Object,
-      // othersHeader: Object,
 
       // Footer
       linkedinNav: Object,
@@ -385,8 +374,8 @@ export default {
           "src",
           require(`@/assets/images/svg/menu-button-hover.svg`)
         );
-        this.headerUl.classList.remove("invisible", "scale-down-ver-top");
-        this.headerUl.classList.add("scale-up-ver-top");
+        this.headerNav.classList.remove("invisible", "scale-down-ver-top");
+        this.headerNav.classList.add("scale-up-ver-top");
         for (const section of document.getElementsByTagName("section")) {
           section.style.opacity = "0.2";
         }
@@ -395,8 +384,8 @@ export default {
           "src",
           require(`@/assets/images/svg/menu-button.svg`)
         );
-        this.headerUl.classList.remove("scale-up-ver-top");
-        this.headerUl.classList.add("scale-down-ver-top");
+        this.headerNav.classList.remove("scale-up-ver-top");
+        this.headerNav.classList.add("scale-down-ver-top");
         for (const section of document.getElementsByTagName("section")) {
           section.style.opacity = "1";
         }
@@ -455,9 +444,9 @@ export default {
   },
 
   computed: {
-    headerUlStyle() {
+    headerNavStyle() {
       return {
-        left: `${this.headerUlLeftPosition}px`,
+        left: `${this.headerNavLeftPosition}px`,
       };
     },
   },
@@ -495,7 +484,7 @@ export default {
         this.pageMarginBottom = parseInt(
           getComputedStyle(this.sectionPage).marginBottom
         );
-        this.headerUlLeftCalculator();
+        this.headerNavLeftCalculator();
         this.headerNavDisplay();
         this.remainingHeightHome =
           90 +
@@ -526,17 +515,17 @@ export default {
       }
     },
 
-    // Calculates the pixel numbers for left property of headerUl
-    headerUlLeftCalculator() {
-      if (window.innerWidth >= 576) this.headerUlLeftPosition = 0;
+    // Calculates the pixel numbers for left property of headerNav
+    headerNavLeftCalculator() {
+      if (window.innerWidth >= 576) this.headerNavLeftPosition = 0;
       else {
-        this.headerUlLeftPosition =
+        this.headerNavLeftPosition =
           (this.header.offsetWidth -
             (this.vw * 5 +
               65 +
               this.logo.offsetWidth +
               this.menuButton.offsetWidth +
-              this.headerUl.offsetWidth)) /
+              this.headerNav.offsetWidth)) /
             2 +
           this.vw * 4 +
           this.menuButton.offsetWidth;
@@ -546,9 +535,8 @@ export default {
     // Determines how header navbar should be displayed
     headerNavDisplay() {
       if (window.innerWidth < 576) {
-        // this.headerNavbar.classList.add('flex-column');
-        this.headerUl.classList.remove("align-items-center");
-        this.headerUl.classList.add(
+        this.headerNav.classList.remove("align-items-center");
+        this.headerNav.classList.add(
           "invisible",
           "flex-column",
           "align-items-end",
@@ -556,16 +544,15 @@ export default {
         );
         this.menuButton.classList.remove("d-none");
       } else {
-        // this.headerNavbar.classList.remove('flex-column');
         this.menuButton.classList.add("d-none");
-        this.headerUl.classList.remove(
+        this.headerNav.classList.remove(
           "invisible",
           "scale-down-ver-top",
           "flex-column",
           "align-items-end",
           "vertical-menu"
         );
-        this.headerUl.classList.add("align-items-center");
+        this.headerNav.classList.add("align-items-center");
       }
     },
 
@@ -578,19 +565,15 @@ export default {
     onScroll() {
       var screenBottom = window.innerHeight + window.scrollY;
       if (!this.loadHome && screenBottom > this.remainingHeightHome) {
-        // console.log( 'this.remainingHeightHome:',screenBottom, this.remainingHeightHome);
         this.loadHome = true;
       }
       if (!this.loadApp && screenBottom > this.remainingHeightApp) {
-        // console.log( 'this.remainingHeightApp:',screenBottom, this.remainingHeightApp);
         this.loadApp = true;
       }
       if (!this.loadPort && screenBottom > this.remainingHeightPort) {
-        // console.log( 'this.remainingHeightPort:',screenBottom, this.remainingHeightPort);
         this.loadPort = true;
       }
       if (!this.loadOthers && screenBottom > this.remainingHeightOthers) {
-        // console.log( 'this.remainingHeightOthers:',screenBottom, this.remainingHeightOthers);
         this.loadOthers = true;
       }
     },
@@ -670,19 +653,9 @@ export default {
     this.bodyDiv = document.getElementById("idpp-body");
     this.header = document.getElementById("idpp-header");
     this.logo = document.getElementById("idpp-logo");
-    this.headerUl = document.getElementById("idpp-headerUl");
+    this.headerNav = document.getElementById("idpp-headerNav");
     this.menuButton = document.getElementById("idpp-menuButton");
     this.menuImg = document.getElementById("idpp-menuImg");
-    // this.$refs.mainPage = document.getElementById('idpp-mainPage');
-    // this.$refs.mainHeader = document.getElementById('idpp-mainHeader');
-    // this.$refs.homePage = document.getElementById('idpp-homePage');
-    // this.$refs.homeHeader = document.getElementById('idpp-homeHeader');
-    // this.$refs.appPage = document.getElementById('idpp-appPage');
-    // this.appHeader = document.getElementById('idpp-appHeader');
-    // this.$refs.portPage = document.getElementById('idpp-portPage');
-    // this.portHeader = document.getElementById('idpp-portHeader');
-    // this.othersPage = document.getElementById('idpp-othersPage');
-    // this.othersHeader = document.getElementById('idpp-othersHeader');
     this.linkedinNav = document.getElementById("idpp-linkedinNav");
     this.emailNav = document.getElementById("idpp-emailNav");
     this.telegramNav = document.getElementById("idpp-telegramNav");
@@ -693,7 +666,7 @@ export default {
     document.body.parentElement.style.overflowY = "auto";
     this.windowWidthClassEmitter();
     this.headerNavDisplay();
-    this.headerUlLeftCalculator();
+    this.headerNavLeftCalculator();
     this.onLoad();
   },
 

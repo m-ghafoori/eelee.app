@@ -37,6 +37,14 @@ ul {
 
 /* Classes */
 
+.overflow-y-hidden {
+    overflow-y: hidden !important;
+}
+
+.overflow-y-auto {
+    overflow-y: auto !important;
+}
+
 .prevent-select {
     -webkit-user-select: none;
     /* Safari */
@@ -181,7 +189,7 @@ ul {
     margin: auto 40px auto 2vw;
 }
 
-.header-ul {
+.header-nav {
     width: 78%;
     height: 100%;
     font-size: calc(1.5vw + 0.7rem);
@@ -189,7 +197,7 @@ ul {
     margin: 0;
 }
 
-.header-ul li {
+.header-nav li {
     width: fit-content;
     height: fit-content;
     margin: auto 0;

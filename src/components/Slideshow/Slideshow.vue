@@ -56,23 +56,18 @@ export default {
         slideNum(val) {
             if (!this.loopMode) {
                 if (this.slideNum == 1) {
-                    // console.log('watcher', this.slideNum, 'hiding previous');
                     this.previousSpan.classList.remove('d-flex');
                     this.previousSpan.classList.add('d-none');
                 } else {
-                    // console.log('watcher', this.slideNum, 'showing previous');
                     this.previousSpan.classList.remove('d-none');
                     this.previousSpan.classList.add('d-flex');
                 }
 
                 if (this.slidesNumber == val) {
-                    // console.log('watcher', this.slideNum, 'hiding next');
                     this.nextSpan.classList.remove('d-flex');
                     this.nextSpan.classList.add('d-none');
                     this.finishSpan.classList.remove('d-none');
-                    // console.log('finish classList', this.finishSpan.classList)
                 } else {
-                    // console.log('watcher', this.slideNum, 'hiding finish');
                     this.finishSpan.classList.add('d-none');
                     this.nextSpan.classList.remove('d-none');
                     this.nextSpan.classList.add('d-flex');
@@ -105,7 +100,6 @@ export default {
             diffNum = range;
             }
         }
-        // console.log('previous number:', num, diffNum);
         return diffNum;
         },
 
@@ -141,18 +135,15 @@ export default {
             this.$refs.nextArrow.setAttribute('src', require(`./assets/arrow-right-${this.widthClass}.svg`));
         },
         onNextClick() {
-            // console.log('next clicked');
             this.slideNum = this.nextNumber(this.slideNum, this.slidesNumber, true);
             this.onNextMouseOut();
             this.activeDiv.scrollTop = 0;
         },
         onFinishClick() {
-            // console.log('finish clicked');
             this.$emit('slideshow-finish');
             // this.isActive = false;
         },
         onPreviousClick() {
-            // console.log('previous clicked');
             this.slideNum = this.previousNumber(this.slideNum, this.slidesNumber, true);
             this.onPreviousMouseOut();
             this.activeDiv.scrollTop = 0;
@@ -273,10 +264,6 @@ export default {
     padding: 8px;
     margin: 12px calc(3% + 10px);
 }
-/* 
-.slideshow-finish:hover {
-    color: #437bfd;
-} */
 
 .slideshow-previous {
     position: relative;

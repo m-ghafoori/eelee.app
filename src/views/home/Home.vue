@@ -1,40 +1,40 @@
 <template>
-  <div id="bodyDiv" class='lg-wide-screen'>
+  <div id="idph-bodyDiv" class='lg-wide-screen'>
 
-    <div id="mainContainer" class="invisible d-flex flex-column lg-wide-screen">
+    <div id="idph-mainContainer" class="invisible d-flex flex-column lg-wide-screen">
       <header
-        id="header"
+        id="idph-header"
         class="d-flex align-items-center"
         @mouseenter="headerMouseEnter"
         @mouseleave="headerMouseLeave"
       >
         <router-link
-          id="logo"
-          class="invisible hoverable animate__animated"
+          id="idph-logo"
+          class="invisible idph-hoverable animate__animated"
           to="/portfolio"
           @mouseenter="logoMouseEnter"
           @mouseleave="logoMouseLeave"
           >EELee</router-link
         >
-        <div id="headerNavbar" class="invisible d-flex align-items-center">
+        <div id="idph-headerNavbar" class="invisible d-flex align-items-center">
 
           <router-link
-            id="appNav"
-            class="idph-nav-link hoverable animate__animated"
+            id="idph-appNav"
+            class="idph-nav-link idph-hoverable animate__animated"
             to="/app"
           >
             App
           </router-link>
           <router-link
-            id="portNav"
-            class="idph-nav-link hoverable animate__animated"
+            id="idph-portNav"
+            class="idph-nav-link idph-hoverable animate__animated"
             to="/portfolio"
           >
             Portfolio
           </router-link>
           <router-link
-            id="orderNav"
-            class="idph-nav-link hoverable animate__animated"
+            id="idph-orderNav"
+            class="idph-nav-link idph-hoverable animate__animated"
             to="/order"
           >
             Let's App!
@@ -42,29 +42,29 @@
         </div>
       </header>
 
-      <section id="showcase" class="">
-        <div id="orderDiv" class="animate__animated animate__slower">
+      <section id="idph-showcase" class="">
+        <div id="idph-orderDiv" class="animate__animated animate__slower">
           <router-link
-            id="orderLink"
-            class="invisible hoverable animate__animated"
+            id="idph-orderLink"
+            class="invisible idph-hoverable animate__animated"
             to="/order"
             @mouseenter="orderLinkMouseEnter"
             @mouseleave="orderLinkMouseLeave"
             href="#"
             >Need A Modern Website ???</router-link
           >
-          <span id="orderMessage" class="invisible animate__animated"
+          <span id="idph-orderMessage" class="invisible animate__animated"
             >Click To Get One . . .</span
           >
         </div>
 
         <div
-          id="donateDiv"
+          id="idph-donateDiv"
           class="invisible d-flex align-items-end animate__animated"
         >
-          <router-link id="donateLink" class="hoverable" to="/donate">
+          <router-link id="idph-donateLink" class="idph-hoverable" to="/donate">
             <img
-              id="donateIcon"
+              id="idph-donateIcon"
               class="animate__animated"
               @mouseenter="donateMouseEnter"
               @mouseleave="donateMouseLeave"
@@ -74,15 +74,15 @@
           </router-link>
         </div>
 
-        <div id="skipAnimations" class="hoverable vibrate-1" @mouseenter="onSkipAnimationsMouseEnter" @mouseleave="onSkipAnimationsMouseLeave" @click="onSkipAnimationsClick">Skip Initial Animations >>></div>
+        <div id="idph-skipAnimations" class="idph-hoverable vibrate-1" @mouseenter="onSkipAnimationsMouseEnter" @mouseleave="onSkipAnimationsMouseLeave" @click="onSkipAnimationsClick">Skip Initial Animations >>></div>
       </section>
 
-      <footer id="footer" class="vibrate-1">
-        <router-link to="/portfolio" id="footerNote" class="hoverable">&copy; 2022 - EELee App Design</router-link>
-        <ul id="footerUl" class="invisible hoverable">
-          <li id="linkedinNav" class="animate__animated">
+      <footer id="idph-footer" class="vibrate-1">
+        <router-link to="/portfolio" id="idph-footerNote" class="idph-hoverable">&copy; 2022 - EELee App Design</router-link>
+        <ul id="idph-footerUl" class="invisible idph-hoverable">
+          <li id="idph-linkedinNav" class="animate__animated">
             <img
-              id="linkedinIcon"
+              id="idph-linkedinIcon"
               class="animate__animated"
               @mouseenter="linkedinMouseEnter"
               @mouseleave="linkedinMouseLeave"
@@ -90,9 +90,9 @@
             />
           </li>
           <li>
-            <router-link to="contact" id="emailNav" class="hoverable animate__animated">
+            <router-link to="contact" id="idph-emailNav" class="idph-hoverable animate__animated">
               <img
-                id="emailIcon"
+                id="idph-emailIcon"
                 class="animate__animated"
                 @mouseenter="emailMouseEnter"
                 @mouseleave="emailMouseLeave"
@@ -100,9 +100,9 @@
               />
             </router-link>
           </li>
-          <li id="telegramNav" class="animate__animated">
+          <li id="idph-telegramNav" class="animate__animated">
             <img
-              id="telegramIcon"
+              id="idph-telegramIcon"
               class="animate__animated"
               @mouseenter="telegramMouseEnter"
               @mouseleave="telegramMouseLeave"
@@ -227,10 +227,6 @@ export default {
       }
     },
 
-    timeoutLog() {
-      
-    },
-
     // Creates wind effect on header icons with customizable delays
     windEffect(initialDelay, beforeApp, beforePort, beforeOrder) {
       this.logoTimeoutRef = setTimeout(() => {
@@ -308,13 +304,16 @@ export default {
     mainContainerInitAppear() {
       console.log("mainContainerInitAppear called",new Date().getMilliseconds());
       this.mainContainerInitRef = setTimeout(() => {
-        // this.mainContainer.parentElement.classList.remove("invisible");
         this.mainContainer.classList.remove("invisible");
         this.mainContainer.classList.add(
           "d-flex",
           "flex-column",
-          "bounce-in-initial"
+          "puff-in-left"
         );
+        setTimeout(() => {
+          document.body.parentElement.classList.remove('overflow-y-hidden');
+          document.body.parentElement.classList.add('overflow-y-auto');
+        }, 3000);
       }, 1000);
     },
 
@@ -327,7 +326,7 @@ export default {
         this.headerNavsInitRef = setTimeout(() => {
           for (let i = 1; i < 4; i++) {
             this.headerNavbar.classList.remove("invisible");
-            this.headerNavsList[i].classList.add("navbar-tracking-in-expand");
+            this.headerNavsList[i].classList.add("tracking-in-expand");
           }
         }, 5300);
       }, 3500);
@@ -339,7 +338,7 @@ export default {
       this.headerInitWindref = setTimeout(() => {
         this.headerNavsList.forEach((item) => {
           item.classList.remove(
-            "navbar-tracking-in-expand",
+            "tracking-in-expand",
             "animate__swing",
             "shake-top",
             "text-focus-in"
@@ -414,11 +413,13 @@ export default {
         this.donateLink.parentElement.classList.remove("invisible");
         this.donateLink.parentElement.classList.add("shake-horizontal");
         this.donateLink.firstElementChild.classList.add("slide-in-bottom");
-        this.skipAnimations.classList.remove('vibrate-1');
-        this.skipAnimations.classList.add('bounce-out-left');
         setTimeout(() => {
-          this.skipAnimations.classList.add('invisible')
-        }, 5000);
+          this.skipAnimations.classList.remove('vibrate-1');
+          this.skipAnimations.classList.add('tracking-out-contract-bck-bottom');
+          setTimeout(() => {
+            this.skipAnimations.classList.add('invisible')
+          }, 1000);
+        }, 3000);
 
         this.donateIntervalRef = setInterval(() => {
           this.donateLink.firstElementChild.classList.remove("slide-in-bottom");
@@ -452,7 +453,7 @@ export default {
       this.headerLoopIntervalRef = setInterval(() => {
         this.headerNavsList.forEach((item) => {
           item.classList.remove(
-            "navbar-tracking-in-expand",
+            "tracking-in-expand",
             "animate__swing",
             "shake-top"
           );
@@ -666,24 +667,24 @@ export default {
   },
 
   mounted() {
-    
-    this.headerNavbar = document.getElementById("headerNavbar");
-    this.logo = document.getElementById("logo");
-    this.appNav = document.getElementById("appNav");
-    this.portNav = document.getElementById("portNav");
-    this.orderNav = document.getElementById("orderNav");
-    this.orderDiv = document.getElementById("orderDiv");
-    this.donateLink = document.getElementById("donateLink");
-    this.skipAnimations = document.getElementById("skipAnimations");
-    this.footerUl = document.getElementById("footerUl");
-    this.linkedinNav = document.getElementById("linkedinNav");
-    this.emailNav = document.getElementById("emailNav");
-    this.telegramNav = document.getElementById("telegramNav");
-    this.mainContainer = document.getElementById("mainContainer");
+
+    document.body.parentElement.classList.add('overflow-y-hidden');
+    this.headerNavbar = document.getElementById("idph-headerNavbar");
+    this.logo = document.getElementById("idph-logo");
+    this.appNav = document.getElementById("idph-appNav");
+    this.portNav = document.getElementById("idph-portNav");
+    this.orderNav = document.getElementById("idph-orderNav");
+    this.orderDiv = document.getElementById("idph-orderDiv");
+    this.donateLink = document.getElementById("idph-donateLink");
+    this.skipAnimations = document.getElementById("idph-skipAnimations");
+    this.footerUl = document.getElementById("idph-footerUl");
+    this.linkedinNav = document.getElementById("idph-linkedinNav");
+    this.emailNav = document.getElementById("idph-emailNav");
+    this.telegramNav = document.getElementById("idph-telegramNav");
+    this.mainContainer = document.getElementById("idph-mainContainer");
     this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
     this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
     this.invisibleElemsList = [this.mainContainer, this.logo, this.headerNavbar, this.orderDiv.firstElementChild, this.donateLink.parentElement, this.footerUl];
-    document.body.parentElement.style.overflowY = 'auto';
     this.startAnimations();
   },
   
@@ -692,7 +693,7 @@ export default {
   },
 
   beforeUnmount() {
-    document.body.parentElement.style.overflowY = 'hidden';
+    document.body.parentElement.classList.remove('overflow-y-auto');
   },
 };
 </script>
