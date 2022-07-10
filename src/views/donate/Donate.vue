@@ -1,19 +1,19 @@
 <template>
   <div
     id="idpd-body"
-    class="body d-flex flex-column justify-content-between"
+    class="body"
     @mousedown="onBodyDivMouseDown"
   >
     <header
       id="idpd-header"
-      class="header d-flex justify-content-between align-items-center"
+      class="header"
     >
       <router-link id="idpd-logo" to="/" class="logo idpd-hoverable"
         >EELee</router-link
       >
       <ul
         id="idpd-headerNav"
-        class="header-nav d-flex align-items-center"
+        class="header-nav"
         :style="headerNavStyle"
       >
         <li>
@@ -55,7 +55,7 @@
 
     <section
       id="idpd-showcase"
-      class="d-flex flex-column justify-content-between align-items-center"
+      class="showcase justify-content-between align-items-center"
     >
       <form
         id="idpd-donationForm"
@@ -89,15 +89,12 @@
       id="idpd-footer"
       class="
         footer
-        d-flex
-        flex-column
-        justify-content-around
-        align-items-center
+
       "
     >
       <div
         id="idpd-footerNav"
-        class="footer-nav d-flex justify-content-between align-items-center"
+        class="footer-nav"
       >
         <a
           href="https://www.linkedin.com/"

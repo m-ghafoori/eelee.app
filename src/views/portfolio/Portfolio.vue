@@ -1,19 +1,19 @@
 <template>
   <div
     id="idpp-body"
-    class="body d-flex flex-column justify-content-between align-items-center"
+    class="body"
     @mousedown="onBodyDivMouseDown"
   >
     <header
       id="idpp-header"
-      class="header d-flex justify-content-between align-items-center"
+      class="header"
     >
       <router-link id="idpp-logo" to="/" class="logo idpp-hoverable"
         >EELee</router-link
       >
       <ul
         id="idpp-headerNav"
-        class="header-nav d-flex align-items-center"
+        class="header-nav"
         :style="headerNavStyle"
       >
         <li>
@@ -51,7 +51,7 @@
       </span>
     </header>
 
-    <section id="idpp-showcase">
+    <section id="idpp-showcase" class="showcase">
       <div
         ref="mainHeader"
         id="idpp-mainHeader"
@@ -265,15 +265,12 @@
       id="idpp-footer"
       class="
         footer
-        d-flex
-        flex-column
-        justify-content-around
-        align-items-center
+
       "
     >
       <div
         id="idpo-footerNav"
-        class="footer-nav d-flex justify-content-between align-items-center"
+        class="footer-nav"
       >
         <a
           href="https://www.linkedin.com/"

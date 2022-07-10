@@ -1,19 +1,19 @@
 <template>
   <div
     id="idpa-body"
-    class="body d-flex flex-column justify-content-between align-items-center"
+    class="body"
     @mousedown="onBodyDivMouseDown"
   >
     <header
       id="idpa-header"
-      class="header d-flex justify-content-between align-items-center"
+      class="header"
     >
       <router-link id="idpa-logo" to="/" class="logo idpa-hoverable"
         >EELee</router-link
       >
       <ul
         id="idpa-headerNav"
-        class="header-nav d-flex align-items-center"
+        class="header-nav"
         :style="headerNavStyle"
       >
         <li>
@@ -51,7 +51,7 @@
       </span>
     </header>
 
-    <section id="idpa-showcase">
+    <section id="idpa-showcase" class="showcase">
       <Table @contextmenu="preventDefaultEvents" />
     </section>
 
@@ -59,15 +59,11 @@
       id="idpa-footer"
       class="
         footer
-        d-flex
-        flex-column
-        justify-content-around
-        align-items-center
       "
     >
       <div
         id="idpo-footerNav"
-        class="footer-nav d-flex justify-content-between align-items-center"
+        class="footer-nav"
       >
         <a
           href="https://www.linkedin.com/"

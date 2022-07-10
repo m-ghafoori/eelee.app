@@ -1,19 +1,19 @@
 <template>
   <div
     id="idpc-body"
-    class="body d-flex flex-column justify-content-between"
+    class="body"
     @click="onBodyDivClick"
   >
     <header
       id="idpc-header"
-      class="header d-flex justify-content-between align-items-center"
+      class="header"
     >
       <router-link id="idpc-logo" to="/" class="logo idpc-hoverable"
         >EELee</router-link
       >
       <ul
         id="idpc-headerNav"
-        class="header-nav d-flex align-items-center"
+        class="header-nav"
         :style="headerNavStyle"
       >
         <li>
@@ -56,7 +56,7 @@
       </span>
     </header>
 
-    <section id="idpc-showcase" class="d-flex flex-column align-items-start">
+    <section id="idpc-showcase" class="showcase align-items-start">
       <div id="idpc-messagereceived" class="d-none">
         Thanks! <br /><br /><br />
         Your message has been received. <br /><br /><br />
@@ -134,15 +134,12 @@
       id="idpc-footer"
       class="
         footer
-        d-flex
-        flex-column
-        justify-content-around
-        align-items-center
+
       "
     >
       <div
         id="idpc-footerNav"
-        class="footer-nav d-flex justify-content-between align-items-center"
+        class="footer-nav"
       >
         <a
           href="https://www.linkedin.com/"

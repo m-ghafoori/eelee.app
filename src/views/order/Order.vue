@@ -1,21 +1,10 @@
 <template>
-  <div
-    id="idpo-body"
-    class="body d-flex flex-column justify-content-between"
-    @mousedown="onBodyDivMouseDown"
-  >
-    <header
-      id="idpo-header"
-      class="header d-flex justify-content-between align-items-center"
-    >
+  <div id="idpo-body" class="body">
+    <header id="idpo-header" class="header">
       <router-link id="idpo-logo" to="/" class="logo idpo-hoverable"
         >EELee</router-link
       >
-      <ul
-        id="idpo-headerNav"
-        class="header-nav d-flex align-items-center"
-        :style="headerNavStyle"
-      >
+      <ul id="idpo-headerNav" class="header-nav align-items-center">
         <li>
           <router-link to="/" class="nav-link idpo-hoverable">Home</router-link>
         </li>
@@ -35,24 +24,16 @@
           >
         </li>
       </ul>
-      <span
-        id="idpo-menuButton"
-        class="menu-button d-none"
-        @click="onMenuButtonClick"
-      >
-        <img
-          id="idpo-menuImg"
-          class="idpo-hoverable"
-          :src="require(`@/assets/images/svg/menu-button.svg`)"
-          alt=""
-          @mouseenter="onMenuImgMouseEnter"
-          @mouseleave="onMenuImgMouseLeave"
-        />
-      </span>
+      <VerticalMenu idPrefix="idpo" imgColor="maroon" :showIfLessThanPx="576"/>
     </header>
 
-    <section id="idpo-showcase" class="d-flex flex-column align-items-start">
-      <Slideshow uniqueLabel="Agreement" :slidesNumber="9" :loopMode="false" @slideshow-finish="onSlideshowFinish">
+    <section id="idpo-showcase" class="showcase align-items-start">
+      <Slideshow
+        uniqueLabel="Agreement"
+        :slidesNumber="9"
+        :loopMode="false"
+        @slideshow-finish="onSlideshowFinish"
+      >
         <template #title1>
           <span>How to Order</span>
         </template>
@@ -219,20 +200,8 @@
       </Slideshow>
     </section>
 
-    <footer
-      id="idpo-footer"
-      class="
-        footer
-        d-flex
-        flex-column
-        justify-content-around
-        align-items-center
-      "
-    >
-      <div
-        id="idpo-footerNav"
-        class="footer-nav d-flex justify-content-between align-items-center"
-      >
+    <footer id="idpo-footer" class="footer">
+      <div id="idpo-footerNav" class="footer-nav">
         <a
           href="https://www.linkedin.com/"
           target="blank"
@@ -283,29 +252,28 @@
 </template>
 
 <script>
+import VerticalMenu from "@/components/VerticalMenu/VerticalMenu.vue";
 import Slideshow from "@/components/Slideshow/Slideshow.vue";
 
 export default {
   name: "Order",
 
   components: {
+    VerticalMenu,
     Slideshow,
   },
 
   data() {
     return {
-      widthClass: String,
-      vw: Number,
-      headerNavLeftPosition: Number,
-      sizeHistoryArray: [],
+        widthClass: String,
+      windowWidth: Number,
       isMounted: false,
-      isVerticalMenuExpanded: false,
-      clientRequest: '',
-      clientEmail: '',
+      clientRequest: "",
+      clientEmail: "",
       projectBudget: 4000,
       projectDuration: 4,
 
-    // Error Handling Vars
+      // Error Handling Vars
       noRequestError: false,
       noEmailError: false,
       invalidEmailError: false,
@@ -314,12 +282,6 @@ export default {
       allInputsValid: false,
 
       // Elements Object Refs
-      header: Object,
-      logo: Object,
-      headerNav: Object,
-      menuButton: Object,
-      menuImg: Object,
-      showcase: Object,
       linkedinNav: Object,
       emailNav: Object,
       telegramNav: Object,
@@ -327,185 +289,73 @@ export default {
   },
 
   watch: {
-    isVerticalMenuExpanded(val) {
+    noRequestError(val) {
       if (val) {
-        this.menuImg.setAttribute(
-          "src",
-          require(`@/assets/images/svg/menu-button-hover.svg`)
-        );
-        this.headerNav.classList.remove("invisible", "scale-down-ver-top");
-        this.headerNav.classList.add("scale-up-ver-top");
-        this.showcase.style.opacity = "0.2";
-      } else {
-        this.menuImg.setAttribute(
-          "src",
-          require(`@/assets/images/svg/menu-button.svg`)
-        );
-        this.headerNav.classList.remove("scale-up-ver-top");
-        this.headerNav.classList.add("scale-down-ver-top");
-        this.showcase.style.opacity = "1";
+        console.log("noRequestError", this.clientRequest);
       }
     },
-    noRequestError(val) {
-        if (val) {
-            console.log('noRequestError', this.clientRequest);
-        }
-    },
     noEmailError(val) {
-        if (val) {
-            console.log('noEmailError', this.clientEmail);
-        }
+      if (val) {
+        console.log("noEmailError", this.clientEmail);
+      }
     },
     invalidEmailError(val) {
-        if (val) {
-            console.log('invalidEmailError', this.clientEmail);
-        }
+      if (val) {
+        console.log("invalidEmailError", this.clientEmail);
+      }
     },
     invalidDurationError(val) {
-        if (val) {
-            console.log('invalidDurationError', this.projectDuration);
-        }
+      if (val) {
+        console.log("invalidDurationError", this.projectDuration);
+      }
     },
     invalidBudgetError(val) {
-        if (val) {
-            console.log('invalidBudgetError', this.projectBudget);
-        }
-    },
-  },
-
-  computed: {
-    headerNavStyle() {
-      return {
-        left: `${this.headerNavLeftPosition}px`,
-      };
+      if (val) {
+        console.log("invalidBudgetError", this.projectBudget);
+      }
     },
   },
 
   methods: {
     // Utility Methods
 
-    // Tracks width size changes by updating sizeHistoryArray
-    sizeHistoryUpdator(sizeClass) {
-      this.sizeHistoryArray.push(sizeClass);
-      if (this.sizeHistoryArray.length > 2) this.sizeHistoryArray.shift();
-      if (
-        this.sizeHistoryArray.includes("sm") &&
-        this.sizeHistoryArray.includes("xs")
-      ) {
-        if (this.isVerticalMenuExpanded) this.isVerticalMenuExpanded = false;
-        setTimeout(() => {
-          this.headerNavDisplay();
-        }, 50);
-      }
-    },
-
     // Triggers different window size classes on resize
     windowWidthClassEmitter() {
-      var windowWidth = window.innerWidth;
+      this.windowWidth = window.innerWidth;
 
-      if (windowWidth < 320) this.widthClass = "xxs";
-      else if (windowWidth < 576) this.widthClass = "xs";
-      else if (windowWidth < 768) this.widthClass = "sm";
-      else if (windowWidth < 992) this.widthClass = "md";
+      if (this.windowWidth < 320) this.widthClass = "xxs";
+      else if (this.windowWidth < 576) this.widthClass = "xs";
+      else if (this.windowWidth < 768) this.widthClass = "sm";
+      else if (this.windowWidth < 992) this.widthClass = "md";
       else this.widthClass = "lg";
-      this.sizeHistoryUpdator(this.widthClass);
-      if (this.isMounted) {
-        this.vw = windowWidth / 100;
-        this.headerNavLeftCalculator();
-      }
-    },
-
-    // Calculates the pixel numbers for left property of headerNav
-    headerNavLeftCalculator() {
-      if (window.innerWidth >= 576) this.headerNavLeftPosition = 0;
-      else {
-        this.headerNavLeftPosition =
-          (this.header.offsetWidth -
-            (this.vw * 5 +
-              65 +
-              this.logo.offsetWidth +
-              this.menuButton.offsetWidth +
-              this.headerNav.offsetWidth)) /
-            2 +
-          this.vw * 4 +
-          this.menuButton.offsetWidth;
-      }
-    },
-
-    // Determines how header navbar should be displayed
-    headerNavDisplay() {
-      if (window.innerWidth < 576) {
-        this.headerNav.classList.remove("align-items-center");
-        this.headerNav.classList.add(
-          "invisible",
-          "flex-column",
-          "align-items-end",
-          "vertical-menu"
-        );
-        this.menuButton.classList.remove("d-none");
-      } else {
-        this.headerNav.classList.remove(
-          "invisible",
-          "scale-down-ver-top",
-          "flex-column",
-          "align-items-end",
-          "vertical-menu"
-        );
-        this.headerNav.classList.add("align-items-center");
-        this.menuButton.classList.add("d-none");
-      }
     },
 
     // Event Handlers
 
-    // Footer
-
-    onBodyDivMouseDown($event) {
-      if (this.isVerticalMenuExpanded) {
-        if (
-          !$event.target.classList.contains("nav-link") &&
-          $event.target.id != "idpo-menuImg"
-        )
-          this.isVerticalMenuExpanded = false;
-      }
-    },
-    onMenuButtonClick() {
-      this.isVerticalMenuExpanded = !this.isVerticalMenuExpanded;
-    },
-    onMenuImgMouseEnter() {
-      this.menuImg.setAttribute(
-        "src",
-        require(`@/assets/images/svg/menu-button-hover.svg`)
-      );
-    },
-    onMenuImgMouseLeave() {
-      if (!this.isVerticalMenuExpanded)
-        this.menuImg.setAttribute(
-          "src",
-          require(`@/assets/images/svg/menu-button.svg`)
-        );
-    },
 
     // Order Form
     onClientRequestClick() {
-        this.noRequestError = false;
+      this.noRequestError = false;
     },
     onClientEmailClick() {
-        this.noEmailError = false;
-        this.invalidEmailError = false;
+      this.noEmailError = false;
+      this.invalidEmailError = false;
     },
     onProjectBudgetClick() {
-        this.invalidBudgetError = false;
+      this.invalidBudgetError = false;
     },
     onProjectDurationClick() {
-        this.invalidDurationError = false;
+      this.invalidDurationError = false;
     },
     onSlideshowFinish() {
-        if (this.clientRequest == '') this.noRequestError = true;
-        if (this.clientEmail == '') this.noEmailError = true;
-        if (!this.$refs.clientEmailInput.validity.valid) this.invalidEmailError = true;
-        if (this.projectBudget < 500 || this.projectBudget > 9000000) this.invalidBudgetError = true;
-        if (this.projectDuration < 1 || this.projectDuration > 200) this.invalidDurationError = true;
+      if (this.clientRequest == "") this.noRequestError = true;
+      if (this.clientEmail == "") this.noEmailError = true;
+      if (!this.$refs.clientEmailInput.validity.valid)
+        this.invalidEmailError = true;
+      if (this.projectBudget < 500 || this.projectBudget > 9000000)
+        this.invalidBudgetError = true;
+      if (this.projectDuration < 1 || this.projectDuration > 200)
+        this.invalidDurationError = true;
     },
 
     // Footer
@@ -556,19 +406,11 @@ export default {
   },
 
   mounted() {
-    this.header = document.getElementById("idpo-header");
-    this.logo = document.getElementById("idpo-logo");
-    this.headerNav = document.getElementById("idpo-headerNav");
-    this.menuButton = document.getElementById("idpo-menuButton");
-    this.menuImg = document.getElementById("idpo-menuImg");
-    this.showcase = document.getElementById("idpo-showcase");
-    this.linkedinNav = document.getElementById("idpo-linkedinNav");
-    this.emailNav = document.getElementById("idpo-emailNav");
-    this.telegramNav = document.getElementById("idpo-telegramNav");
+    this.linkedinNav = document.querySelector("#idpo-linkedinNav");
+    this.emailNav = document.querySelector("#idpo-emailNav");
+    this.telegramNav = document.querySelector("#idpo-telegramNav");
     this.isMounted = true;
     this.windowWidthClassEmitter();
-    this.headerNavDisplay();
-    this.headerNavLeftCalculator();
   },
 };
 </script>
