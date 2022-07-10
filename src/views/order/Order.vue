@@ -1,32 +1,6 @@
 <template>
   <div id="idpo-body" class="body">
-    <header id="idpo-header" class="header">
-      <router-link id="idpo-logo" to="/" class="logo idpo-hoverable"
-        >EELee</router-link
-      >
-      <ul id="idpo-headerNav" class="header-nav align-items-center">
-        <li>
-          <router-link to="/" class="nav-link idpo-hoverable">Home</router-link>
-        </li>
-        <li>
-          <router-link to="/portfolio" class="nav-link idpo-hoverable"
-            >Portfolio</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/app" class="nav-link idpo-hoverable"
-            >App</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/donate" class="nav-link idpo-hoverable"
-            >Donate</router-link
-          >
-        </li>
-      </ul>
-      <VerticalMenu idPrefix="idpo" imgColor="maroon" :showIfLessThanPx="576"/>
-    </header>
-
+    <Header pageRoute="/order"/>
     <section id="idpo-showcase" class="showcase align-items-start">
       <Slideshow
         uniqueLabel="Agreement"
@@ -252,14 +226,14 @@
 </template>
 
 <script>
-import VerticalMenu from "@/components/VerticalMenu/VerticalMenu.vue";
+import Header from "@/components/Header/Header.vue";
 import Slideshow from "@/components/Slideshow/Slideshow.vue";
 
 export default {
   name: "Order",
 
   components: {
-    VerticalMenu,
+    Header,
     Slideshow,
   },
 
@@ -411,6 +385,10 @@ export default {
     this.telegramNav = document.querySelector("#idpo-telegramNav");
     this.isMounted = true;
     this.windowWidthClassEmitter();
+    document.querySelectorAll(".hoverable").forEach((element) => {
+      element.classList.remove("hoverable");
+      element.classList.add("idpo-hoverable");
+    });
   },
 };
 </script>
