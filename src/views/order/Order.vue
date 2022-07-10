@@ -1,6 +1,6 @@
 <template>
   <div id="idpo-body" class="body">
-    <Header pageRoute="/order"/>
+    <Header pageRoute="/order" />
     <section id="idpo-showcase" class="showcase align-items-start">
       <Slideshow
         uniqueLabel="Agreement"
@@ -173,60 +173,13 @@
         </template>
       </Slideshow>
     </section>
-
-    <footer id="idpo-footer" class="footer">
-      <div id="idpo-footerNav" class="footer-nav">
-        <a
-          href="https://www.linkedin.com/"
-          target="blank"
-          class="idpo-hoverable"
-          @mouseenter="onLinkedinMouseEnter"
-          @mouseleave="onLinkedinMouseLeave"
-        >
-          <img
-            id="idpo-linkedinNav"
-            :src="require(`@/assets/images/svg/linkedin-${widthClass}.svg`)"
-            alt=""
-          />
-        </a>
-        <router-link
-          to="/contact"
-          class="idpo-hoverable"
-          @mouseenter="onEmailMouseEnter"
-          @mouseleave="onEmailMouseLeave"
-        >
-          <img
-            id="idpo-emailNav"
-            :src="require(`@/assets/images/svg/email-${widthClass}.svg`)"
-            alt=""
-          />
-        </router-link>
-        <a
-          href="https://t.me"
-          target="blank"
-          class="idpo-hoverable"
-          @mouseenter="onTelegramMouseEnter"
-          @mouseleave="onTelegramMouseLeave"
-        >
-          <img
-            id="idpo-telegramNav"
-            :src="require(`@/assets/images/svg/telegram-${widthClass}.svg`)"
-            alt=""
-          />
-        </a>
-      </div>
-      <router-link
-        id="idpo-footerNote"
-        to="/portfolio"
-        class="footer-note idpo-hoverable"
-        >&copy; 2022 - EELee App Design</router-link
-      >
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header/Header.vue";
+import Footer from "@/components/Footer/Footer.vue";
 import Slideshow from "@/components/Slideshow/Slideshow.vue";
 
 export default {
@@ -234,14 +187,13 @@ export default {
 
   components: {
     Header,
+    Footer,
     Slideshow,
   },
 
   data() {
     return {
-        widthClass: String,
       windowWidth: Number,
-      isMounted: false,
       clientRequest: "",
       clientEmail: "",
       projectBudget: 4000,
@@ -254,11 +206,6 @@ export default {
       invalidDurationError: false,
       invalidBudgetError: false,
       allInputsValid: false,
-
-      // Elements Object Refs
-      linkedinNav: Object,
-      emailNav: Object,
-      telegramNav: Object,
     };
   },
 
@@ -291,21 +238,7 @@ export default {
   },
 
   methods: {
-    // Utility Methods
-
-    // Triggers different window size classes on resize
-    windowWidthClassEmitter() {
-      this.windowWidth = window.innerWidth;
-
-      if (this.windowWidth < 320) this.widthClass = "xxs";
-      else if (this.windowWidth < 576) this.widthClass = "xs";
-      else if (this.windowWidth < 768) this.widthClass = "sm";
-      else if (this.windowWidth < 992) this.widthClass = "md";
-      else this.widthClass = "lg";
-    },
-
     // Event Handlers
-
 
     // Order Form
     onClientRequestClick() {
@@ -331,60 +264,9 @@ export default {
       if (this.projectDuration < 1 || this.projectDuration > 200)
         this.invalidDurationError = true;
     },
-
-    // Footer
-    onLinkedinMouseEnter() {
-      this.linkedinNav.setAttribute(
-        "src",
-        require(`@/assets/images/svg/linkedin-hover-${this.widthClass}.svg`)
-      );
-    },
-    onLinkedinMouseLeave() {
-      this.linkedinNav.setAttribute(
-        "src",
-        require(`@/assets/images/svg/linkedin-${this.widthClass}.svg`)
-      );
-    },
-    onEmailMouseEnter() {
-      this.emailNav.setAttribute(
-        "src",
-        require(`@/assets/images/svg/email-hover-${this.widthClass}.svg`)
-      );
-    },
-    onEmailMouseLeave() {
-      this.emailNav.setAttribute(
-        "src",
-        require(`@/assets/images/svg/email-${this.widthClass}.svg`)
-      );
-    },
-    onTelegramMouseEnter() {
-      this.telegramNav.setAttribute(
-        "src",
-        require(`@/assets/images/svg/telegram-hover-${this.widthClass}.svg`)
-      );
-    },
-    onTelegramMouseLeave() {
-      this.telegramNav.setAttribute(
-        "src",
-        require(`@/assets/images/svg/telegram-${this.widthClass}.svg`)
-      );
-    },
-  },
-
-  created() {
-    window.addEventListener("resize", this.windowWidthClassEmitter);
-  },
-
-  beforeMount() {
-    this.windowWidthClassEmitter();
   },
 
   mounted() {
-    this.linkedinNav = document.querySelector("#idpo-linkedinNav");
-    this.emailNav = document.querySelector("#idpo-emailNav");
-    this.telegramNav = document.querySelector("#idpo-telegramNav");
-    this.isMounted = true;
-    this.windowWidthClassEmitter();
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
       element.classList.add("idpo-hoverable");
