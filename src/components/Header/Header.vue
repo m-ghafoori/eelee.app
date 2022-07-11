@@ -29,14 +29,13 @@
         </li>
       </ul>
     <VerticalMenu
-      imgColor="maroon"
       :showIfLessThanPx="576"
     />
   </header>
 </template>
 
 <script>
-import VerticalMenu from "./components/VerticalMenu/VerticalMenu.vue";
+import VerticalMenu from "./components/VerticalMenu.vue";
 
 export default {
   name: "Header",

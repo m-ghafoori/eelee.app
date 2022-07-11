@@ -1,12 +1,30 @@
 <template>
   <span ref="menuButton" class="menu-button d-none" @click="onMenuButtonClick">
-    <img
+    <svg
       ref="menuImg"
       class="menu-img hoverable"
-      alt=""
       @mouseenter="onMenuImgMouseEnter"
       @mouseleave="onMenuImgMouseLeave"
-    />
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      width="25px"
+      height="25px"
+      viewBox="0 0 25 25"
+      style="enable-background: new 0 0 25 25"
+      xml:space="preserve"
+    >
+      <g>
+        <path class="menu-img"
+          :fill="imgColor"
+          d="M0,3.875c0-1.104,0.896-2,2-2h20.75c1.104,0,2,0.896,2,2s-0.896,2-2,2H2C0.896,5.875,0,4.979,0,3.875z M22.75,10.375H2
+		c-1.104,0-2,0.896-2,2c0,1.104,0.896,2,2,2h20.75c1.104,0,2-0.896,2-2C24.75,11.271,23.855,10.375,22.75,10.375z M22.75,18.875H2
+		c-1.104,0-2,0.896-2,2s0.896,2,2,2h20.75c1.104,0,2-0.896,2-2S23.855,18.875,22.75,18.875z"
+        />
+      </g>
+    </svg>
   </span>
 </template>
 
@@ -16,13 +34,19 @@ export default {
 
   props: {
     showIfLessThanPx: Number,
-    imgColor: String,
+    mainColor: {
+      default: "#b42857",
+    },
+    hoverColor: {
+      default: "#2ec7a6",
+    },
   },
 
   data() {
     return {
-      widthClass: String,
       windowWidth: Number,
+      previousWindowWidth: 0,
+      imgColor: "#b42857",
       isMenuExpanded: false,
       isMounted: false,
       bodyDiv: Object,
@@ -33,19 +57,18 @@ export default {
 
   watch: {
     windowWidth(val) {
-      if (val >= this.showIfLessThanPx && this.isMenuExpanded)
-        this.isMenuExpanded = false;
-      setTimeout(() => {
-        this.headerNavDisplay();
-      }, 50);
+      if ((val-this.showIfLessThanPx)*(this.previousWindowWidth-this.showIfLessThanPx) <= 0) {
+        setTimeout(() => {
+          this.headerNavDisplay();
+        }, 30);
+      }
+      if (val >= this.showIfLessThanPx) this.isMenuExpanded = false;
+      this.previousWindowWidth = val;
     },
 
     isMenuExpanded(val) {
       if (val) {
-        this.$refs.menuImg.setAttribute(
-          "src",
-          require(`./assets/menu-button-${this.imgColor}-hover.svg`)
-        );
+        this.imgColor = this.hoverColor;
         this.headerNav.classList.remove("invisible", "scale-down-ver-top");
         this.headerNav.classList.add("scale-up-ver-top");
         this.showcase.style.opacity = "0.2";
@@ -53,20 +76,15 @@ export default {
         this.headerNav.classList.remove("scale-up-ver-top");
         this.headerNav.classList.add("scale-down-ver-top");
         this.showcase.style.opacity = "1";
+        this.imgColor = this.mainColor;
       }
     },
   },
 
   methods: {
-    // Triggers different window size classes on resize
+    // Triggers window width on resize
     windowWidthClassEmitter() {
       this.windowWidth = window.innerWidth;
-
-      if (this.windowWidth < 320) this.widthClass = "xxs";
-      else if (this.windowWidth < 576) this.widthClass = "xs";
-      else if (this.windowWidth < 768) this.widthClass = "sm";
-      else if (this.windowWidth < 992) this.widthClass = "md";
-      else this.widthClass = "lg";
     },
 
     // Determines how header navbar should be displayed
@@ -93,10 +111,7 @@ export default {
           );
           this.headerNav.classList.add("align-items-center");
           this.$refs.menuButton.classList.add("d-none");
-          this.$refs.menuImg.setAttribute(
-            "src",
-            require(`./assets/menu-button-${this.imgColor}.svg`)
-          );
+          this.imgColor = this.mainColor;
         }
       }
     },
@@ -108,25 +123,19 @@ export default {
         if (
           !$event.target.classList.contains("nav-link") &&
           !$event.target.classList.contains("menu-img")
-        )
-          this.isMenuExpanded = false;
+        ) {
+            this.isMenuExpanded = false;
+        }
       }
     },
     onMenuButtonClick() {
       this.isMenuExpanded = !this.isMenuExpanded;
     },
     onMenuImgMouseEnter() {
-      this.$refs.menuImg.setAttribute(
-        "src",
-        require(`./assets/menu-button-${this.imgColor}-hover.svg`)
-      );
+      this.imgColor = this.hoverColor;
     },
     onMenuImgMouseLeave() {
-      if (!this.isMenuExpanded)
-        this.$refs.menuImg.setAttribute(
-          "src",
-          require(`./assets/menu-button-${this.imgColor}.svg`)
-        );
+      if (!this.isMenuExpanded) this.imgColor = this.mainColor;
     },
   },
 
@@ -148,10 +157,6 @@ export default {
     this.isMounted = true;
     this.windowWidthClassEmitter();
     this.headerNavDisplay();
-    this.$refs.menuImg.setAttribute(
-      "src",
-      require(`./assets/menu-button-${this.imgColor}.svg`)
-    );
   },
 };
 </script>
