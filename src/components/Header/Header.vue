@@ -1,9 +1,9 @@
 <template>
   <header class="header">
     <router-link to="/" class="logo hoverable">EELee</router-link>
-    <div class="nav-div">
+    <div class="header-nav">
       <VerticalMenu :showIfLessThanPx="576" />
-      <ul class="header-nav">
+      <ul class="nav-ul">
         <li>
           <router-link to="/" class="nav-link hoverable">Home</router-link>
         </li>
@@ -80,37 +80,48 @@ export default {
   color: #2ec7a6;
 }
 
-.nav-div {
+.header-nav {
   display: flex;
   flex-grow: 1;
   position: relative;
 }
 
-.header-nav {
+.vertical-nav {
+  flex-direction: column !important;
+  flex-grow: unset !important;
+  width: fit-content !important;
+  align-self: flex-start !important;
+  margin-top: 15px !important;
+}
+
+.nav-ul {
   height: 100%;
   font-size: calc(1.5vw + 0.7rem);
   position: relative;
   margin: 0;
   display: flex;
+  align-items: center;
   flex-grow: 1;
 }
 
-.header-nav li {
+.nav-ul li {
   width: fit-content;
   height: fit-content;
   margin: auto 0;
   font-size: calc(1.5vw + 2vh);
 }
 
-.vertical-menu {
+.vertical-ul {
   width: calc(100% - 40px) !important;
   height: 60vh !important;
   min-height: 250px !important;
   font-size: calc(3vw + 0.5rem) !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
   align-self: flex-start !important;
 }
 
-.vertical-menu * {
+.vertical-ul * {
   font-size: calc(3vw + 0.5rem) !important;
 }
 
@@ -130,15 +141,5 @@ export default {
 
 .nav-link:active {
   color: #49a8f0;
-}
-
-@media (max-width: 576px) {
-  .nav-div {
-    flex-direction: column;
-    flex-grow: unset;
-    width: fit-content;
-    align-self: flex-start;
-    margin-top: 15px;
-  }
 }
 </style>

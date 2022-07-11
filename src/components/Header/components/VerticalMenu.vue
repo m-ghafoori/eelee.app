@@ -17,7 +17,8 @@
       xml:space="preserve"
     >
       <g class="menu-img">
-        <path class="menu-img"
+        <path
+          class="menu-img"
           :fill="imgColor"
           d="M0,3.875c0-1.104,0.896-2,2-2h20.75c1.104,0,2,0.896,2,2s-0.896,2-2,2H2C0.896,5.875,0,4.979,0,3.875z M22.75,10.375H2
 		c-1.104,0-2,0.896-2,2c0,1.104,0.896,2,2,2h20.75c1.104,0,2-0.896,2-2C24.75,11.271,23.855,10.375,22.75,10.375z M22.75,18.875H2
@@ -51,14 +52,18 @@ export default {
       isMounted: false,
       bodyDiv: Object,
       header: Object,
-      headerNav: Object,
+      navUl: Object,
       showcase: Object,
     };
   },
 
   watch: {
     windowWidth(val) {
-      if ((val-this.showIfLessThanPx)*(this.previousWindowWidth-this.showIfLessThanPx) <= 0) {
+      if (
+        (val - this.showIfLessThanPx) *
+          (this.previousWindowWidth - this.showIfLessThanPx) <=
+        0
+      ) {
         setTimeout(() => {
           this.headerNavDisplay();
         }, 30);
@@ -70,12 +75,12 @@ export default {
     isMenuExpanded(val) {
       if (val) {
         this.imgColor = this.hoverColor;
-        this.headerNav.classList.remove("invisible", "scale-down-ver-top");
-        this.headerNav.classList.add("scale-up-ver-top");
+        this.navUl.classList.remove("invisible", "scale-down-ver-top");
+        this.navUl.classList.add("scale-up-ver-top");
         this.showcase.style.opacity = "0.1";
       } else {
-        this.headerNav.classList.remove("scale-up-ver-top");
-        this.headerNav.classList.add("scale-down-ver-top");
+        this.navUl.classList.remove("scale-up-ver-top");
+        this.navUl.classList.add("scale-down-ver-top");
         this.showcase.style.opacity = "1";
         this.imgColor = this.mainColor;
       }
@@ -93,25 +98,17 @@ export default {
     headerNavDisplay() {
       if (this.isMounted) {
         if (this.windowWidth < this.showIfLessThanPx) {
-          // this.headerNav.style.left = "25px";
-          this.headerNav.classList.remove("align-items-center");
-          this.headerNav.classList.add(
-            "flex-column",
-            "align-items-end",
-            "vertical-menu"
-          );
-          if (!this.isMenuExpanded) this.headerNav.classList.add("invisible");
+          this.headerNav.classList.add("vertical-nav");
+          this.navUl.classList.add("vertical-ul");
+          if (!this.isMenuExpanded) this.navUl.classList.add("invisible");
           this.$refs.menuButton.classList.remove("d-none");
         } else {
-          // this.headerNav.style.left = "0px";
-          this.headerNav.classList.remove(
+          this.headerNav.classList.remove("vertical-nav");
+          this.navUl.classList.remove(
             "invisible",
             "scale-down-ver-top",
-            "flex-column",
-            "align-items-end",
-            "vertical-menu"
+            "vertical-ul"
           );
-          this.headerNav.classList.add("align-items-center");
           this.$refs.menuButton.classList.add("d-none");
           this.imgColor = this.mainColor;
         }
@@ -126,7 +123,7 @@ export default {
           !$event.target.classList.contains("nav-link") &&
           !$event.target.classList.contains("menu-img")
         ) {
-            this.isMenuExpanded = false;
+          this.isMenuExpanded = false;
         }
       }
     },
@@ -153,6 +150,7 @@ export default {
     this.bodyDiv = document.querySelector(".body");
     this.header = document.querySelector(".header");
     this.headerNav = document.querySelector(".header-nav");
+    this.navUl = document.querySelector(".nav-ul");
     this.showcase = document.querySelector(".showcase");
     this.bodyDiv.addEventListener("click", this.onBodyDivClick);
     this.isMounted = true;
@@ -163,12 +161,10 @@ export default {
 </script>
 
 <style>
-
 .menu-button {
   width: 25px;
   height: 25px;
   margin: auto 40px auto 0;
   align-self: flex-end;
 }
-
 </style>
