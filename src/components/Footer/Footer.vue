@@ -118,4 +118,57 @@ export default {
 </script>
 
 <style>
+.footer {
+  width: 40%;
+  height: 105px;
+  min-width: 200px;
+  position: absolute;
+  bottom: 0;
+  align-self: center;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer-nav {
+  width: 100%;
+  height: 45px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-note {
+  width: fit-content;
+  text-decoration: none;
+  font-family: "Gluten", cursive;
+  font-size: calc(1vw + 0.5rem);
+  white-space: nowrap;
+  color: #d8215e;
+}
+
+.footer-note:hover {
+  color: #2ec7a6;
+}
+
+@media (max-width: 320px) {
+  .footer {
+    width: 70%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 576px) {
+  .footer {
+    width: 60%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .footer {
+    width: 50%;
+  }
+}
 </style>

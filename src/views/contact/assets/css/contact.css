@@ -65,7 +65,7 @@
     align-self: flex-start;
     top: 90px;
     font-size: calc(0.5vw + 1rem);
-    margin: 0 7vw 20px 7vw;
+    margin: 0 calc(2vw + 1rem) 20px calc(2vw + 1rem);
 }
 
 #idpc-messagereceived {

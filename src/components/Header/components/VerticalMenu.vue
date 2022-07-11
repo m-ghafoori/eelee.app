@@ -16,7 +16,7 @@
       style="enable-background: new 0 0 25 25"
       xml:space="preserve"
     >
-      <g>
+      <g class="menu-img">
         <path class="menu-img"
           :fill="imgColor"
           d="M0,3.875c0-1.104,0.896-2,2-2h20.75c1.104,0,2,0.896,2,2s-0.896,2-2,2H2C0.896,5.875,0,4.979,0,3.875z M22.75,10.375H2
@@ -91,7 +91,7 @@ export default {
     headerNavDisplay() {
       if (this.isMounted) {
         if (this.windowWidth < this.showIfLessThanPx) {
-          this.headerNav.style.left = "65px";
+          this.headerNav.style.left = "25px";
           this.headerNav.classList.remove("align-items-center");
           this.headerNav.classList.add(
             "flex-column",
@@ -162,4 +162,11 @@ export default {
 </script>
 
 <style>
+
+.menu-button {
+  width: 25px;
+  height: 25px;
+  margin: auto 40px auto 0;
+}
+
 </style>
