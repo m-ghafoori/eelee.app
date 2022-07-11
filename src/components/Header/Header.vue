@@ -1,30 +1,32 @@
 <template>
   <header class="header">
     <router-link to="/" class="logo hoverable">EELee</router-link>
-    <ul class="header-nav">
-      <li>
-        <router-link to="/" class="nav-link hoverable">Home</router-link>
-      </li>
-      <li>
-        <router-link to="/portfolio" class="nav-link hoverable"
-          >Portfolio</router-link
-        >
-      </li>
-      <li>
-        <router-link to="/app" class="nav-link hoverable">App</router-link>
-      </li>
-      <li>
-        <router-link to="/donate" class="nav-link hoverable"
-          >Donate</router-link
-        >
-      </li>
-      <li>
-        <router-link to="/order" class="nav-link hoverable"
-          >Order Now!</router-link
-        >
-      </li>
-    </ul>
-    <VerticalMenu :showIfLessThanPx="576" />
+    <div class="nav-div">
+      <VerticalMenu :showIfLessThanPx="576" />
+      <ul class="header-nav">
+        <li>
+          <router-link to="/" class="nav-link hoverable">Home</router-link>
+        </li>
+        <li>
+          <router-link to="/portfolio" class="nav-link hoverable"
+            >Portfolio</router-link
+          >
+        </li>
+        <li>
+          <router-link to="/app" class="nav-link hoverable">App</router-link>
+        </li>
+        <li>
+          <router-link to="/donate" class="nav-link hoverable"
+            >Donate</router-link
+          >
+        </li>
+        <li>
+          <router-link to="/order" class="nav-link hoverable"
+            >Order Now!</router-link
+          >
+        </li>
+      </ul>
+    </div>
   </header>
 </template>
 
@@ -52,9 +54,7 @@ export default {
 
 <style>
 .header {
-  width: 100vw;
   height: 60px;
-  min-width: 250px;
   position: fixed;
   padding-top: 5px;
   margin-bottom: 10px;
@@ -80,6 +80,12 @@ export default {
   color: #2ec7a6;
 }
 
+.nav-div {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+}
+
 .header-nav {
   height: 100%;
   font-size: calc(1.5vw + 0.7rem);
@@ -97,11 +103,10 @@ export default {
 }
 
 .vertical-menu {
-  width: fit-content !important;
+  width: calc(100% - 40px) !important;
   height: 60vh !important;
   min-height: 250px !important;
   font-size: calc(3vw + 0.5rem) !important;
-  top: 60px !important;
   align-self: flex-start !important;
 }
 
@@ -125,5 +130,15 @@ export default {
 
 .nav-link:active {
   color: #49a8f0;
+}
+
+@media (max-width: 576px) {
+  .nav-div {
+    flex-direction: column;
+    flex-grow: unset;
+    width: fit-content;
+    align-self: flex-start;
+    margin-top: 15px;
+  }
 }
 </style>

@@ -50,6 +50,7 @@ export default {
       isMenuExpanded: false,
       isMounted: false,
       bodyDiv: Object,
+      header: Object,
       headerNav: Object,
       showcase: Object,
     };
@@ -71,7 +72,7 @@ export default {
         this.imgColor = this.hoverColor;
         this.headerNav.classList.remove("invisible", "scale-down-ver-top");
         this.headerNav.classList.add("scale-up-ver-top");
-        this.showcase.style.opacity = "0.2";
+        this.showcase.style.opacity = "0.1";
       } else {
         this.headerNav.classList.remove("scale-up-ver-top");
         this.headerNav.classList.add("scale-down-ver-top");
@@ -85,13 +86,14 @@ export default {
     // Triggers window width on resize
     windowWidthClassEmitter() {
       this.windowWidth = window.innerWidth;
+      if (this.isMounted) this.header.style.width = `${this.windowWidth}px`;
     },
 
     // Determines how header navbar should be displayed
     headerNavDisplay() {
       if (this.isMounted) {
         if (this.windowWidth < this.showIfLessThanPx) {
-          this.headerNav.style.left = "25px";
+          // this.headerNav.style.left = "25px";
           this.headerNav.classList.remove("align-items-center");
           this.headerNav.classList.add(
             "flex-column",
@@ -101,7 +103,7 @@ export default {
           if (!this.isMenuExpanded) this.headerNav.classList.add("invisible");
           this.$refs.menuButton.classList.remove("d-none");
         } else {
-          this.headerNav.style.left = "0px";
+          // this.headerNav.style.left = "0px";
           this.headerNav.classList.remove(
             "invisible",
             "scale-down-ver-top",
@@ -150,7 +152,6 @@ export default {
   mounted() {
     this.bodyDiv = document.querySelector(".body");
     this.header = document.querySelector(".header");
-    this.logo = document.querySelector(".logo");
     this.headerNav = document.querySelector(".header-nav");
     this.showcase = document.querySelector(".showcase");
     this.bodyDiv.addEventListener("click", this.onBodyDivClick);
@@ -167,6 +168,7 @@ export default {
   width: 25px;
   height: 25px;
   margin: auto 40px auto 0;
+  align-self: flex-end;
 }
 
 </style>
