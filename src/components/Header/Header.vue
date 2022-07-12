@@ -1,6 +1,14 @@
 <template>
   <header class="header">
-    <router-link to="/" class="logo hoverable">EELee</router-link>
+    <router-link
+      ref="logo"
+      to="/"
+      class="logo hoverable"
+      @mouseover="onMouseOver"
+      @mouseout="onMouseOut"
+      @mousedown="onMouseDown"
+      >EELee</router-link
+    >
     <div class="header-nav">
       <VerticalMenu :showIfLessThanPx="576" />
       <ul class="nav-ul">
@@ -42,11 +50,56 @@ export default {
 
   props: {
     pageRoute: String,
+    logoMainColor: {
+      default: "#b42857",
+    },
+    logoHoverColor: {
+      default: "#2ec7a6",
+    },
+    logoActiveColor: {
+      default: "#5eecf9",
+    },
+    navLinkMainColor: {
+      default: "#0d8a6f",
+    },
+    navLinkHoverColor: {
+      default: "#fb4a85",
+    },
+    navLinkActiveColor: {
+      default: "#49a8f0",
+    },
+  },
+
+  methods: {
+    // Event Handlers
+
+    onMouseOver($event) {
+      if ($event.target.classList.contains("logo"))
+        $event.target.style.color = this.logoHoverColor;
+      else $event.target.style.color = this.navLinkHoverColor;
+    },
+    onMouseOut($event) {
+      if ($event.target.classList.contains("logo"))
+        $event.target.style.color = this.logoMainColor;
+      else $event.target.style.color = this.navLinkMainColor;
+    },
+    onMouseDown($event) {
+      if ($event.target.classList.contains("logo"))
+        $event.target.style.color = this.logoActiveColor;
+      else $event.target.style.color = this.navLinkActiveColor;
+    },
   },
 
   mounted() {
+    document.querySelector(".logo").style.color = this.logoMainColor;
     document.querySelectorAll(".nav-link").forEach((el) => {
       if (el.getAttribute("href") == this.pageRoute) el.parentElement.remove();
+      else {
+        el.style.color = this.navLinkMainColor;
+        el.addEventListener("mouseover", this.onMouseOver);
+        el.addEventListener("mouseout", this.onMouseOut);
+        el.addEventListener("mousedown", this.onMouseDown);
+      }
     });
   },
 };
@@ -74,11 +127,6 @@ export default {
   padding-left: calc(2vw + 1rem);
   padding-right: 0.6rem;
   text-decoration: none;
-  color: #b42857;
-}
-
-.logo:hover {
-  color: #2ec7a6;
 }
 
 .header-nav {
@@ -130,17 +178,8 @@ export default {
   min-width: fit-content;
   font-family: "Poiret One", cursive;
   font-weight: 1000;
-  color: #0d8a6f;
   margin: 1vw 0 1vw 4vw;
   text-decoration: none;
   white-space: nowrap;
-}
-
-.nav-link:hover {
-  color: #fb4a85;
-}
-
-.nav-link:active {
-  color: #49a8f0;
 }
 </style>
