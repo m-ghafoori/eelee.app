@@ -72,6 +72,7 @@ export default {
   font-weight: 1000;
   font-size: calc(1vw + 1.4rem);
   padding-left: calc(2vw + 1rem);
+  padding-right: 0.6rem;
   text-decoration: none;
   color: #b42857;
 }
