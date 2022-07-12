@@ -130,6 +130,8 @@ export default {
 }
 
 .header-nav {
+  height: fit-content;
+  max-height: fit-content;
   display: flex;
   flex-grow: 1;
   position: relative;

@@ -75,7 +75,8 @@ export default {
     isMenuExpanded(val) {
       if (val) {
         this.imgColor = this.hoverColor;
-        this.navUl.classList.remove("invisible", "scale-down-ver-top");
+        this.headerNav.style.maxHeight = "unset";
+        this.navUl.classList.remove("d-none", "scale-down-ver-top");
         this.navUl.classList.add("scale-up-ver-top");
         this.showcase.style.opacity = "0.1";
       } else {
@@ -83,6 +84,7 @@ export default {
         this.navUl.classList.add("scale-down-ver-top");
         this.showcase.style.opacity = "1";
         this.imgColor = this.mainColor;
+        this.headerNav.style.maxHeight = "25px";
       }
     },
   },
@@ -97,15 +99,16 @@ export default {
     // Determines how header navbar should be displayed
     headerNavDisplay() {
       if (this.isMounted) {
+        this.headerNav.style.maxHeight = "fit-content";
         if (this.windowWidth < this.showIfLessThanPx) {
           this.headerNav.classList.add("vertical-nav");
           this.navUl.classList.add("vertical-ul");
-          if (!this.isMenuExpanded) this.navUl.classList.add("invisible");
+          if (!this.isMenuExpanded) this.navUl.classList.add("d-none");
           this.$refs.menuButton.classList.remove("d-none");
         } else {
           this.headerNav.classList.remove("vertical-nav");
           this.navUl.classList.remove(
-            "invisible",
+            "d-none",
             "scale-down-ver-top",
             "vertical-ul"
           );
