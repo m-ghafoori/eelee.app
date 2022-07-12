@@ -69,6 +69,7 @@ export default {
     uniqueLabel: String,
     slidesNumber: Number,
     loopMode: Boolean,
+    isActive: Boolean,
     nextTextMainColor: {
       default: "#079536",
     },
@@ -103,7 +104,6 @@ export default {
       previousTextColor: "#9920f0",
       previousArrowColor: "#e436ff",
       slideNum: 1,
-      isActive: true,
 
       // Elements Object Refs
       activeDiv: Object,
@@ -133,7 +133,7 @@ export default {
       }
     },
     isActive(val) {
-      if (!val) {
+      if (val) {
         this.activeDiv.classList.add("d-none");
         this.inactiveDiv.classList.remove("d-none");
       }
@@ -325,6 +325,14 @@ export default {
   padding: 8px;
   margin: 12px calc(3% + 10px);
   align-self: flex-end;
+}
+
+.slideshow-finish:hover {
+  background: #d8215e;
+}
+
+.slideshow-finish:active {
+  background: #23a3f3;
 }
 
 .slideshow-previous {

@@ -6,6 +6,7 @@
         uniqueLabel="Agreement"
         :slidesNumber="9"
         :loopMode="false"
+        :isActive="isFormSubmitted"
         @slideshow-finish="onSlideshowFinish"
       >
         <template #title1>
@@ -113,9 +114,9 @@
             you...
           </div>
           <div class="idpo-input-field">
-            <span>Please describe your idea:</span>
+            <span ref="clientRequestLabel">Please describe your idea:</span>
             <textarea
-              name="clientRequest"
+              ref="clientRequestInput"
               id="idpo-clientRequest"
               cols="90"
               rows="10"
@@ -125,10 +126,12 @@
             ></textarea>
           </div>
           <div class="idpo-input-field">
-            <span>How long can you wait (in weeks) to receive it?</span>
+            <span ref="projectDurationLabel"
+              >How long can you wait (in weeks) to receive it?</span
+            >
             <input
               type="number"
-              name="projectDuration"
+              ref="projectDurationInput"
               id="idpo-projectDuration"
               v-model="projectDuration"
               min="1"
@@ -138,20 +141,22 @@
             />
           </div>
           <div class="idpo-input-field">
-            <span>Your budget (in USD) on this project:</span>
+            <span ref="projectBudgetLabel"
+              >Your Budget (in USD) on This Project:</span
+            >
             <input
               type="number"
-              name="projectBudget"
+              ref="projectBudgetInput"
               id="idpo-projectBudget"
               v-model="projectBudget"
-              min="500"
+              min="1000"
               maxlength="7"
               @click="onProjectBudgetClick"
               required
             />
           </div>
           <div class="idpo-input-field">
-            <span>Your email:</span>
+            <span ref="clientEmailLabel">Your Email:</span>
             <input
               type="email"
               ref="clientEmailInput"
@@ -205,34 +210,88 @@ export default {
       invalidEmailError: false,
       invalidDurationError: false,
       invalidBudgetError: false,
-      allInputsValid: false,
+      isFormSubmitted: false,
     };
   },
 
   watch: {
     noRequestError(val) {
       if (val) {
-        console.log("noRequestError", this.clientRequest);
+        this.$refs.clientRequestLabel.classList.add("idpo-input-field-error");
+        this.$refs.clientRequestLabel.innerHTML = "Error: Message is required.";
+        this.$refs.clientRequestInput.classList.add("idpo-input-error");
+        this.$refs.clientRequestInput.parentElement.style.borderColor = "#f00";
+      } else {
+        this.$refs.clientRequestLabel.classList.remove(
+          "idpo-input-field-error"
+        );
+        this.$refs.clientRequestLabel.innerHTML = "Please describe your idea:";
+        this.$refs.clientRequestInput.classList.remove("idpo-input-error");
+        this.$refs.clientRequestInput.parentElement.style.borderColor =
+          "#daa520";
       }
     },
     noEmailError(val) {
       if (val) {
-        console.log("noEmailError", this.clientEmail);
+        this.$refs.clientEmailLabel.classList.add("idpo-input-field-error");
+        this.$refs.clientEmailLabel.innerHTML = "Error: Email is required.";
+        this.$refs.clientEmailInput.classList.add("idpo-input-error");
+        this.$refs.clientEmailInput.parentElement.style.borderColor = "#f00";
+      } else {
+        this.$refs.clientEmailLabel.classList.remove("idpo-input-field-error");
+        this.$refs.clientEmailLabel.innerHTML = "Your Email:";
+        this.$refs.clientEmailInput.classList.remove("idpo-input-error");
+        this.$refs.clientEmailInput.parentElement.style.borderColor = "#daa520";
       }
     },
     invalidEmailError(val) {
       if (val) {
-        console.log("invalidEmailError", this.clientEmail);
+        this.$refs.clientEmailLabel.classList.add("idpo-input-field-error");
+        this.$refs.clientEmailLabel.innerHTML = `Error: "${this.clientEmail}" is not a valid email.`;
+        this.$refs.clientEmailInput.classList.add("idpo-input-error");
+        this.$refs.clientEmailInput.parentElement.style.borderColor = "#f00";
+      } else {
+        this.$refs.clientEmailLabel.classList.remove("idpo-input-field-error");
+        this.$refs.clientEmailLabel.innerHTML = "Your Email:";
+        this.$refs.clientEmailInput.classList.remove("idpo-input-error");
+        this.$refs.clientEmailInput.parentElement.style.borderColor = "#daa520";
       }
     },
     invalidDurationError(val) {
       if (val) {
-        console.log("invalidDurationError", this.projectDuration);
+        this.$refs.projectDurationLabel.classList.add("idpo-input-field-error");
+        this.$refs.projectDurationLabel.innerHTML =
+          "Error: Invalid Number of Weeks<br>(Must be a value between 1 and 200)";
+        this.$refs.projectDurationInput.classList.add("idpo-input-error");
+        this.$refs.projectDurationInput.parentElement.style.borderColor =
+          "#f00";
+      } else {
+        this.$refs.projectDurationLabel.classList.remove(
+          "idpo-input-field-error"
+        );
+        this.$refs.projectDurationLabel.innerHTML =
+          "How long can you wait (in weeks) to receive it?";
+        this.$refs.projectDurationInput.classList.remove("idpo-input-error");
+        this.$refs.projectDurationInput.parentElement.style.borderColor =
+          "#daa520";
       }
     },
     invalidBudgetError(val) {
       if (val) {
-        console.log("invalidBudgetError", this.projectBudget);
+        this.$refs.projectBudgetLabel.classList.add("idpo-input-field-error");
+        this.$refs.projectBudgetLabel.innerHTML =
+          "Error: Invalid Budget Amount<br>(Must be a value between 1000 and 9,000,000 USD)";
+        this.$refs.projectBudgetInput.classList.add("idpo-input-error");
+        this.$refs.projectBudgetInput.parentElement.style.borderColor = "#f00";
+      } else {
+        this.$refs.projectBudgetLabel.classList.remove(
+          "idpo-input-field-error"
+        );
+        this.$refs.projectBudgetLabel.innerHTML =
+          "Your Budget (in USD) on This Project:";
+        this.$refs.projectBudgetInput.classList.remove("idpo-input-error");
+        this.$refs.projectBudgetInput.parentElement.style.borderColor =
+          "#daa520";
       }
     },
   },
@@ -257,12 +316,29 @@ export default {
     onSlideshowFinish() {
       if (this.clientRequest == "") this.noRequestError = true;
       if (this.clientEmail == "") this.noEmailError = true;
-      if (!this.$refs.clientEmailInput.validity.valid)
+      if (!this.$refs.clientEmailInput.validity.valid && !this.noEmailError)
         this.invalidEmailError = true;
-      if (this.projectBudget < 500 || this.projectBudget > 9000000)
+      if (this.projectBudget < 1000 || this.projectBudget > 9000000)
         this.invalidBudgetError = true;
       if (this.projectDuration < 1 || this.projectDuration > 200)
         this.invalidDurationError = true;
+      if (
+        !this.noRequestError &&
+        !this.noEmailError &&
+        !this.invalidEmailError &&
+        !this.invalidBudgetError &&
+        !this.invalidDurationError
+      ) {
+        var formData = new FormData();
+        formData.append("request", this.clientRequest);
+        formData.append("duration", this.projectDuration);
+        formData.append("budget", this.projectBudget);
+        formData.append("email", this.clientEmail);
+        for (const entry of formData.entries()) {
+          console.log(entry);
+        }
+        this.isFormSubmitted = true;
+      }
     },
   },
 

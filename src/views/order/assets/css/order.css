@@ -19,10 +19,10 @@
     font-family: 'Tajawal', sans-serif;
     font-size: calc(1vw + 0.6rem);
     line-height: 1.5rem;
-    border: 1px solid #daa520;
+    border: 2px solid #daa520;
     border-radius: 0.5rem;
     padding: 8px;
-    margin: 5px 10px;
+    margin: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,6 +61,16 @@
     color: #056926;
 }
 
+.idpo-input-field-error {
+    color: #f00 !important;
+}
+
+.idpo-input-error {
+    background: #ff000061 !important;
+    color: #fff099 !important;
+    border: 2px solid #f00 !important;
+}
+
 /* ID Tags */
 
 #idpo-showcase {
@@ -95,13 +105,13 @@
 
     #idpo-clientEmail {
         width: 90%;
-    }    
+    }
 }
 
 @media (max-width: 320px) {
-    
+
     #idpo-projectBudget {
         width: 75%;
     }
-    
+
 }
