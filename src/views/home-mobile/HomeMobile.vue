@@ -1,5 +1,5 @@
 <template>
-  <div id="idpm-body" class="" @click="skipInitAnimations">
+  <div id="idpm-body" class="pointer-gold" @click="skipInitAnimations">
     <div
       id="idpm-mainContainer"
       class="d-flex flex-column justify-content-around"
@@ -20,7 +20,7 @@
         class="d-flex flex-column justify-content-between align-items-center"
       >
         <div id="idpm-orderDiv" class="invisible">
-          <router-link to="/order" class="idpm-hoverable">
+          <router-link to="/order" class="hoverable">
             Need A Web App ???
           </router-link>
         </div>
@@ -37,7 +37,7 @@
               <router-link
                 id="idpm-portNav"
                 to="/app"
-                class="idpm-nav-link text-shine idpm-hoverable"
+                class="idpm-nav-link text-shine hoverable"
                 >App</router-link
               >
             </li>
@@ -45,7 +45,7 @@
               <router-link
                 id="idpm-appNav"
                 to="/portfolio"
-                class="idpm-nav-link text-shine idpm-hoverable"
+                class="idpm-nav-link text-shine hoverable"
                 >Portfolio</router-link
               >
             </li>
@@ -57,7 +57,7 @@
             <router-link
               id="idpm-orderRight"
               to="/order"
-              class="text-shine-logo idpm-hoverable align-self-start"
+              class="text-shine-logo hoverable align-self-start"
             >
               <span id="idpm-orderRightTop" class="invisible"
                 >Click to <br
@@ -73,12 +73,12 @@
         <router-link
           to="/donate"
           id="idpm-donateLink"
-          class="invisible d-flex justify-content-center"
+          class="invisible hoverable d-flex justify-content-center"
           :style="donateStyle"
         >
           <img
             id="idpm-donateIcon"
-            class="donate-shadow idpm-hoverable"
+            class="donate-shadow"
             @mouseenter="donateIconMouseEnter"
             @mouseleave="donateIconMouseLeave"
             :src="require(`./assets/images/svg/donate-${widthClass}.svg`)"
@@ -97,7 +97,7 @@
         <router-link
           id="idpm-footerNote"
           to="/portfolio"
-          class="idpm-hoverable"
+          class="hoverable"
           :style="noteStyle"
           >&copy; 2022 - EELee App Design</router-link
         >
@@ -111,7 +111,7 @@
           <li id="idpm-telegramNav" class="invisible">
             <img
               id="idpm-telegramIcon"
-              class="footer-shadow idpm-hoverable"
+              class="footer-shadow hoverable"
               @mouseenter="telegramNavMouseEnter"
               @mouseleave="telegramNavMouseLeave"
               :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)"
@@ -121,7 +121,7 @@
             <router-link to="contact" id="idpm-emailNav" class="invisible">
               <img
                 id="idpm-emailIcon"
-                class="footer-shadow idpm-hoverable"
+                class="footer-shadow hoverable"
                 @mouseenter="emailNavMouseEnter"
                 @mouseleave="emailNavMouseLeave"
                 :src="require(`./assets/images/svg/email-${widthClass}.svg`)"
@@ -131,7 +131,7 @@
           <li id="idpm-linkedinNav" class="invisible">
             <img
               id="idpm-linkedinIcon"
-              class="footer-shadow idpm-hoverable"
+              class="footer-shadow hoverable"
               @mouseenter="linkedinNavMouseEnter"
               @mouseleave="linkedinNavMouseLeave"
               :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)"
@@ -567,28 +567,28 @@ export default {
   },
 
   mounted() {
-    this.containerWrapper = document.getElementById("idpm-containerWrapper");
-    this.mainContainer = document.getElementById("idpm-mainContainer");
-    this.bodyCover = document.getElementById("idpm-bodyCover");
-    this.headerCover = document.getElementById("idpm-headerCover");
-    this.logoLeft = document.getElementById("idpm-logoLeft");
-    this.logoMoon = document.getElementById("idpm-logoMoon");
-    this.logoRight = document.getElementById("idpm-logoRight");
-    this.orderCentral = document.getElementById("idpm-orderCentral");
-    this.orderDiv = document.getElementById("idpm-orderDiv");
-    this.orderRight = document.getElementById("idpm-orderRight");
-    this.orderRightTop = document.getElementById("idpm-orderRightTop");
-    this.orderRightStar = document.getElementById("idpm-orderRightStar");
-    this.orderRightBottom = document.getElementById("idpm-orderRightBottom");
-    this.navUl = document.getElementById("idpm-navUl");
-    this.appNav = document.getElementById("idpm-appNav");
-    this.portNav = document.getElementById("idpm-portNav");
-    this.donateLink = document.getElementById("idpm-donateLink");
-    this.footerNote = document.getElementById("idpm-footerNote");
-    this.skipAnimations = document.getElementById("idpm-skipAnimations");
-    this.linkedinNav = document.getElementById("idpm-linkedinNav");
-    this.emailNav = document.getElementById("idpm-emailNav");
-    this.telegramNav = document.getElementById("idpm-telegramNav");
+    this.containerWrapper = document.querySelector("#idpm-containerWrapper");
+    this.mainContainer = document.querySelector("#idpm-mainContainer");
+    this.bodyCover = document.querySelector("#idpm-bodyCover");
+    this.headerCover = document.querySelector("#idpm-headerCover");
+    this.logoLeft = document.querySelector("#idpm-logoLeft");
+    this.logoMoon = document.querySelector("#idpm-logoMoon");
+    this.logoRight = document.querySelector("#idpm-logoRight");
+    this.orderCentral = document.querySelector("#idpm-orderCentral");
+    this.orderDiv = document.querySelector("#idpm-orderDiv");
+    this.orderRight = document.querySelector("#idpm-orderRight");
+    this.orderRightTop = document.querySelector("#idpm-orderRightTop");
+    this.orderRightStar = document.querySelector("#idpm-orderRightStar");
+    this.orderRightBottom = document.querySelector("#idpm-orderRightBottom");
+    this.navUl = document.querySelector("#idpm-navUl");
+    this.appNav = document.querySelector("#idpm-appNav");
+    this.portNav = document.querySelector("#idpm-portNav");
+    this.donateLink = document.querySelector("#idpm-donateLink");
+    this.footerNote = document.querySelector("#idpm-footerNote");
+    this.skipAnimations = document.querySelector("#idpm-skipAnimations");
+    this.linkedinNav = document.querySelector("#idpm-linkedinNav");
+    this.emailNav = document.querySelector("#idpm-emailNav");
+    this.telegramNav = document.querySelector("#idpm-telegramNav");
     this.initVisibleElemsList = [
       this.bodyCover,
       this.headerCover,
@@ -608,6 +608,10 @@ export default {
       this.emailNav,
       this.telegramNav,
     ];
+    document.querySelectorAll(".hoverable").forEach((element) => {
+      element.classList.remove("hoverable");
+      element.classList.add("pointer-white");
+    });
     this.startAnimations();
     this.donateUpdator();
     this.skipUpdator();

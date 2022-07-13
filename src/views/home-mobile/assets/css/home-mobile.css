@@ -20,12 +20,6 @@
     src: url("../fonts/pandoralimiter_Teabeer.ttf");
 }
 
-/* Classes */
-
-.idpm-hoverable {
-    cursor: url('../images/svg/pointer-hover.svg'), auto;
-}
-
 /* ID Tags */
 
 #idpm-body {
@@ -33,7 +27,6 @@
     height: inherit;
     min-width: 250px;
     min-height: 450px;
-    cursor: url("../images/svg/pointer.svg"), auto;
 }
 
 #idpm-mainContainer {
@@ -208,7 +201,8 @@
 }
 
 #idpm-donateLink {
-    width: 100%;
+    width: fit-content;
+    margin: auto;
 }
 
 #idpm-donateIcon {

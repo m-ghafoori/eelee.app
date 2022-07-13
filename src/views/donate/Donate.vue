@@ -1,5 +1,5 @@
 <template>
-  <div id="idpd-body" class="body">
+  <div id="idpd-body" class="body pointer-white">
     <Header
       pageRoute="/donate"
       logoMainColor="#ffbf1f"
@@ -33,11 +33,7 @@
           <label for="PAYMENT_AMOUNT">USD</label>
         </div>
       </form>
-      <button
-        id="idpd-donateButton"
-        class="idpd-hoverable"
-        @click="onDonateClick"
-      >
+      <button id="idpd-donateButton" class="hoverable" @click="onDonateClick">
         Donate
       </button>
     </section>
@@ -132,7 +128,7 @@ export default {
     this.donationForm = document.querySelector("#idpd-donationForm");
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
-      element.classList.add("idpd-hoverable");
+      element.classList.add("pointer-gold");
     });
   },
 };

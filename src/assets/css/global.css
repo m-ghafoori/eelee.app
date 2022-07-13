@@ -37,6 +37,24 @@ ul {
 
 /* Classes */
 
+/* Mouse Pointers */
+
+.pointer-white {
+    cursor: url('/src/assets/images/svg/pointer-white.svg'), auto !important;
+}
+
+.pointer-gold {
+    cursor: url('/src/assets/images/svg/pointer-gold.svg'), auto !important;
+}
+
+.pointer-maroon {
+    cursor: url('/src/assets/images/svg/pointer-maroon.svg'), auto !important;
+}
+
+.pointer-green {
+    cursor: url('/src/assets/images/svg/pointer-green.svg'), auto !important;
+}
+
 .overflow-y-hidden {
     overflow-y: hidden !important;
 }
@@ -150,6 +168,8 @@ ul {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    cursor: url('/src/assets/images/svg/pointer-maroon.svg'), auto;
 }
 
 .showcase {

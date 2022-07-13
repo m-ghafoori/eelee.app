@@ -345,7 +345,7 @@ export default {
   mounted() {
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
-      element.classList.add("idpo-hoverable");
+      element.classList.add("pointer-green");
     });
   },
 };

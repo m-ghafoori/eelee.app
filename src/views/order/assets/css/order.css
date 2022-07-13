@@ -1,14 +1,7 @@
-/* Classes */
-
-.idpo-hoverable {
-    cursor: url('../images/svg/pointer-hover.svg'), auto;
-}
-
 /* ID Tags */
 
 #idpo-body {
     background: #ffffff;
-    cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 /* Showcase */

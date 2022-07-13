@@ -354,9 +354,8 @@ export default {
     this.onScroll();
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
-      element.classList.add("idpp-hoverable");
+      element.classList.add("pointer-green");
     });
-    console.log(document.querySelector(".header").offsetHeight);
   },
 
   beforeUnmount() {

@@ -1,16 +1,9 @@
-/* Classes */
-
-.idph-hoverable {
-    cursor: url('../images/svg/pointer-hover.svg'), auto;
-}
-
 /* ID Tags */
 
 #idph-bodyDiv {
     width: 100vw;
     height: 100vh;
     background-color: #0bc0b7 !important;
-    cursor: url('../images/svg/pointer.svg'), auto;
     overflow: inherit;
 }
 

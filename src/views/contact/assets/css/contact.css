@@ -1,15 +1,7 @@
-
-/* Classes */
-
-.idpc-hoverable {
-    cursor: url('../images/svg/pointer-hover.svg'), auto;
-}
-
 /* ID Tags */
 
 #idpc-body {
     background: #ffffff;
-    cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 /* Showcase */
@@ -36,7 +28,7 @@
 }
 
 .idpc-clientInfo label:hover {
-    cursor: url('../images/svg/pointer.svg'), auto;
+    cursor: url('/src/assets/images/svg/pointer-green.svg'), auto !important;
 }
 
 .idpc-clientInfo input {

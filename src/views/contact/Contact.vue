@@ -1,5 +1,5 @@
 <template>
-  <div id="idpc-body" class="body" @click="onBodyDivClick">
+  <div id="idpc-body" class="body">
     <Header pageRoute="/contact" />
     <section id="idpc-showcase" class="showcase align-items-start">
       <div id="idpc-messagereceived" class="d-none">
@@ -57,7 +57,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <span
                 id="idpc-attachFile"
-                class="idpc-hoverable"
+                class="hoverable"
                 @click="onAttachClick"
                 >Attach</span
               >
@@ -66,7 +66,7 @@
             </div>
             <span
               id="idpc-sendMessage"
-              class="idpc-hoverable"
+              class="hoverable"
               @click="onSendMessageClick"
               >Send</span
             >
@@ -104,7 +104,7 @@ export default {
       showInvalidEmailError: false,
       showNoMessageError: false,
 
-      //
+      // Element Objects Refs
       messagereceived: Object,
       contactPar: Object,
       contactForm: Object,
@@ -279,7 +279,7 @@ export default {
     this.fileNamePar = document.querySelector("#idpc-fileNamePar");
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
-      element.classList.add("idpc-hoverable");
+      element.classList.add("pointer-green");
     });
   },
 

@@ -1,14 +1,7 @@
-/* Classes */
-
-.idpd-hoverable {
-    cursor: url('../images/svg/pointer-hover.svg'), auto;
-}
-
 /* ID Tags */
 
 #idpd-body {
     background: #3ca05d;
-    cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 /* Showcase */

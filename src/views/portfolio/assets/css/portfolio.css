@@ -6,10 +6,6 @@
 
 /* Classes */
 
-.idpp-hoverable {
-    cursor: url('../images/svg/pointer-hover.svg'), auto;
-}
-
 .idpp-faded {
     opacity: 0 !important;
 }
@@ -100,7 +96,6 @@
 #idpp-body {
     height: fit-content;
     background: gold;
-    cursor: url('../images/svg/pointer.svg'), auto;
 }
 
 /* Showcase */

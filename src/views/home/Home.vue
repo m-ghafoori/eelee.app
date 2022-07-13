@@ -1,7 +1,9 @@
 <template>
-  <div id="idph-bodyDiv" class='lg-wide-screen'>
-
-    <div id="idph-mainContainer" class="invisible d-flex flex-column lg-wide-screen">
+  <div id="idph-bodyDiv" class="pointer-white lg-wide-screen">
+    <div
+      id="idph-mainContainer"
+      class="invisible d-flex flex-column lg-wide-screen"
+    >
       <header
         id="idph-header"
         class="d-flex align-items-center"
@@ -10,31 +12,30 @@
       >
         <router-link
           id="idph-logo"
-          class="invisible idph-hoverable animate__animated"
+          class="invisible hoverable animate__animated"
           to="/portfolio"
           @mouseenter="logoMouseEnter"
           @mouseleave="logoMouseLeave"
           >EELee</router-link
         >
         <div id="idph-headerNavbar" class="invisible d-flex align-items-center">
-
           <router-link
             id="idph-appNav"
-            class="idph-nav-link idph-hoverable animate__animated"
+            class="idph-nav-link hoverable animate__animated"
             to="/app"
           >
             App
           </router-link>
           <router-link
             id="idph-portNav"
-            class="idph-nav-link idph-hoverable animate__animated"
+            class="idph-nav-link hoverable animate__animated"
             to="/portfolio"
           >
             Portfolio
           </router-link>
           <router-link
             id="idph-orderNav"
-            class="idph-nav-link idph-hoverable animate__animated"
+            class="idph-nav-link hoverable animate__animated"
             to="/order"
           >
             Let's App!
@@ -46,7 +47,7 @@
         <div id="idph-orderDiv" class="animate__animated animate__slower">
           <router-link
             id="idph-orderLink"
-            class="invisible idph-hoverable animate__animated"
+            class="invisible hoverable animate__animated"
             to="/order"
             @mouseenter="orderLinkMouseEnter"
             @mouseleave="orderLinkMouseLeave"
@@ -62,7 +63,7 @@
           id="idph-donateDiv"
           class="invisible d-flex align-items-end animate__animated"
         >
-          <router-link id="idph-donateLink" class="idph-hoverable" to="/donate">
+          <router-link id="idph-donateLink" class="hoverable" to="/donate">
             <img
               id="idph-donateIcon"
               class="animate__animated"
@@ -74,12 +75,22 @@
           </router-link>
         </div>
 
-        <div id="idph-skipAnimations" class="idph-hoverable vibrate-1" @mouseenter="onSkipAnimationsMouseEnter" @mouseleave="onSkipAnimationsMouseLeave" @click="onSkipAnimationsClick">Skip Initial Animations >>></div>
+        <div
+          id="idph-skipAnimations"
+          class="hoverable vibrate-1"
+          @mouseenter="onSkipAnimationsMouseEnter"
+          @mouseleave="onSkipAnimationsMouseLeave"
+          @click="onSkipAnimationsClick"
+        >
+          Skip Initial Animations >>>
+        </div>
       </section>
 
       <footer id="idph-footer" class="vibrate-1">
-        <router-link to="/portfolio" id="idph-footerNote" class="idph-hoverable">&copy; 2022 - EELee App Design</router-link>
-        <ul id="idph-footerUl" class="invisible idph-hoverable">
+        <router-link to="/portfolio" id="idph-footerNote" class="hoverable"
+          >&copy; 2022 - EELee App Design</router-link
+        >
+        <ul id="idph-footerUl" class="invisible hoverable">
           <li id="idph-linkedinNav" class="animate__animated">
             <img
               id="idph-linkedinIcon"
@@ -90,7 +101,11 @@
             />
           </li>
           <li>
-            <router-link to="contact" id="idph-emailNav" class="idph-hoverable animate__animated">
+            <router-link
+              to="contact"
+              id="idph-emailNav"
+              class="hoverable animate__animated"
+            >
               <img
                 id="idph-emailIcon"
                 class="animate__animated"
@@ -123,7 +138,6 @@ export default {
 
   data() {
     return {
-
       //#mainContainer Variables
       mainContainerInitRef: Function,
 
@@ -262,7 +276,7 @@ export default {
 
     // Starts initial appearance animations
     startAnimations() {
-      console.log("animations started",new Date().getMilliseconds());
+      console.log("animations started", new Date().getMilliseconds());
       this.mainContainerInitAppear();
       this.headerInitAppear();
       this.headerInitWind();
@@ -275,22 +289,42 @@ export default {
     // Loads home page with running animation without replaying initial animations,
     // when resizing the window
     showRunningHome() {
-      console.log('running home called', new Date().getUTCMilliseconds());
-      this.timeoutRefsList = [this.logoTimeoutRef, this.appNavTimeoutRef, this.portNavTimeoutRef, this.orderNavTimeoutRef];
-      this.intervalRefsList = [this.headerLoopIntervalRef, this.headerLoopInitIntervalRef, this.linkIntervalRef, this.donateIntervalRef, this.footerFirstIntervalRef, this.footerSecondIntervalRef];
-      this.initTimeoutRefsList = [this.mainContainerInitRef, this.headerInitRef, this.headerInitWindref, this.headerNavsInitRef, this.footerUlInitRef, this.orderLinkInitRef, this.donateDivInitRef];
-      this.invisibleElemsList.forEach(element => {
-        element.classList.remove('invisible');
+      console.log("running home called", new Date().getUTCMilliseconds());
+      this.timeoutRefsList = [
+        this.logoTimeoutRef,
+        this.appNavTimeoutRef,
+        this.portNavTimeoutRef,
+        this.orderNavTimeoutRef,
+      ];
+      this.intervalRefsList = [
+        this.headerLoopIntervalRef,
+        this.headerLoopInitIntervalRef,
+        this.linkIntervalRef,
+        this.donateIntervalRef,
+        this.footerFirstIntervalRef,
+        this.footerSecondIntervalRef,
+      ];
+      this.initTimeoutRefsList = [
+        this.mainContainerInitRef,
+        this.headerInitRef,
+        this.headerInitWindref,
+        this.headerNavsInitRef,
+        this.footerUlInitRef,
+        this.orderLinkInitRef,
+        this.donateDivInitRef,
+      ];
+      this.invisibleElemsList.forEach((element) => {
+        element.classList.remove("invisible");
       });
-      this.timeoutRefsList.forEach(ref => {
+      this.timeoutRefsList.forEach((ref) => {
         clearTimeout(ref);
         // console.log(`${ref} cleared`)
       });
-      this.intervalRefsList.forEach(ref => {
+      this.intervalRefsList.forEach((ref) => {
         clearInterval(ref);
         // console.log(`${ref} cleared`)
       });
-      this.initTimeoutRefsList.forEach(ref => {
+      this.initTimeoutRefsList.forEach((ref) => {
         clearTimeout(ref);
         // console.log(`${ref} cleared`)
       });
@@ -302,7 +336,10 @@ export default {
 
     // Starts mainContainer animation
     mainContainerInitAppear() {
-      console.log("mainContainerInitAppear called",new Date().getMilliseconds());
+      console.log(
+        "mainContainerInitAppear called",
+        new Date().getMilliseconds()
+      );
       this.mainContainerInitRef = setTimeout(() => {
         this.mainContainer.classList.remove("invisible");
         this.mainContainer.classList.add(
@@ -311,15 +348,15 @@ export default {
           "puff-in-left"
         );
         setTimeout(() => {
-          document.body.parentElement.classList.remove('overflow-y-hidden');
-          document.body.parentElement.classList.add('overflow-y-auto');
+          document.body.parentElement.classList.remove("overflow-y-hidden");
+          document.body.parentElement.classList.add("overflow-y-auto");
         }, 3000);
       }, 1000);
     },
 
     // Initial Header Animations
     headerInitAppear() {
-      console.log("headerInitAppear called",new Date().getMilliseconds());
+      console.log("headerInitAppear called", new Date().getMilliseconds());
       this.headerInitRef = setTimeout(() => {
         this.logo.classList.remove("invisible");
         this.logo.classList.add("text-focus-in");
@@ -334,7 +371,7 @@ export default {
 
     // Sets the first wind effect on header
     headerInitWind() {
-      console.log("headerInitWind called",new Date().getMilliseconds());
+      console.log("headerInitWind called", new Date().getMilliseconds());
       this.headerInitWindref = setTimeout(() => {
         this.headerNavsList.forEach((item) => {
           item.classList.remove(
@@ -350,7 +387,7 @@ export default {
 
     // Header Running Animation Loop
     headerAnimationLoop() {
-      console.log("headerAnimationLoop called",new Date().getMilliseconds());
+      console.log("headerAnimationLoop called", new Date().getMilliseconds());
       this.headerLoopInitIntervalRef = setInterval(() => {
         this.clearWindEffect();
         this.windEffect(1000, 900, 450, 450);
@@ -359,7 +396,7 @@ export default {
 
     // Initial footerUl Animation
     footerUlInitAppear() {
-      console.log("footerUlInitAppear called",new Date().getMilliseconds());
+      console.log("footerUlInitAppear called", new Date().getMilliseconds());
       this.footerUlInitRef = setTimeout(() => {
         this.footerUl.classList.remove("invisible");
         this.footerUl.classList.add("bounce-in-left");
@@ -378,7 +415,7 @@ export default {
 
     // Initial orderLink Animation
     orderLinkInitAppear() {
-      console.log("orderLinkInitAppear called",new Date().getMilliseconds());
+      console.log("orderLinkInitAppear called", new Date().getMilliseconds());
       this.orderLinkInitRef = setTimeout(() => {
         this.orderDiv.firstElementChild.classList.remove("invisible");
         this.orderDiv.firstElementChild.classList.add(
@@ -408,16 +445,16 @@ export default {
 
     // Initial donateDiv Animation
     donateDivInitAppear() {
-      console.log("donateDivInitAppear called",new Date().getMilliseconds());
+      console.log("donateDivInitAppear called", new Date().getMilliseconds());
       this.donateDivInitRef = setTimeout(() => {
         this.donateLink.parentElement.classList.remove("invisible");
         this.donateLink.parentElement.classList.add("shake-horizontal");
         this.donateLink.firstElementChild.classList.add("slide-in-bottom");
         setTimeout(() => {
-          this.skipAnimations.classList.remove('vibrate-1');
-          this.skipAnimations.classList.add('tracking-out-contract-bck-bottom');
+          this.skipAnimations.classList.remove("vibrate-1");
+          this.skipAnimations.classList.add("tracking-out-contract-bck-bottom");
           setTimeout(() => {
-            this.skipAnimations.classList.add('invisible')
+            this.skipAnimations.classList.add("invisible");
           }, 1000);
         }, 3000);
 
@@ -521,23 +558,23 @@ export default {
     // skipAnimations Handlers
 
     onSkipAnimationsMouseEnter() {
-      this.skipAnimations.classList.remove('vibrate-1', 'scale-down-center');
-      this.skipAnimations.classList.add('scale-up-center');
+      this.skipAnimations.classList.remove("vibrate-1", "scale-down-center");
+      this.skipAnimations.classList.add("scale-up-center");
     },
     onSkipAnimationsMouseLeave() {
-      this.skipAnimations.classList.remove('scale-up-center');
-      this.skipAnimations.classList.add('scale-down-center');
+      this.skipAnimations.classList.remove("scale-up-center");
+      this.skipAnimations.classList.add("scale-down-center");
       setTimeout(() => {
-        this.skipAnimations.classList.remove('scale-down-center');
-        this.skipAnimations.classList.add('vibrate-1');
+        this.skipAnimations.classList.remove("scale-down-center");
+        this.skipAnimations.classList.add("vibrate-1");
       }, 500);
     },
     onSkipAnimationsClick() {
       this.showRunningHome();
-      this.skipAnimations.classList.remove('scale-up-center');
-      this.skipAnimations.classList.add('puff-out-hor');
+      this.skipAnimations.classList.remove("scale-up-center");
+      this.skipAnimations.classList.add("puff-out-hor");
       setTimeout(() => {
-        this.skipAnimations.classList.add('d-none');
+        this.skipAnimations.classList.add("d-none");
       }, 1500);
     },
 
@@ -547,7 +584,7 @@ export default {
       clearInterval(this.donateIntervalRef);
       this.donateLink.firstElementChild.classList.remove(
         this.donateAnimationList[this.donateAnimationIndex],
-        'slide-in-bottom'
+        "slide-in-bottom"
       );
       this.donateLink.firstElementChild.setAttribute(
         "src",
@@ -667,33 +704,43 @@ export default {
   },
 
   mounted() {
-
-    document.body.parentElement.classList.add('overflow-y-hidden');
-    this.headerNavbar = document.getElementById("idph-headerNavbar");
-    this.logo = document.getElementById("idph-logo");
-    this.appNav = document.getElementById("idph-appNav");
-    this.portNav = document.getElementById("idph-portNav");
-    this.orderNav = document.getElementById("idph-orderNav");
-    this.orderDiv = document.getElementById("idph-orderDiv");
-    this.donateLink = document.getElementById("idph-donateLink");
-    this.skipAnimations = document.getElementById("idph-skipAnimations");
-    this.footerUl = document.getElementById("idph-footerUl");
-    this.linkedinNav = document.getElementById("idph-linkedinNav");
-    this.emailNav = document.getElementById("idph-emailNav");
-    this.telegramNav = document.getElementById("idph-telegramNav");
-    this.mainContainer = document.getElementById("idph-mainContainer");
+    document.body.parentElement.classList.add("overflow-y-hidden");
+    this.headerNavbar = document.querySelector("#idph-headerNavbar");
+    this.logo = document.querySelector("#idph-logo");
+    this.appNav = document.querySelector("#idph-appNav");
+    this.portNav = document.querySelector("#idph-portNav");
+    this.orderNav = document.querySelector("#idph-orderNav");
+    this.orderDiv = document.querySelector("#idph-orderDiv");
+    this.donateLink = document.querySelector("#idph-donateLink");
+    this.skipAnimations = document.querySelector("#idph-skipAnimations");
+    this.footerUl = document.querySelector("#idph-footerUl");
+    this.linkedinNav = document.querySelector("#idph-linkedinNav");
+    this.emailNav = document.querySelector("#idph-emailNav");
+    this.telegramNav = document.querySelector("#idph-telegramNav");
+    this.mainContainer = document.querySelector("#idph-mainContainer");
     this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
     this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
-    this.invisibleElemsList = [this.mainContainer, this.logo, this.headerNavbar, this.orderDiv.firstElementChild, this.donateLink.parentElement, this.footerUl];
+    this.invisibleElemsList = [
+      this.mainContainer,
+      this.logo,
+      this.headerNavbar,
+      this.orderDiv.firstElementChild,
+      this.donateLink.parentElement,
+      this.footerUl,
+    ];
+    document.querySelectorAll(".hoverable").forEach((element) => {
+      element.classList.remove("hoverable");
+      element.classList.add("pointer-gold");
+    });
     this.startAnimations();
   },
-  
+
   created() {
     window.addEventListener("resize", this.windowWidthClassEmitter);
   },
 
   beforeUnmount() {
-    document.body.parentElement.classList.remove('overflow-y-auto');
+    document.body.parentElement.classList.remove("overflow-y-auto");
   },
 };
 </script>
