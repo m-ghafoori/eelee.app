@@ -10,6 +10,10 @@
     cursor: url('../images/svg/pointer-hover.svg'), auto;
 }
 
+.idpp-faded {
+    opacity: 0 !important;
+}
+
 .idpp-page-flexbox {
     width: 100%;
     height: fit-content;
@@ -83,8 +87,12 @@
     height: fit-content;
     border: 2px solid #d8215e;
     border-top: 0;
-    margin-bottom: calc(5vw + 5vh);
+    margin-bottom: 50px;
     position: relative;
+}
+
+.idpp-section-page:nth-last-of-type(1) {
+    margin-bottom: 100px;
 }
 
 /* ID Tags */

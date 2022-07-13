@@ -1,5 +1,5 @@
 <template>
-  <div id="idpd-body" class="body" @mousedown="onBodyDivMouseDown">
+  <div id="idpd-body" class="body">
     <Header
       pageRoute="/donate"
       logoMainColor="#ffbf1f"
