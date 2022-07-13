@@ -35,12 +35,8 @@ export default {
 
   props: {
     showIfLessThanPx: Number,
-    mainColor: {
-      default: "#b42857",
-    },
-    hoverColor: {
-      default: "#2ec7a6",
-    },
+    mainColor: String,
+    hoverColor: String,
   },
 
   data() {
@@ -150,6 +146,7 @@ export default {
   },
 
   mounted() {
+    this.imgColor = this.mainColor;
     this.bodyDiv = document.querySelector(".body");
     this.header = document.querySelector(".header");
     this.headerNav = document.querySelector(".header-nav");

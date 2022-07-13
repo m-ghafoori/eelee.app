@@ -1,58 +1,14 @@
 <template>
-  <div
-    id="idpd-body"
-    class="body"
-    @mousedown="onBodyDivMouseDown"
-  >
-    <header
-      id="idpd-header"
-      class="header"
-    >
-      <router-link id="idpd-logo" to="/" class="logo idpd-hoverable"
-        >EELee</router-link
-      >
-      <ul
-        id="idpd-headerNav"
-        class="header-nav"
-        :style="headerNavStyle"
-      >
-        <li>
-          <router-link to="/" class="idpd-nav-link idpd-hoverable"
-            >Home</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/portfolio" class="idpd-nav-link idpd-hoverable"
-            >Portfolio</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/app" class="idpd-nav-link idpd-hoverable"
-            >App</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/order" class="idpd-nav-link idpd-hoverable"
-            >Order Now!</router-link
-          >
-        </li>
-      </ul>
-      <span
-        id="idpd-menuButton"
-        class="menu-button d-none"
-        @click="onMenuButtonClick"
-      >
-        <img
-          id="idpd-menuImg"
-          class="idpd-hoverable"
-          :src="require(`./assets/images/svg/menu-button.svg`)"
-          alt=""
-          @mouseenter="onMenuImgMouseEnter"
-          @mouseleave="onMenuImgMouseLeave"
-        />
-      </span>
-    </header>
-
+  <div id="idpd-body" class="body" @mousedown="onBodyDivMouseDown">
+    <Header
+      pageRoute="/donate"
+      logoMainColor="#ffbf1f"
+      logoHoverColor="#fff"
+      logoActiveColor="#76efff"
+      navLinkMainColor="#fff"
+      navLinkHoverColor="#ffbf1f"
+      navLinkActiveColor="#76efff"
+    />
     <section
       id="idpd-showcase"
       class="showcase justify-content-between align-items-center"
@@ -64,14 +20,15 @@
         method="post"
         target="_blank"
       >
-        <p id="idpd-donationTxt">Help us by</p>
+        <p ref="donationTxt" id="idpd-donationTxt">Help us by</p>
         <div class="d-flex align-items-center">
           <input
             id="idpd-donationInput"
             v-model="donationAmount"
             type="number"
             name="PAYMENT_AMOUNT"
-            min="1"
+            min="0.01"
+            @click="onDonationInputClick"
           />
           <label for="PAYMENT_AMOUNT">USD</label>
         </div>
@@ -84,325 +41,99 @@
         Donate
       </button>
     </section>
-
-    <footer
-      id="idpd-footer"
-      class="
-        footer
-
-      "
-    >
-      <div
-        id="idpd-footerNav"
-        class="footer-nav"
-      >
-        <a
-          href="https://www.linkedin.com/"
-          target="blank"
-          class="idpd-hoverable"
-          @mouseenter="onLinkedinMouseEnter"
-          @mouseleave="onLinkedinMouseLeave"
-        >
-          <img
-            id="idpd-linkedinNav"
-            :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)"
-            alt=""
-          />
-        </a>
-        <router-link
-          to="/contact"
-          class="idpd-hoverable"
-          @mouseenter="onEmailMouseEnter"
-          @mouseleave="onEmailMouseLeave"
-        >
-          <img
-            id="idpd-emailNav"
-            :src="require(`./assets/images/svg/email-${widthClass}.svg`)"
-            alt=""
-          />
-        </router-link>
-        <a
-          href="https://t.me"
-          target="blank"
-          class="idpd-hoverable"
-          @mouseenter="onTelegramMouseEnter"
-          @mouseleave="onTelegramMouseLeave"
-        >
-          <img
-            id="idpd-telegramNav"
-            :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)"
-            alt=""
-          />
-        </a>
-      </div>
-      <router-link
-        id="idpd-footerNote"
-        to="/portfolio"
-        class="footer-note idpd-hoverable"
-        >&copy; 2022 - EELee App Design</router-link
-      >
-    </footer>
+    <Footer
+      iconMainColor="#ffbf1f"
+      iconHoverColor="#fff"
+      noteMainColor="#fff"
+      noteHoverColor="#ffbf1f"
+    />
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header/Header.vue";
+import Footer from "@/components/Footer/Footer.vue";
+
 export default {
   name: "Donate",
 
+  components: {
+    Header,
+    Footer,
+  },
   data() {
     return {
-      widthClass: String,
-      vw: Number,
-      headerNavLeftPosition: Number,
-      sizeHistoryArray: [],
-      isMounted: false,
-      isVerticalMenuExpanded: false,
       donationAmount: 3,
+      donationError: false,
 
       // Elements Object Refs
-      header: Object,
-      logo: Object,
-      headerNav: Object,
-      menuButton: Object,
-      menuImg: Object,
-      showcase: Object,
       donationForm: Object,
-      linkedinNav: Object,
-      emailNav: Object,
-      telegramNav: Object,
     };
   },
 
   watch: {
-    isVerticalMenuExpanded(val) {
+    donationError(val) {
       if (val) {
-        this.menuImg.setAttribute(
-          "src",
-          require(`./assets/images/svg/menu-button-hover.svg`)
-        );
-        this.headerNav.classList.remove("invisible", "scale-down-ver-top");
-        this.headerNav.classList.add("scale-up-ver-top");
-        this.showcase.style.opacity = "0.2";
+        this.$refs.donationTxt.innerHTML = "Invalid Amount";
+        this.$refs.donationTxt.style.color = "#ffbf1f";
       } else {
-        this.menuImg.setAttribute(
-          "src",
-          require(`./assets/images/svg/menu-button.svg`)
-        );
-        this.headerNav.classList.remove("scale-up-ver-top");
-        this.headerNav.classList.add("scale-down-ver-top");
-        this.showcase.style.opacity = "1";
+        this.$refs.donationTxt.innerHTML = "Help us by";
+        this.$refs.donationTxt.style.color = "#fff";
       }
-    },
-  },
-
-  computed: {
-    headerNavStyle() {
-      return {
-        left: `${this.headerNavLeftPosition}px`,
-      };
     },
   },
 
   methods: {
-    // Utility Methods
-
-    // Tracks width size changes by updating sizeHistoryArray
-    sizeHistoryUpdator(sizeClass) {
-      this.sizeHistoryArray.push(sizeClass);
-      if (this.sizeHistoryArray.length > 2) this.sizeHistoryArray.shift();
-      if (
-        this.sizeHistoryArray.includes("sm") &&
-        this.sizeHistoryArray.includes("xs")
-      ) {
-        if (this.isVerticalMenuExpanded) this.isVerticalMenuExpanded = false;
-        setTimeout(() => {
-          this.headerNavDisplay();
-        }, 50);
-      }
-    },
-
-    // Triggers different window size classes on resize
-    windowWidthClassEmitter() {
-      var windowWidth = window.innerWidth;
-
-      if (windowWidth < 320) this.widthClass = "xxs";
-      else if (windowWidth < 576) this.widthClass = "xs";
-      else if (windowWidth < 768) this.widthClass = "sm";
-      else if (windowWidth < 992) this.widthClass = "md";
-      else this.widthClass = "lg";
-      this.sizeHistoryUpdator(this.widthClass);
-      if (this.isMounted) {
-        this.vw = windowWidth / 100;
-        this.headerNavLeftCalculator();
-      }
-    },
-
-    // Calculates the pixel numbers for left property of headerNav
-    headerNavLeftCalculator() {
-      if (window.innerWidth >= 576) this.headerNavLeftPosition = 0;
-      else {
-        this.headerNavLeftPosition =
-          (this.header.offsetWidth -
-            (this.vw * 5 +
-              65 +
-              this.logo.offsetWidth +
-              this.menuButton.offsetWidth +
-              this.headerNav.offsetWidth)) /
-            2 +
-          this.vw * 4 +
-          this.menuButton.offsetWidth;
-      }
-    },
-
-    // Determines how header navbar should be displayed
-    headerNavDisplay() {
-      if (window.innerWidth < 576) {
-        this.headerNav.classList.remove("align-items-center");
-        this.headerNav.classList.add(
-          "invisible",
-          "flex-column",
-          "align-items-end",
-          "vertical-menu"
-        );
-        this.menuButton.classList.remove("d-none");
-      } else {
-        this.headerNav.classList.remove(
-          "invisible",
-          "scale-down-ver-top",
-          "flex-column",
-          "align-items-end",
-          "vertical-menu"
-        );
-        this.headerNav.classList.add("align-items-center");
-        this.menuButton.classList.add("d-none");
-      }
-    },
-
     // Event Handlers
 
-    onBodyDivMouseDown($event) {
-      if (this.isVerticalMenuExpanded) {
-        if (
-          !$event.target.classList.contains("idpd-nav-link") &&
-          $event.target.id != "idpd-menuImg"
-        )
-          this.isVerticalMenuExpanded = false;
-      }
-    },
-    onMenuButtonClick() {
-      this.isVerticalMenuExpanded = !this.isVerticalMenuExpanded;
-    },
-    onMenuImgMouseEnter() {
-      this.menuImg.setAttribute(
-        "src",
-        require(`./assets/images/svg/menu-button-hover.svg`)
-      );
-    },
-    onMenuImgMouseLeave() {
-      if (!this.isVerticalMenuExpanded)
-        this.menuImg.setAttribute(
-          "src",
-          require(`./assets/images/svg/menu-button.svg`)
-        );
+    onDonationInputClick() {
+      this.donationError = false;
     },
     onDonateClick() {
-      var PAYEE_ACCOUNT = document.createElement("input");
-      var PAYEE_NAME = document.createElement("input");
-      var PAYMENT_UNITS = document.createElement("input");
-      var PAYMENT_URL = document.createElement("input");
-      var NOPAYMENT_URL = document.createElement("input");
-      PAYEE_ACCOUNT.setAttribute("type", "hidden");
-      PAYEE_ACCOUNT.setAttribute("name", "PAYEE_ACCOUNT");
-      PAYEE_ACCOUNT.setAttribute("value", "U12120163");
-      PAYEE_NAME.setAttribute("type", "hidden");
-      PAYEE_NAME.setAttribute("name", "PAYEE_NAME");
-      PAYEE_NAME.setAttribute("value", "EELee App Design");
-      PAYMENT_UNITS.setAttribute("type", "hidden");
-      PAYMENT_UNITS.setAttribute("name", "PAYMENT_UNITS");
-      PAYMENT_UNITS.setAttribute("value", "USD");
-      PAYMENT_URL.setAttribute("type", "hidden");
-      PAYMENT_URL.setAttribute("name", "PAYMENT_URL");
-      PAYMENT_URL.setAttribute(
-        "value",
-        "https://webhook.site/b70bce10-e349-4f17-9abidpd-e631f667339d"
-      );
-      NOPAYMENT_URL.setAttribute("type", "hidden");
-      NOPAYMENT_URL.setAttribute("name", "NOPAYMENT_URL");
-      NOPAYMENT_URL.setAttribute(
-        "value",
-        "https://webhook.site/b70bce10-e349-4f17-9abidpd-e631f667339d"
-      );
-      this.donationForm.appendChild(PAYEE_ACCOUNT);
-      this.donationForm.appendChild(PAYEE_NAME);
-      this.donationForm.appendChild(PAYMENT_UNITS);
-      this.donationForm.appendChild(PAYMENT_URL);
-      this.donationForm.appendChild(NOPAYMENT_URL);
-      this.donationForm.submit();
+      if (this.donationAmount < 0.01) this.donationError = true;
+      else {
+        var PAYEE_ACCOUNT = document.createElement("input");
+        var PAYEE_NAME = document.createElement("input");
+        var PAYMENT_UNITS = document.createElement("input");
+        var PAYMENT_URL = document.createElement("input");
+        var NOPAYMENT_URL = document.createElement("input");
+        PAYEE_ACCOUNT.setAttribute("type", "hidden");
+        PAYEE_ACCOUNT.setAttribute("name", "PAYEE_ACCOUNT");
+        PAYEE_ACCOUNT.setAttribute("value", "U12120163");
+        PAYEE_NAME.setAttribute("type", "hidden");
+        PAYEE_NAME.setAttribute("name", "PAYEE_NAME");
+        PAYEE_NAME.setAttribute("value", "EELee App Design");
+        PAYMENT_UNITS.setAttribute("type", "hidden");
+        PAYMENT_UNITS.setAttribute("name", "PAYMENT_UNITS");
+        PAYMENT_UNITS.setAttribute("value", "USD");
+        PAYMENT_URL.setAttribute("type", "hidden");
+        PAYMENT_URL.setAttribute("name", "PAYMENT_URL");
+        PAYMENT_URL.setAttribute(
+          "value",
+          "https://webhook.site/b70bce10-e349-4f17-9abidpd-e631f667339d"
+        );
+        NOPAYMENT_URL.setAttribute("type", "hidden");
+        NOPAYMENT_URL.setAttribute("name", "NOPAYMENT_URL");
+        NOPAYMENT_URL.setAttribute(
+          "value",
+          "https://webhook.site/b70bce10-e349-4f17-9abidpd-e631f667339d"
+        );
+        this.donationForm.appendChild(PAYEE_ACCOUNT);
+        this.donationForm.appendChild(PAYEE_NAME);
+        this.donationForm.appendChild(PAYMENT_UNITS);
+        this.donationForm.appendChild(PAYMENT_URL);
+        this.donationForm.appendChild(NOPAYMENT_URL);
+        this.donationForm.submit();
+      }
     },
-
-    // Footer
-
-    onLinkedinMouseEnter() {
-      this.linkedinNav.setAttribute(
-        "src",
-        require(`./assets/images/svg/linkedin-hover-${this.widthClass}.svg`)
-      );
-    },
-    onLinkedinMouseLeave() {
-      this.linkedinNav.setAttribute(
-        "src",
-        require(`./assets/images/svg/linkedin-${this.widthClass}.svg`)
-      );
-    },
-    onEmailMouseEnter() {
-      this.emailNav.setAttribute(
-        "src",
-        require(`./assets/images/svg/email-hover-${this.widthClass}.svg`)
-      );
-    },
-    onEmailMouseLeave() {
-      this.emailNav.setAttribute(
-        "src",
-        require(`./assets/images/svg/email-${this.widthClass}.svg`)
-      );
-    },
-    onTelegramMouseEnter() {
-      this.telegramNav.setAttribute(
-        "src",
-        require(`./assets/images/svg/telegram-hover-${this.widthClass}.svg`)
-      );
-    },
-    onTelegramMouseLeave() {
-      this.telegramNav.setAttribute(
-        "src",
-        require(`./assets/images/svg/telegram-${this.widthClass}.svg`)
-      );
-    },
-  },
-
-  created() {
-    window.addEventListener("resize", this.windowWidthClassEmitter);
-  },
-
-  beforeMount() {
-    this.windowWidthClassEmitter();
   },
 
   mounted() {
-    this.header = document.getElementById("idpd-header");
-    this.logo = document.getElementById("idpd-logo");
-    this.headerNav = document.getElementById("idpd-headerNav");
-    this.menuButton = document.getElementById("idpd-menuButton");
-    this.menuImg = document.getElementById("idpd-menuImg");
-    this.showcase = document.getElementById("idpd-showcase");
-    this.donationForm = document.getElementById("idpd-donationForm");
-    this.linkedinNav = document.getElementById("idpd-linkedinNav");
-    this.emailNav = document.getElementById("idpd-emailNav");
-    this.telegramNav = document.getElementById("idpd-telegramNav");
-    this.isMounted = true;
-    this.windowWidthClassEmitter();
-    this.headerNavDisplay();
-    this.headerNavLeftCalculator();
+    this.donationForm = document.querySelector("#idpd-donationForm");
+    document.querySelectorAll(".hoverable").forEach((element) => {
+      element.classList.remove("hoverable");
+      element.classList.add("idpd-hoverable");
+    });
   },
 };
 </script>

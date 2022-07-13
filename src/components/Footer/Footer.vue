@@ -34,7 +34,11 @@
         />
       </a>
     </div>
-    <router-link to="/portfolio" class="footer-note hoverable"
+    <router-link
+      to="/portfolio"
+      class="footer-note hoverable"
+      @mouseenter="onNoteMouseEnter"
+      @mouseleave="onNoteMouseLeave"
       >&copy; 2022 - EELee App Design</router-link
     >
   </footer>
@@ -53,13 +57,17 @@ export default {
     Telegram,
   },
   props: {
-    mainColor: {
-      type: String,
+    iconMainColor: {
       default: "#0d8a6f",
     },
-    hoverColor: {
-      type: String,
+    iconHoverColor: {
       default: "#fb4a85",
+    },
+    noteMainColor: {
+      default: "#d8215e",
+    },
+    noteHoverColor: {
+      default: "#2ec7a6",
     },
   },
 
@@ -69,6 +77,7 @@ export default {
       linkedinIconColor: "#0d8a6f",
       emailIconColor: "#0d8a6f",
       telegramIconColor: "#0d8a6f",
+      footerNote: Object,
     };
   },
 
@@ -83,22 +92,28 @@ export default {
     // Event Handlers
 
     onLinkedinMouseEnter() {
-      this.linkedinIconColor = this.hoverColor;
+      this.linkedinIconColor = this.iconHoverColor;
     },
     onLinkedinMouseLeave() {
-      this.linkedinIconColor = this.mainColor;
+      this.linkedinIconColor = this.iconMainColor;
     },
     onEmailMouseEnter() {
-      this.emailIconColor = this.hoverColor;
+      this.emailIconColor = this.iconHoverColor;
     },
     onEmailMouseLeave() {
-      this.emailIconColor = this.mainColor;
+      this.emailIconColor = this.iconMainColor;
     },
     onTelegramMouseEnter() {
-      this.telegramIconColor = this.hoverColor;
+      this.telegramIconColor = this.iconHoverColor;
     },
     onTelegramMouseLeave() {
-      this.telegramIconColor = this.mainColor;
+      this.telegramIconColor = this.iconMainColor;
+    },
+    onNoteMouseEnter() {
+      this.footerNote.style.color = this.noteHoverColor;
+    },
+    onNoteMouseLeave() {
+      this.footerNote.style.color = this.noteMainColor;
     },
   },
 
@@ -110,9 +125,11 @@ export default {
     this.windowWidthClassEmitter();
   },
   mounted() {
-    this.linkedinIconColor = this.mainColor;
-    this.emailIconColor = this.mainColor;
-    this.telegramIconColor = this.mainColor;
+    this.footerNote = document.querySelector(".footer-note");
+    this.footerNote.style.color = this.noteMainColor;
+    this.linkedinIconColor = this.iconMainColor;
+    this.emailIconColor = this.iconMainColor;
+    this.telegramIconColor = this.iconMainColor;
   },
 };
 </script>
@@ -147,11 +164,6 @@ export default {
   font-family: "Gluten", cursive;
   font-size: calc(1vw + 0.5rem);
   white-space: nowrap;
-  color: #d8215e;
-}
-
-.footer-note:hover {
-  color: #2ec7a6;
 }
 
 @media (max-width: 320px) {

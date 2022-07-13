@@ -10,7 +10,11 @@
       >EELee</router-link
     >
     <div class="header-nav">
-      <VerticalMenu :showIfLessThanPx="576" />
+      <VerticalMenu
+        :mainColor="logoMainColor"
+        :hoverColor="logoHoverColor"
+        :showIfLessThanPx="576"
+      />
       <ul class="nav-ul">
         <li>
           <router-link to="/" class="nav-link hoverable">Home</router-link>

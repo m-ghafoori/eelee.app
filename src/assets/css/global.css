@@ -152,6 +152,10 @@ ul {
     justify-content: space-between;
 }
 
+.showcase {
+    display: flex;
+    flex-direction: column;
+}
 
 /* Media Queries */
 

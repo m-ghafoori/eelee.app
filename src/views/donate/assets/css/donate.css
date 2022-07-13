@@ -11,36 +11,6 @@
     cursor: url('../images/svg/pointer.svg'), auto;
 }
 
-/* Header */
-
-/* Classes */
-
-.idpd-nav-link {
-    font-family: 'Poiret One', cursive;
-    font-weight: 1000;
-    margin: 1vw 2vw;
-    text-decoration: none;
-    color: #fff;
-}
-
-.idpd-nav-link:hover {
-    color: #ffbf1f;
-}
-
-.idpd-nav-link:active {
-    color: #cf2860;
-}
-
-/* ID Tags */
-
-#idpd-logo {
-    color: #ffbf1f;
-}
-
-#idpd-logo:hover {
-    color: #fff;
-}
-
 /* Showcase */
 
 /* ID Tags */
@@ -113,18 +83,6 @@
 #idpd-donateButton:active {
     color: #cf2860;
     border-color: #cf2860;
-}
-
-/* Footer */
-
-/* ID Tags */
-
-#idpd-footerNote {
-    color: #ffffff;
-}
-
-#idpd-footerNote:hover {
-    color: #ffbf1f;
 }
 
 /* Media Queries */
