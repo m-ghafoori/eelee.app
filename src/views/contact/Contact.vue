@@ -13,27 +13,21 @@
           <span id="idpc-contactEmail">"eelee.app@gmail.com"</span>
         </p>
         <div class="idpc-clientInfo">
-          <label for="clientName">Name:</label>
+          <span>Name:</span>
           <input
+            ref="clientNameInput"
             type="text"
-            name="clientName"
-            id="idpc-clientName"
             v-model="clientName"
-            :style="clientNameStyle"
             @click="onClientNameClick"
-            required
           />
         </div>
         <div class="idpc-clientInfo">
-          <label for="clientEmail">Email:</label>
+          <span>Email:</span>
           <input
+            ref="clientEmailInput"
             type="email"
-            name="clientEmail"
-            id="idpc-clientEmail"
             v-model="clientEmail"
-            :style="clientEmailStyle"
             @click="onClientEmailClick"
-            required
           />
         </div>
         <div
@@ -41,14 +35,11 @@
           class="d-flex flex-column justify-content-between align-items-center"
         >
           <textarea
-            name="clientMessage"
-            id="idpc-clientMessage"
+            ref="clientMessageInput"
             cols="90"
             rows="10"
             v-model="clientMessage"
-            :style="clientMessageStyle"
             @click="onClientMessageClick"
-            required
           ></textarea>
           <div
             id="idpc-messageButtons"
@@ -94,9 +85,6 @@ export default {
       clientEmail: "",
       clientLastEnteredEmail: "",
       clientMessage: "",
-      clientNameColor: "#0b7a62",
-      clientEmailColor: "#0b7a62",
-      clientMessageColor: "#0b7a62",
       fileName: "",
       attachedFile: { name: "" },
       showNoNameError: false,
@@ -106,11 +94,7 @@ export default {
 
       // Element Objects Refs
       messagereceived: Object,
-      contactPar: Object,
       contactForm: Object,
-      clientNameInput: Object,
-      clientEmailInput: Object,
-      clientMessageInput: Object,
       attachInput: Object,
       messageButtons: Object,
       fileNamePar: Object,
@@ -121,63 +105,46 @@ export default {
     clientEmail(val) {
       if (
         val != "Email is required." &&
-        val != `"${this.clientLastEnteredEmail}" is not valid.`
+        val != `"${this.clientLastEnteredEmail}" is not a valid email.`
       )
         this.clientLastEnteredEmail = val;
     },
     showNoNameError(val) {
       if (val) {
         this.clientName = "Name is required.";
-        this.clientNameColor = "#ff0000";
+        this.$refs.clientNameInput.style.color = "#ff0000";
       } else {
         this.clientName = "";
-        this.clientNameColor = "#0b7a62";
+        this.$refs.clientNameInput.style.color = "#0b7a62";
       }
     },
     showNoEmailError(val) {
       if (val) {
         this.clientEmail = "Email is required.";
-        this.clientEmailColor = "#ff0000";
+        this.$refs.clientEmailInput.style.color = "#ff0000";
       } else {
         this.clientEmail = "";
-        this.clientEmailColor = "#0b7a62";
+        this.$refs.clientEmailInput.style.color = "#0b7a62";
       }
     },
     showInvalidEmailError(val) {
       if (val) {
-        this.clientEmail = `"${this.clientEmail}" is not valid.`;
-        this.clientEmailColor = "#ff0000";
+        if (this.clientLastEnteredEmail != "")
+          this.clientEmail = `"${this.clientLastEnteredEmail}" is not a valid email.`;
+        this.$refs.clientEmailInput.style.color = "#ff0000";
       } else {
         this.clientEmail = this.clientLastEnteredEmail;
-        this.clientEmailColor = "#0b7a62";
+        this.$refs.clientEmailInput.style.color = "#0b7a62";
       }
     },
     showNoMessageError(val) {
       if (val) {
         this.clientMessage = "Message is required.";
-        this.clientMessageColor = "#ff0000";
+        this.$refs.clientMessageInput.style.color = "#ff0000";
       } else {
         this.clientMessage = "";
-        this.clientMessageColor = "#0b7a62";
+        this.$refs.clientMessageInput.style.color = "#0b7a62";
       }
-    },
-  },
-
-  computed: {
-    clientNameStyle() {
-      return {
-        color: `${this.clientNameColor}`,
-      };
-    },
-    clientEmailStyle() {
-      return {
-        color: `${this.clientEmailColor}`,
-      };
-    },
-    clientMessageStyle() {
-      return {
-        color: `${this.clientMessageColor}`,
-      };
     },
   },
 
@@ -239,13 +206,13 @@ export default {
       if (this.clientName == "") this.showNoNameError = true;
       if (this.clientEmail == "") this.showNoEmailError = true;
       if (this.clientMessage == "") this.showNoMessageError = true;
-      if (!this.clientEmailInput.validity.valid && this.clientEmail != "")
+      if (!this.$refs.clientEmailInput.validity.valid && this.clientEmail != "")
         this.showInvalidEmailError = true;
       if (
         !this.showNoNameError &&
         !this.showNoEmailError &&
         !this.showNoMessageError &&
-        this.clientEmailInput.validity.valid
+        this.$refs.clientEmailInput.validity.valid
       ) {
         var messageFormData = new FormData();
         messageFormData.append("name", this.clientName);
@@ -259,21 +226,12 @@ export default {
     },
   },
 
-  // created() {
-  //   window.addEventListener("resize", this.windowWidthClassEmitter);
-  // },
-
-  // beforeMount() {
-  //   this.windowWidthClassEmitter();
-  // },
-
   mounted() {
+    this.$refs.clientNameInput.style.color = "#0b7a62";
+    this.$refs.clientEmailInput.style.color = "#0b7a62";
+    this.$refs.clientMessageInput.style.color = "#0b7a62";
     this.messagereceived = document.querySelector("#idpc-messagereceived");
-    this.contactPar = document.querySelector("#idpc-contactPar");
     this.contactForm = document.querySelector("#idpc-contactForm");
-    this.clientNameInput = document.querySelector("#idpc-clientName");
-    this.clientEmailInput = document.querySelector("#idpc-clientEmail");
-    this.clientMessageInput = document.querySelector("#idpc-clientMessage");
     this.attachInput = document.querySelector("#idpc-attachInput");
     this.messageButtons = document.querySelector("#idpc-messageButtons");
     this.fileNamePar = document.querySelector("#idpc-fileNamePar");
