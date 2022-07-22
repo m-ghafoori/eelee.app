@@ -1,8 +1,10 @@
 <template>
-  <span ref="menuButton" class="menu-button d-none" @click="onMenuButtonClick">
+  <span ref="menuButton" class="menu-button d-none">
     <svg
       ref="menuImg"
+      id="menuImg"
       class="menu-img hoverable"
+      @click="onMenuButtonClick"
       @mouseenter="onMenuImgMouseEnter"
       @mouseleave="onMenuImgMouseLeave"
       version="1.1"
@@ -10,10 +12,8 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       x="0px"
       y="0px"
-      width="25px"
-      height="25px"
       viewBox="0 0 25 25"
-      style="enable-background: new 0 0 25 25"
+      style="enable-background: new 0 0 25 25; width: 5vw; height: 5vw"
       xml:space="preserve"
     >
       <g class="menu-img">
@@ -34,7 +34,9 @@ export default {
   name: "VerticalMenu",
 
   props: {
-    showIfLessThanPx: Number,
+    switchingAspectRatio: {
+      default: 1
+    },
     mainColor: String,
     hoverColor: String,
   },
@@ -42,30 +44,25 @@ export default {
   data() {
     return {
       windowWidth: Number,
-      previousWindowWidth: 0,
+      windowHeight: Number,
       imgColor: "#b42857",
       isMenuExpanded: false,
       isMounted: false,
       bodyDiv: Object,
       header: Object,
+      logo: Object,
+      headerNav: Object,
       navUl: Object,
       showcase: Object,
     };
   },
 
   watch: {
-    windowWidth(val) {
-      if (
-        (val - this.showIfLessThanPx) *
-          (this.previousWindowWidth - this.showIfLessThanPx) <=
-        0
-      ) {
-        setTimeout(() => {
-          this.headerNavDisplay();
-        }, 30);
-      }
-      if (val >= this.showIfLessThanPx) this.isMenuExpanded = false;
-      this.previousWindowWidth = val;
+    showVerticalMenu(val) {
+      setTimeout(() => {
+        this.headerNavDisplay();
+      }, 30);
+      if (!val) this.isMenuExpanded = false;
     },
 
     isMenuExpanded(val) {
@@ -80,23 +77,30 @@ export default {
         this.navUl.classList.add("scale-down-ver-top");
         this.showcase.style.opacity = "1";
         this.imgColor = this.mainColor;
-        this.headerNav.style.maxHeight = "25px";
+        this.headerNav.style.maxHeight = "5vw";
       }
+    },
+  },
+
+  computed: {
+    showVerticalMenu() {
+      if (this.windowWidth/this.windowHeight < this.switchingAspectRatio) return true;
+      else return false;
     },
   },
 
   methods: {
     // Triggers window width on resize
-    windowWidthClassEmitter() {
+    onresize() {
       this.windowWidth = window.innerWidth;
-      if (this.isMounted) this.header.style.width = `${this.windowWidth}px`;
+      this.windowHeight = window.innerHeight;
     },
 
     // Determines how header navbar should be displayed
     headerNavDisplay() {
       if (this.isMounted) {
         this.headerNav.style.maxHeight = "fit-content";
-        if (this.windowWidth < this.showIfLessThanPx) {
+        if (this.showVerticalMenu) {
           this.headerNav.classList.add("vertical-nav");
           this.navUl.classList.add("vertical-ul");
           if (!this.isMenuExpanded) this.navUl.classList.add("d-none");
@@ -138,15 +142,16 @@ export default {
   },
 
   created() {
-    window.addEventListener("resize", this.windowWidthClassEmitter);
+    window.addEventListener("resize", this.onresize);
   },
 
   beforeMount() {
-    this.windowWidthClassEmitter();
+    this.onresize();
   },
 
   mounted() {
     this.imgColor = this.mainColor;
+    this.logo = document.querySelector(".logo");
     this.bodyDiv = document.querySelector(".body");
     this.header = document.querySelector(".header");
     this.headerNav = document.querySelector(".header-nav");
@@ -154,17 +159,19 @@ export default {
     this.showcase = document.querySelector(".showcase");
     this.bodyDiv.addEventListener("click", this.onBodyDivClick);
     this.isMounted = true;
-    this.windowWidthClassEmitter();
     this.headerNavDisplay();
+    this.onresize();
   },
 };
 </script>
 
 <style>
 .menu-button {
-  width: 25px;
-  height: 25px;
-  margin: auto 40px auto 0;
+  width: 5vw;
+  height: 10vw;
+  display: flex;
+  align-items: flex-start;
+  margin: auto calc(3vw + 3vh) auto 0;
   align-self: flex-end;
 }
 </style>

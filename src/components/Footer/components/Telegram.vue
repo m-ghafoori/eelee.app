@@ -1,44 +1,26 @@
 <template>
   <svg
     version="1.1"
-    id="Livello_1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
-    :height="`${imgWidth * 0.8}px`"
-    :width="`${imgWidth}px`"
     viewBox="40 78 145.1 100.1"
     enable-background="new 0 0 240.1 240.1"
+    style="width: calc(2.6vw + 2.6vh); height: calc(2.1vw + 2.1vh)"
     xml:space="preserve"
   >
     <g id="Artboard">
-      <linearGradient
-        id="Oval_1_"
-        gradientUnits="userSpaceOnUse"
-        x1="-838.041"
-        y1="660.581"
-        x2="-838.041"
-        y2="660.3427"
-        gradientTransform="matrix(1000 0 0 -1000 838161 660581)"
-      >
-        <stop offset="0" style="stop-color: #2aabee" />
-        <stop offset="1" style="stop-color: #229ed9" />
+      <linearGradient id="telegramGradient" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" :stop-color="surroundingColor" />
+        <stop offset="40%" :stop-color="centralColor" />
+        <stop offset="100%" :stop-color="surroundingColor" />
       </linearGradient>
-      <circle
-        id="Oval"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        fill="transparent"
-        cx="120.1"
-        cy="120.1"
-        r="120.1"
-      />
+      <title>Telegram</title>
       <path
-        id="Path-3"
         fill-rule="evenodd"
         clip-rule="evenodd"
-        :fill="imgColor"
+        fill="url(#telegramGradient)"
         d="M54.3,118.8c35-15.2,58.3-25.3,70-30.2
 		c33.3-13.9,40.3-16.3,44.8-16.4c1,0,3.2,0.2,4.7,1.4c1.2,1,1.5,2.3,1.7,3.3s0.4,3.1,0.2,4.7c-1.8,19-9.6,65.1-13.6,86.3
 		c-1.7,9-5,12-8.2,12.3c-7,0.6-12.3-4.6-19-9c-10.6-6.9-16.5-11.2-26.8-18c-11.9-7.8-4.2-12.1,2.6-19.1c1.8-1.8,32.5-29.8,33.1-32.3
@@ -53,12 +35,39 @@
 export default {
   name: "Telegram",
   props: {
-    imgWidth: {
-      default: 50,
-    },
-    imgColor: {
+    // imgWidth: {
+    //   default: 50,
+    // },
+    basicColor: {
       default: "#0d8a6f",
     },
+    gradientColor: {
+      default: "unset",
+    },
+  },
+
+  data() {
+    return {
+      surroundingColor: String,
+      centralColor: String,
+    };
+  },
+
+  watch: {
+    basicColor(val) {
+      this.surroundingColor = val;
+      if (this.gradientColor == "unset") this.centralColor = val;
+    },
+    gradientColor(val) {
+      if (this.gradientColor != "unset") this.centralColor = val;
+    },
+  },
+
+  mounted() {
+    this.surroundingColor = this.basicColor;
+    this.gradientColor == "unset"
+      ? (this.centralColor = this.basicColor)
+      : (this.centralColor = this.gradientColor);
   },
 };
 </script>

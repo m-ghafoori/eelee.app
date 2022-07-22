@@ -1,26 +1,27 @@
 <template>
   <div id="idpm-body" class="pointer-gold" @click="skipInitAnimations">
     <div
+      ref="mainContainer"
       id="idpm-mainContainer"
       class="d-flex flex-column justify-content-around"
     >
-      <div id="idpm-bodyCover"></div>
+      <div ref="bodyCover" id="idpm-bodyCover"></div>
       <header
         id="idpm-header"
         class="d-flex justify-content-center text-shine-logo"
       >
-        <div id="idpm-headerCover"></div>
-        <span id="idpm-logoLeft" class="invisible">ee</span>
-        <span id="idpm-logoMoon" class="invisible">f </span>
-        <span id="idpm-logoRight" class="invisible">ee</span>
+        <div ref="headerCover" id="idpm-headerCover"></div>
+        <span ref="logoLeft" id="idpm-logoLeft" class="invisible">ee</span>
+        <span ref="logoMoon" id="idpm-logoMoon" class="invisible">f </span>
+        <span ref="logoRight" id="idpm-logoRight" class="invisible">ee</span>
       </header>
 
       <section
         id="idpm-showcase"
         class="d-flex flex-column justify-content-between align-items-center"
       >
-        <div id="idpm-orderDiv" class="invisible">
-          <router-link to="/order" class="hoverable">
+        <div ref="orderDiv" id="idpm-orderDiv" class="invisible">
+          <router-link to="/order" title="Click to Order" class="hoverable">
             Need A Web App ???
           </router-link>
         </div>
@@ -29,61 +30,67 @@
           id="idpm-centralDiv"
           class="d-flex justify-content-between align-items-start"
         >
-          <ul
+          <div
+            ref="navUl"
             id="idpm-navUl"
             class="invisible d-flex flex-column justify-content-end"
           >
-            <li class="">
-              <router-link
-                id="idpm-portNav"
-                to="/app"
-                class="idpm-nav-link text-shine hoverable"
-                >App</router-link
-              >
-            </li>
-            <li class="">
-              <router-link
-                id="idpm-appNav"
-                to="/portfolio"
-                class="idpm-nav-link text-shine hoverable"
-                >Portfolio</router-link
-              >
-            </li>
-          </ul>
+            <router-link
+              id="idpm-portNav"
+              title="App Sample"
+              to="/app"
+              class="idpm-nav-link text-shine hoverable"
+              >App</router-link
+            >
+            <router-link
+              id="idpm-appNav"
+              title="Portfolio"
+              to="/portfolio"
+              class="idpm-nav-link text-shine hoverable"
+              >Portfolio</router-link
+            >
+          </div>
           <div
             id="idpm-orderCentral"
             class="d-flex justify-content-around align-items-center"
           >
             <router-link
+              ref="orderRight"
               id="idpm-orderRight"
+              title="Order Now!"
               to="/order"
               class="text-shine-logo hoverable align-self-start"
             >
-              <span id="idpm-orderRightTop" class="invisible"
+              <span
+                ref="orderRightTop"
+                id="idpm-orderRightTop"
+                class="invisible"
                 >Click to <br
               /></span>
-              <span id="idpm-orderRightStar" class="invisible">c</span>
-              <span id="idpm-orderRightBottom" class="invisible">RDER</span>
+              <span
+                ref="orderRightStar"
+                id="idpm-orderRightStar"
+                class="invisible"
+                >c</span
+              >
+              <span
+                ref="orderRightBottom"
+                id="idpm-orderRightBottom"
+                class="invisible"
+                >RDER</span
+              >
             </router-link>
           </div>
         </div>
       </section>
 
-      <div id="idpm-donateDiv">
+      <div id="idpm-donateDiv" class="invisible" :style="donateStyle">
         <router-link
           to="/donate"
           id="idpm-donateLink"
-          class="invisible hoverable d-flex justify-content-center"
-          :style="donateStyle"
+          class="hoverable d-flex justify-content-center"
         >
-          <img
-            id="idpm-donateIcon"
-            class="donate-shadow"
-            @mouseenter="donateIconMouseEnter"
-            @mouseleave="donateIconMouseLeave"
-            :src="require(`./assets/images/svg/donate-${widthClass}.svg`)"
-            alt=""
-          />
+          <DonationStone />
         </router-link>
       </div>
 
@@ -97,66 +104,55 @@
         <router-link
           id="idpm-footerNote"
           to="/portfolio"
+          title="About Us"
           class="hoverable"
           :style="noteStyle"
           >&copy; 2022 - EELee App Design</router-link
         >
       </section>
-
-      <footer id="idpm-footer" class="d-flex justify-content-around">
-        <ul
-          id="idpm-footerUl"
-          class="d-flex justify-content-between align-items-center"
-        >
-          <li id="idpm-telegramNav" class="invisible">
-            <img
-              id="idpm-telegramIcon"
-              class="footer-shadow hoverable"
-              @mouseenter="telegramNavMouseEnter"
-              @mouseleave="telegramNavMouseLeave"
-              :src="require(`./assets/images/svg/telegram-${widthClass}.svg`)"
-            />
-          </li>
-          <li>
-            <router-link to="contact" id="idpm-emailNav" class="invisible">
-              <img
-                id="idpm-emailIcon"
-                class="footer-shadow hoverable"
-                @mouseenter="emailNavMouseEnter"
-                @mouseleave="emailNavMouseLeave"
-                :src="require(`./assets/images/svg/email-${widthClass}.svg`)"
-              />
-            </router-link>
-          </li>
-          <li id="idpm-linkedinNav" class="invisible">
-            <img
-              id="idpm-linkedinIcon"
-              class="footer-shadow hoverable"
-              @mouseenter="linkedinNavMouseEnter"
-              @mouseleave="linkedinNavMouseLeave"
-              :src="require(`./assets/images/svg/linkedin-${widthClass}.svg`)"
-            />
-          </li>
-        </ul>
-      </footer>
+      <Footer
+        iconBasicColor="#f00"
+        iconGradientColor="#ffe56f"
+        iconHoverColor="#ffe56f"
+        linkedinBgMainColor="#f00"
+        noteClassList="d-none"
+        flexDirection="row-reverse"
+        telegramAlign="end"
+        emailAlign="start"
+        linkedinAlign="end"
+        :linkedinClassList="linkedinClassList"
+        :emailClassList="emailClassList"
+        :telegramClassList="telegramClassList"
+      />
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Footer from "@/components/Footer/Footer.vue";
+import DonationStone from "./components/DonationStone.vue";
 
 export default {
   name: "HomeMobile",
 
+  components: {
+    Footer,
+    DonationStone,
+  },
+
   data() {
     return {
+      linkedinClassList: "invisible footer-shadow",
+      emailClassList: "invisible footer-shadow",
+      telegramClassList: "invisible footer-shadow",
       donateBottom: 0,
       skipBottom: 0,
       noteBottom: 0,
       skipRotation: -40,
       skipColor: String,
       noteColor: String,
+      isMounted: false,
       isPageFullyLoaded: false,
 
       // Timeout References
@@ -172,40 +168,20 @@ export default {
       orderDivSecondRef: Function,
       orderRightStarRef: Function,
       orderRightTextRef: Function,
+      navUlRef: Function,
+      linkedinNavRef: Function,
       emailNavRef: Function,
       telegramNavRef: Function,
-      linkedinNavRef: Function,
-      navUlRef: Function,
 
       // Element Object References
-      containerWrapper: Object,
       mainContainer: Object,
-      bodyCover: Object,
-      headerCover: Object,
-      logoMoon: Object,
-      logoLeft: Object,
-      logoRight: Object,
-      orderCentral: Object,
-      orderDiv: Object,
-      orderRight: Object,
-      orderRightTop: Object,
-      orderRightStar: Object,
-      orderRightBottom: Object,
-      navUl: Object,
-      appNav: Object,
-      portNav: Object,
       donateLink: Object,
       footerNote: Object,
       skipAnimations: Object,
-      linkedinNav: Object,
-      emailNav: Object,
-      telegramNav: Object,
 
       // Arrays
       initVisibleElemsList: Array,
-      invisibleElemsList: Array,
       timeoutRefsList: Array,
-      footerNavsList: Array,
     };
   },
 
@@ -216,6 +192,10 @@ export default {
         setTimeout(() => {
           this.skipAnimations.classList.add("invisible");
         }, 2000);
+        document.querySelectorAll(".footer-appear").forEach((element) => {
+          element.classList.remove("footer-appear");
+          element.classList.add("footer-shadow");
+        });
       }
     },
     skipColor(val) {
@@ -231,7 +211,7 @@ export default {
 
   computed: {
     widthClass() {
-      return this.windowWidthClassEmitter();
+      return this.onresize();
     },
     donateStyle() {
       return {
@@ -268,85 +248,66 @@ export default {
       return diffNum;
     },
 
-    // Triggers different window size classes on resize
-    windowWidthClassEmitter() {
-      var windowWidth = window.innerWidth;
-
-      switch (true) {
-        case windowWidth < 320:
-          this.$emit("screen-width-change", "xxs");
-          return "xxs";
-
-        case windowWidth < 576:
-          this.$emit("screen-width-change", "xs");
-          return "xs";
-
-        case windowWidth < 768:
-          this.$emit("screen-width-change", "sm");
-          return "sm";
-
-        case windowWidth < 992:
-          this.$emit("screen-width-change", "md");
-          return "md";
-
-        default:
-          this.$emit("screen-width-change", "lg");
-          return "lg";
+    onresize() {
+      if (this.isMounted) {
+        this.donateUpdator();
+        this.skipUpdator();
+        this.noteUpdator();
+        this.mainContainer.style.setProperty("width", `${window.innerWidth}px`);
+        this.mainContainer.style.setProperty(
+          "height",
+          `${window.innerHeight}px`
+        );
       }
     },
 
     donateUpdator() {
-      if (window.innerHeight > 450) {
-        if (this.donateLink.offsetTop / window.innerHeight > 0.6) {
-          this.donateBottom++;
-        }
-        if (this.donateLink.offsetTop / window.innerHeight < 0.5) {
-          this.donateBottom--;
-        }
+      // console.log('donateUpdator:', this.donateDiv.offsetTop);
+      if (this.donateDiv.offsetTop / window.innerHeight > 0.6) {
+        this.donateBottom++;
+      }
+      if (this.donateDiv.offsetTop / window.innerHeight < 0.5) {
+        this.donateBottom--;
       }
     },
 
     skipUpdator() {
-      if (window.innerHeight > 450) {
-        if (window.innerWidth / window.innerHeight > 1) this.skipRotation = -37;
-        else this.skipRotation = -40;
-        if (window.innerWidth / window.innerHeight > 0.85) {
-          this.skipColor = "#a2e5ff";
-          if (this.skipAnimations.offsetTop / window.innerHeight > 0.7) {
-            this.skipBottom++;
-          }
-          if (this.skipAnimations.offsetTop / window.innerHeight < 0.65) {
-            this.skipBottom--;
-          }
-        } else {
-          this.skipColor = "#f8cc09";
-          if (this.skipAnimations.offsetTop / window.innerHeight < 0.8) {
-            this.skipBottom--;
-          }
-          if (this.skipAnimations.offsetTop / window.innerHeight > 0.85) {
-            this.skipBottom++;
-          }
+      if (window.innerWidth / window.innerHeight > 1) this.skipRotation = -37;
+      else this.skipRotation = -40;
+      if (window.innerWidth / window.innerHeight > 0.85) {
+        this.skipColor = "#a2e5ff";
+        if (this.skipAnimations.offsetTop / window.innerHeight > 0.7) {
+          this.skipBottom++;
+        }
+        if (this.skipAnimations.offsetTop / window.innerHeight < 0.65) {
+          this.skipBottom--;
+        }
+      } else {
+        this.skipColor = "#f8cc09";
+        if (this.skipAnimations.offsetTop / window.innerHeight < 0.75) {
+          this.skipBottom--;
+        }
+        if (this.skipAnimations.offsetTop / window.innerHeight > 0.8) {
+          this.skipBottom++;
         }
       }
     },
     noteUpdator() {
-      if (window.innerHeight > 450) {
-        if (window.innerWidth / window.innerHeight > 0.8) {
-          this.noteColor = "#a2e5ff";
-          if (this.footerNote.offsetTop / window.innerHeight > 0.7) {
-            this.noteBottom++;
-          }
-          if (this.footerNote.offsetTop / window.innerHeight < 0.65) {
-            this.noteBottom--;
-          }
-        } else {
-          this.noteColor = "#f8cc09";
-          if (this.footerNote.offsetTop / window.innerHeight < 0.75) {
-            this.noteBottom--;
-          }
-          if (this.footerNote.offsetTop / window.innerHeight > 0.8) {
-            this.noteBottom++;
-          }
+      if (window.innerWidth / window.innerHeight > 0.8) {
+        this.noteColor = "#a2e5ff";
+        if (this.footerNote.offsetTop / window.innerHeight > 0.7) {
+          this.noteBottom++;
+        }
+        if (this.footerNote.offsetTop / window.innerHeight < 0.65) {
+          this.noteBottom--;
+        }
+      } else {
+        this.noteColor = "#f8cc09";
+        if (this.footerNote.offsetTop / window.innerHeight < 0.75) {
+          this.noteBottom--;
+        }
+        if (this.footerNote.offsetTop / window.innerHeight > 0.8) {
+          this.noteBottom++;
         }
       }
     },
@@ -359,7 +320,7 @@ export default {
       this.headerCloudMove();
       this.logoInitAppear();
       this.bodyCoverFade();
-      this.donateLinkInitBounce();
+      this.donateDivInitBounce();
       this.orderDivInitAppear();
       this.footerInitAppear();
       this.navUlInitAppear();
@@ -383,44 +344,45 @@ export default {
           this.orderDivSecondRef,
           this.orderRightStarRef,
           this.orderRightTextRef,
+          this.navUlRef,
+          this.linkedinNavRef,
           this.emailNavRef,
           this.telegramNavRef,
-          this.linkedinNavRef,
-          this.navUlRef,
         ];
         this.timeoutRefsList.forEach((ref) => {
           clearTimeout(ref);
         });
+        document.querySelectorAll(".invisible").forEach((element) => {
+          element.classList.remove("invisible");
+        });
         this.initVisibleElemsList.forEach((element) => {
           element.classList.add("invisible");
         });
-        this.invisibleElemsList.forEach((element) => {
-          element.classList.remove("invisible");
-        });
-        this.orderDiv.classList.remove("order-central-appear");
-        this.orderDiv.classList.add("order-central-shine");
+        this.$refs.orderDiv.classList.remove("order-central-appear");
+        this.$refs.orderDiv.classList.add("order-central-shine");
+        this.isPageFullyLoaded = true;
       }
     },
 
     // Initial Header Cloud Move Effect
     headerCloudMove() {
-      this.headerCover.classList.add("cloud-move");
+      this.$refs.headerCover.classList.add("cloud-move");
       this.cloudMoveRef = setTimeout(() => {
-        this.headerCover.classList.add("invisible");
+        this.$refs.headerCover.classList.add("invisible");
       }, 10000);
     },
 
     // Initial Logo Appearance
     logoInitAppear() {
       this.logoLeftRef = setTimeout(() => {
-        this.logoLeft.classList.remove("invisible");
-        this.logoLeft.classList.add("star-appear");
+        this.$refs.logoLeft.classList.remove("invisible");
+        this.$refs.logoLeft.classList.add("star-appear");
         this.logoMoonRef = setTimeout(() => {
-          this.logoMoon.classList.remove("invisible");
-          this.logoMoon.classList.add("star-appear");
+          this.$refs.logoMoon.classList.remove("invisible");
+          this.$refs.logoMoon.classList.add("star-appear");
           this.logoRightRef = setTimeout(() => {
-            this.logoRight.classList.remove("invisible");
-            this.logoRight.classList.add("star-appear");
+            this.$refs.logoRight.classList.remove("invisible");
+            this.$refs.logoRight.classList.add("star-appear");
           }, 1000);
         }, 1000);
       }, 500);
@@ -429,21 +391,21 @@ export default {
     // Initial bodyCover Fade Effect
     bodyCoverFade() {
       this.bodyCoverFirstRef = setTimeout(() => {
-        this.bodyCover.classList.add("fade-cover");
+        this.$refs.bodyCover.classList.add("fade-cover");
         this.bodyCoverSecondRef = setTimeout(() => {
-          this.bodyCover.classList.add("invisible");
+          this.$refs.bodyCover.classList.add("invisible");
         }, 6000);
       }, 4000);
     },
 
     // Initial donateLink Bounce
-    donateLinkInitBounce() {
+    donateDivInitBounce() {
       this.donateFirstRef = setTimeout(() => {
-        this.donateLink.classList.remove("invisible");
-        this.donateLink.classList.add("donate-bounce-out");
+        this.donateDiv.classList.remove("invisible");
+        this.donateDiv.classList.add("donate-bounce-out");
         this.donateSecondRef = setTimeout(() => {
-          this.donateLink.classList.remove("donate-bounce-out");
-          this.donateLink.classList.add("donate-bounce-in");
+          this.donateDiv.classList.remove("donate-bounce-out");
+          this.donateDiv.classList.add("donate-bounce-in");
         }, 1500);
       }, 6000);
     },
@@ -451,11 +413,11 @@ export default {
     // Initial orderDiv Appearance
     orderDivInitAppear() {
       this.orderDivFirstRef = setTimeout(() => {
-        this.orderDiv.classList.remove("invisible");
-        this.orderDiv.classList.add("order-central-appear");
+        this.$refs.orderDiv.classList.remove("invisible");
+        this.$refs.orderDiv.classList.add("order-central-appear");
         this.orderDivSecondRef = setTimeout(() => {
-          this.orderDiv.classList.remove("order-central-appear");
-          this.orderDiv.classList.add("order-central-shine");
+          this.$refs.orderDiv.classList.remove("order-central-appear");
+          this.$refs.orderDiv.classList.add("order-central-shine");
         }, 4000);
       }, 5500);
     },
@@ -463,13 +425,13 @@ export default {
     // Initial orderRight Appearance
     orderRightInitAppear() {
       this.orderRightStarRef = setTimeout(() => {
-        this.orderRightStar.classList.remove("invisible");
-        this.orderRightStar.classList.add("star-appear");
+        this.$refs.orderRightStar.classList.remove("invisible");
+        this.$refs.orderRightStar.classList.add("star-appear");
         this.orderRightTextRef = setTimeout(() => {
-          this.orderRightTop.classList.remove("invisible");
-          this.orderRightBottom.classList.remove("invisible");
-          this.orderRightTop.classList.add("star-appear");
-          this.orderRightBottom.classList.add("star-appear");
+          this.$refs.orderRightTop.classList.remove("invisible");
+          this.$refs.orderRightBottom.classList.remove("invisible");
+          this.$refs.orderRightTop.classList.add("star-appear");
+          this.$refs.orderRightBottom.classList.add("star-appear");
         }, 2500);
       }, 10000);
     },
@@ -477,14 +439,11 @@ export default {
     // Initial Footer Appearance
     footerInitAppear() {
       this.emailNavRef = setTimeout(() => {
-        this.emailNav.classList.remove("invisible");
-        this.emailNav.classList.add("footer-appear");
+        this.emailClassList = "footer-appear";
         this.telegramNavRef = setTimeout(() => {
-          this.telegramNav.classList.remove("invisible");
-          this.telegramNav.classList.add("footer-appear");
+          this.telegramClassList = "footer-appear";
           this.linkedinNavRef = setTimeout(() => {
-            this.linkedinNav.classList.remove("invisible");
-            this.linkedinNav.classList.add("footer-appear");
+            this.linkedinClassList = "footer-appear";
           }, 500);
         }, 500);
       }, 6000);
@@ -493,125 +452,35 @@ export default {
     // Initial navUl Appearance
     navUlInitAppear() {
       this.navUlRef = setTimeout(() => {
-        this.navUl.classList.remove("invisible");
-        this.navUl.classList.add("star-appear");
+        this.$refs.navUl.classList.remove("invisible");
+        this.$refs.navUl.classList.add("star-appear");
         this.isPageFullyLoaded = true;
       }, 14000);
-    },
-
-    // Event Handler Methods
-
-    // Showcase Section Handlers
-
-    donateIconMouseEnter() {
-      this.donateLink.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/donate-hover-${this.widthClass}.svg`)
-      );
-    },
-
-    donateIconMouseLeave() {
-      this.donateLink.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/donate-${this.widthClass}.svg`)
-      );
-    },
-
-    // Footer Section Handlers
-
-    telegramNavMouseEnter() {
-      this.telegramNav.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/telegram-hover-${this.widthClass}.svg`)
-      );
-    },
-
-    telegramNavMouseLeave() {
-      this.telegramNav.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/telegram-${this.widthClass}.svg`)
-      );
-    },
-
-    emailNavMouseEnter() {
-      this.emailNav.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/email-hover-${this.widthClass}.svg`)
-      );
-    },
-
-    emailNavMouseLeave() {
-      this.emailNav.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/email-${this.widthClass}.svg`)
-      );
-    },
-
-    linkedinNavMouseEnter() {
-      this.linkedinNav.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/linkedin-hover-${this.widthClass}.svg`)
-      );
-    },
-
-    linkedinNavMouseLeave() {
-      this.linkedinNav.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/linkedin-${this.widthClass}.svg`)
-      );
     },
   },
 
   created() {
-    window.addEventListener("resize", this.windowWidthClassEmitter);
+    window.addEventListener("resize", this.onresize);
   },
 
   mounted() {
-    this.containerWrapper = document.querySelector("#idpm-containerWrapper");
+    document.body.parentElement.classList.add("overflow-hidden");
     this.mainContainer = document.querySelector("#idpm-mainContainer");
-    this.bodyCover = document.querySelector("#idpm-bodyCover");
-    this.headerCover = document.querySelector("#idpm-headerCover");
-    this.logoLeft = document.querySelector("#idpm-logoLeft");
-    this.logoMoon = document.querySelector("#idpm-logoMoon");
-    this.logoRight = document.querySelector("#idpm-logoRight");
-    this.orderCentral = document.querySelector("#idpm-orderCentral");
-    this.orderDiv = document.querySelector("#idpm-orderDiv");
-    this.orderRight = document.querySelector("#idpm-orderRight");
-    this.orderRightTop = document.querySelector("#idpm-orderRightTop");
-    this.orderRightStar = document.querySelector("#idpm-orderRightStar");
-    this.orderRightBottom = document.querySelector("#idpm-orderRightBottom");
-    this.navUl = document.querySelector("#idpm-navUl");
-    this.appNav = document.querySelector("#idpm-appNav");
-    this.portNav = document.querySelector("#idpm-portNav");
-    this.donateLink = document.querySelector("#idpm-donateLink");
+    this.mainContainer.style.setProperty("width", `${window.innerWidth}px`);
+    this.mainContainer.style.setProperty("height", `${window.innerHeight}px`);
+    this.donateDiv = document.querySelector("#idpm-donateDiv");
     this.footerNote = document.querySelector("#idpm-footerNote");
     this.skipAnimations = document.querySelector("#idpm-skipAnimations");
-    this.linkedinNav = document.querySelector("#idpm-linkedinNav");
-    this.emailNav = document.querySelector("#idpm-emailNav");
-    this.telegramNav = document.querySelector("#idpm-telegramNav");
     this.initVisibleElemsList = [
-      this.bodyCover,
-      this.headerCover,
+      this.$refs.bodyCover,
+      this.$refs.headerCover,
       this.skipAnimations,
-    ];
-    this.invisibleElemsList = [
-      this.logoLeft,
-      this.logoMoon,
-      this.logoRight,
-      this.orderDiv,
-      this.orderRightTop,
-      this.orderRightStar,
-      this.orderRightBottom,
-      this.navUl,
-      this.donateLink,
-      this.linkedinNav,
-      this.emailNav,
-      this.telegramNav,
     ];
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
       element.classList.add("pointer-white");
     });
+    this.isMounted = true;
     this.startAnimations();
     this.donateUpdator();
     this.skipUpdator();

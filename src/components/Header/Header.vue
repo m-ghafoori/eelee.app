@@ -13,7 +13,6 @@
       <VerticalMenu
         :mainColor="logoMainColor"
         :hoverColor="logoHoverColor"
-        :showIfLessThanPx="576"
       />
       <ul class="nav-ul">
         <li>
@@ -111,10 +110,11 @@ export default {
 
 <style>
 .header {
-  height: 60px;
+  width: 100vw;
+  height: 10vh;
   position: fixed;
-  padding-top: 5px;
-  margin-bottom: 10px;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
   z-index: 200;
   background-color: inherit;
   display: flex;
@@ -127,9 +127,9 @@ export default {
   height: fit-content;
   font-family: "Fredericka the Great", cursive;
   font-weight: 1000;
-  font-size: calc(1vw + 1.4rem);
-  padding-left: calc(2vw + 1rem);
-  padding-right: 0.6rem;
+  font-size: calc(3vw + 1vh);
+  padding-left: calc(2vw + 2vh);
+  padding-right: 2vw;
   text-decoration: none;
 }
 
@@ -137,6 +137,7 @@ export default {
   height: fit-content;
   max-height: fit-content;
   display: flex;
+  align-items: center;
   flex-grow: 1;
   position: relative;
 }
@@ -146,12 +147,11 @@ export default {
   flex-grow: unset !important;
   width: fit-content !important;
   align-self: flex-start !important;
-  margin-top: 15px !important;
+  padding-top: calc(5vh - 2.5vw) !important;
 }
 
 .nav-ul {
   height: 100%;
-  font-size: calc(1.5vw + 0.7rem);
   position: relative;
   margin: 0;
   display: flex;
@@ -163,21 +163,19 @@ export default {
   width: fit-content;
   height: fit-content;
   margin: auto 0;
-  font-size: calc(1.5vw + 2vh);
+  font-size: calc(1.5vw + 1.5vh);
 }
 
 .vertical-ul {
-  width: calc(100% - 40px) !important;
+  width: calc(100% - 3vw - 3vh) !important;
   height: 60vh !important;
-  min-height: 250px !important;
-  font-size: calc(3vw + 0.5rem) !important;
   flex-direction: column !important;
   align-items: flex-end !important;
   align-self: flex-start !important;
 }
 
 .vertical-ul * {
-  font-size: calc(3vw + 0.5rem) !important;
+  font-size: calc(2.5vw + 2.5vh) !important;
 }
 
 .nav-link {

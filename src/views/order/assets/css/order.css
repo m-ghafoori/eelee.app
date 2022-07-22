@@ -67,7 +67,7 @@
 /* ID Tags */
 
 #idpo-showcase {
-    min-width: fit-content;
+    /* min-width: fit-content; */
     position: relative;
     align-self: center;
     top: 15vh;

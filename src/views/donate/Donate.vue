@@ -38,7 +38,7 @@
       </button>
     </section>
     <Footer
-      iconMainColor="#ffbf1f"
+      iconBasicColor="#ffbf1f"
       iconHoverColor="#fff"
       noteMainColor="#fff"
       noteHoverColor="#ffbf1f"

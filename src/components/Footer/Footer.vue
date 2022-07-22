@@ -1,42 +1,47 @@
 <template>
-  <footer class="footer">
-    <div class="footer-nav">
+  <footer :class="`footer ${footerClassList}`">
+    <div :class="`footer-nav ${footerNavClassList}`">
       <a
         href="https://www.linkedin.com/"
         target="blank"
-        class="hoverable"
+        :class="`hoverable align-self-${linkedinAlign} ${linkedinClassList}`"
         @mouseenter="onLinkedinMouseEnter"
         @mouseleave="onLinkedinMouseLeave"
       >
         <Linkedin
-          :imgWidth="windowWidth / 50 + 21"
-          :imgColor="linkedinIconColor"
+          :basicColor="linkedinIconColor"
+          :gradientColor="iconGradientColor"
+          :bgColor="linkedinBgColor"
         />
       </a>
       <router-link
         to="/contact"
-        class="hoverable"
+        :class="`hoverable align-self-${emailAlign} ${emailClassList}`"
         @mouseenter="onEmailMouseEnter"
         @mouseleave="onEmailMouseLeave"
       >
-        <Email :imgWidth="windowWidth / 50 + 35" :imgColor="emailIconColor" />
+        <Email
+          :basicColor="emailIconColor"
+          :gradientColor="iconGradientColor"
+        />
       </router-link>
       <a
         href="https://t.me"
         target="blank"
-        class="hoverable"
+        :class="`hoverable align-self-${telegramAlign} ${telegramClassList}`"
         @mouseenter="onTelegramMouseEnter"
         @mouseleave="onTelegramMouseLeave"
       >
         <Telegram
-          :imgWidth="windowWidth / 50 + 27"
-          :imgColor="telegramIconColor"
+          :basicColor="telegramIconColor"
+          :gradientColor="iconGradientColor"
         />
       </a>
     </div>
     <router-link
       to="/portfolio"
-      class="footer-note hoverable"
+      title="About Us"
+      :class="`footer-note hoverable ${noteClassList}`"
       @mouseenter="onNoteMouseEnter"
       @mouseleave="onNoteMouseLeave"
       >&copy; 2022 - EELee App Design</router-link
@@ -57,11 +62,50 @@ export default {
     Telegram,
   },
   props: {
-    iconMainColor: {
+    iconBasicColor: {
       default: "#0d8a6f",
+    },
+    iconGradientColor: {
+      default: "unset",
     },
     iconHoverColor: {
       default: "#fb4a85",
+    },
+    linkedinBgMainColor: {
+      default: "transparent",
+    },
+    linkedinBgHoverColor: {
+      default: "transparent",
+    },
+    flexDirection: {
+      default: "row",
+    },
+    linkedinAlign: {
+      default: "center",
+    },
+    emailAlign: {
+      default: "center",
+    },
+    telegramAlign: {
+      default: "center",
+    },
+    footerClassList: {
+      default: "",
+    },
+    footerNavClassList: {
+      default: "",
+    },
+    linkedinClassList: {
+      default: "",
+    },
+    emailClassList: {
+      default: "",
+    },
+    telegramClassList: {
+      default: "",
+    },
+    noteClassList: {
+      default: "",
     },
     noteMainColor: {
       default: "#d8215e",
@@ -69,45 +113,80 @@ export default {
     noteHoverColor: {
       default: "#2ec7a6",
     },
+    emitEvents: {
+      default: false,
+    },
   },
 
   data() {
     return {
+      isMounted: false,
       windowWidth: Number,
-      linkedinIconColor: "#0d8a6f",
-      emailIconColor: "#0d8a6f",
-      telegramIconColor: "#0d8a6f",
+      windowHeight: Number,
+      linkedinIconColor: String,
+      linkedinBgColor: String,
+      emailIconColor: String,
+      telegramIconColor: String,
+      html: Object,
+      footer: Object,
+      footerNav: Object,
       footerNote: Object,
     };
   },
 
-  methods: {
-    // Utility Methods
-
-    // Emits window width on resize
-    windowWidthClassEmitter() {
-      this.windowWidth = window.innerWidth;
+  watch: {
+    wideHome() {
+      if (this.isMounted) this.$router.go();
     },
+  },
 
+  computed: {
+    wideHome() {
+      if (this.$route.path == "/" && this.windowWidth / this.windowHeight > 1.5)
+        return true;
+      else return false;
+    },
+  },
+
+  methods: {
     // Event Handlers
 
+    onresize() {
+      this.windowWidth = window.innerWidth;
+      this.windowHeight = window.innerHeight;
+      if (this.isMounted) {
+        if (this.windowHeight/this.windowWidth < 0.38) {
+          this.footer.classList.add("d-none");
+        }
+        else this.footer.classList.remove("d-none");
+      }
+
+    },
     onLinkedinMouseEnter() {
+      if (this.emitEvents) this.$emit("footer-mouse-enter", "linkedin");
       this.linkedinIconColor = this.iconHoverColor;
+      this.linkedinBgColor = this.linkedinBgHoverColor;
     },
     onLinkedinMouseLeave() {
-      this.linkedinIconColor = this.iconMainColor;
+      if (this.emitEvents) this.$emit("footer-mouse-leave", "linkedin");
+      this.linkedinIconColor = this.iconBasicColor;
+      this.linkedinBgColor = this.linkedinBgMainColor;
     },
     onEmailMouseEnter() {
+      if (this.emitEvents) this.$emit("footer-mouse-enter", "email");
       this.emailIconColor = this.iconHoverColor;
     },
     onEmailMouseLeave() {
-      this.emailIconColor = this.iconMainColor;
+      if (this.emitEvents) this.$emit("footer-mouse-leave", "email");
+      this.emailIconColor = this.iconBasicColor;
     },
     onTelegramMouseEnter() {
+      if (this.emitEvents) this.$emit("footer-mouse-enter", "telegram");
       this.telegramIconColor = this.iconHoverColor;
     },
     onTelegramMouseLeave() {
-      this.telegramIconColor = this.iconMainColor;
+      if (this.emitEvents) this.$emit("footer-mouse-leave", "telegram");
+      this.telegramIconColor = this.iconBasicColor;
     },
     onNoteMouseEnter() {
       this.footerNote.style.color = this.noteHoverColor;
@@ -118,31 +197,42 @@ export default {
   },
 
   created() {
-    window.addEventListener("resize", this.windowWidthClassEmitter);
+    window.addEventListener("resize", this.onresize);
   },
 
   beforeMount() {
-    this.windowWidthClassEmitter();
+    this.onresize();
   },
   mounted() {
+    this.html = document.body.parentElement;
+    this.footer = document.querySelector(".footer");
+    this.footerNav = document.querySelector(".footer-nav");
     this.footerNote = document.querySelector(".footer-note");
+    this.footerNav.style.flexDirection = `${this.flexDirection}`;
+    if (this.wideHome) {
+      this.footer.style.width = "40%";
+      this.footerNote.style.fontSize = "1.7vw";
+    }
     this.footerNote.style.color = this.noteMainColor;
-    this.linkedinIconColor = this.iconMainColor;
-    this.emailIconColor = this.iconMainColor;
-    this.telegramIconColor = this.iconMainColor;
+    this.linkedinIconColor = this.iconBasicColor;
+    this.linkedinBgColor = this.linkedinBgMainColor;
+    this.emailIconColor = this.iconBasicColor;
+    this.telegramIconColor = this.iconBasicColor;
+    this.isMounted = true;
+    this.onresize();
   },
+  emits: ["footer-mouse-enter", "footer-mouse-leave"],
 };
 </script>
 
 <style>
 .footer {
-  width: 40%;
-  height: 105px;
-  min-width: 200px;
+  width: calc(20vw + 20vh);
+  height: 18%;
   position: absolute;
   bottom: 0;
   align-self: center;
-  padding-bottom: 20px;
+  padding-bottom: 3vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -151,36 +241,18 @@ export default {
 
 .footer-nav {
   width: 100%;
-  height: 45px;
-  margin-bottom: 20px;
+  height: 60%;
+  margin-bottom: 1vh;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .footer-note {
   width: fit-content;
   text-decoration: none;
   font-family: "Gluten", cursive;
-  font-size: calc(1vw + 0.5rem);
+  font-size: calc(1.2vw + 1.2vh);
   white-space: nowrap;
-}
-
-@media (max-width: 320px) {
-  .footer {
-    width: 70%;
-  }
-}
-
-@media (min-width: 320px) and (max-width: 576px) {
-  .footer {
-    width: 60%;
-  }
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-  .footer {
-    width: 50%;
-  }
+  padding-top: calc(1vw + 1vh);
 }
 </style>

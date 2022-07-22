@@ -4,12 +4,11 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    alias: '/home',
     component: () => {
-      if (window.innerWidth < 992) {
-        return import('../views/home-mobile/HomeMobile.vue');
-      } else {
+      if (window.innerWidth/window.innerHeight > 1.5) {
         return import('../views/home/Home.vue');
+      } else {
+        return import('../views/home-mobile/HomeMobile.vue');
       }
     }
   },

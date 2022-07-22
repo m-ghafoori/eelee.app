@@ -1,9 +1,6 @@
 <template>
-  <div id="idph-bodyDiv" class="pointer-white lg-wide-screen">
-    <div
-      id="idph-mainContainer"
-      class="invisible d-flex flex-column lg-wide-screen"
-    >
+  <div id="idph-bodyDiv" class="pointer-white">
+    <div id="idph-mainContainer" class="invisible d-flex flex-column">
       <header
         id="idph-header"
         class="d-flex align-items-center"
@@ -34,6 +31,13 @@
             Portfolio
           </router-link>
           <router-link
+            id="idph-donateNav"
+            class="idph-nav-link hoverable animate__animated"
+            to="/donate"
+          >
+            Donate
+          </router-link>
+          <router-link
             id="idph-orderNav"
             class="idph-nav-link hoverable animate__animated"
             to="/order"
@@ -43,7 +47,7 @@
         </div>
       </header>
 
-      <section id="idph-showcase" class="">
+      <section id="idph-showcase" class="showcase">
         <div id="idph-orderDiv" class="animate__animated animate__slower">
           <router-link
             id="idph-orderLink"
@@ -60,22 +64,6 @@
         </div>
 
         <div
-          id="idph-donateDiv"
-          class="invisible d-flex align-items-end animate__animated"
-        >
-          <router-link id="idph-donateLink" class="hoverable" to="/donate">
-            <img
-              id="idph-donateIcon"
-              class="animate__animated"
-              @mouseenter="donateMouseEnter"
-              @mouseleave="donateMouseLeave"
-              :src="require('./assets/images/svg/donate.svg')"
-              alt=""
-            />
-          </router-link>
-        </div>
-
-        <div
           id="idph-skipAnimations"
           class="hoverable vibrate-1"
           @mouseenter="onSkipAnimationsMouseEnter"
@@ -86,46 +74,20 @@
         </div>
       </section>
 
-      <footer id="idph-footer" class="vibrate-1">
-        <router-link to="/portfolio" id="idph-footerNote" class="hoverable"
-          >&copy; 2022 - EELee App Design</router-link
-        >
-        <ul id="idph-footerUl" class="invisible hoverable">
-          <li id="idph-linkedinNav" class="animate__animated">
-            <img
-              id="idph-linkedinIcon"
-              class="animate__animated"
-              @mouseenter="linkedinMouseEnter"
-              @mouseleave="linkedinMouseLeave"
-              :src="require('./assets/images/svg/linkedin.svg')"
-            />
-          </li>
-          <li>
-            <router-link
-              to="contact"
-              id="idph-emailNav"
-              class="hoverable animate__animated"
-            >
-              <img
-                id="idph-emailIcon"
-                class="animate__animated"
-                @mouseenter="emailMouseEnter"
-                @mouseleave="emailMouseLeave"
-                :src="require('./assets/images/svg/email.svg')"
-              />
-            </router-link>
-          </li>
-          <li id="idph-telegramNav" class="animate__animated">
-            <img
-              id="idph-telegramIcon"
-              class="animate__animated"
-              @mouseenter="telegramMouseEnter"
-              @mouseleave="telegramMouseLeave"
-              :src="require('./assets/images/svg/telegram.svg')"
-            />
-          </li>
-        </ul>
-      </footer>
+      <Footer
+        iconBasicColor="#0072b1"
+        iconHoverColor="#f9f9f9"
+        noteMainColor="#1369b9"
+        noteHoverColor="#f9f9f9"
+        :footerClassList="footerClassList"
+        :footerNavClassList="footerNavClassList"
+        :linkedinClassList="linkedinClassList"
+        :emailClassList="emailClassList"
+        :telegramClassList="telegramClassList"
+        :emitEvents="true"
+        @footer-mouse-enter="onFooterMouseEnter"
+        @footer-mouse-leave="onFooterMouseLeave"
+      />
     </div>
   </div>
 </template>
@@ -133,9 +95,14 @@
 <script>
 // @ is an alias to /src
 
+import Footer from "@/components/Footer/Footer.vue";
+
 export default {
   name: "Home",
 
+  components: {
+    Footer,
+  },
   data() {
     return {
       //#mainContainer Variables
@@ -150,6 +117,7 @@ export default {
       logoTimeoutRef: Function,
       appNavTimeoutRef: Function,
       portNavTimeoutRef: Function,
+      donateNavTimeoutRef: Function,
       orderNavTimeoutRef: Function,
 
       //#orderDiv Variables
@@ -163,36 +131,29 @@ export default {
       linkAnimationIndex: 0,
       linkIntervalRef: Function,
 
-      //#donateDiv Variables
-      donateDivInitRef: Function,
-      donateAnimationList: ["animate__jello", "vibrate-3"],
-      donateAnimationIndex: 0,
-      donateIntervalRef: Function,
-
-      //#footerUl Variables
-      footerUlInitRef: Function,
+      //Footer Variables
+      footerClassList: "vibrate-1",
+      footerNavClassList: "invisible",
+      linkedinClassList: "",
+      emailClassList: "",
+      telegramClassList: "",
+      footerNavInitRef: Function,
       footerFirstIntervalRef: Function,
       footerSecondIntervalRef: Function,
 
       //Elements Object References
+      mainContainer: Object,
       headerNavbar: Object,
       logo: Object,
       appNav: Object,
       portNav: Object,
+      donateNav: Object,
       orderNav: Object,
       orderDiv: Object,
-      donateLink: Object,
       skipAnimations: Object,
-      footerUl: Object,
-      linkedinNav: Object,
-      emailNav: Object,
-      telegramNav: Object,
-      mainContainer: Object,
 
       //Arrays
       headerNavsList: Array,
-      footerNavsList: Array,
-      invisibleElemsList: Array,
       initTimeoutRefsList: Array,
       timeoutRefsList: Array,
       intervalRefsList: Array,
@@ -214,35 +175,8 @@ export default {
       return diffNum;
     },
 
-    // Triggers and returns different window size classes on resize
-    windowWidthClassEmitter() {
-      var windowWidth = window.innerWidth;
-
-      switch (true) {
-        case windowWidth < 320:
-          this.$emit("screen-width-change", "xxs");
-          return "xxs";
-
-        case windowWidth < 576:
-          this.$emit("screen-width-change", "xs");
-          return "xs";
-
-        case windowWidth < 768:
-          this.$emit("screen-width-change", "sm");
-          return "sm";
-
-        case windowWidth < 992:
-          this.$emit("screen-width-change", "md");
-          return "md";
-
-        default:
-          this.$emit("screen-width-change", "lg");
-          return "lg";
-      }
-    },
-
     // Creates wind effect on header icons with customizable delays
-    windEffect(initialDelay, beforeApp, beforePort, beforeOrder) {
+    windEffect(initialDelay, beforeApp, beforePort, beforeDonate, beforeOrder) {
       this.logoTimeoutRef = setTimeout(() => {
         this.logo.classList.add("shake-top");
 
@@ -252,9 +186,13 @@ export default {
           this.portNavTimeoutRef = setTimeout(() => {
             this.portNav.classList.add("shake-top");
 
-            this.orderNavTimeoutRef = setTimeout(() => {
-              this.orderNav.classList.add("shake-top");
-            }, beforeOrder);
+            this.donateNavTimeoutRef = setTimeout(() => {
+              this.donateNav.classList.add("shake-top");
+
+              this.orderNavTimeoutRef = setTimeout(() => {
+                this.orderNav.classList.add("shake-top");
+              }, beforeOrder);
+            }, beforeDonate);
           }, beforePort);
         }, beforeApp);
       }, initialDelay);
@@ -264,6 +202,7 @@ export default {
     clearWindEffect() {
       clearTimeout(this.logoTimeoutRef);
       clearTimeout(this.orderNavTimeoutRef);
+      clearTimeout(this.donateNavTimeoutRef);
       clearTimeout(this.portNavTimeoutRef);
       clearTimeout(this.appNavTimeoutRef);
       clearInterval(this.headerLoopIntervalRef);
@@ -276,31 +215,30 @@ export default {
 
     // Starts initial appearance animations
     startAnimations() {
-      console.log("animations started", new Date().getMilliseconds());
+      // console.log("animations started", new Date().getMilliseconds());
       this.mainContainerInitAppear();
       this.headerInitAppear();
       this.headerInitWind();
       this.headerAnimationLoop();
-      this.footerUlInitAppear();
       this.orderLinkInitAppear();
-      this.donateDivInitAppear();
+      this.footerNavInitAppear();
     },
 
     // Loads home page with running animation without replaying initial animations,
     // when resizing the window
     showRunningHome() {
-      console.log("running home called", new Date().getUTCMilliseconds());
+      // console.log("running home called", new Date().getUTCMilliseconds());
       this.timeoutRefsList = [
         this.logoTimeoutRef,
         this.appNavTimeoutRef,
         this.portNavTimeoutRef,
+        this.donateNavTimeoutRef,
         this.orderNavTimeoutRef,
       ];
       this.intervalRefsList = [
         this.headerLoopIntervalRef,
         this.headerLoopInitIntervalRef,
         this.linkIntervalRef,
-        this.donateIntervalRef,
         this.footerFirstIntervalRef,
         this.footerSecondIntervalRef,
       ];
@@ -309,37 +247,32 @@ export default {
         this.headerInitRef,
         this.headerInitWindref,
         this.headerNavsInitRef,
-        this.footerUlInitRef,
+        this.footerNavInitRef,
         this.orderLinkInitRef,
-        this.donateDivInitRef,
       ];
-      this.invisibleElemsList.forEach((element) => {
+      document.querySelectorAll(".invisible").forEach((element) => {
         element.classList.remove("invisible");
       });
       this.timeoutRefsList.forEach((ref) => {
         clearTimeout(ref);
-        // console.log(`${ref} cleared`)
       });
       this.intervalRefsList.forEach((ref) => {
         clearInterval(ref);
-        // console.log(`${ref} cleared`)
       });
       this.initTimeoutRefsList.forEach((ref) => {
         clearTimeout(ref);
-        // console.log(`${ref} cleared`)
       });
       this.headerMouseLeave();
       this.orderLinkMouseLeave();
-      this.donateMouseLeave();
-      this.linkedinMouseLeave();
+      this.onFooterMouseLeave();
     },
 
     // Starts mainContainer animation
     mainContainerInitAppear() {
-      console.log(
-        "mainContainerInitAppear called",
-        new Date().getMilliseconds()
-      );
+      // console.log(
+      //   "mainContainerInitAppear called",
+      //   new Date().getMilliseconds()
+      // );
       this.mainContainerInitRef = setTimeout(() => {
         this.mainContainer.classList.remove("invisible");
         this.mainContainer.classList.add(
@@ -347,21 +280,17 @@ export default {
           "flex-column",
           "puff-in-left"
         );
-        setTimeout(() => {
-          document.body.parentElement.classList.remove("overflow-y-hidden");
-          document.body.parentElement.classList.add("overflow-y-auto");
-        }, 3000);
       }, 1000);
     },
 
     // Initial Header Animations
     headerInitAppear() {
-      console.log("headerInitAppear called", new Date().getMilliseconds());
+      // console.log("headerInitAppear called", new Date().getMilliseconds());
       this.headerInitRef = setTimeout(() => {
         this.logo.classList.remove("invisible");
         this.logo.classList.add("text-focus-in");
         this.headerNavsInitRef = setTimeout(() => {
-          for (let i = 1; i < 4; i++) {
+          for (let i = 1; i < this.headerNavsList.length; i++) {
             this.headerNavbar.classList.remove("invisible");
             this.headerNavsList[i].classList.add("tracking-in-expand");
           }
@@ -371,7 +300,7 @@ export default {
 
     // Sets the first wind effect on header
     headerInitWind() {
-      console.log("headerInitWind called", new Date().getMilliseconds());
+      // console.log("headerInitWind called", new Date().getMilliseconds());
       this.headerInitWindref = setTimeout(() => {
         this.headerNavsList.forEach((item) => {
           item.classList.remove(
@@ -381,33 +310,30 @@ export default {
             "text-focus-in"
           );
         });
-        this.windEffect(100, 800, 400, 400);
+        this.windEffect(100, 800, 400, 400, 400);
       }, 14500);
     },
 
     // Header Running Animation Loop
     headerAnimationLoop() {
-      console.log("headerAnimationLoop called", new Date().getMilliseconds());
+      // console.log("headerAnimationLoop called", new Date().getMilliseconds());
       this.headerLoopInitIntervalRef = setInterval(() => {
         this.clearWindEffect();
-        this.windEffect(1000, 900, 450, 450);
+        this.windEffect(1000, 900, 450, 450, 450);
       }, 33000);
     },
 
     // Initial footerUl Animation
-    footerUlInitAppear() {
-      console.log("footerUlInitAppear called", new Date().getMilliseconds());
-      this.footerUlInitRef = setTimeout(() => {
-        this.footerUl.classList.remove("invisible");
-        this.footerUl.classList.add("bounce-in-left");
+    footerNavInitAppear() {
+      // console.log("footerNavInitAppear called", new Date().getMilliseconds());
+      this.footerNavInitRef = setTimeout(() => {
+        this.footerNavClassList = "bounce-in-left";
 
         this.footerFirstIntervalRef = setInterval(() => {
-          this.footerUl.classList.remove("bounce-in-left");
-          this.footerUl.classList.add("bounce-out-left");
+          this.footerNavClassList = "bounce-out-left";
 
           this.footerSecondIntervalRef = setTimeout(() => {
-            this.footerUl.classList.remove("bounce-out-left");
-            this.footerUl.classList.add("bounce-in-left");
+            this.footerNavClassList = "bounce-in-left";
           }, 5000);
         }, 22000);
       }, 8500);
@@ -415,13 +341,21 @@ export default {
 
     // Initial orderLink Animation
     orderLinkInitAppear() {
-      console.log("orderLinkInitAppear called", new Date().getMilliseconds());
+      // console.log("orderLinkInitAppear called", new Date().getMilliseconds());
       this.orderLinkInitRef = setTimeout(() => {
         this.orderDiv.firstElementChild.classList.remove("invisible");
         this.orderDiv.firstElementChild.classList.add(
           "animate__slower",
           "animate__zoomInUp"
         );
+
+        setTimeout(() => {
+          this.skipAnimations.classList.remove("vibrate-1");
+          this.skipAnimations.classList.add("tracking-out-contract-bck-bottom");
+          setTimeout(() => {
+            this.skipAnimations.classList.add("invisible");
+          }, 1000);
+        }, 3000);
 
         this.linkIntervalRef = setInterval(() => {
           this.orderDiv.firstElementChild.classList.remove(
@@ -443,39 +377,12 @@ export default {
       }, 11500);
     },
 
-    // Initial donateDiv Animation
-    donateDivInitAppear() {
-      console.log("donateDivInitAppear called", new Date().getMilliseconds());
-      this.donateDivInitRef = setTimeout(() => {
-        this.donateLink.parentElement.classList.remove("invisible");
-        this.donateLink.parentElement.classList.add("shake-horizontal");
-        this.donateLink.firstElementChild.classList.add("slide-in-bottom");
-        setTimeout(() => {
-          this.skipAnimations.classList.remove("vibrate-1");
-          this.skipAnimations.classList.add("tracking-out-contract-bck-bottom");
-          setTimeout(() => {
-            this.skipAnimations.classList.add("invisible");
-          }, 1000);
-        }, 3000);
+    // Event Handlers
 
-        this.donateIntervalRef = setInterval(() => {
-          this.donateLink.firstElementChild.classList.remove("slide-in-bottom");
-          this.donateLink.firstElementChild.classList.remove(
-            this.donateAnimationList[this.donateAnimationIndex]
-          );
-          this.donateAnimationIndex = this.nextNumber(
-            this.donateAnimationIndex,
-            this.donateAnimationList.length,
-            false
-          );
-          this.donateLink.firstElementChild.classList.add(
-            this.donateAnimationList[this.donateAnimationIndex]
-          );
-        }, 18000);
-      }, 20000);
+    onresize() {
+      this.mainContainer.style.setProperty("width", `${window.innerWidth}px`);
+      this.mainContainer.style.setProperty("height", `${window.innerHeight}px`);
     },
-
-    // Event Handler Methods
 
     // Header Section Handlers
 
@@ -495,7 +402,7 @@ export default {
             "shake-top"
           );
         });
-        this.windEffect(1000, 1000, 500, 500);
+        this.windEffect(1000, 1000, 500, 500, 500);
       }, 13000);
     },
 
@@ -578,155 +485,56 @@ export default {
       }, 1500);
     },
 
-    // donateDiv Handlers
-
-    donateMouseEnter() {
-      clearInterval(this.donateIntervalRef);
-      this.donateLink.firstElementChild.classList.remove(
-        this.donateAnimationList[this.donateAnimationIndex],
-        "slide-in-bottom"
-      );
-      this.donateLink.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/donate-hover.svg`)
-      );
-    },
-
-    donateMouseLeave() {
-      this.donateLink.firstElementChild.setAttribute(
-        "src",
-        require(`./assets/images/svg/donate.svg`)
-      );
-      this.donateIntervalRef = setInterval(() => {
-        this.donateLink.firstElementChild.classList.remove("slide-top");
-        this.donateLink.firstElementChild.classList.remove(
-          this.donateAnimationList[this.donateAnimationIndex]
-        );
-        this.donateAnimationIndex = this.nextNumber(
-          this.donateAnimationIndex,
-          this.donateAnimationList.length,
-          false
-        );
-        this.donateLink.firstElementChild.classList.add(
-          this.donateAnimationList[this.donateAnimationIndex]
-        );
-      }, 16000);
-    },
-
     // Footer Section Handlers
 
-    linkedinMouseEnter() {
+    onFooterMouseEnter(navLink) {
       clearInterval(this.footerFirstIntervalRef);
       clearInterval(this.footerSecondIntervalRef);
-      this.footerUl.classList.remove("bounce-in-left", "bounce-out-left");
-      this.linkedinNav.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/linkedin-hover.svg")
-      );
-      this.linkedinNav.classList.add("animate__headShake");
+      this.footerClassList = "";
+      this.footerNavClassList = "";
+      if (navLink == "linkedin")
+        this.linkedinClassList =
+          "pointer-gold animate__animated animate__headShake";
+      if (navLink == "email")
+        this.emailClassList =
+          "pointer-gold animate__animated animate__headShake";
+      if (navLink == "telegram")
+        this.telegramClassList =
+          "pointer-gold animate__animated animate__headShake";
     },
-
-    linkedinMouseLeave() {
-      this.linkedinNav.classList.remove("animate__headShake");
-      this.linkedinNav.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/linkedin.svg")
-      );
-
+    onFooterMouseLeave(navLink) {
+      this.footerClassList = "vibrate-1";
+      if (navLink == "linkedin") this.linkedinClassList = "pointer-gold";
+      if (navLink == "email") this.emailClassList = "pointer-gold";
+      if (navLink == "telegram") this.telegramClassList = "pointer-gold";
       this.footerFirstIntervalRef = setInterval(() => {
-        this.footerUl.classList.remove("bounce-in-left");
-        this.footerUl.classList.add("bounce-out-left");
+        this.footerNavClassList = "bounce-out-left";
 
         this.footerSecondIntervalRef = setTimeout(() => {
-          this.footerUl.classList.remove("bounce-out-left");
-          this.footerUl.classList.add("bounce-in-left");
-        }, 5000);
-      }, 15000);
-    },
-
-    emailMouseEnter() {
-      clearInterval(this.footerFirstIntervalRef);
-      clearInterval(this.footerSecondIntervalRef);
-      this.footerUl.classList.remove("bounce-in-left", "bounce-out-left");
-      this.emailNav.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/email-hover.svg")
-      );
-      this.emailNav.firstElementChild.classList.add("animate__headShake");
-    },
-
-    emailMouseLeave() {
-      this.emailNav.firstElementChild.classList.remove("animate__headShake");
-      this.emailNav.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/email.svg")
-      );
-
-      this.footerFirstIntervalRef = setInterval(() => {
-        this.footerUl.classList.remove("bounce-in-left");
-        this.footerUl.classList.add("bounce-out-left");
-
-        this.footerSecondIntervalRef = setTimeout(() => {
-          this.footerUl.classList.remove("bounce-out-left");
-          this.footerUl.classList.add("bounce-in-left");
-        }, 5000);
-      }, 15000);
-    },
-
-    telegramMouseEnter() {
-      clearInterval(this.footerFirstIntervalRef);
-      clearInterval(this.footerSecondIntervalRef);
-      this.footerUl.classList.remove("bounce-in-left", "bounce-out-left");
-      this.telegramNav.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/telegram-hover.svg")
-      );
-      this.telegramNav.classList.add("animate__headShake");
-    },
-
-    telegramMouseLeave() {
-      this.telegramNav.classList.remove("animate__headShake");
-      this.telegramNav.firstElementChild.setAttribute(
-        "src",
-        require("./assets/images/svg/telegram.svg")
-      );
-
-      this.footerFirstIntervalRef = setInterval(() => {
-        this.footerUl.classList.remove("bounce-in-left");
-        this.footerUl.classList.add("bounce-out-left");
-
-        this.footerSecondIntervalRef = setTimeout(() => {
-          this.footerUl.classList.remove("bounce-out-left");
-          this.footerUl.classList.add("bounce-in-left");
+          this.footerNavClassList = "bounce-in-left";
         }, 5000);
       }, 15000);
     },
   },
 
   mounted() {
-    document.body.parentElement.classList.add("overflow-y-hidden");
+    this.mainContainer = document.querySelector("#idph-mainContainer");
+    this.mainContainer.style.setProperty("width", `${window.innerWidth}px`);
+    this.mainContainer.style.setProperty("height", `${window.innerHeight}px`);
     this.headerNavbar = document.querySelector("#idph-headerNavbar");
     this.logo = document.querySelector("#idph-logo");
     this.appNav = document.querySelector("#idph-appNav");
     this.portNav = document.querySelector("#idph-portNav");
+    this.donateNav = document.querySelector("#idph-donateNav");
     this.orderNav = document.querySelector("#idph-orderNav");
     this.orderDiv = document.querySelector("#idph-orderDiv");
-    this.donateLink = document.querySelector("#idph-donateLink");
     this.skipAnimations = document.querySelector("#idph-skipAnimations");
-    this.footerUl = document.querySelector("#idph-footerUl");
-    this.linkedinNav = document.querySelector("#idph-linkedinNav");
-    this.emailNav = document.querySelector("#idph-emailNav");
-    this.telegramNav = document.querySelector("#idph-telegramNav");
-    this.mainContainer = document.querySelector("#idph-mainContainer");
-    this.headerNavsList = [this.logo, this.appNav, this.portNav, this.orderNav];
-    this.footerNavsList = [this.linkedinNav, this.emailNav, this.telegramNav];
-    this.invisibleElemsList = [
-      this.mainContainer,
+    this.headerNavsList = [
       this.logo,
-      this.headerNavbar,
-      this.orderDiv.firstElementChild,
-      this.donateLink.parentElement,
-      this.footerUl,
+      this.appNav,
+      this.portNav,
+      this.donateNav,
+      this.orderNav,
     ];
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
@@ -736,11 +544,7 @@ export default {
   },
 
   created() {
-    window.addEventListener("resize", this.windowWidthClassEmitter);
-  },
-
-  beforeUnmount() {
-    document.body.parentElement.classList.remove("overflow-y-auto");
+    window.addEventListener("resize", this.onresize);
   },
 };
 </script>

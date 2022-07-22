@@ -16,7 +16,7 @@
   }
 
   50% {
-    text-shadow: 0 0 38px rgba(255, 255, 255, 1);
+    text-shadow: 0 0 5vw rgba(255, 255, 255, 1);
   }
 
   100% {
@@ -30,7 +30,7 @@
   }
 
   50% {
-    text-shadow: 0 0 38px rgba(255, 255, 255, 1);
+    text-shadow: 0 0 5vw rgba(255, 255, 255, 1);
   }
 
   100% {
@@ -54,7 +54,7 @@
   }
 
   50% {
-    text-shadow: 0 0 28px #a2e5ff;
+    text-shadow: 0 0 4vw #a2e5ff;
   }
 
   100% {
@@ -68,7 +68,7 @@
   }
 
   50% {
-    text-shadow: 0 0 28px #a2e5ff;
+    text-shadow: 0 0 4vw #a2e5ff;
   }
 
   100% {
