@@ -143,9 +143,9 @@ export default {
 
   data() {
     return {
-      linkedinClassList: "invisible footer-shadow",
-      emailClassList: "invisible footer-shadow",
-      telegramClassList: "invisible footer-shadow",
+      linkedinClassList: "invisible footer-shadow pointer-white",
+      emailClassList: "invisible footer-shadow pointer-white",
+      telegramClassList: "invisible footer-shadow pointer-white",
       donateBottom: 0,
       skipBottom: 0,
       noteBottom: 0,
@@ -439,11 +439,11 @@ export default {
     // Initial Footer Appearance
     footerInitAppear() {
       this.emailNavRef = setTimeout(() => {
-        this.emailClassList = "footer-appear";
+        this.emailClassList = "footer-appear pointer-white";
         this.telegramNavRef = setTimeout(() => {
-          this.telegramClassList = "footer-appear";
+          this.telegramClassList = "footer-appear pointer-white";
           this.linkedinNavRef = setTimeout(() => {
-            this.linkedinClassList = "footer-appear";
+            this.linkedinClassList = "footer-appear pointer-white";
           }, 500);
         }, 500);
       }, 6000);
