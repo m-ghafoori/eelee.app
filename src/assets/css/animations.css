@@ -512,15 +512,15 @@
     }
 
     40% {
-        -webkit-transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
-        transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+        -webkit-transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 15vw) rotate3d(0, 1, 0, -190deg);
+        transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 15vw) rotate3d(0, 1, 0, -190deg);
         -webkit-animation-timing-function: ease-out;
         animation-timing-function: ease-out;
     }
 
     50% {
-        -webkit-transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
-        transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+        -webkit-transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 15vw) rotate3d(0, 1, 0, -170deg);
+        transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 15vw) rotate3d(0, 1, 0, -170deg);
         -webkit-animation-timing-function: ease-in;
         animation-timing-function: ease-in;
     }
@@ -549,15 +549,15 @@
     }
 
     40% {
-        -webkit-transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
-        transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+        -webkit-transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 15vw) rotate3d(0, 1, 0, -190deg);
+        transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 15vw) rotate3d(0, 1, 0, -190deg);
         -webkit-animation-timing-function: ease-out;
         animation-timing-function: ease-out;
     }
 
     50% {
-        -webkit-transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
-        transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+        -webkit-transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 15vw) rotate3d(0, 1, 0, -170deg);
+        transform: perspective(40vw) scale3d(1, 1, 1) translate3d(0, 0, 15vw) rotate3d(0, 1, 0, -170deg);
         -webkit-animation-timing-function: ease-in;
         animation-timing-function: ease-in;
     }
@@ -1705,7 +1705,7 @@
 }
 
 .footer-appear {
-    animation: star-appear 20s 1 ease both;
+    animation: star-appear 8s 1 ease both;
 }
 
 /* End of HomeMobile Page Animations */
