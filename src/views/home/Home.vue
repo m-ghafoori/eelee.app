@@ -552,5 +552,4 @@ export default {
 <style scoped>
 @import "assets/css/loading.css";
 @import "assets/css/home.css";
-@import "assets/css/home-animations.css";
 </style>

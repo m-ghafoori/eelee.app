@@ -9,6 +9,6 @@ export default {
 </script>
 
 <style>
-@import "@/assets/css/animate.css";
+@import "@/assets/css/animations.css";
 @import "@/assets/css/global.css";
 </style>

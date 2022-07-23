@@ -366,5 +366,4 @@ export default {
 
 <style scoped>
 @import "assets/css/portfolio.css";
-@import "assets/css/portfolio-animations.css";
 </style>

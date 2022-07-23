@@ -498,5 +498,4 @@ export default {
 <style scoped>
 @import "assets/css/loading-mobile.css";
 @import "assets/css/home-mobile.css";
-@import "assets/css/home-mobile-animations.css";
 </style>
