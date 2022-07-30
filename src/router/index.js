@@ -16,7 +16,7 @@ const routes = [
     path: '/app',
     name: 'app',
     component: () => {
-      return import('../views/app/Application.vue')
+      return import('../views/app/Applications.vue')
     }
   },
   {

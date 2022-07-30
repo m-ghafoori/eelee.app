@@ -1,15 +1,18 @@
 <template>
-  <div class="cell" :style="cellStyle"
-  @click="leftClickEmitter(this.info, e)"
-  @contextmenu="rightClickEmitter(this.info, e)"
-  @mousedown="preventMouseEvent(e)"
-  @mouseenter="preventMouseEvent(e)">
-    <span :style="spanStyle">{{cellLabel}}</span>
+  <div
+    class="cell"
+    :style="cellStyle"
+    @click="leftClickEmitter(this.info, e)"
+    @contextmenu="rightClickEmitter(this.info, e)"
+    @mousedown="preventMouseEvent(e)"
+    @mouseenter="preventMouseEvent(e)"
+  >
+    <span :style="spanStyle">{{ cellLabel }}</span>
   </div>
 </template>
 <script>
 export default {
-  name: 'Cell',
+  name: "Cell",
   props: {
     cell: {},
     defCol: String,
@@ -17,78 +20,70 @@ export default {
     markCol: String,
     bombCol: String,
     minesNumCol: {
-      default: "#944a04"
+      default: "#944a04",
     },
-    // defSize: Number
   },
-  data () {
+  data() {
     return {
-      info: {}
-    }
+      info: {},
+    };
   },
   computed: {
     cellLabel: function () {
       if (!this.info.isMine) {
         if (this.info.minesAround != 0) return `${this.info.minesAround}`;
-        else return ' ';
-      }
-      else return 'X';
+        else return " ";
+      } else return "X";
     },
     visibState: function () {
-      var visState = 'hidden';
-      if (this.info.isRevealed) visState = 'visible';
+      var visState = "hidden";
+      if (this.info.isRevealed) visState = "visible";
       return visState;
     },
     bgColor: function () {
       var bColor = this.defCol;
       if (this.info.isRevealed) {
-        if (this.info.isMine) { bColor = this.bombCol; }
-        else bColor = this.revCol;
+        if (this.info.isMine) {
+          bColor = this.bombCol;
+        } else bColor = this.revCol;
       } else if (this.info.isMarked) bColor = this.markCol;
       return bColor;
     },
     cellStyle: function () {
       return {
-        // display: 'inline-block',
-        // margin: '1px',
-        'background-image': `linear-gradient(to bottom right, #fffcf2, ${this.bgColor})`,
-        // 'border-radius': '13%',
-        // height: `3vw`,
-        // width: `3vw`
-      }
+        "background-image": `linear-gradient(to bottom right, #fffcf2, ${this.bgColor})`,
+      };
     },
     spanStyle: function () {
       return {
         visibility: `${this.visibState}`,
         color: this.minesNumCol,
-        'font-weight': 'bold',
-        'font-size': `2vw`
-      }
-    }
+        "font-weight": "bold",
+        "font-size": `2vw`,
+      };
+    },
   },
-  created () {
+  created() {
     this.info = this.cell;
   },
 
   methods: {
-    rightClickEmitter (data, e) {
+    rightClickEmitter(data, e) {
       e = e || window.event;
       e.preventDefault();
-      this.$emit('right-click', data)
+      this.$emit("right-click", data);
     },
-    leftClickEmitter (data, e) {
+    leftClickEmitter(data, e) {
       e = e || window.event;
       e.preventDefault();
-      this.$emit('left-click', data);
-      // console.log(data);
+      this.$emit("left-click", data);
     },
     preventMouseEvent(e) {
       e = e || window.event;
       e.preventDefault();
-    }
-  }
-}
-
+    },
+  },
+};
 </script>
 
 <style>

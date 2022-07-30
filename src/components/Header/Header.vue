@@ -113,7 +113,7 @@ export default {
   width: 100vw;
   height: 10vh;
   position: fixed;
-  margin-top: 1vh;
+  /* margin-top: 1vh; */
   margin-bottom: 2vh;
   z-index: 200;
   background-color: inherit;

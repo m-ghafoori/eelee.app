@@ -35,7 +35,7 @@ export default {
 
   props: {
     switchingAspectRatio: {
-      default: 1
+      default: 1,
     },
     mainColor: String,
     hoverColor: String,
@@ -84,8 +84,7 @@ export default {
 
   computed: {
     showVerticalMenu() {
-      if (this.windowWidth/this.windowHeight < this.switchingAspectRatio) return true;
-      else return false;
+      return this.windowWidth / this.windowHeight <= this.switchingAspectRatio;
     },
   },
 

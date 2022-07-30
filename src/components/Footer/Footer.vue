@@ -136,15 +136,13 @@ export default {
 
   watch: {
     wideHome() {
-      if (this.isMounted) this.$router.go();
+      this.isMounted && this.$router.go();
     },
   },
 
   computed: {
     wideHome() {
-      if (this.$route.path == "/" && this.windowWidth / this.windowHeight > 1.5)
-        return true;
-      else return false;
+      return (this.$route.path == "/" && this.windowWidth / this.windowHeight > 1.5);
     },
   },
 
@@ -228,7 +226,7 @@ export default {
 <style>
 .footer {
   width: calc(20vw + 20vh);
-  height: 18%;
+  height: calc(8vw + 8vh);
   position: absolute;
   bottom: 0;
   align-self: center;

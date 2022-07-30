@@ -1826,10 +1826,10 @@
 
 /**
    * ----------------------------------------
-   * animation rotate-center
+   * animation cw-rotation
    * ----------------------------------------
    */
-@-webkit-keyframes rotate-center {
+@-webkit-keyframes cw-rotation {
     0% {
         -webkit-transform: rotate(0);
         transform: rotate(0);
@@ -1841,7 +1841,7 @@
     }
 }
 
-@keyframes rotate-center {
+@keyframes cw-rotation {
     0% {
         -webkit-transform: rotate(0);
         transform: rotate(0);
@@ -1853,17 +1853,52 @@
     }
 }
 
-.rotate-center {
-    -webkit-animation: rotate-center 0.3s ease-in-out both;
-    animation: rotate-center 0.3s ease-in-out both;
+.cw-rotation {
+    -webkit-animation: cw-rotation 0.3s ease-in-out both;
+    animation: cw-rotation 0.3s ease-in-out both;
+}
+
+
+/**
+   * ----------------------------------------
+   * animation cw-half-rotation
+   * ----------------------------------------
+   */
+@-webkit-keyframes cw-half-rotation {
+    0% {
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes cw-half-rotation {
+    0% {
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+.cw-half-rotation {
+    -webkit-animation: cw-half-rotation 0.3s ease-in-out both;
+    animation: cw-half-rotation 0.3s ease-in-out both;
 }
 
 /**
    * ----------------------------------------
-   * animation reverse-rotate-center
+   * animation ccw-rotation
    * ----------------------------------------
    */
-@-webkit-keyframes reverse-rotate-center {
+@-webkit-keyframes ccw-rotation {
     0% {
         -webkit-transform: rotate(0);
         transform: rotate(0);
@@ -1875,7 +1910,7 @@
     }
 }
 
-@keyframes reverse-rotate-center {
+@keyframes ccw-rotation {
     0% {
         -webkit-transform: rotate(0);
         transform: rotate(0);
@@ -1887,9 +1922,44 @@
     }
 }
 
-.reverse-rotate-center {
-    -webkit-animation: reverse-rotate-center 0.7s ease-in-out both;
-    animation: reverse-rotate-center 0.7s ease-in-out both;
+.ccw-rotation {
+    -webkit-animation: ccw-rotation 0.7s ease-in-out both;
+    animation: ccw-rotation 0.7s ease-in-out both;
+}
+
+
+/**
+   * ----------------------------------------
+   * animation ccw-half-rotation
+   * ----------------------------------------
+   */
+@-webkit-keyframes ccw-half-rotation {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+}
+
+@keyframes ccw-half-rotation {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+}
+
+.ccw-half-rotation {
+    -webkit-animation: ccw-half-rotation 0.7s ease-in-out both;
+    animation: ccw-half-rotation 0.7s ease-in-out both;
 }
 
 /* End of Application Page Animations */
