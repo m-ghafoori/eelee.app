@@ -180,13 +180,13 @@
 <script>
 import Cell from "./components/Cell.vue";
 import NewGame from "./components/NewGame.vue";
-import InputFont from "./components/InputFont.vue";
-import InputNumber from "./components/InputNumber.vue";
-import InputColor from "./components/InputColor.vue";
-import FontIcon from "./components/SettingsIcons/FontIcon.vue";
-import NumberIcon from "./components/SettingsIcons/NumberIcon.vue";
-import ColorIcon from "./components/SettingsIcons/ColorIcon.vue";
-import Timer from "./components/Timer.vue";
+import InputFont from "@/components/Inputs/InputFont.vue";
+import InputNumber from "@/components/Inputs/InputNumber.vue";
+import InputColor from "@/components/Inputs/InputColor.vue";
+import FontIcon from "@/components/SettingsIcons/FontIcon.vue";
+import NumberIcon from "@/components/SettingsIcons/NumberIcon.vue";
+import ColorIcon from "@/components/SettingsIcons/ColorIcon.vue";
+import Timer from "@/components/Timer.vue";
 import startNewGame from "./assets/js/tableGenerator";
 
 export default {

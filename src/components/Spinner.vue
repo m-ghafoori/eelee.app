@@ -32,14 +32,20 @@ export default {
     isRotated: {
       default: false,
     },
-    hoverColor: {
+    mainColor: {
       default: "#000",
+    },
+    activeColor: {
+      default: "#f00",
+    },
+    hoverColor: {
+      default: "#f34fff",
     },
   },
 
   data() {
     return {
-      imgColor: "#000",
+      imgColor: "",
       imgClass: "",
     };
   },
@@ -47,9 +53,9 @@ export default {
   watch: {
     isActive(val) {
       if (val) {
-        this.imgColor = "#f00";
+        this.imgColor = this.activeColor;
       } else {
-        this.imgColor = "#000";
+        this.imgColor = this.mainColor;
       }
     },
     isRotated(val) {
@@ -66,8 +72,12 @@ export default {
       this.imgColor = this.hoverColor;
     },
     onmouseout() {
-      this.imgColor = "#000";
+      this.imgColor = this.mainColor;
     },
+  },
+
+  mounted() {
+    this.imgColor = this.mainColor;
   },
 };
 </script>

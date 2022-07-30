@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import InputSelect from "@/components/InputSelect.vue";
+import InputSelect from "@/components/Inputs/InputSelect.vue";
 
 export default {
   name: "InputFont",

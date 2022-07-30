@@ -1,32 +1,25 @@
-/* ID Tags */
-
 #idpd-body {
     background: #3ca05d;
 }
 
-/* Showcase */
-
-/* ID Tags */
-
 #idpd-showcase {
     width: fit-content;
-    height: 45vh;
-    min-height: 240px;
-    max-height: 350px;
+    height: 55vh;
     position: relative;
     align-self: center;
-    top: 120px;
-    border: 4px double #ffbf1f;
-    border-radius: 1rem;
-    outline: 4px double #fff;
-    padding: 40px 20px 20px 20px;
+    top: 20vh;
+    border: 0.4vw double #ffbf1f;
+    border-radius: calc(1vw + 1vh);
+    outline: 0.4vw double #fff;
+    padding: calc(1.5vw + 1.5vh);
+    padding-top: calc(3vw + 3vh);
 }
 
 #idpd-donationForm {
     width: inherit;
     height: 40%;
     font-family: 'Josefin Slab';
-    font-size: calc(3vw + 0.8rem);
+    font-size: calc(2.5vw + 2.5vh);
     color: #ffbf1f;
     align-self: center;
 }
@@ -34,38 +27,18 @@
 #idpd-donationTxt {
     font-family: 'Gluten', cursive;
     color: #fff;
-    margin: 25px 0;
-}
-
-#idpd-donationInput {
-    width: calc(10vw + 4rem);
-    height: calc(3vw + 0.8rem);
-    max-width: 130px;
-    max-height: 35px;
-    background: transparent;
-    font-size: calc(1.6vw + 0.4rem);
-    color: #ffbf1f;
-    border: 1px solid #fff;
-    border-radius: 1rem;
-    padding: 5px 10px;
-    margin: 0 5px 5px 0;
-}
-
-#idpd-donationInput:focus {
-    color: #fff;
-    outline: none;
-    border-color: #ffbf1f;
+    margin: calc(2vw + 2vh) 0;
 }
 
 #idpd-donateButton {
     font-family: 'Josefin Slab', cursive;
-    font-size: calc(2vw + 0.8rem);
+    font-size: calc(2vw + 2vh);
     color: #fff;
-    border: 1px solid #ffbf1f;
-    border-radius: 2rem;
+    border: 0.1vw solid #ffbf1f;
+    border-radius: calc(1vw + 1vh);
     background: transparent;
-    padding: calc(0.8vw + 0.4rem);
-    margin-top: 40px;
+    padding: calc(0.8vw + 0.8vh);
+    margin-top: calc(3vw + 3vh);
 }
 
 #idpd-donateButton:hover {
@@ -76,22 +49,4 @@
 #idpd-donateButton:active {
     color: #cf2860;
     border-color: #cf2860;
-}
-
-/* Media Queries */
-
-@media (max-height: 500px) {
-    #idpd-showcase {
-        top: 90px;
-    }
-}
-
-@media (min-width: 768px) {
-    #idpd-donationForm {
-        font-size: calc(2vw + 0.8rem);
-    }
-
-    #idpd-donateButton {
-        font-size: calc(1.5vw + 0.8rem);
-    }
 }

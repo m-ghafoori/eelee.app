@@ -142,7 +142,9 @@ export default {
 
   computed: {
     wideHome() {
-      return (this.$route.path == "/" && this.windowWidth / this.windowHeight > 1.5);
+      return (
+        this.$route.path == "/" && this.windowWidth / this.windowHeight > 1.5
+      );
     },
   },
 
@@ -153,12 +155,10 @@ export default {
       this.windowWidth = window.innerWidth;
       this.windowHeight = window.innerHeight;
       if (this.isMounted) {
-        if (this.windowHeight/this.windowWidth < 0.38) {
+        if (this.windowHeight / this.windowWidth < 0.38) {
           this.footer.classList.add("d-none");
-        }
-        else this.footer.classList.remove("d-none");
+        } else this.footer.classList.remove("d-none");
       }
-
     },
     onLinkedinMouseEnter() {
       if (this.emitEvents) this.$emit("footer-mouse-enter", "linkedin");
@@ -225,8 +225,8 @@ export default {
 
 <style>
 .footer {
-  width: calc(20vw + 20vh);
-  height: calc(8vw + 8vh);
+  width: calc(30vw + 10vh);
+  height: calc(5vw + 11vh);
   position: absolute;
   bottom: 0;
   align-self: center;
@@ -251,6 +251,6 @@ export default {
   font-family: "Gluten", cursive;
   font-size: calc(1.2vw + 1.2vh);
   white-space: nowrap;
-  padding-top: calc(1vw + 1vh);
+  padding-top: calc(0.3vw + 1.8vh);
 }
 </style>

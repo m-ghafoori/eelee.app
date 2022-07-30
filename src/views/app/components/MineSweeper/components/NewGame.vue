@@ -1,5 +1,5 @@
 <template>
-  <button class="new-game hoverable" @click="clickHandler">
+  <button class="new-game hoverable" @click="onclick">
     {{ label }}
   </button>
 </template>
@@ -22,7 +22,7 @@ export default {
     };
   },
   methods: {
-    clickHandler() {
+    onclick() {
       try {
         this.newCellsArray = startNewGame(
           this.rowsNum,

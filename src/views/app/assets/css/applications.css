@@ -16,68 +16,6 @@
 
 /* Classes */
 
-.digital {
-  background: transparent;
-  color: #ffe11f;
-  font-size: calc(1vw + 1.5vh);
-  height: calc(2vw + 2vh);
-  width: calc(2vw + 2vh);
-  text-align: center;
-  padding-top: 0.1vw;
-}
-
-.counter {
-  background: transparent;
-  color: white;
-  font-size: calc(1vw + 1.5vh);
-}
-
-.timer {
-  font-family: 'Timer';
-  font-size: calc(1vw + 1.8vh);
-}
-
-.running .counter {
-  color: greenyellow !important;
-}
-
-.lost .counter {
-  color: orangered !important;
-}
-
-.won .counter {
-  color: rgb(18, 255, 255) !important;
-}
-
-.running .digital {
-  color: white !important;
-}
-
-.lost .digital {
-  color: orange !important;
-}
-
-.won .digital {
-  color: greenyellow !important;
-}
-
-.label-span {
-  width: 50%;
-  height: 100%;
-  font-size: calc(1.5vw + 1.5vh);
-  display: flex;
-  align-items: center;
-}
-
-.input-div {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  border-right: 0.2vw solid;
-  display: flex;
-}
-
 .info {
   width: 56%;
   padding: 0.25% 2%;

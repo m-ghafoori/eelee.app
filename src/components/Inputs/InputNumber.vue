@@ -13,6 +13,7 @@
         class="input"
         v-model="inputValue"
         type="number"
+        :name="inputName"
         :min="minValue"
         :max="maxValue"
         @focus="onInputFocus"
@@ -23,7 +24,9 @@
       <div class="spinner-box">
         <Spinner
           :isActive="isUpperSpinnerActive"
-          hoverColor="#f34fff"
+          :mainColor="mainBorderColor"
+          :activeColor="activeBorderColor"
+          :hoverColor="spinnerHoverColor"
           @mousedown="onUpperSpinnerMouseDown"
           @mouseup="onUpperSpinnerMouseUp"
           @mouseleave="onUpperSpinnerMouseUp"
@@ -31,7 +34,9 @@
         />
         <Spinner
           :isActive="isLowerSpinnerActive"
-          hoverColor="#f34fff"
+          :mainColor="mainBorderColor"
+          :activeColor="activeBorderColor"
+          :hoverColor="spinnerHoverColor"
           @mousedown="onLowerSpinnerMouseDown"
           @mouseup="onLowerSpinnerMouseUp"
           @mouseleave="onLowerSpinnerMouseUp"
@@ -49,11 +54,39 @@ export default {
     Spinner,
   },
   props: {
-    labelName: String,
-    eventName: String,
-    defaultValue: Number,
-    minValue: Number,
-    maxValue: Number,
+    labelName: {
+      default: "",
+    },
+    eventName: {
+      default: "number-change",
+    },
+    inputName: {
+      default: "",
+    },
+    mainColor: {
+      default: "#000",
+    },
+    mainBorderColor: {
+      default: "#000",
+    },
+    activeColor: {
+      default: "#f00",
+    },
+    activeBorderColor: {
+      default: "#f00",
+    },
+    spinnerHoverColor: {
+      default: "#f34fff",
+    },
+    defaultValue: {
+      default: 1,
+    },
+    minValue: {
+      default: -1000000000,
+    },
+    maxValue: {
+      default: 1000000000,
+    },
   },
   data() {
     return {
@@ -79,11 +112,11 @@ export default {
     docHasFocus(val) {
       if (!val) {
         this.blurOnMouseDown = true;
-        console.log("watcher called on blurOnMouseDown:", this.blurOnMouseDown);
       }
     },
-    inputValue() {
-      this.$emit(this.eventName, this.filteredValue);
+    inputValue(val) {
+      if (val !== this.filteredValue) this.inputValue = this.filteredValue;
+      else this.$emit(this.eventName, this.inputValue);
     },
     isUpperSpinnerActive(val) {
       if (val) {
@@ -113,7 +146,7 @@ export default {
     },
   },
   computed: {
-    filteredValue: function () {
+    filteredValue() {
       var filtered = Math.max(this.minValue, this.inputValue);
       return Math.min(this.maxValue, filtered);
     },
@@ -138,6 +171,12 @@ export default {
       str = str.replace(/ /g, "");
       return str;
     },
+    colorChanger(color, border) {
+      this.labelColor = color;
+      this.numberInput.style.color = color;
+      this.labelBorderColor = border;
+      this.numberInput.parentElement.style.borderColor = border;
+    },
 
     // Event Handlers
 
@@ -150,13 +189,8 @@ export default {
     },
     onInputFocus() {
       if (!this.blurOnMouseDown) {
-        this.labelColor = "#f00";
-        this.labelBorderColor = "#f00";
-        this.numberInput.style.color = "#f00";
-        this.numberInput.parentElement.style.borderColor = "#f00";
-        console.log("focus", this.lastActiveElement, this.numberInput.id);
+        this.colorChanger(this.activeColor, this.activeBorderColor);
         this.lastActiveElement = this.numberInput.id;
-        console.log(`last active set to: ${this.lastActiveElement}`);
       } else {
         this.numberInput.blur();
         setTimeout(() => {
@@ -166,13 +200,8 @@ export default {
     },
     onInputBlur() {
       if (!this.blurOnMouseDown) {
-        this.labelColor = "#000";
-        this.labelBorderColor = "#000";
-        this.numberInput.style.color = "#000";
-        this.numberInput.parentElement.style.borderColor = "#000";
-        console.log("blur", this.lastActiveElement, this.numberInput.id);
+        this.colorChanger(this.mainColor, this.mainBorderColor);
         this.lastActiveElement = "none";
-        console.log(`last active set to: ${this.lastActiveElement}`);
       }
     },
     onInputKeyDown(e) {
@@ -219,6 +248,7 @@ export default {
       this.removeSpace(this.labelName)
     );
     this.docHasFocus = document.hasFocus();
+    this.colorChanger(this.mainColor, this.mainBorderColor);
   },
   updated() {
     this.docHasFocus = document.hasFocus();
