@@ -21,7 +21,7 @@
     width: fit-content;
     height: 100%;
     font-family: 'Gluten';
-    font-size: calc(1vw + 2vh);
+    font-size: calc(1vw + 2vh + 1px);
     color: #ba0340;
     padding: 1vw;
     margin-right: 0.5vw;
@@ -31,7 +31,7 @@
     width: 70%;
     height: 100%;
     font-family: 'Courgette', cursive;
-    font-size: calc(1vw + 2vh);
+    font-size: calc(1vw + 2vh + 1px);
     border: 0.1vw solid #b42857;
     padding: 0.5vw;
     margin: 0;
@@ -49,7 +49,7 @@
     position: relative;
     align-self: flex-start;
     top: 15vh;
-    font-size: calc(1vw + 2vh);
+    font-size: calc(1vw + 2vh + 1px);
     margin: 3vh calc(2vw + 2vh);
 }
 
@@ -57,7 +57,7 @@
     width: 100%;
     height: 60%;
     font-family: 'Gluten';
-    font-size: calc(2vw + 2vh);
+    font-size: calc(2vw + 2vh + 1px);
     color: #0d8a6f;
     text-align: center;
     margin: auto;
@@ -95,7 +95,7 @@
     overflow-y: auto;
     resize: none;
     font-family: 'Courgette', cursive;
-    font-size: calc(1vw + 2vh);
+    font-size: calc(1vw + 2vh + 1px);
     border: none;
     padding: 0 1vw;
     margin: 3vh 0;
@@ -115,7 +115,7 @@
 
 #idpc-messageButtons p {
     font-family: 'Gluten', cursive;
-    font-size: calc(1vw + 2vh);
+    font-size: calc(1vw + 2vh + 1px);
     color: #0b7a62;
     padding: 0.2vw;
     margin: 1vw;
@@ -125,7 +125,7 @@
 
 #idpc-messageButtons span {
     font-family: 'Josefin Slab', cursive;
-    font-size: calc(1.5vw + 2vh);
+    font-size: calc(1.5vw + 2vh + 1px);
     color: #f93879;
     padding: 0.2vw;
     margin: 1vw;

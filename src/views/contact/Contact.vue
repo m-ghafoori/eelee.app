@@ -18,6 +18,7 @@
             ref="clientNameInput"
             type="text"
             v-model="clientName"
+            spellcheck="false"
             @click="onClientNameClick"
           />
         </div>
@@ -27,6 +28,7 @@
             ref="clientEmailInput"
             type="email"
             v-model="clientEmail"
+            spellcheck="false"
             @click="onClientEmailClick"
           />
         </div>
@@ -39,6 +41,7 @@
             cols="90"
             rows="10"
             v-model="clientMessage"
+            spellcheck="false"
             @click="onClientMessageClick"
           ></textarea>
           <div
