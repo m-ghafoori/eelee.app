@@ -1,15 +1,15 @@
 <template>
-  <div class="color-div hoverable">
+  <div class="input-wrapper hoverable">
     <span
       class="label-span color-label-span"
       :style="labelStyle"
       @mousedown="preventDefaultEvents"
       @click="onLabelClick"
-      >{{ labelName }}</span
+      >{{ uniqueLabel }}</span
     >
     <div class="input-div align-items-center">
       <input
-        :id="removeSpace(labelName)"
+        :id="removeSpace(uniqueLabel)"
         class="input hoverable"
         v-model="inputValue"
         :placeholder="placeHolder"
@@ -27,9 +27,16 @@
 export default {
   name: "InputColor",
   props: {
-    eventName: String,
-    labelName: String,
-    defaultValue: String,
+    uniqueLabel: {
+      type: String,
+      required: true
+    },
+    eventName: {
+      default: "color-change"
+    },
+    defaultValue: {
+      default: "#000"
+    },
   },
   data() {
     return {
@@ -124,7 +131,7 @@ export default {
     this.placeHolder = this.inputValue;
   },
   mounted() {
-    this.colorInput = document.getElementById(this.removeSpace(this.labelName));
+    this.colorInput = document.getElementById(this.removeSpace(this.uniqueLabel));
     this.docHasFocus = document.hasFocus();
   },
   updated() {
@@ -167,17 +174,7 @@ input[type="color"]::-webkit-color-swatch {
   border: none;
 }
 
-.color-div {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .color-label-span {
-  border-left: 0.2vw solid black;
   justify-content: center;
 }
 </style>

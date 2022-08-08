@@ -56,7 +56,7 @@
         <ul id="numberSettingsList" class="settings-list">
           <li>
             <InputNumber
-              labelName="Rows"
+              uniqueLabel="Rows"
               :defaultValue="rows"
               :minValue="1"
               :maxValue="50"
@@ -66,7 +66,7 @@
           </li>
           <li>
             <InputNumber
-              labelName="Columns"
+              uniqueLabel="Columns"
               :defaultValue="cols"
               :minValue="1"
               :maxValue="20"
@@ -76,7 +76,7 @@
           </li>
           <li>
             <InputNumber
-              labelName="Mines"
+              uniqueLabel="Mines"
               :defaultValue="mines"
               :minValue="minimumMines"
               :maxValue="maximumMines"
@@ -92,7 +92,7 @@
         <ul id="colorSettingsList" class="settings-list">
           <li>
             <InputColor
-              labelName="Default"
+              uniqueLabel="Default"
               :defaultValue="defaultColor"
               eventName="def-color-change"
               @def-color-change="onDefColorChange"
@@ -100,7 +100,7 @@
           </li>
           <li>
             <InputColor
-              labelName="Revealed"
+              uniqueLabel="Revealed"
               :defaultValue="revealedColor"
               eventName="rev-color-change"
               @rev-color-change="onRevColorChange"
@@ -108,7 +108,7 @@
           </li>
           <li>
             <InputColor
-              labelName="Marked"
+              uniqueLabel="Marked"
               :defaultValue="markedColor"
               eventName="mark-color-change"
               @mark-color-change="onMarkColorChange"
@@ -116,7 +116,7 @@
           </li>
           <li>
             <InputColor
-              labelName="X-Lost"
+              uniqueLabel="X-Lost"
               :defaultValue="bombLostColor"
               eventName="bomb-lost-color-change"
               @bomb-lost-color-change="onBombLostColorChange"
@@ -124,7 +124,7 @@
           </li>
           <li>
             <InputColor
-              labelName="X-Won"
+              uniqueLabel="X-Won"
               :defaultValue="bombWonColor"
               eventName="bomb-won-color-change"
               @bomb-won-color-change="onBombWonColorChange"
@@ -132,7 +132,7 @@
           </li>
           <li>
             <InputColor
-              labelName="Numbers"
+              uniqueLabel="Numbers"
               :defaultValue="minesNumberColor"
               eventName="mines-number-color-change"
               @mines-number-color-change="onMinesNumberColorChange"
@@ -146,7 +146,7 @@
         <ul id="fontSettingsList" class="settings-list">
           <li>
             <InputFont
-              labelName="Info"
+              uniqueLabel="Info"
               :selectZIndex="100"
               :selectUpdator="selectElementsUpdator"
               eventName="info-font-change"
@@ -155,7 +155,7 @@
           </li>
           <li>
             <InputFont
-              labelName="Table"
+              uniqueLabel="Table"
               :selectZIndex="99"
               :selectUpdator="selectElementsUpdator"
               eventName="table-font-change"
@@ -164,7 +164,7 @@
           </li>
           <li>
             <InputFont
-              labelName="Settings"
+              uniqueLabel="Settings"
               :selectZIndex="98"
               :selectUpdator="selectElementsUpdator"
               eventName="settings-font-change"

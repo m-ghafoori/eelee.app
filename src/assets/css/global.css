@@ -205,10 +205,22 @@ ul {
     color: greenyellow !important;
 }
 
+.input-wrapper {
+    height: 100%;
+    padding: 0;
+    margin-bottom: auto;
+    border-left: calc(0.1vw + 0.2vh) solid;
+    border-right: calc(0.1vw + 0.2vh) solid;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .label-span {
     width: 50%;
     height: 100%;
-    font-size: calc(1.5vw + 1.5vh);
+    /* font-size: inherit; */
     display: flex;
     align-items: center;
 }
@@ -218,6 +230,5 @@ ul {
     height: 100%;
     display: flex;
     justify-content: flex-end;
-    border-right: 0.2vw solid black;
     display: flex;
 }

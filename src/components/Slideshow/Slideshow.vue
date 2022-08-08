@@ -17,10 +17,7 @@
           :style="{ color: nextTextColor }"
         >
           <slot :name="`title${nextNumber(slideNum, slidesNumber, true)}`" />
-          <ToRightArrow
-            :imgWidth="18 + windowWidth / 50"
-            :imgColor="nextArrowColor"
-          />
+          <ToRightArrow :imgColor="nextArrowColor" />
         </span>
         <span
           :id="`finish${uniqueLabel}`"
@@ -37,10 +34,7 @@
           @click="onPreviousClick"
           :style="{ color: previousTextColor }"
         >
-          <ToLeftArrow
-            :imgWidth="18 + windowWidth / 50"
-            :imgColor="previousArrowColor"
-          />
+          <ToLeftArrow :imgColor="previousArrowColor" />
           <slot
             :name="`title${previousNumber(slideNum, slidesNumber, true)}`"
           />
@@ -68,8 +62,12 @@ export default {
   props: {
     uniqueLabel: String,
     slidesNumber: Number,
-    loopMode: Boolean,
-    isActive: Boolean,
+    loopMode: {
+      default: true,
+    },
+    isFinished: {
+      default: false,
+    },
     nextTextMainColor: {
       default: "#079536",
     },
@@ -98,7 +96,7 @@ export default {
 
   data() {
     return {
-      windowWidth: Number,
+      // windowWidth: Number,
       nextTextColor: "#079536",
       nextArrowColor: "#2bde67",
       previousTextColor: "#9920f0",
@@ -132,7 +130,7 @@ export default {
         }
       }
     },
-    isActive(val) {
+    isFinished(val) {
       if (val) {
         this.activeDiv.classList.add("d-none");
         this.inactiveDiv.classList.remove("d-none");
@@ -172,11 +170,6 @@ export default {
       return diffNum;
     },
 
-    // Triggers different window size classes on resize
-    windowWidthClassEmitter() {
-      this.windowWidth = window.innerWidth;
-    },
-
     // Event Handlers
 
     onNextMouseOver() {
@@ -194,7 +187,7 @@ export default {
     },
     onFinishClick() {
       this.$emit("slideshow-finish");
-      // this.isActive = false;
+      // this.isFinished = false;
     },
     onPreviousClick() {
       this.slideNum = this.previousNumber(
@@ -215,14 +208,6 @@ export default {
     },
   },
 
-  created() {
-    window.addEventListener("resize", this.windowWidthClassEmitter);
-  },
-
-  beforeMount() {
-    this.windowWidthClassEmitter();
-  },
-
   mounted() {
     this.activeDiv = document.querySelector(`#active${this.uniqueLabel}`);
     this.inactiveDiv = document.querySelector(`#inactive${this.uniqueLabel}`);
@@ -240,18 +225,16 @@ export default {
 
 <style scoped>
 .slideshow {
-  min-width: fit-content;
+  width: 100%;
   background: #f9da2d;
-  font-size: calc(1.8vw + 0.5rem);
-  border: 4px double #d8215e;
-  border-radius: 0.5rem;
+  font-size: calc(1.6vw + 1.6vh + 1px);
+  border: 1vh double #d8215e;
+  border-radius: calc(1vw + 1vh);
 }
 
 .slideshow-active {
-  width: 70vw;
+  width: 100%;
   height: 50vh;
-  min-width: 175px;
-  min-height: 220px;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
@@ -272,7 +255,7 @@ export default {
   position: sticky;
   top: 0;
   z-index: 10;
-  padding: 10px 10px 15px 10px;
+  padding: calc(1vw + 1vh);
 }
 
 .slideshow-content {
@@ -281,8 +264,8 @@ export default {
   position: relative;
   font-family: "Tajawal", sans-serif;
   color: #0101a9;
-  line-height: 3rem;
-  padding: 1% 3%;
+  line-height: calc(2.5vw + 2.5vh);
+  padding: calc(0.5vw + 0.5vh) calc(1.5vw + 1.5vh);
   margin: 0;
 }
 
@@ -301,14 +284,14 @@ export default {
   width: fit-content;
   height: fit-content;
   font-family: "Julius Sans One", sans-serif;
-  font-size: calc(1.2vw + 0.5rem);
+  font-size: calc(1.2vw + 1.2vh + 0.5px);
   white-space: nowrap;
 }
 
 .slideshow-next {
   position: relative;
   right: 0;
-  margin: 12px 0.5vw 10px 5px;
+  padding: calc(1vw + 1vh) 1vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -321,9 +304,9 @@ export default {
   background: #079536;
   font-weight: 800;
   color: #fff;
-  border-radius: 0.5rem;
-  padding: 8px;
-  margin: 12px calc(3% + 10px);
+  border-radius: calc(1vw + 1vh);
+  padding: 1.5vh;
+  margin: calc(1vw + 1vh) calc(2vw + 2vh);
   align-self: flex-end;
 }
 
@@ -338,7 +321,7 @@ export default {
 .slideshow-previous {
   position: relative;
   left: 0;
-  margin: 10px 5px 12px 0.5vw;
+  padding: calc(1vw + 1vh) 1vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -350,9 +333,9 @@ export default {
   height: fit-content;
   font-family: "Julius Sans One", sans-serif;
   font-weight: 900;
-  line-height: 1.7rem;
+  line-height: calc(1.5vw + 1.5vh);
   color: #079536;
   text-align: center;
-  padding: 20px;
+  padding: calc(1.5vw + 1.5vh);
 }
 </style>

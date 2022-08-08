@@ -1,15 +1,14 @@
 <template>
-  <div class="number-div hoverable">
+  <div ref="numberDiv" class="input-wrapper hoverable" :style="divStyle">
     <span
       class="label-span number-label-span"
-      :style="labelStyle"
       @mousedown="preventDefaultEvents"
       @click="onLabelClick"
-      >{{ labelName }}</span
+      >{{ uniqueLabel }}</span
     >
     <div class="input-div align-items-center">
       <input
-        :id="removeSpace(labelName)"
+        :id="removeSpace(uniqueLabel)"
         class="input"
         v-model="inputValue"
         type="number"
@@ -54,14 +53,18 @@ export default {
     Spinner,
   },
   props: {
-    labelName: {
-      default: "",
+    uniqueLabel: {
+      type: String,
+      required: true
     },
     eventName: {
       default: "number-change",
     },
     inputName: {
       default: "",
+    },
+    bgColor: {
+      default: "transparent",
     },
     mainColor: {
       default: "#000",
@@ -87,13 +90,23 @@ export default {
     maxValue: {
       default: 1000000000,
     },
+    // Style Options
+    fullBorder: {
+      default: false,
+    },
+    hideLabel: {
+      default: false,
+    },
+    inputFirst: {
+      default: false,
+    },
   },
   data() {
     return {
       inputValue: Number,
       docHasFocus: Boolean,
-      labelColor: "#000",
-      labelBorderColor: "#000",
+      textColor: "#000",
+      borderColor: "#000",
       lastActiveElement: "none",
       blurOnMouseDown: false,
       isUpperSpinnerActive: false,
@@ -106,9 +119,6 @@ export default {
     };
   },
   watch: {
-    defaultValue(val) {
-      this.inputValue = val;
-    },
     docHasFocus(val) {
       if (!val) {
         this.blurOnMouseDown = true;
@@ -144,6 +154,16 @@ export default {
         clearInterval(this.decrementIntervalRef);
       }
     },
+    hideLabel(val) {
+      val
+        ? this.$refs.numberDiv.classList.add("hide-label")
+        : this.$refs.numberDiv.classList.remove("hide-label");
+    },
+    inputFirst(val) {
+      val
+        ? this.$refs.numberDiv.classList.add("input-first")
+        : this.$refs.numberDiv.classList.remove("input-first");
+    },
   },
   computed: {
     filteredValue() {
@@ -153,10 +173,14 @@ export default {
 
     // Styles
 
-    labelStyle() {
+    divStyle() {
       return {
-        color: `${this.labelColor}`,
-        "border-color": `${this.labelBorderColor}`,
+        color: `${this.textColor}`,
+        "background-color": `${this.bgColor}`,
+        "border-width": `${this.fullBorder ? "calc(0.1vw + 0.2vh)" : "0 calc(0.1vw + 0.2vh)"}`,
+        "border-radius": `${this.fullBorder ? "calc(0.5vw + 0.5vh)" : "0"}`,
+        "border-color": `${this.borderColor}`,
+        "border-style": "solid",
       };
     },
   },
@@ -172,10 +196,8 @@ export default {
       return str;
     },
     colorChanger(color, border) {
-      this.labelColor = color;
-      this.numberInput.style.color = color;
-      this.labelBorderColor = border;
-      this.numberInput.parentElement.style.borderColor = border;
+      this.textColor = color;
+      this.borderColor = border;
     },
 
     // Event Handlers
@@ -239,16 +261,16 @@ export default {
       this.isLowerSpinnerActive = false;
     },
   },
-  created() {
-    this.inputValue = this.defaultValue;
-    this.placeHolder = this.inputValue.toString();
-  },
+
   mounted() {
+    this.inputValue = this.defaultValue;
     this.numberInput = document.getElementById(
-      this.removeSpace(this.labelName)
+      this.removeSpace(this.uniqueLabel)
     );
     this.docHasFocus = document.hasFocus();
     this.colorChanger(this.mainColor, this.mainBorderColor);
+    this.hideLabel && this.$refs.numberDiv.classList.add("hide-label");
+    this.inputFirst && this.$refs.numberDiv.classList.add("input-first");
   },
   updated() {
     this.docHasFocus = document.hasFocus();
@@ -257,19 +279,15 @@ export default {
 </script>
 
 <style scoped>
-div,
-span,
-input {
-  background: transparent;
-}
-
 input {
   width: 100%;
   height: 100%;
   font-family: inherit;
-  font-size: calc(1.5vw + 1.5vh);
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
   border: 0;
-  margin-right: 0.1vw;
+  margin-right: 0.2vh;
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -279,9 +297,6 @@ input {
 input:focus,
 input:active {
   outline: none !important;
-  color: red;
-  border-color: red;
-  box-shadow: 0 0 0;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -294,18 +309,7 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.number-div {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin-bottom: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .number-label-span {
-  border-left: 0.2vw solid;
   justify-content: center;
 }
 
@@ -314,5 +318,29 @@ input[type="number"] {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+/* Options Classes */
+
+.full-border {
+  border-top: 0.4vh solid !important;
+  border-bottom: 0.4vh solid !important;
+  border-radius: 1vh !important;
+}
+
+.hide-label .label-span {
+  display: none !important;
+}
+
+.hide-label .input-div {
+  flex-grow: 1 !important;
+}
+
+.input-first {
+  flex-direction: row-reverse !important;
+}
+
+.input-first .input-div {
+  flex-direction: row-reverse !important;
 }
 </style>

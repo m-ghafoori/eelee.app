@@ -8,21 +8,25 @@
 
 /* Classes */
 
+.input-wrapper {
+    margin: calc(0.5vw + 0.5vh) calc(1vw + 1vh);
+}
+
 .idpo-input-field {
     font-family: 'Tajawal', sans-serif;
-    font-size: calc(1vw + 0.6rem);
-    line-height: 1.5rem;
-    border: 2px solid #daa520;
-    border-radius: 0.5rem;
-    padding: 8px;
-    margin: 10px;
+    font-size: calc(1.2vw + 1.2vh + 1px);
+    line-height: calc(2vw + 2vh);
+    border: 0.4vh solid #daa520;
+    border-radius: calc(0.5vw + 0.5vh);
+    padding: calc(0.8vw + 0.8vh);
+    margin: calc(1vw + 1vh);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .idpo-input-field span {
-    margin-left: 10px;
+    margin-left: calc(1vw + 1vh);
 }
 
 .idpo-input-field textarea {
@@ -33,24 +37,27 @@
     overflow-x: hidden;
     overflow-y: auto;
     color: #d8215e;
-    border: 2px solid #079536;
-    border-radius: 0.5rem;
-    padding: 8px;
-    margin: 5px 10px;
+    font-size: inherit;
+    border: 0.4vh solid #079536;
+    border-radius: calc(0.5vw + 0.5vh);
+    padding: 1.5vh;
+    margin: calc(0.5vw + 0.5vh) calc(1vw + 1vh);
 }
 
-.idpo-input-field input {
+.idpo-input-field input[type="email"] {
     background: #feeb7d;
-    border: 2px solid #079536;
-    border-radius: 0.2rem;
+    border: 0.4vh solid #079536;
+    border-radius: calc(0.5vw + 0.5vh);
     color: #d8215e;
-    padding: 5px 10px;
-    margin: 5px 10px;
+    font-size: inherit;
+    padding: calc(0.5vw + 0.5vh) calc(1vw + 1vh);
+    margin: calc(0.5vw + 0.5vh) calc(1vw + 1vh);
 }
 
-.idpo-input-field *:focus {
+.idpo-input-field textarea:focus,
+.idpo-input-field input[type="email"]:focus {
     outline: none;
-    border: 2px solid #d8215e;
+    border: 0.4vh solid #d8215e;
     color: #056926;
 }
 
@@ -61,50 +68,14 @@
 .idpo-input-error {
     background: #ff000061 !important;
     color: #fff099 !important;
-    border: 2px solid #f00 !important;
+    border: 0.4vh solid #f00 !important;
 }
 
 /* ID Tags */
 
 #idpo-showcase {
-    /* min-width: fit-content; */
     position: relative;
     align-self: center;
     top: 15vh;
-    margin: 5vh 0;
-}
-
-#idpo-projectBudget {
-    min-width: 90px;
-    max-width: 110px;
-}
-
-#idpo-projectDuration {
-    min-width: 50px;
-    max-width: 70px;
-}
-
-#idpo-clientEmail {
-    width: 60%;
-}
-
-/* Media Queries */
-
-@media (max-width: 768px) {
-    .idpo-input-field {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #idpo-clientEmail {
-        width: 90%;
-    }
-}
-
-@media (max-width: 320px) {
-
-    #idpo-projectBudget {
-        width: 75%;
-    }
-
+    margin: 5vh 3vw;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="input-div flex-column">
     <span
-      :id="`selected${removeSpace(labelName)}`"
+      :id="`selected${removeSpace(uniqueLabel)}`"
       class="select-selected-span"
       tabindex="0"
       @mousedown="preventDefaultEvents"
@@ -9,21 +9,21 @@
       @focus="onSelectedSpanFocus"
       @blur="onSelectedSpanBlur"
       ><span
-        :id="`selected${removeSpace(labelName)}Option`"
+        :id="`selected${removeSpace(uniqueLabel)}Option`"
         class="select-selected-option"
         >{{ selectedText }}</span
       >
       <Spinner :isActive="isExpanded" :isRotated="isExpanded" />
     </span>
     <ul
-      :id="`${removeSpace(labelName)}DataUl`"
+      :id="`${removeSpace(uniqueLabel)}DataUl`"
       class="invisible d-flex flex-column scale-down-ver-top"
       :style="dataUlStyle"
     >
       <li
         v-for="item in dataListArray"
         :key="item.index"
-        :id="`${removeSpace(labelName)}${removeSpace(item)}`"
+        :id="`${removeSpace(uniqueLabel)}${removeSpace(item)}`"
         :style="{ 'border-color': dataUlBorderColor }"
         @mousedown="preventDefaultEvents"
         @click="onDataItemClick(item)"
@@ -43,7 +43,10 @@ export default {
     Spinner,
   },
   props: {
-    labelName: String,
+    uniqueLabel: {
+      type: String,
+      required: true
+    },
     dataListArray: Array,
     zIndex: Number,
     updatorNum: Number,
@@ -177,13 +180,13 @@ export default {
   },
   mounted() {
     this.selectedSpan = document.getElementById(
-      `selected${this.removeSpace(this.labelName)}`
+      `selected${this.removeSpace(this.uniqueLabel)}`
     );
     this.selectedOption = document.getElementById(
-      `selected${this.removeSpace(this.labelName)}Option`
+      `selected${this.removeSpace(this.uniqueLabel)}Option`
     );
     this.dataUl = document.getElementById(
-      `${this.removeSpace(this.labelName)}DataUl`
+      `${this.removeSpace(this.uniqueLabel)}DataUl`
     );
     this.selectedValue = this.dataListArray[0];
     this.selectedText = this.selectedValue;
@@ -204,7 +207,6 @@ export default {
 .select-selected-span {
   width: 50%;
   height: 100%;
-  font-size: calc(1.5vw + 1vh);
   position: absolute;
   top: 0;
   background: transparent;
@@ -245,7 +247,6 @@ li {
   margin: 0.5vw 0 0 0 !important;
   border-bottom: 0.1vw solid red;
   padding: 2%;
-  font-size: calc(1.2vw + 1.2vh);
   overflow-wrap: break-word;
 }
 

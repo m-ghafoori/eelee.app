@@ -29,6 +29,7 @@
 .settings {
   width: 80vw;
   height: fit-content;
+  font-size: calc(1.2vw + 1.2vh);
   display: flex;
   justify-content: space-around;
 }
@@ -57,20 +58,12 @@
   margin-bottom: calc(0.8vw + 0.8vh);
 }
 
-.settings-list li:nth-of-type(1) .label-span {
-  border-top: 0.2vw solid;
+.settings-list li:nth-of-type(1) .input-wrapper {
+  border-top: calc(0.1vw + 0.2vh) solid !important;
 }
 
-.settings-list li:nth-of-type(1) .input-div {
-  border-top: 0.2vw solid;
-}
-
-.settings-list li:nth-last-of-type(1) .label-span {
-  border-bottom: 0.2vw solid;
-}
-
-.settings-list li:nth-last-of-type(1) .input-div {
-  border-bottom: 0.2vw solid;
+.settings-list li:nth-last-of-type(1) .input-wrapper {
+  border-bottom: calc(0.1vw + 0.2vh) solid !important;
 }
 
 /* ID Tags */

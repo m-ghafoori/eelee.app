@@ -1,12 +1,16 @@
 <template>
-  <div id="idpo-body" class="body">
+  <div id="idpo-body" class="body" @click="onresize">
     <Header pageRoute="/order" />
-    <section id="idpo-showcase" class="showcase align-items-start">
+    <section
+      ref="showcase"
+      id="idpo-showcase"
+      class="showcase align-items-start"
+    >
       <Slideshow
         uniqueLabel="Agreement"
         :slidesNumber="9"
         :loopMode="false"
-        :isActive="isFormSubmitted"
+        :isFinished="isFormSubmitted"
         @slideshow-finish="onSlideshowFinish"
       >
         <template #title1>
@@ -120,6 +124,7 @@
               id="idpo-clientRequest"
               cols="90"
               rows="10"
+              spellcheck="false"
               v-model="clientRequest"
               @click="onClientRequestClick"
               required
@@ -129,30 +134,40 @@
             <span ref="projectDurationLabel"
               >How long can you wait (in weeks) to receive it?</span
             >
-            <input
-              type="number"
-              ref="projectDurationInput"
-              id="idpo-projectDuration"
-              v-model="projectDuration"
-              min="1"
-              max="200"
-              @click="onProjectDurationClick"
-              required
+            <InputNumber
+              uniqueLabel="Weeks"
+              bgColor="#feeb7d"
+              mainColor="#d8215e"
+              mainBorderColor="#079536"
+              activeColor="#056926"
+              activeBorderColor="#d8215e"
+              :defaultValue="projectDuration"
+              :minValue="1"
+              :maxValue="200"
+              :fullBorder="true"
+              :hideLabel="true"
+              eventName="duration-change"
+              @duration-change="onDurationChange"
             />
           </div>
           <div class="idpo-input-field">
             <span ref="projectBudgetLabel"
               >Your Budget (in USD) on This Project:</span
             >
-            <input
-              type="number"
-              ref="projectBudgetInput"
-              id="idpo-projectBudget"
-              v-model="projectBudget"
-              min="1000"
-              maxlength="7"
-              @click="onProjectBudgetClick"
-              required
+            <InputNumber
+              uniqueLabel="$"
+              bgColor="#feeb7d"
+              mainColor="#d8215e"
+              mainBorderColor="#079536"
+              activeColor="#056926"
+              activeBorderColor="#d8215e"
+              :defaultValue="projectBudget"
+              :minValue="1000"
+              :maxValue="10000000"
+              :fullBorder="true"
+              :hideLabel="true"
+              eventName="budget-change"
+              @budget-change="onBudgetChange"
             />
           </div>
           <div class="idpo-input-field">
@@ -161,6 +176,7 @@
               type="email"
               ref="clientEmailInput"
               id="idpo-clientEmail"
+              spellcheck="false"
               v-model="clientEmail"
               @click="onClientEmailClick"
               required
@@ -186,6 +202,7 @@
 import Header from "@/components/Header/Header.vue";
 import Footer from "@/components/Footer/Footer.vue";
 import Slideshow from "@/components/Slideshow/Slideshow.vue";
+import InputNumber from "@/components/Inputs/InputNumber.vue";
 
 export default {
   name: "Order",
@@ -194,6 +211,7 @@ export default {
     Header,
     Footer,
     Slideshow,
+    InputNumber,
   },
 
   data() {
@@ -208,8 +226,6 @@ export default {
       noRequestError: false,
       noEmailError: false,
       invalidEmailError: false,
-      invalidDurationError: false,
-      invalidBudgetError: false,
       isFormSubmitted: false,
     };
   },
@@ -257,47 +273,45 @@ export default {
         this.$refs.clientEmailInput.parentElement.style.borderColor = "#daa520";
       }
     },
-    invalidDurationError(val) {
-      if (val) {
-        this.$refs.projectDurationLabel.classList.add("idpo-input-field-error");
-        this.$refs.projectDurationLabel.innerHTML =
-          "Error: Invalid Number of Weeks<br>(Must be a value between 1 and 200)";
-        this.$refs.projectDurationInput.classList.add("idpo-input-error");
-        this.$refs.projectDurationInput.parentElement.style.borderColor =
-          "#f00";
-      } else {
-        this.$refs.projectDurationLabel.classList.remove(
-          "idpo-input-field-error"
-        );
-        this.$refs.projectDurationLabel.innerHTML =
-          "How long can you wait (in weeks) to receive it?";
-        this.$refs.projectDurationInput.classList.remove("idpo-input-error");
-        this.$refs.projectDurationInput.parentElement.style.borderColor =
-          "#daa520";
-      }
-    },
-    invalidBudgetError(val) {
-      if (val) {
-        this.$refs.projectBudgetLabel.classList.add("idpo-input-field-error");
-        this.$refs.projectBudgetLabel.innerHTML =
-          "Error: Invalid Budget Amount<br>(Must be a value between 1000 and 9,000,000 USD)";
-        this.$refs.projectBudgetInput.classList.add("idpo-input-error");
-        this.$refs.projectBudgetInput.parentElement.style.borderColor = "#f00";
-      } else {
-        this.$refs.projectBudgetLabel.classList.remove(
-          "idpo-input-field-error"
-        );
-        this.$refs.projectBudgetLabel.innerHTML =
-          "Your Budget (in USD) on This Project:";
-        this.$refs.projectBudgetInput.classList.remove("idpo-input-error");
-        this.$refs.projectBudgetInput.parentElement.style.borderColor =
-          "#daa520";
-      }
-    },
   },
 
   methods: {
     // Event Handlers
+
+    onresize() {
+      console.log(
+        this.$refs.showcase.offsetWidth,
+        document.querySelector(".slideshow-next").offsetWidth,
+        document.querySelector(".slideshow-previous").offsetWidth
+      );
+      if (window.innerWidth / window.innerHeight <= 1) {
+        document.querySelectorAll(".idpo-input-field").forEach((element) => {
+          element.classList.add("flex-column", "align-items-start");
+        });
+        if (document.querySelector("#idpo-clientEmail"))
+          document.querySelector("#idpo-clientEmail").style.width = "90%";
+        if (
+          document.querySelector(".slideshow-next").offsetWidth >
+          this.$refs.showcase.offsetWidth
+        )
+          this.$refs.showcase.style.width = `${
+            document.querySelector(".slideshow-next").offsetWidth
+          }px`;
+        if (
+          document.querySelector(".slideshow-previous").offsetWidth >
+          this.$refs.showcase.offsetWidth
+        )
+          this.$refs.showcase.style.width = `${
+            document.querySelector(".slideshow-previous").offsetWidth
+          }px`;
+      } else {
+        document.querySelectorAll(".idpo-input-field").forEach((element) => {
+          element.classList.remove("flex-column", "align-items-start");
+        });
+        if (document.querySelector("#idpo-clientEmail"))
+          document.querySelector("#idpo-clientEmail").style.width = "60%";
+      }
+    },
 
     // Order Form
     onClientRequestClick() {
@@ -307,27 +321,21 @@ export default {
       this.noEmailError = false;
       this.invalidEmailError = false;
     },
-    onProjectBudgetClick() {
-      this.invalidBudgetError = false;
+    onDurationChange(val) {
+      this.projectDuration = val;
     },
-    onProjectDurationClick() {
-      this.invalidDurationError = false;
+    onBudgetChange(val) {
+      this.projectBudget = val;
     },
     onSlideshowFinish() {
       if (this.clientRequest == "") this.noRequestError = true;
       if (this.clientEmail == "") this.noEmailError = true;
       if (!this.$refs.clientEmailInput.validity.valid && !this.noEmailError)
         this.invalidEmailError = true;
-      if (this.projectBudget < 1000 || this.projectBudget > 9000000)
-        this.invalidBudgetError = true;
-      if (this.projectDuration < 1 || this.projectDuration > 200)
-        this.invalidDurationError = true;
       if (
         !this.noRequestError &&
         !this.noEmailError &&
-        !this.invalidEmailError &&
-        !this.invalidBudgetError &&
-        !this.invalidDurationError
+        !this.invalidEmailError
       ) {
         var formData = new FormData();
         formData.append("request", this.clientRequest);
@@ -340,6 +348,10 @@ export default {
         this.isFormSubmitted = true;
       }
     },
+  },
+
+  created() {
+    window.addEventListener("resize", this.onresize);
   },
 
   mounted() {

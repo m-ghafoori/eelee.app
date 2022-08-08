@@ -7,8 +7,8 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
-    :width="`${imgWidth}px`"
-    :height="`${imgWidth - 10}px`"
+    width="calc(2vw + 2vh + 1px)"
+    height="calc(1.5vw + 1.5vh + 0.75px)"
     viewBox="0 0 297 297"
     style="enable-background: new 0 0 297 297"
     xml:space="preserve"
@@ -38,9 +38,6 @@
 export default {
   name: "ToRightArrow",
   props: {
-    imgWidth: {
-      default: 36,
-    },
     imgColor: {
       default: "#2bde67",
     },

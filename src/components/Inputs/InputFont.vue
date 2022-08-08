@@ -1,15 +1,15 @@
 <template>
-  <div class="font-div hoverable" @mouseleave="onDivMouseLeave">
+  <div class="input-wrapper hoverable" @mouseleave="onDivMouseLeave">
     <span
-      :id="`${removeSpace(labelName)}LabelSpan`"
+      :id="`${removeSpace(uniqueLabel)}LabelSpan`"
       class="label-span font-label-span"
       :style="labelStyle"
       @mousedown="preventDefaultEvents"
       @click="onLabelClick"
-      >{{ labelName }}</span
+      >{{ uniqueLabel }}</span
     >
     <InputSelect
-      :labelName="labelName"
+      :uniqueLabel="uniqueLabel"
       :dataListArray="fontsArray"
       :zIndex="selectZIndex"
       :updatorNum="selectUpdator"
@@ -29,10 +29,19 @@ export default {
     InputSelect,
   },
   props: {
-    eventName: String,
-    labelName: String,
-    selectZIndex: Number,
-    selectUpdator: Number,
+    uniqueLabel: {
+      type: String,
+      required: true
+    },
+    eventName: {
+      default: "font-change"
+    },
+    selectZIndex: {
+      default: 100
+    },
+    selectUpdator: {
+      default: 0
+    },
   },
   data() {
     return {
@@ -98,10 +107,10 @@ export default {
   },
   mounted() {
     this.labelSpan = document.getElementById(
-      `${this.removeSpace(this.labelName)}LabelSpan`
+      `${this.removeSpace(this.uniqueLabel)}LabelSpan`
     );
     this.selectInput = document.getElementById(
-      `selected${this.removeSpace(this.labelName)}`
+      `selected${this.removeSpace(this.uniqueLabel)}`
     );
   },
 };
@@ -113,19 +122,7 @@ span {
   background: transparent;
 }
 
-.font-div {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  padding: 0;
-  margin-bottom: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .font-label-span {
-  border-left: 0.2vw solid black;
   padding-left: 1vh;
   justify-content: flex-start;
 }

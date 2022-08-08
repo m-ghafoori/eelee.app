@@ -23,7 +23,7 @@
         <p ref="donationTxt" id="idpd-donationTxt">Help us by</p>
         <div class="d-flex align-items-center">
           <InputNumber
-            labelName="$"
+            uniqueLabel="$"
             inputName="PAYMENT_AMOUNT"
             :defaultValue="donationAmount"
             :minValue="0.01"
@@ -126,4 +126,8 @@ export default {
 
 <style scoped>
 @import "assets/css/donate.css";
+
+.input-wrapper {
+  font-size: calc(1.5vw + 1.5vh);
+}
 </style>
