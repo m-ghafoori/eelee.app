@@ -215,7 +215,6 @@ export default {
 
     // Starts initial appearance animations
     startAnimations() {
-      // console.log("animations started", new Date().getMilliseconds());
       this.mainContainerInitAppear();
       this.headerInitAppear();
       this.headerInitWind();
@@ -227,7 +226,6 @@ export default {
     // Loads home page with running animation without replaying initial animations,
     // when resizing the window
     showRunningHome() {
-      // console.log("running home called", new Date().getUTCMilliseconds());
       this.timeoutRefsList = [
         this.logoTimeoutRef,
         this.appNavTimeoutRef,
@@ -269,10 +267,6 @@ export default {
 
     // Starts mainContainer animation
     mainContainerInitAppear() {
-      // console.log(
-      //   "mainContainerInitAppear called",
-      //   new Date().getMilliseconds()
-      // );
       this.mainContainerInitRef = setTimeout(() => {
         this.mainContainer.classList.remove("invisible");
         this.mainContainer.classList.add(
@@ -285,7 +279,6 @@ export default {
 
     // Initial Header Animations
     headerInitAppear() {
-      // console.log("headerInitAppear called", new Date().getMilliseconds());
       this.headerInitRef = setTimeout(() => {
         this.logo.classList.remove("invisible");
         this.logo.classList.add("text-focus-in");
@@ -300,7 +293,6 @@ export default {
 
     // Sets the first wind effect on header
     headerInitWind() {
-      // console.log("headerInitWind called", new Date().getMilliseconds());
       this.headerInitWindref = setTimeout(() => {
         this.headerNavsList.forEach((item) => {
           item.classList.remove(
@@ -316,7 +308,6 @@ export default {
 
     // Header Running Animation Loop
     headerAnimationLoop() {
-      // console.log("headerAnimationLoop called", new Date().getMilliseconds());
       this.headerLoopInitIntervalRef = setInterval(() => {
         this.clearWindEffect();
         this.windEffect(1000, 900, 450, 450, 450);
@@ -325,7 +316,6 @@ export default {
 
     // Initial footerUl Animation
     footerNavInitAppear() {
-      // console.log("footerNavInitAppear called", new Date().getMilliseconds());
       this.footerNavInitRef = setTimeout(() => {
         this.footerNavClassList = "bounce-in-left";
 

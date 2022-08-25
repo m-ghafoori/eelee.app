@@ -1398,8 +1398,8 @@
    */
 @-webkit-keyframes puff-in-left {
     0% {
-        -webkit-transform: scale(2);
-        transform: scale(2);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
         -webkit-transform-origin: 0% 50%;
         transform-origin: 0% 50%;
         -webkit-filter: blur(0.4vw);
@@ -1420,8 +1420,8 @@
 
 @keyframes puff-in-left {
     0% {
-        -webkit-transform: scale(2);
-        transform: scale(2);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
         -webkit-transform-origin: 0% 50%;
         transform-origin: 0% 50%;
         -webkit-filter: blur(0.4vw);
@@ -1441,8 +1441,8 @@
 }
 
 .puff-in-left {
-    -webkit-animation: puff-in-left 3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-    animation: puff-in-left 3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    -webkit-animation: puff-in-left 2s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    animation: puff-in-left 2s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 }
 
 /* End of Home Page Animations */

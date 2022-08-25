@@ -52,7 +52,9 @@ export default {
   },
 
   props: {
-    pageRoute: String,
+    pageRoute: {
+      default: "none" ,
+    },
     logoMainColor: {
       default: "#b42857",
     },

@@ -96,26 +96,19 @@
             flex-grow-1
           "
         >
-          <div
-            id="idpp-appTxtImgContainer"
-            class="d-flex justify-content-between"
-          >
-            <p id="idpp-appFirstPar" class="idpp-paragraph flex-grow-1">
-              This is the classic "MineSweeper" game... But, it has a modern
-              design and everything is customizable! <br /><br />
+          <div id="idpp-appTxtImgContainer" class="">
+            <div id="idpp-appImageContainer" class="">
+              <div id="idpp-appImgDiv" class="idpp-reflection"></div>
+            </div>
+            <p id="idpp-appFirstPar" class="idpp-paragraph">
+              This is the classic "Mine Sweeper" game... But, it has a modern
+              design and everything is customizable! <br /><br /><br />
               You can change everything from game-specific numbers, to colors
               and fonts of every element, without disturbing the game play...
               <br /><br />
               It's really nice! Give it a try :)
             </p>
-            <div id="idpp-appImageContainer" class="">
-              <div
-                id="idpp-appImgDiv"
-                class="idpp-reflection d-inline-block"
-              ></div>
-            </div>
           </div>
-          <p id="idpp-appSecondPar" class="idpp-paragraph flex-grow-1"></p>
         </div>
       </div>
 
@@ -144,26 +137,22 @@
             flex-grow-1
           "
         >
-          <div
-            id="idpp-portTxtImgContainer"
-            class="d-flex justify-content-between"
-          >
+          <div id="idpp-portTxtImgContainer" class="">
             <div id="idpp-portImageContainer" class="">
-              <div
-                id="idpp-portImgDiv"
-                class="idpp-reflection d-inline-block"
-              ></div>
+              <div id="idpp-portImgDiv" class="idpp-reflection"></div>
             </div>
-            <p id="idpp-portFirstPar" class="idpp-paragraph flex-grow-1">
-              This is the classic "MineSweeper" game... But, it has a modern
-              design and everything is customizable! <br /><br />
-              You can change everything from game-specific numbers, to colors
-              and fonts of every element, without disturbing the game play...
+            <p id="idpp-portFirstPar" class="idpp-paragraph">
+              The current page icludes really cool effects and animations!
               <br /><br />
-              It's really nice! Give it a try :)
+              The pictures have 3D effects, and the sections have an effect
+              called "Lazy Load", which means that every section will be loaded
+              as the page is scrolled and riches to that section's area.
+              <br /><br />
+              You may also notice the complete responsiveness of the page,
+              especially in the alignment of the text and images in each
+              section, as you resize the window or change the zoom level of it.
             </p>
           </div>
-          <p id="idpp-portSecondPar" class="idpp-paragraph flex-grow-1"></p>
         </div>
       </div>
 
@@ -192,7 +181,7 @@
           "
         >
           <p id="idpp-othersFirstPar" class="idpp-paragraph flex-grow-1">
-            Two distinct responsive home pages for different screen sizes!
+            You can find three other pages on our website...
           </p>
           <div
             id="idpp-othersImageContainer"
@@ -209,9 +198,13 @@
             </div>
           </div>
           <p id="idpp-othersSecondPar" class="idpp-paragraph flex-grow-1">
-            They both have artistic designs along with animated elements. <br />
-            Two samples for clients who are interested in this type of user
-            interface design...
+            Contact, Donate and Order pages also have interesting features that
+            you might want in your app too. <br />
+            There is a cool slideshow for multipage contents. You can also see
+            various types of error messages in these pages and select your
+            favourite one for your website.<br /><br />
+            If there are any other features that you wanna have on your website,
+            we are ready to build them for you :)
           </p>
         </div>
       </div>
@@ -307,33 +300,37 @@ export default {
     onScroll() {
       if (
         !this.loadHome &&
-        (this.$refs.homeHeader.getBoundingClientRect().top < 160 ||
+        (this.$refs.homeHeader.getBoundingClientRect().top <
+          window.innerHeight * 0.5 ||
           this.$refs.homePage.getBoundingClientRect().top <
-            window.innerHeight - 0.6 * this.$refs.homePage.offsetWidth)
+            window.innerHeight - 0.5 * this.$refs.homePage.offsetWidth)
       ) {
         this.loadHome = true;
       }
       if (
         !this.loadApp &&
-        (this.$refs.appHeader.getBoundingClientRect().top < 160 ||
+        (this.$refs.appHeader.getBoundingClientRect().top <
+          window.innerHeight * 0.5 ||
           this.$refs.appPage.getBoundingClientRect().top <
-            window.innerHeight - 0.6 * this.$refs.appPage.offsetWidth)
+            window.innerHeight - 0.5 * this.$refs.appPage.offsetWidth)
       ) {
         this.loadApp = true;
       }
       if (
         !this.loadPort &&
-        (this.$refs.portHeader.getBoundingClientRect().top < 160 ||
+        (this.$refs.portHeader.getBoundingClientRect().top <
+          window.innerHeight * 0.5 ||
           this.$refs.portPage.getBoundingClientRect().top <
-            window.innerHeight - 0.6 * this.$refs.portPage.offsetWidth)
+            window.innerHeight - 0.5 * this.$refs.portPage.offsetWidth)
       ) {
         this.loadPort = true;
       }
       if (
         !this.loadOthers &&
-        (this.$refs.othersHeader.getBoundingClientRect().top < 160 ||
+        (this.$refs.othersHeader.getBoundingClientRect().top <
+          window.innerHeight * 0.5 ||
           this.$refs.othersPage.getBoundingClientRect().top <
-            window.innerHeight - 0.6 * this.$refs.othersPage.offsetWidth)
+            window.innerHeight - 0.5 * this.$refs.othersPage.offsetWidth)
       ) {
         this.loadOthers = true;
       }
@@ -356,6 +353,15 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-green");
     });
+    if (
+      navigator.userAgent.indexOf("Firefox") != -1 ||
+      navigator.userAgent.indexOf("OPR") != -1
+    ) {
+      document.querySelector("#idpp-appTxtImgContainer").style.lineHeight =
+        "0.86vw";
+      document.querySelector("#idpp-portTxtImgContainer").style.lineHeight =
+        "0.86vw";
+    }
   },
 
   beforeUnmount() {

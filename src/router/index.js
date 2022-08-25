@@ -32,9 +32,6 @@ const routes = [
   {
     path: '/order',
     name: 'order',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/order/Order.vue')
     }
@@ -42,9 +39,6 @@ const routes = [
   {
     path: '/donate',
     name: 'donate',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/donate/Donate.vue')
     }
@@ -52,11 +46,15 @@ const routes = [
   {
     path: '/contact',
     name: 'contact',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/contact/Contact.vue')
+    }
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'notfound',
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/NotFound.vue')
     }
   },
 ]

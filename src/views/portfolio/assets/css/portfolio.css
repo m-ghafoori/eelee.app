@@ -1,7 +1,6 @@
 :root {
     --home-lg-width: 40vw;
     --home-md-width: 18vw;
-    --app-width: 40vw;
 }
 
 /* Classes */
@@ -13,7 +12,7 @@
 .idpp-page-flexbox {
     width: 100%;
     height: fit-content;
-    padding: calc(2vw + 0.7rem) 0;
+    padding: calc(2vw + 2vh) 0;
 }
 
 .idpp-reflection {
@@ -24,8 +23,6 @@
     position: absolute;
     opacity: 0.7;
     transform-style: preserve-3d;
-    /* box-shadow: 0px 50px 70px rgba(0,0,0,0.3),
-              0px 10px 10px rgba(0,0,0,0.1); */
 }
 
 .idpp-reflection::after {
@@ -47,16 +44,17 @@
     height: 20%;
     position: absolute;
     bottom: -20%;
-    background: linear-gradient(to bottom, #ffd70000, #ffd70066 50%, rgba(255, 215, 0, 1));
+    background: linear-gradient(to bottom, #ffd70000, #ffd70066 50%, #ffd700);
     z-index: 1;
 }
 
 .idpp-paragraph {
     font-family: 'Courgette', cursive;
-    font-size: calc(1.5vw + 0.4rem);
+    font-size: calc(1.5vw + 1.5vh);
     color: #6a24ac;
     padding: 5%;
     margin: 0;
+    line-height: calc(2vw + 3vh);
 }
 
 .idpp-section-header {
@@ -65,7 +63,7 @@
 }
 
 .idpp-header-border {
-    border: 1px solid #d8215e;
+    border: 0.1vh solid #d8215e;
     background: #d8215e;
 }
 
@@ -74,21 +72,21 @@
     text-align: center;
     padding: 2%;
     color: #1b7521;
-    font-size: calc(1.5vw + 0.5rem);
+    font-size: calc(1.5vw + 1.5vh);
     opacity: 1;
 }
 
 .idpp-section-page {
     width: 100%;
     height: fit-content;
-    border: 2px solid #d8215e;
+    border: 0.3vh solid #d8215e;
     border-top: 0;
-    margin-bottom: 50px;
+    margin-bottom: calc(4vw + 4vh);
     position: relative;
 }
 
 .idpp-section-page:nth-last-of-type(1) {
-    margin-bottom: 100px;
+    margin-bottom: calc(8vw + 8vh);
 }
 
 /* ID Tags */
@@ -104,14 +102,8 @@
     width: 80%;
     height: fit-content;
     position: relative;
-    top: 10px;
-    margin: 80px auto;
-}
-
-/* Main Section */
-
-#idpp-mainPar {
-    height: fit-content;
+    top: calc(1vw + 1vh);
+    margin: calc(7vw + 7vh) auto;
 }
 
 /* Home Section */
@@ -122,15 +114,15 @@
 
 #idpp-homeLgParentDiv {
     width: var(--home-lg-width);
-    height: calc(var(--home-lg-width)*0.467);
+    height: calc(var(--home-lg-width)*0.469);
     position: relative;
-    perspective: 20rem;
+    perspective: 80vw;
     margin: 0 5% 0 2%;
 }
 
 #idpp-homeLgDiv {
     width: var(--home-lg-width);
-    height: calc(var(--home-lg-width)*0.467);
+    height: calc(var(--home-lg-width)*0.469);
     background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeLg.png');
     transform: rotateY(-12deg);
 }
@@ -139,7 +131,7 @@
     width: var(--home-md-width);
     height: var(--home-md-width);
     position: relative;
-    perspective: 20rem;
+    perspective: 80vw;
     margin-right: 2%;
 }
 
@@ -153,51 +145,57 @@
 /* App Section */
 
 #idpp-appFirstPar {
-    width: 20%;
     text-align: center;
+    display: inline;
+    padding-left: 0;
 }
 
 #idpp-appTxtImgContainer {
-    justify-content: start;
     margin-top: 0;
+    padding: 0 3vw;
 }
 
 #idpp-appImageContainer {
-    width: var(--app-width);
-    height: calc(var(--app-width)*1.038);
-    margin-right: 4%;
+    width: var(--home-lg-width);
+    height: calc(var(--home-lg-width)*0.676637);
+    display: inline;
+    shape-outside: margin-box;
+    float: right;
+    margin: 0 0 11% calc(2vw + 2vh);
 }
 
 #idpp-appImgDiv {
-    align-self: flex-end;
-    width: var(--app-width);
-    height: calc(var(--app-width)*1.038);
-    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/app.png');
+    width: var(--home-lg-width);
+    height: calc(var(--home-lg-width)*0.676637);
+    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/app2.png');
 }
 
 /* Portfolio Section */
 
 #idpp-portFirstPar {
-    width: 20%;
     text-align: center;
+    display: inline;
+    padding-left: 0;
 }
 
 #idpp-portTxtImgContainer {
-    justify-content: end;
     margin-top: 0;
+    padding: 0 3vw;
 }
 
 #idpp-portImageContainer {
-    width: var(--app-width);
-    height: calc(var(--app-width)*1.038);
-    margin-left: 4%;
+    width: var(--home-lg-width);
+    height: calc(var(--home-lg-width)*1.031477);
+    display: inline;
+    shape-outside: margin-box;
+    float: left;
+    margin: 0 calc(2vw + 2vh) 11% 0;
 }
 
 #idpp-portImgDiv {
-    align-self: flex-start;
-    width: var(--app-width);
-    height: calc(var(--app-width)*1.038);
-    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/app.png');
+    width: var(--home-lg-width);
+    height: calc(var(--home-lg-width)*1.031477);
+    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/portfolio.png');
 }
 
 /* Others Section */
@@ -214,14 +212,14 @@
     width: var(--home-md-width);
     height: var(--home-md-width);
     position: relative;
-    perspective: 20rem;
+    perspective: 80vw;
     margin: 5%;
 }
 
 #idpp-othersLeftDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
-    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeMd.png');
+    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/contact.png');
     transform: rotateY(12deg);
 }
 
@@ -235,38 +233,20 @@
 #idpp-othersMiddleDiv {
     width: calc(var(--home-md-width)*0.95);
     height: calc(var(--home-md-width)*0.95);
-    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeMd.png');
+    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/donate.png');
 }
 
 #idpp-othersRightParentDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
     position: relative;
-    perspective: 20rem;
+    perspective: 80vw;
     margin: 5%;
 }
 
 #idpp-othersRightDiv {
     width: var(--home-md-width);
     height: var(--home-md-width);
-    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/homeMd.png');
+    background-image: linear-gradient(to bottom, #ffd70000 70%, #ffd700b3 98%, #ffef92), url('../images/order.png');
     transform: rotateY(-12deg);
 }
-
-/* Media Queries */
-
-@media (max-width: 250px) {
-    :root {
-        --home-lg-width: 100px;
-        --home-md-width: 45px;
-        --app-width: 100px;
-    }
-}
-
-@media (max-width: 768px) {
-    .page-flexbox {
-        padding-bottom: 0;
-    }
-}
-
-/* End of Media Queries */
