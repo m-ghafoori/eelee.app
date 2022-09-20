@@ -508,6 +508,7 @@ export default {
   },
 
   mounted() {
+    document.body.parentElement.style.overflowY = "hidden";
     this.mainContainer = document.querySelector("#idph-mainContainer");
     this.mainContainer.style.setProperty("width", `${window.innerWidth}px`);
     this.mainContainer.style.setProperty("height", `${window.innerHeight}px`);
@@ -535,6 +536,10 @@ export default {
 
   created() {
     window.addEventListener("resize", this.onresize);
+  },
+
+  beforeUnmount() {
+    document.body.parentElement.style.overflowY = "auto";
   },
 };
 </script>
