@@ -124,10 +124,12 @@ export default {
         this.blurOnMouseDown = true;
       }
     },
-    // inputValue(val) {
-    //   if (val !== this.filteredValue) this.inputValue = this.filteredValue;
-    //   else this.$emit(this.eventName, this.inputValue);
-    // },
+    defaultValue(val) {
+      this.inputValue = val;
+    },
+    inputValue(val) {
+      this.$emit(this.eventName, val);
+    },
     isUpperSpinnerActive(val) {
       if (val) {
         if (this.inputValue < this.maxValue) this.inputValue++;
