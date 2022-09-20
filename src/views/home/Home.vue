@@ -55,7 +55,6 @@
             to="/order"
             @mouseenter="orderLinkMouseEnter"
             @mouseleave="orderLinkMouseLeave"
-            href="#"
             >Need A Modern Website ???</router-link
           >
           <span id="idph-orderMessage" class="invisible animate__animated"
