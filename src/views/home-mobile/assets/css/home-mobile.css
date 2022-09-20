@@ -79,7 +79,7 @@
 #idpm-logoMoon {
     font-family: "Illustrated";
     font-size: calc(2vw + 2vh);
-    padding-top: calc(1vw + 1vh);
+    /* padding-top: calc(1vw + 1vh); */
     text-shadow: 0 0 3vw #a2e5ff;
 }
 
