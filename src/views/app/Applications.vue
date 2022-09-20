@@ -27,15 +27,10 @@ export default {
   },
 
   mounted() {
-    document.body.parentElement.style.overflowY = "auto";
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
       element.classList.add("pointer-green");
     });
-  },
-
-  beforeUnmount() {
-    document.body.parentElement.style.overflowY = "hidden";
   },
 };
 </script>

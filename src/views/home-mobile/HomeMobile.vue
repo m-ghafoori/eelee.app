@@ -464,7 +464,6 @@ export default {
   },
 
   mounted() {
-    document.body.parentElement.classList.add("overflow-hidden");
     this.mainContainer = document.querySelector("#idpm-mainContainer");
     this.mainContainer.style.setProperty("width", `${window.innerWidth}px`);
     this.mainContainer.style.setProperty("height", `${window.innerHeight}px`);

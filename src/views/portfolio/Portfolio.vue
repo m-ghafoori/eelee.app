@@ -346,7 +346,6 @@ export default {
     this.sectionPage = document
       .getElementsByClassName("idpp-section-page")
       .item(0);
-    document.body.parentElement.style.overflowY = "auto";
     this.onLoad();
     this.onScroll();
     document.querySelectorAll(".hoverable").forEach((element) => {
@@ -362,10 +361,6 @@ export default {
       document.querySelector("#idpp-portTxtImgContainer").style.lineHeight =
         "0.86vw";
     }
-  },
-
-  beforeUnmount() {
-    document.body.parentElement.style.overflowY = "hidden";
   },
 };
 </script>

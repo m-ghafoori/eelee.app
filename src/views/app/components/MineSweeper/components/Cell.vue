@@ -1,6 +1,6 @@
 <template>
   <div
-    class="cell"
+    class="cell prevent-select"
     :style="cellStyle"
     @click="leftClickEmitter(this.info, e)"
     @contextmenu="rightClickEmitter(this.info, e)"

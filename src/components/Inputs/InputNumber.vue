@@ -124,10 +124,10 @@ export default {
         this.blurOnMouseDown = true;
       }
     },
-    inputValue(val) {
-      if (val !== this.filteredValue) this.inputValue = this.filteredValue;
-      else this.$emit(this.eventName, this.inputValue);
-    },
+    // inputValue(val) {
+    //   if (val !== this.filteredValue) this.inputValue = this.filteredValue;
+    //   else this.$emit(this.eventName, this.inputValue);
+    // },
     isUpperSpinnerActive(val) {
       if (val) {
         if (this.inputValue < this.maxValue) this.inputValue++;
@@ -225,6 +225,7 @@ export default {
         this.colorChanger(this.mainColor, this.mainBorderColor);
         this.lastActiveElement = "none";
       }
+      if (this.inputValue !== this.filteredValue) this.inputValue = this.filteredValue;
     },
     onInputKeyDown(e) {
       if (e.key == "ArrowUp") {
