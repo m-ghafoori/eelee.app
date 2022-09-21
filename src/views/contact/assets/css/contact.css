@@ -32,7 +32,7 @@
     height: 100%;
     font-family: 'Courgette', cursive;
     font-size: calc(1vw + 2vh + 1px);
-    border: calc(0.1vw + 0.2vh) solid #b42857;
+    border: calc(0.1vw + 0.1vh) solid #b42857;
     padding: 0.5vw;
     margin: 0;
 }
@@ -86,7 +86,7 @@
     width: 100%;
     height: 30vh;
     margin: 1vw 0;
-    border: calc(0.1vw + 0.2vh) solid #b42857;
+    border: calc(0.1vw + 0.1vh) solid #b42857;
 }
 
 #idpc-messageDiv textarea {

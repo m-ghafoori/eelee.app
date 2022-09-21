@@ -271,7 +271,7 @@ export default {
         this.mainContainer.classList.add(
           "d-flex",
           "flex-column",
-          "puff-in-left"
+          "puff-in"
         );
       }, 1000);
     },
@@ -544,6 +544,5 @@ export default {
 </script>
 
 <style scoped>
-@import "assets/css/loading.css";
 @import "assets/css/home.css";
 </style>

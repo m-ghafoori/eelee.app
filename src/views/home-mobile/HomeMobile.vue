@@ -495,6 +495,5 @@ export default {
 </script>
 
 <style scoped>
-@import "assets/css/loading-mobile.css";
 @import "assets/css/home-mobile.css";
 </style>
