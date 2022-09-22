@@ -38,7 +38,7 @@
             <router-link
               id="idpm-portNav"
               title="App Sample"
-              to="/app"
+              to="/applications"
               class="idpm-nav-link text-shine hoverable"
               >App</router-link
             >
@@ -460,7 +460,6 @@ export default {
   },
 
   created() {
-    window.addEventListener("load", this.startAnimations);
     window.addEventListener("resize", this.onresize);
   },
 
@@ -481,6 +480,7 @@ export default {
       element.classList.add("pointer-white");
     });
     this.isMounted = true;
+    this.startAnimations();
     this.donateUpdator();
     this.skipUpdator();
     this.noteUpdator();

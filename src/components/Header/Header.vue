@@ -24,7 +24,7 @@
           >
         </li>
         <li>
-          <router-link to="/app" class="nav-link hoverable">App</router-link>
+          <router-link to="/applications" class="nav-link hoverable">App</router-link>
         </li>
         <li>
           <router-link to="/donate" class="nav-link hoverable"

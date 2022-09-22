@@ -19,7 +19,7 @@ import Footer from "@/components/Footer/Footer.vue";
 import MineSweeper from "./components/MineSweeper/MineSweeper.vue";
 
 export default {
-  name: "AppLication",
+  name: "AppLications",
   components: {
     Header,
     Footer,

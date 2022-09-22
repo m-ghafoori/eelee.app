@@ -340,7 +340,6 @@ export default {
 
   created() {
     window.addEventListener("resize", this.onScroll);
-    window.addEventListener("load", this.onLoad);
     window.addEventListener("scroll", this.onScroll);
   },
 
