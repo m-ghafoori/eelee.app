@@ -1,90 +1,73 @@
 <!DOCTYPE html>
 <html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Codystar:wght@300&family=Creepster&family=Faster+One&family=Baloo+2&family=Pacifico&family=Rammetto+One&family=Rock+Salt&display=swap&family=Gluten:wght@300&display=swap&family=Poiret+One&family=Fredericka+the+Great&family=Caveat:wght@700&family=Courgette&family=Josefin+Slab:wght@600&family=Nanum+Myeongjo:wght@700&family=Tajawal&display=swap&family=Julius+Sans+One"
+    />
+    <title>EELee App Design</title>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Codystar:wght@300&family=Creepster&family=Faster+One&family=Baloo+2&family=Pacifico&family=Rammetto+One&family=Rock+Salt&display=swap&family=Gluten:wght@300&display=swap&family=Poiret+One&family=Fredericka+the+Great&family=Caveat:wght@700&family=Courgette&family=Josefin+Slab:wght@600&family=Nanum+Myeongjo:wght@700&family=Tajawal&display=swap&family=Julius+Sans+One">
-  <link rel="stylesheet" href="loading.css">
-  <link rel="stylesheet" href="loading-mobile.css">
-  <title>
-    EELee App Design
-  </title>
-</head>
-
-<body>
-  <noscript>
-    <strong>We're sorry but EELee App Design website doesn't work properly without JavaScript enabled.
-      Please enable it to continue.</strong>
-  </noscript>
-  <div id="loader" class="loading d-none">
-    <div id="loadingTxt">LOADING ...</div>
-    <div class="mosaic-loader">
-      <div class="cell d-0"></div>
-      <div class="cell d-1"></div>
-      <div class="cell d-2"></div>
-      <div class="cell d-3"></div>
-      <div class="cell d-1"></div>
-      <div class="cell d-2"></div>
-      <div class="cell d-3"></div>
-      <div class="cell d-4"></div>
-      <div class="cell d-2"></div>
-      <div class="cell d-3"></div>
-      <div class="cell d-4"></div>
-      <div class="cell d-5"></div>
-      <div class="cell d-3"></div>
-      <div class="cell d-4"></div>
-      <div class="cell d-5"></div>
-      <div class="cell d-6"></div>
-    </div>
-  </div>
-  <div id="m-loader" class="loading d-none">
-    <div id="m-loadingTxt">LOADING ...</div>
-    <div class="m-mosaic-loader">
-      <div class="m-cell d-0"></div>
-      <div class="m-cell d-1"></div>
-      <div class="m-cell d-2"></div>
-      <div class="m-cell d-3"></div>
-      <div class="m-cell d-1"></div>
-      <div class="m-cell d-2"></div>
-      <div class="m-cell d-3"></div>
-      <div class="m-cell d-4"></div>
-      <div class="m-cell d-2"></div>
-      <div class="m-cell d-3"></div>
-      <div class="m-cell d-4"></div>
-      <div class="m-cell d-5"></div>
-      <div class="m-cell d-3"></div>
-      <div class="m-cell d-4"></div>
-      <div class="m-cell d-5"></div>
-      <div class="m-cell d-6"></div>
-    </div>
-  </div>
-  <div id="app" class="d-none"></div>
-  <!-- built files will be auto injected -->
-  <script>
-    if (window.innerWidth / window.innerHeight > 1.5) document.querySelector("#loader").classList.remove("d-none");
-    else document.querySelector("#m-loader").classList.remove("d-none");
-    window.addEventListener("resize", () => {
-      if (window.innerWidth / window.innerHeight > 1.5) {
-        document.querySelector("#m-loader").classList.add("d-none");
-        document.querySelector("#loader").classList.remove("d-none");
-      } else {
-        document.querySelector("#loader").classList.add("d-none");
-        document.querySelector("#m-loader").classList.remove("d-none");
-      }
-    });
-    window.addEventListener("load", () => {
-      document.querySelectorAll(".loading").forEach(div => {
-        div.classList.add("d-none");
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but EELee App Design website doesn't work properly without
+        JavaScript enabled. Please enable it to continue.</strong
+      >
+    </noscript>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      style="
+        margin: 25vh 25vw;
+        background: transparent;
+        display: block;
+        z-index: 201;
+        shape-rendering: auto;
+      "
+      width="50vw"
+      height="50vh"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="xMidYMid"
+      class="loading"
+    >
+      <path
+        d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50"
+        fill="#0bc0b7"
+        stroke="none"
+      >
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          dur="2s"
+          repeatCount="indefinite"
+          keyTimes="0;1"
+          values="0 50 51;360 50 51"
+        />
+      </path>
+      <!-- [ldio] generated by https://loading.io/ -->
+    </svg>
+    <div id="app" class="invisible"></div>
+    <!-- built files will be auto injected -->
+    <script>
+      const setHtmlBg = () => {
+        if (window.innerWidth / window.innerHeight > 1.5)
+          document.body.parentElement.style.background = "#ffffff";
+        else document.body.parentElement.style.background = "#000000";
+      };
+      window.addEventListener("DOMContentLoaded", setHtmlBg);
+      window.addEventListener("resize", setHtmlBg);
+      window.addEventListener("load", () => {
+        document.querySelector(".loading").classList.add("d-none");
+        document.body.parentElement.style.overflowY = "auto";
+        document.querySelector("#app").classList.remove("invisible");
       });
-      document.querySelector("#app").classList.remove("d-none");
-    })
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

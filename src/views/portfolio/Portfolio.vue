@@ -295,6 +295,7 @@ export default {
 
     onLoad() {
       this.loadMain = true;
+      this.onScroll();
     },
 
     onScroll() {
@@ -339,6 +340,7 @@ export default {
 
   created() {
     window.addEventListener("resize", this.onScroll);
+    window.addEventListener("load", this.onLoad);
     window.addEventListener("scroll", this.onScroll);
   },
 
@@ -346,8 +348,6 @@ export default {
     this.sectionPage = document
       .getElementsByClassName("idpp-section-page")
       .item(0);
-    this.onLoad();
-    this.onScroll();
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
       element.classList.add("pointer-green");
@@ -361,6 +361,7 @@ export default {
       document.querySelector("#idpp-portTxtImgContainer").style.lineHeight =
         "0.86vw";
     }
+    this.onLoad();
   },
 };
 </script>

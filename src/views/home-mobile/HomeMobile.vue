@@ -460,6 +460,7 @@ export default {
   },
 
   created() {
+    window.addEventListener("load", this.startAnimations);
     window.addEventListener("resize", this.onresize);
   },
 
@@ -480,7 +481,6 @@ export default {
       element.classList.add("pointer-white");
     });
     this.isMounted = true;
-    this.startAnimations();
     this.donateUpdator();
     this.skipUpdator();
     this.noteUpdator();

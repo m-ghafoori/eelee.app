@@ -214,6 +214,7 @@ export default {
 
     // Starts initial appearance animations
     startAnimations() {
+      document.body.parentElement.style.overflowY = "hidden";
       this.mainContainerInitAppear();
       this.headerInitAppear();
       this.headerInitWind();
@@ -507,7 +508,6 @@ export default {
   },
 
   mounted() {
-    document.body.parentElement.style.overflowY = "hidden";
     this.mainContainer = document.querySelector("#idph-mainContainer");
     this.mainContainer.style.setProperty("width", `${window.innerWidth}px`);
     this.mainContainer.style.setProperty("height", `${window.innerHeight}px`);
@@ -530,10 +530,10 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-gold");
     });
-    this.startAnimations();
   },
 
   created() {
+    window.addEventListener("load", this.startAnimations);
     window.addEventListener("resize", this.onresize);
   },
 

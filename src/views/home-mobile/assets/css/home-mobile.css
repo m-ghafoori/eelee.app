@@ -41,7 +41,7 @@
     top: 0;
     right: 0;
     background: black;
-    z-index: 1000;
+    z-index: 1;
     opacity: 1;
 }
 
@@ -54,7 +54,7 @@
     color: #b2ffff !important;
     font-size: calc(3vw + 3vh);
     position: relative;
-    z-index: 2000;
+    z-index: 2;
     margin-bottom: 3vh;
 }
 
@@ -64,7 +64,7 @@
     background: black;
     position: absolute;
     border-radius: 50%;
-    z-index: 3000;
+    z-index: 3;
 }
 
 #idpm-logoLeft,
@@ -220,7 +220,7 @@
     text-align: end;
     position: relative;
     left: 1vh;
-    z-index: 4000;
+    z-index: 4;
 }
 
 #idpm-footerNote {
