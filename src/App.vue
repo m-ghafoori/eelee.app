@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <router-view v-if="isLoaded"></router-view>
   <div v-if="!isLoaded" class="loading">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,8 +45,8 @@ export default {
   },
 
   created() {
-    document.addEventListener("readystatechange", () => {
-      if (document.readyState == "complete") this.isLoaded = true;
+    window.addEventListener("load", () => {
+      this.isLoaded = true;
     });
   },
 };
