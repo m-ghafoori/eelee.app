@@ -360,7 +360,9 @@ export default {
       document.querySelector("#idpp-portTxtImgContainer").style.lineHeight =
         "0.86vw";
     }
-    this.onLoad();
+    window.addEventListener("load", () => {
+      this.onLoad();
+    });
   },
 };
 </script>

@@ -268,11 +268,7 @@ export default {
     mainContainerInitAppear() {
       this.mainContainerInitRef = setTimeout(() => {
         this.mainContainer.classList.remove("invisible");
-        this.mainContainer.classList.add(
-          "d-flex",
-          "flex-column",
-          "puff-in"
-        );
+        this.mainContainer.classList.add("d-flex", "flex-column", "puff-in");
       }, 1000);
     },
 
@@ -530,7 +526,9 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-gold");
     });
-    this.startAnimations();
+    window.addEventListener("load", () => {
+      this.startAnimations();
+    });
   },
 
   created() {
