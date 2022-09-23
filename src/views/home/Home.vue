@@ -527,7 +527,9 @@ export default {
       element.classList.add("pointer-gold");
     });
     window.addEventListener("load", () => {
-      this.startAnimations();
+      setTimeout(() => {
+        this.startAnimations();
+      }, 2000);
     });
   },
 

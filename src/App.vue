@@ -42,7 +42,9 @@ export default {
   mounted() {
     window.addEventListener("load", () => {
       console.log("loaded");
-      this.isLoaded = true;
+      setTimeout(() => {
+        this.isLoaded = true;
+      }, 2000);
     });
   },
 };

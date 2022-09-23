@@ -481,10 +481,12 @@ export default {
     });
     this.isMounted = true;
     window.addEventListener("load", () => {
-      this.startAnimations();
-      this.donateUpdator();
-      this.skipUpdator();
-      this.noteUpdator();
+      setTimeout(() => {
+        this.startAnimations();
+        this.donateUpdator();
+        this.skipUpdator();
+        this.noteUpdator();
+      }, 2000);
     });
   },
 

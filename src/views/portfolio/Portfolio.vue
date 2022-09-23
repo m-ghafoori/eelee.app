@@ -361,7 +361,9 @@ export default {
         "0.86vw";
     }
     window.addEventListener("load", () => {
-      this.onLoad();
+      setTimeout(() => {
+        this.onLoad();
+      }, 2000);
     });
   },
 };
