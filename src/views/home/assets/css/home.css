@@ -46,7 +46,8 @@
     font-family: 'Rock Salt', cursive;
     font-size: calc(1vw + 2.5vh);
     text-decoration: none;
-    padding: calc(1vw + 1vh);
+    padding: 0 calc(1vw + 1vh);
+    will-change: transform;
 }
 
 #idph-logo:hover {
@@ -61,10 +62,12 @@
 #idph-portNav,
 #idph-donateNav {
     font-family: 'Rammetto One', cursive;
+    will-change: transform;
 }
 
 #idph-orderNav {
     font-family: 'Rock Salt', cursive;
+    will-change: transform;
 }
 
 /* Showcase */

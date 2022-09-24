@@ -277,6 +277,8 @@
 }
 
 .animate__shakeX {
+    will-change: transform;
+    animation-delay: 2s;
     -webkit-animation-name: shakeX;
     animation-name: shakeX;
 }
@@ -334,6 +336,8 @@
 }
 
 .animate__shakeY {
+    will-change: transform;
+    animation-delay: 2s;
     -webkit-animation-name: shakeY;
     animation-name: shakeY;
 }
@@ -464,6 +468,8 @@
 }
 
 .animate__swing {
+    will-change: transform;
+    animation-delay: 2s;
     -webkit-transform-origin: top center;
     transform-origin: top center;
     -webkit-animation-name: swing;
@@ -578,6 +584,8 @@
 }
 
 .animate__animated.animate__flip {
+    will-change: transform;
+    animation-delay: 2s;
     -webkit-backface-visibility: visible;
     backface-visibility: visible;
     -webkit-animation-name: flip;
@@ -621,6 +629,8 @@
 }
 
 .animate__zoomInUp {
+    will-change: transform;
+    animation-delay: 2s;
     -webkit-animation-name: zoomInUp;
     animation-name: zoomInUp;
 }
@@ -755,8 +765,8 @@
 }
 
 .shake-top {
-    -webkit-animation: shake-top 3s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-    animation: shake-top 3s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    -webkit-animation: shake-top 3s cubic-bezier(0.455, 0.030, 0.515, 0.955) 5s both;
+    animation: shake-top 3s cubic-bezier(0.455, 0.030, 0.515, 0.955) 5s both;
 }
 
 /**
@@ -925,8 +935,9 @@
 }
 
 .bounce-in-left {
-    -webkit-animation: bounce-in-left 5.9s ease-in-out both;
-    animation: bounce-in-left 5.9s ease-in-out both;
+    will-change: transform, opacity;
+    -webkit-animation: bounce-in-left 5.9s ease-in-out 1s both;
+    animation: bounce-in-left 5.9s ease-in-out 1s both;
 }
 
 /**
@@ -1057,8 +1068,9 @@
 }
 
 .bounce-out-left {
-    -webkit-animation: bounce-out-left 5s ease-out both;
-    animation: bounce-out-left 5s ease-out both;
+    will-change: transform, opacity;
+    -webkit-animation: bounce-out-left 5s ease-out 1s both;
+    animation: bounce-out-left 5s ease-out 1s both;
 }
 
 /**

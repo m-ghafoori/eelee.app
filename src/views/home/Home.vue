@@ -177,19 +177,29 @@ export default {
     // Creates wind effect on header icons with customizable delays
     windEffect(initialDelay, beforeApp, beforePort, beforeDonate, beforeOrder) {
       this.logoTimeoutRef = setTimeout(() => {
-        this.logo.classList.add("shake-top");
+        requestAnimationFrame(() => {
+          this.logo.classList.toggle("shake-top");
+        })
 
         this.appNavTimeoutRef = setTimeout(() => {
-          this.appNav.classList.add("shake-top");
+          requestAnimationFrame(() => {
+            this.appNav.classList.toggle("shake-top");
+          })
 
           this.portNavTimeoutRef = setTimeout(() => {
-            this.portNav.classList.add("shake-top");
+            requestAnimationFrame(() => {
+              this.portNav.classList.toggle("shake-top");
+            })
 
             this.donateNavTimeoutRef = setTimeout(() => {
-              this.donateNav.classList.add("shake-top");
+              requestAnimationFrame(() => {
+                this.donateNav.classList.toggle("shake-top");
+              })
 
               this.orderNavTimeoutRef = setTimeout(() => {
-                this.orderNav.classList.add("shake-top");
+                requestAnimationFrame(() => {
+                  this.orderNav.classList.toggle("shake-top");
+                })
               }, beforeOrder);
             }, beforeDonate);
           }, beforePort);
@@ -206,7 +216,9 @@ export default {
       clearTimeout(this.appNavTimeoutRef);
       clearInterval(this.headerLoopIntervalRef);
       this.headerNavsList.forEach((item) => {
-        item.classList.remove("shake-top");
+        requestAnimationFrame(() => {
+          item.classList.remove("shake-top");
+        });
       });
     },
 
@@ -267,21 +279,27 @@ export default {
     // Starts mainContainer animation
     mainContainerInitAppear() {
       this.mainContainerInitRef = setTimeout(() => {
-        this.mainContainer.classList.remove("invisible");
-        this.mainContainer.classList.add("d-flex", "flex-column", "puff-in");
+        requestAnimationFrame(() => {
+          this.mainContainer.classList.remove("invisible");
+          this.mainContainer.classList.add("d-flex", "flex-column", "puff-in");
+        });
       }, 1000);
     },
 
     // Initial Header Animations
     headerInitAppear() {
       this.headerInitRef = setTimeout(() => {
-        this.logo.classList.remove("invisible");
-        this.logo.classList.add("text-focus-in");
+        requestAnimationFrame(() => {
+          this.logo.classList.remove("invisible");
+          this.logo.classList.add("text-focus-in");
+        });
         this.headerNavsInitRef = setTimeout(() => {
-          for (let i = 1; i < this.headerNavsList.length; i++) {
-            this.headerNavbar.classList.remove("invisible");
-            this.headerNavsList[i].classList.add("tracking-in-expand");
-          }
+          requestAnimationFrame(() => {
+            for (let i = 1; i < this.headerNavsList.length; i++) {
+              this.headerNavbar.classList.remove("invisible");
+              this.headerNavsList[i].classList.add("tracking-in-expand");
+            }
+          });
         }, 5300);
       }, 3500);
     },
@@ -290,12 +308,14 @@ export default {
     headerInitWind() {
       this.headerInitWindref = setTimeout(() => {
         this.headerNavsList.forEach((item) => {
-          item.classList.remove(
-            "tracking-in-expand",
-            "animate__swing",
-            "shake-top",
-            "text-focus-in"
-          );
+          requestAnimationFrame(() => {
+            item.classList.remove(
+              "tracking-in-expand",
+              "animate__swing",
+              "shake-top",
+              "text-focus-in"
+            );
+          });
         });
         this.windEffect(100, 800, 400, 400, 400);
       }, 14500);
@@ -304,60 +324,72 @@ export default {
     // Header Running Animation Loop
     headerAnimationLoop() {
       this.headerLoopInitIntervalRef = setInterval(() => {
-        this.clearWindEffect();
         this.windEffect(1000, 900, 450, 450, 450);
-      }, 33000);
+      }, 17000);
     },
 
     // Initial footerUl Animation
     footerNavInitAppear() {
       this.footerNavInitRef = setTimeout(() => {
-        this.footerNavClassList = "bounce-in-left";
+        requestAnimationFrame(() => {
+          this.footerNavClassList = "bounce-in-left";
+        });
 
         this.footerFirstIntervalRef = setInterval(() => {
-          this.footerNavClassList = "bounce-out-left";
+            requestAnimationFrame(() => {
+              this.footerNavClassList = "bounce-out-left";
+            })
 
           this.footerSecondIntervalRef = setTimeout(() => {
-            this.footerNavClassList = "bounce-in-left";
-          }, 5000);
-        }, 22000);
-      }, 8500);
+            requestAnimationFrame(() => {
+              this.footerNavClassList = "bounce-in-left";
+            });
+          }, 6000);
+        }, 32000);
+      }, 7500);
     },
 
     // Initial orderLink Animation
     orderLinkInitAppear() {
-      // console.log("orderLinkInitAppear called", new Date().getMilliseconds());
       this.orderLinkInitRef = setTimeout(() => {
-        this.orderDiv.firstElementChild.classList.remove("invisible");
-        this.orderDiv.firstElementChild.classList.add(
-          "animate__slower",
-          "animate__zoomInUp"
-        );
+        requestAnimationFrame(() => {
+          this.orderDiv.firstElementChild.classList.remove("invisible");
+          this.orderDiv.firstElementChild.classList.add(
+            "animate__slower",
+            "animate__zoomInUp"
+          );
+        });
 
         setTimeout(() => {
-          this.skipAnimations.classList.remove("vibrate-1");
-          this.skipAnimations.classList.add("tracking-out-contract-bck-bottom");
+          requestAnimationFrame(() => {
+            this.skipAnimations.classList.remove("vibrate-1");
+            this.skipAnimations.classList.add("tracking-out-contract-bck-bottom");
+          });
           setTimeout(() => {
-            this.skipAnimations.classList.add("invisible");
+            requestAnimationFrame(() => {
+              this.skipAnimations.classList.add("invisible");
+            });
           }, 1000);
         }, 3000);
 
         this.linkIntervalRef = setInterval(() => {
-          this.orderDiv.firstElementChild.classList.remove(
-            "animate__slower",
-            "animate__zoomInUp"
-          );
-          this.orderDiv.firstElementChild.classList.remove(
-            this.linkAnimationList[this.linkAnimationIndex]
-          );
-          this.linkAnimationIndex = this.nextNumber(
-            this.linkAnimationIndex,
-            this.linkAnimationList.length,
-            false
-          );
-          this.orderDiv.firstElementChild.classList.add(
-            this.linkAnimationList[this.linkAnimationIndex]
-          );
+          requestAnimationFrame(() => {
+            this.orderDiv.firstElementChild.classList.remove(
+              "animate__slower",
+              "animate__zoomInUp"
+            );
+            this.orderDiv.firstElementChild.classList.remove(
+              this.linkAnimationList[this.linkAnimationIndex]
+            );
+            this.linkAnimationIndex = this.nextNumber(
+              this.linkAnimationIndex,
+              this.linkAnimationList.length,
+              false
+            );
+            this.orderDiv.firstElementChild.classList.add(
+              this.linkAnimationList[this.linkAnimationIndex]
+            );
+          });
         }, 25000);
       }, 11500);
     },
@@ -381,24 +413,30 @@ export default {
     headerMouseLeave() {
       this.headerLoopIntervalRef = setInterval(() => {
         this.headerNavsList.forEach((item) => {
-          item.classList.remove(
-            "tracking-in-expand",
-            "animate__swing",
-            "shake-top"
-          );
+          requestAnimationFrame(() => {
+            item.classList.remove(
+              "tracking-in-expand",
+              "animate__swing",
+              "shake-top"
+            );
+          });
         });
         this.windEffect(1000, 1000, 500, 500, 500);
       }, 13000);
     },
 
     logoMouseEnter() {
-      this.logo.classList.remove("animate__swing", "text-focus-in");
-      this.logo.classList.add("pulsate-fwd-internal");
+      requestAnimationFrame(() => {
+        this.logo.classList.remove("animate__swing", "text-focus-in");
+        this.logo.classList.add("pulsate-fwd-internal");
+      });
     },
 
     logoMouseLeave() {
-      this.logo.classList.remove("pulsate-fwd-internal");
-      this.logo.classList.add("animate__swing");
+      requestAnimationFrame(() => {
+        this.logo.classList.remove("pulsate-fwd-internal");
+        this.logo.classList.add("animate__swing");
+      });
     },
 
     // Showcase Section Handlers
@@ -406,67 +444,83 @@ export default {
 
     orderLinkMouseEnter() {
       clearInterval(this.linkIntervalRef);
-      this.orderDiv.firstElementChild.classList.remove(
-        this.linkAnimationList[this.linkAnimationIndex],
-        "animate__slower",
-        "animate__zoomInUp"
-      );
-      this.orderDiv.firstElementChild.classList.add("scale-up-center");
-      this.orderDiv.lastElementChild.classList.remove(
-        "invisible",
-        "animate__zoomOut"
-      );
-      this.orderDiv.lastElementChild.classList.add("animate__flash");
-    },
-
-    orderLinkMouseLeave() {
-      this.orderDiv.firstElementChild.classList.remove("scale-up-center");
-      this.orderDiv.firstElementChild.classList.add("scale-down-center");
-      this.orderDiv.lastElementChild.classList.remove("animate__flash");
-      this.orderDiv.lastElementChild.classList.add("animate__zoomOut");
-      setTimeout(() => {
-        this.orderDiv.firstElementChild.classList.remove("scale-down-center");
-      }, 400);
-
-      this.linkIntervalRef = setInterval(() => {
+      requestAnimationFrame(() => {
         this.orderDiv.firstElementChild.classList.remove(
+          this.linkAnimationList[this.linkAnimationIndex],
           "animate__slower",
           "animate__zoomInUp"
         );
-        this.orderDiv.firstElementChild.classList.remove(
-          this.linkAnimationList[this.linkAnimationIndex]
+        this.orderDiv.firstElementChild.classList.add("scale-up-center");
+        this.orderDiv.lastElementChild.classList.remove(
+          "invisible",
+          "animate__zoomOut"
         );
-        this.linkAnimationIndex = this.nextNumber(
-          this.linkAnimationIndex,
-          this.linkAnimationList.length,
-          false
-        );
-        this.orderDiv.firstElementChild.classList.add(
-          this.linkAnimationList[this.linkAnimationIndex]
-        );
+        this.orderDiv.lastElementChild.classList.add("animate__flash");
+      });
+    },
+
+    orderLinkMouseLeave() {
+      requestAnimationFrame(() => {
+        this.orderDiv.firstElementChild.classList.remove("scale-up-center");
+        this.orderDiv.firstElementChild.classList.add("scale-down-center");
+        this.orderDiv.lastElementChild.classList.remove("animate__flash");
+        this.orderDiv.lastElementChild.classList.add("animate__zoomOut");
+      });
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          this.orderDiv.firstElementChild.classList.remove("scale-down-center");
+        });
+      }, 400);
+
+      this.linkIntervalRef = setInterval(() => {
+        requestAnimationFrame(() => {
+          this.orderDiv.firstElementChild.classList.remove(
+            "animate__slower",
+            "animate__zoomInUp"
+          );
+          this.orderDiv.firstElementChild.classList.remove(
+            this.linkAnimationList[this.linkAnimationIndex]
+          );
+          this.linkAnimationIndex = this.nextNumber(
+            this.linkAnimationIndex,
+            this.linkAnimationList.length,
+            false
+          );
+          this.orderDiv.firstElementChild.classList.add(
+            this.linkAnimationList[this.linkAnimationIndex]
+          );
+        });
       }, 25000);
     },
 
     // skipAnimations Handlers
 
     onSkipAnimationsMouseEnter() {
-      this.skipAnimations.classList.remove("vibrate-1", "scale-down-center");
-      this.skipAnimations.classList.add("scale-up-center");
+      requestAnimationFrame(() => {
+        this.skipAnimations.classList.remove("vibrate-1", "scale-down-center");
+        this.skipAnimations.classList.add("scale-up-center");
+      });
     },
     onSkipAnimationsMouseLeave() {
-      this.skipAnimations.classList.remove("scale-up-center");
-      this.skipAnimations.classList.add("scale-down-center");
+      requestAnimationFrame(() => {
+        this.skipAnimations.classList.remove("scale-up-center");
+        this.skipAnimations.classList.add("scale-down-center");
+      });
       setTimeout(() => {
-        this.skipAnimations.classList.remove("scale-down-center");
-        this.skipAnimations.classList.add("vibrate-1");
+        requestAnimationFrame(() => {
+          this.skipAnimations.classList.remove("scale-down-center");
+          this.skipAnimations.classList.add("vibrate-1");
+        });
       }, 500);
     },
     onSkipAnimationsClick() {
       this.showRunningHome();
-      this.skipAnimations.classList.remove("scale-up-center");
-      this.skipAnimations.classList.add("puff-out-hor");
+      requestAnimationFrame(() => {
+        this.skipAnimations.classList.remove("scale-up-center");
+        this.skipAnimations.classList.add("puff-out-hor");
+      });
       setTimeout(() => {
-        this.skipAnimations.classList.add("d-none");
+        this.skipAnimations.classList.add("invisible");
       }, 1500);
     },
 
@@ -475,28 +529,42 @@ export default {
     onFooterMouseEnter(navLink) {
       clearInterval(this.footerFirstIntervalRef);
       clearInterval(this.footerSecondIntervalRef);
-      this.footerClassList = "";
-      this.footerNavClassList = "";
+      requestAnimationFrame(() => {
+        this.footerClassList = "";
+        this.footerNavClassList = "";
+      });
       if (navLink == "linkedin")
+      requestAnimationFrame(() => {
         this.linkedinClassList =
           "pointer-gold animate__animated animate__headShake";
+      });
       if (navLink == "email")
+      requestAnimationFrame(() => {
         this.emailClassList =
           "pointer-gold animate__animated animate__headShake";
+      });
       if (navLink == "telegram")
+      requestAnimationFrame(() => {
         this.telegramClassList =
           "pointer-gold animate__animated animate__headShake";
+      });
     },
     onFooterMouseLeave(navLink) {
-      this.footerClassList = "vibrate-1";
-      if (navLink == "linkedin") this.linkedinClassList = "pointer-gold";
-      if (navLink == "email") this.emailClassList = "pointer-gold";
-      if (navLink == "telegram") this.telegramClassList = "pointer-gold";
+      requestAnimationFrame(() => {
+        this.footerClassList = "vibrate-1";
+      });
+      if (navLink == "linkedin") requestAnimationFrame(() => {this.linkedinClassList = "pointer-gold";});
+      if (navLink == "email") requestAnimationFrame(() => {this.emailClassList = "pointer-gold";});
+      if (navLink == "telegram") requestAnimationFrame(() => {this.telegramClassList = "pointer-gold";});
       this.footerFirstIntervalRef = setInterval(() => {
-        this.footerNavClassList = "bounce-out-left";
+        requestAnimationFrame(() => {
+          this.footerNavClassList = "bounce-out-left";
+        });
 
         this.footerSecondIntervalRef = setTimeout(() => {
-          this.footerNavClassList = "bounce-in-left";
+          requestAnimationFrame(() => {
+            this.footerNavClassList = "bounce-in-left";
+          });
         }, 5000);
       }, 15000);
     },
