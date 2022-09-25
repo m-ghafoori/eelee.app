@@ -1,5 +1,6 @@
 <template>
   <div id="idph-bodyDiv" class="pointer-white">
+    <div class="loading idph-loading" v-if="!isPageLoaded">LOADING ...</div>
     <div id="idph-mainContainer" class="invisible d-flex flex-column">
       <header
         id="idph-header"
@@ -104,6 +105,8 @@ export default {
   },
   data() {
     return {
+      isPageLoaded: false,
+
       //#mainContainer Variables
       mainContainerInitRef: Function,
 
@@ -594,11 +597,10 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-gold");
     });
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        this.startAnimations();
-      }, 2000);
-    });
+    document.onreadystatechange = () => {
+      this.isPageLoaded = true;
+      this.startAnimations();
+    }
   },
 
   created() {

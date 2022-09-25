@@ -1,6 +1,6 @@
 <template>
   <div id="idpm-body" class="pointer-gold" @click="skipInitAnimations">
-    <div class="loading" v-if="!isPageLoaded">LOADING ...</div>
+    <div class="loading idpm-loading" v-if="!isPageLoaded">LOADING ...</div>
     <div
       ref="mainContainer"
       id="idpm-mainContainer"
@@ -436,6 +436,5 @@ export default {
 </script>
 
 <style scoped>
-@import "@/assets/css/loading.css";
 @import "assets/css/home-mobile.css";
 </style>

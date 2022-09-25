@@ -27,6 +27,7 @@ export default {
 </script>
 
 <style scoped>
+@import "@/assets/css/loading.css";
 @import "@/assets/css/animations.css";
 @import "@/assets/css/global.css";
 </style>
