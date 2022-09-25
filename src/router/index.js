@@ -8,7 +8,7 @@ const routes = [
     // this generates a separate chunk (home.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => {
-      if (window.innerWidth/window.innerHeight > 1.5) {
+      if (window.innerWidth/window.innerHeight > 1) {
         return import(/* webpackChunkName: "home" */ '../views/home/Home.vue');
       } else {
         return import(/* webpackChunkName: "home-mobile" */ '../views/home-mobile/HomeMobile.vue');

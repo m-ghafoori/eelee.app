@@ -55,7 +55,7 @@
     font-size: calc(3vw + 3vh);
     position: relative;
     z-index: 2;
-    margin-bottom: 3vh;
+    margin: 3vh 0;
 }
 
 #idpm-headerCover {
@@ -107,8 +107,8 @@
 
 #idpm-showcase {
     width: 100vw;
-    height: 30vh;
-    margin: 0;
+    height: fit-content;
+    margin-top: 15vh;
 }
 
 #idpm-orderDiv {
@@ -142,15 +142,16 @@
 
 #idpm-centralDiv {
     width: 100%;
-    flex-grow: 1;
+    height: 40vh;
+    /* flex-grow: 1; */
 }
 
-#idpm-navUl {
+#idpm-navbar {
     width: 45%;
     margin: 0 0 0 2vw;
 }
 
-#idpm-navUl * {
+#idpm-navbar * {
     width: fit-content;
     height: fit-content;
     margin: calc(1vw + 1vh) 0;
@@ -158,8 +159,8 @@
 }
 
 #idpm-orderCentral {
-    width: 45%;
-    height: 100%;
+    width: 100%;
+    height: 50%;
     padding: 6vh 0 0 8%;
 }
 
@@ -189,6 +190,7 @@
 #idpm-donateDiv {
     width: 100%;
     position: relative;
+    align-self: flex-end;
 }
 
 #idpm-donateLink {
@@ -204,32 +206,38 @@
 
 /* Notes */
 
-#idpm-notes {
+/* #idpm-notes {
     width: inherit;
     height: 1vh;
-    font-family: 'Gluten', cursive;
-    font-size: calc(1.2vw + 1.2vh);
-}
+} */
 
 #idpm-skipAnimations {
     width: fit-content;
     height: fit-content;
+    font-family: 'Gluten', cursive;
+    font-size: calc(1.2vw + 1.2vh);
     color: #a2e5ff;
     white-space: nowrap;
     line-height: 5vh;
+    letter-spacing: 0.7vw;
     text-align: end;
     position: relative;
     left: 1vh;
+    margin-top: 8vh;
     z-index: 4;
+    transform: rotate(-40deg);
 }
 
 #idpm-footerNote {
     width: fit-content;
     height: fit-content;
+    font-family: 'Gluten', cursive;
+    font-size: calc(1.2vw + 1.2vh);
     color: #a2e5ff;
     text-decoration: none;
     white-space: nowrap;
     transform: rotate(33deg);
     position: relative;
     right: 2vh;
+    margin-top: 8vh;
 }

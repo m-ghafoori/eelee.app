@@ -143,7 +143,7 @@ export default {
   computed: {
     wideHome() {
       return (
-        this.$route.path == "/" && this.windowWidth / this.windowHeight > 1.5
+        this.$route.path == "/" && this.windowWidth / this.windowHeight > 1
       );
     },
   },

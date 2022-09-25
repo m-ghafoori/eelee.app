@@ -1704,6 +1704,30 @@
     animation: star-appear 8s 1 ease both;
 }
 
+/**
+   * ----------------------------------------
+   * animation shining
+   * ----------------------------------------
+   */
+   @keyframes shining {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.shining {
+    animation: shining 12s ease 2s infinite both;
+    -webkit-animation: shining 12s ease 2s infinite both;
+}
+
 /* End of HomeMobile Page Animations */
 
 /* Portfolio Page Animations */

@@ -105,6 +105,10 @@ ul {
     justify-content: space-around !important;
 }
 
+.justify-content-evenly {
+    justify-content: space-evenly !important;
+}
+
 .align-items-center {
     align-items: center !important;
 }
