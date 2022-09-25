@@ -217,7 +217,10 @@ export default {
     onresize() {
       requestAnimationFrame(() => {
         this.mainContainer.style.setProperty("width", `${window.innerWidth}px`);
-        this.mainContainer.style.setProperty("height", `${window.innerHeight}px`);
+        this.mainContainer.style.setProperty(
+          "height",
+          `${window.innerHeight}px`
+        );
       });
     },
 
@@ -425,12 +428,10 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-white");
     });
-    document.onreadystatechange = () => {
-      if (document.readyState === "complete") {
-        this.isPageLoaded = true;
-        this.startAnimations();
-      }
-    };
+    window.addEventListener("load", () => {
+      this.isPageLoaded = true;
+      this.startAnimations();
+    });
   },
 };
 </script>
