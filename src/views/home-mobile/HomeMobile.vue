@@ -428,10 +428,12 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-white");
     });
-    window.addEventListener("load", () => {
-      this.isPageLoaded = true;
-      this.startAnimations();
-    });
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        this.startAnimations();
+      }
+    }
   },
 };
 </script>

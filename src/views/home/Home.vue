@@ -597,10 +597,12 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-gold");
     });
-    window.addEventListener("load", () => {
-      this.isPageLoaded = true;
-      this.startAnimations();
-    });
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        this.startAnimations();
+      }
+    }
   },
 
   created() {
