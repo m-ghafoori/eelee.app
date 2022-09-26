@@ -588,12 +588,13 @@ export default {
     window.addEventListener("resize", this.onresize);
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
+        console.log(document.readyState);
         this.isPageLoaded = true;
         this.startAnimations();
       }
     };
   },
-  
+
   mounted() {
     document.body.parentElement.style.overflowY = "hidden";
     this.mainContainer = document.querySelector("#idph-mainContainer");

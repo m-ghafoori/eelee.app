@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
+.wc-transform {
+    will-change: transform;
+}
+
+.wc-opacity {
+    will-change: opacity;
+}
+
+.wc-both {
+    will-change: transform, opacity;
+}
+
 /* Global Animations */
 
 /* ----------------------------------------------
@@ -1638,8 +1650,8 @@
 }
 
 .donate-bounce-in {
-    animation: donate-bounce-in 1s 1 ease-in both;
-    -webkit-animation: donate-bounce-in 1s 1 ease-in both;
+    animation: donate-bounce-in 1s 1 ease-in 1s both;
+    -webkit-animation: donate-bounce-in 1s 1 ease-in 1s both;
 }
 
 /**
@@ -1659,7 +1671,8 @@
 }
 
 .cloud-move {
-    animation: cloud-move 10s 1 ease both;
+    will-change: transform, opacity;
+    animation: cloud-move 10s 1 ease 0.5s both;
 }
 
 /**
@@ -1674,7 +1687,8 @@
 }
 
 .fade-cover {
-    animation: fade-out 6s 1 ease both;
+    will-change: transform, opacity;
+    animation: fade-out 6s 1 ease 0.5s both;
 }
 
 .fade-skip {

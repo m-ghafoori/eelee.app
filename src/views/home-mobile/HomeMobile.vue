@@ -181,6 +181,7 @@ export default {
   watch: {
     areAnimationsOver(val) {
       if (val) {
+        this.donateDiv.classList.remove("wc-both");
         requestAnimationFrame(() => {
           this.skipAnimations.classList.add("fade-skip");
         });
@@ -287,7 +288,7 @@ export default {
       });
       this.cloudMoveRef = setTimeout(() => {
         requestAnimationFrame(() => {
-          this.$refs.headerCover.classList.add("invisible");
+          this.$refs.headerCover.classList.add("d-none");
         });
       }, 10000);
     },
@@ -322,7 +323,7 @@ export default {
         });
         this.bodyCoverSecondRef = setTimeout(() => {
           requestAnimationFrame(() => {
-            this.$refs.bodyCover.classList.add("invisible");
+            this.$refs.bodyCover.classList.add("d-none");
           });
         }, 6000);
       }, 4000);
@@ -331,17 +332,20 @@ export default {
     // Initial donateLink Bounce
     donateDivInitBounce() {
       this.donateFirstRef = setTimeout(() => {
-        requestAnimationFrame(() => {
-          this.donateDiv.classList.remove("invisible");
-          this.donateDiv.classList.add("donate-bounce-out");
-        });
-        this.donateSecondRef = setTimeout(() => {
+        this.donateDiv.classList.add("wc-both");
+        setTimeout(() => {
           requestAnimationFrame(() => {
-            this.donateDiv.classList.remove("donate-bounce-out");
-            this.donateDiv.classList.add("donate-bounce-in");
+            this.donateDiv.classList.remove("invisible");
+            this.donateDiv.classList.add("donate-bounce-out");
+            this.donateSecondRef = setTimeout(() => {
+              requestAnimationFrame(() => {
+                this.donateDiv.classList.remove("donate-bounce-out");
+                this.donateDiv.classList.add("donate-bounce-in");
+              });
+            }, 1500);
           });
-        }, 1500);
-      }, 6000);
+        }, 2000);
+      }, 8000);
     },
 
     // Initial orderDiv Appearance
@@ -375,7 +379,7 @@ export default {
             this.$refs.orderRightBottom.classList.add("star-appear");
           });
         }, 2500);
-      }, 10000);
+      }, 13000);
     },
 
     // Initial Footer Appearance
@@ -405,7 +409,7 @@ export default {
           this.$refs.navbar.classList.add("star-appear");
         });
         this.areAnimationsOver = true;
-      }, 14000);
+      }, 17000);
     },
   },
 
@@ -413,6 +417,7 @@ export default {
     window.addEventListener("resize", this.onresize);
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
+        console.log(document.readyState);
         this.isPageLoaded = true;
         this.startAnimations();
       }
