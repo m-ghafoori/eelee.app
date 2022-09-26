@@ -143,6 +143,7 @@ export default {
 
   data() {
     return {
+      readyStateCounter: 1,
       linkedinClassList: "invisible footer-shadow pointer-white",
       emailClassList: "invisible footer-shadow pointer-white",
       telegramClassList: "invisible footer-shadow pointer-white",
@@ -415,13 +416,6 @@ export default {
 
   created() {
     window.addEventListener("resize", this.onresize);
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        console.log(document.readyState);
-        this.isPageLoaded = true;
-        this.startAnimations();
-      }
-    };
   },
 
   mounted() {
@@ -439,6 +433,13 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-white");
     });
+    document.onreadystatechange = () => {
+      console.log(this.readyStateCounter, document.readyState);
+      if (this.readyStateCounter == 10) {
+        this.isPageLoaded = true;
+        this.startAnimations();
+      } else this.readyStateCounter++;
+    };
   },
 };
 </script>
