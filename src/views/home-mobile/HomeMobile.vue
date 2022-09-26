@@ -411,6 +411,12 @@ export default {
 
   created() {
     window.addEventListener("resize", this.onresize);
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        this.startAnimations();
+      }
+    };
   },
 
   mounted() {
@@ -428,12 +434,6 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-white");
     });
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        this.isPageLoaded = true;
-        this.startAnimations();
-      }
-    }
   },
 };
 </script>

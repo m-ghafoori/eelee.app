@@ -182,27 +182,27 @@ export default {
       this.logoTimeoutRef = setTimeout(() => {
         requestAnimationFrame(() => {
           this.logo.classList.toggle("shake-top");
-        })
+        });
 
         this.appNavTimeoutRef = setTimeout(() => {
           requestAnimationFrame(() => {
             this.appNav.classList.toggle("shake-top");
-          })
+          });
 
           this.portNavTimeoutRef = setTimeout(() => {
             requestAnimationFrame(() => {
               this.portNav.classList.toggle("shake-top");
-            })
+            });
 
             this.donateNavTimeoutRef = setTimeout(() => {
               requestAnimationFrame(() => {
                 this.donateNav.classList.toggle("shake-top");
-              })
+              });
 
               this.orderNavTimeoutRef = setTimeout(() => {
                 requestAnimationFrame(() => {
                   this.orderNav.classList.toggle("shake-top");
-                })
+                });
               }, beforeOrder);
             }, beforeDonate);
           }, beforePort);
@@ -339,9 +339,9 @@ export default {
         });
 
         this.footerFirstIntervalRef = setInterval(() => {
-            requestAnimationFrame(() => {
-              this.footerNavClassList = "bounce-out-left";
-            })
+          requestAnimationFrame(() => {
+            this.footerNavClassList = "bounce-out-left";
+          });
 
           this.footerSecondIntervalRef = setTimeout(() => {
             requestAnimationFrame(() => {
@@ -366,7 +366,9 @@ export default {
         setTimeout(() => {
           requestAnimationFrame(() => {
             this.skipAnimations.classList.remove("vibrate-1");
-            this.skipAnimations.classList.add("tracking-out-contract-bck-bottom");
+            this.skipAnimations.classList.add(
+              "tracking-out-contract-bck-bottom"
+            );
           });
           setTimeout(() => {
             requestAnimationFrame(() => {
@@ -537,28 +539,37 @@ export default {
         this.footerNavClassList = "";
       });
       if (navLink == "linkedin")
-      requestAnimationFrame(() => {
-        this.linkedinClassList =
-          "pointer-gold animate__animated animate__headShake";
-      });
+        requestAnimationFrame(() => {
+          this.linkedinClassList =
+            "pointer-gold animate__animated animate__headShake";
+        });
       if (navLink == "email")
-      requestAnimationFrame(() => {
-        this.emailClassList =
-          "pointer-gold animate__animated animate__headShake";
-      });
+        requestAnimationFrame(() => {
+          this.emailClassList =
+            "pointer-gold animate__animated animate__headShake";
+        });
       if (navLink == "telegram")
-      requestAnimationFrame(() => {
-        this.telegramClassList =
-          "pointer-gold animate__animated animate__headShake";
-      });
+        requestAnimationFrame(() => {
+          this.telegramClassList =
+            "pointer-gold animate__animated animate__headShake";
+        });
     },
     onFooterMouseLeave(navLink) {
       requestAnimationFrame(() => {
         this.footerClassList = "vibrate-1";
       });
-      if (navLink == "linkedin") requestAnimationFrame(() => {this.linkedinClassList = "pointer-gold";});
-      if (navLink == "email") requestAnimationFrame(() => {this.emailClassList = "pointer-gold";});
-      if (navLink == "telegram") requestAnimationFrame(() => {this.telegramClassList = "pointer-gold";});
+      if (navLink == "linkedin")
+        requestAnimationFrame(() => {
+          this.linkedinClassList = "pointer-gold";
+        });
+      if (navLink == "email")
+        requestAnimationFrame(() => {
+          this.emailClassList = "pointer-gold";
+        });
+      if (navLink == "telegram")
+        requestAnimationFrame(() => {
+          this.telegramClassList = "pointer-gold";
+        });
       this.footerFirstIntervalRef = setInterval(() => {
         requestAnimationFrame(() => {
           this.footerNavClassList = "bounce-out-left";
@@ -573,6 +584,16 @@ export default {
     },
   },
 
+  created() {
+    window.addEventListener("resize", this.onresize);
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        this.startAnimations();
+      }
+    };
+  },
+  
   mounted() {
     document.body.parentElement.style.overflowY = "hidden";
     this.mainContainer = document.querySelector("#idph-mainContainer");
@@ -597,16 +618,6 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-gold");
     });
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        this.isPageLoaded = true;
-        this.startAnimations();
-      }
-    }
-  },
-
-  created() {
-    window.addEventListener("resize", this.onresize);
   },
 
   beforeUnmount() {
