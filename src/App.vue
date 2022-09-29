@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view v-if="isLoaded"></router-view>
   </div>
 </template>
 
@@ -12,6 +12,14 @@ export default {
     return {
       isLoaded: false,
     };
+  },
+
+  mounted() {
+    console.log(this.isLoaded);
+    if (!this.isLoaded) {
+      this.isLoaded = !this.isLoaded;
+      console.log(this.isLoaded);
+    }
   },
 };
 </script>
