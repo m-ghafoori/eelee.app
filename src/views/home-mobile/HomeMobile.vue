@@ -438,6 +438,7 @@ export default {
       element.classList.add("pointer-white");
     });
     document.addEventListener("page-loaded", () => {
+      console.log("page-loaded from home-mobile");
       this.isPageLoaded = true;
       this.startAnimations();
     });

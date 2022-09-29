@@ -617,6 +617,7 @@ export default {
       element.classList.add("pointer-gold");
     });
     document.addEventListener("page-loaded", () => {
+      console.log("page-loaded from home");
       this.isPageLoaded = true;
       this.startAnimations();
     });

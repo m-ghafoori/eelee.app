@@ -24,10 +24,12 @@
     const pageLoaded = new CustomEvent('page-loaded', {
       bubbles: true
     });
-
-    window.addEventListener("load", () => {
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        console.log("index: complete");
         document.dispatchEvent(pageLoaded);
-    })
+      }
+    }
 
 
   </script>
