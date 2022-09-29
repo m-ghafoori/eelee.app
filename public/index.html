@@ -20,6 +20,17 @@
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
+  <script>
+    const pageLoaded = new CustomEvent('page-loaded', {
+      bubbles: true
+    });
+
+    window.addEventListener("load", () => {
+        document.dispatchEvent(pageLoaded);
+    })
+
+
+  </script>
 </body>
 
 </html>

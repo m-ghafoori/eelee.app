@@ -1,6 +1,8 @@
 <template>
   <div id="idpm-body" class="pointer-gold" @click="skipInitAnimations">
-    <div class="loading idpm-loading" v-if="!isPageLoaded">LOADING ...</div>
+    <div class="loading" v-if="!isPageLoaded">
+        <BreedingRhombusSpinner />
+    </div>
     <div
       ref="mainContainer"
       id="idpm-mainContainer"
@@ -130,6 +132,7 @@
 
 <script>
 // @ is an alias to /src
+import BreedingRhombusSpinner from "@/components/Loading/BreedingRhombusSpinner.vue";
 import Footer from "@/components/Footer/Footer.vue";
 import DonationStone from "./components/DonationStone.vue";
 
@@ -137,6 +140,7 @@ export default {
   name: "HomeMobile",
 
   components: {
+    BreedingRhombusSpinner,
     Footer,
     DonationStone,
   },
@@ -433,13 +437,10 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-white");
     });
-    document.onreadystatechange = () => {
-      console.log(this.readyStateCounter, document.readyState);
-      if (this.readyStateCounter == 10) {
-        this.isPageLoaded = true;
-        this.startAnimations();
-      } else this.readyStateCounter++;
-    };
+    document.addEventListener("page-loaded", () => {
+      this.isPageLoaded = true;
+      this.startAnimations();
+    });
   },
 };
 </script>

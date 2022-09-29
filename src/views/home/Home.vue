@@ -1,6 +1,8 @@
 <template>
   <div id="idph-bodyDiv" class="pointer-white">
-    <div class="loading idph-loading" v-if="!isPageLoaded">LOADING ...</div>
+    <div class="loading" v-if="!isPageLoaded">
+      <OrbitSpinner />
+    </div>
     <div id="idph-mainContainer" class="invisible d-flex flex-column">
       <header
         id="idph-header"
@@ -95,12 +97,14 @@
 <script>
 // @ is an alias to /src
 
+import OrbitSpinner from "@/components/Loading/OrbitSpinner.vue";
 import Footer from "@/components/Footer/Footer.vue";
 
 export default {
   name: "Home",
 
   components: {
+    OrbitSpinner,
     Footer,
   },
   data() {
@@ -586,13 +590,6 @@ export default {
 
   created() {
     window.addEventListener("resize", this.onresize);
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        console.log(document.readyState);
-        this.isPageLoaded = true;
-        this.startAnimations();
-      }
-    };
   },
 
   mounted() {
@@ -618,6 +615,10 @@ export default {
     document.querySelectorAll(".hoverable").forEach((element) => {
       element.classList.remove("hoverable");
       element.classList.add("pointer-gold");
+    });
+    document.addEventListener("page-loaded", () => {
+      this.isPageLoaded = true;
+      this.startAnimations();
     });
   },
 

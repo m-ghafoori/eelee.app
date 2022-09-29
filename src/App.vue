@@ -13,16 +13,6 @@ export default {
       isLoaded: false,
     };
   },
-
-  // mounted() {
-  //   // window.addEventListener("loadstart", () => {
-
-  //   // })
-  //   window.addEventListener("load", () => {
-  //     console.log("loaded");
-  //       this.isLoaded = true;
-  //   });
-  // },
 };
 </script>
 

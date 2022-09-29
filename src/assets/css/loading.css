@@ -11,34 +11,4 @@
   left: 0;
   z-index: 999;
   background: transparent;
-  font-size: calc(2vw + 2vh);
-  font-weight: 100;
-  letter-spacing: 2.5vw;
-  text-align: center;
-  animation: loading 2s infinite linear both;
-}
-
-.idph-loading {
-  color: #f2510b;
-}
-
-.idpm-loading {
-  color: #a2e5ff;
-}
-
-@keyframes loading {
-  0% {
-    opacity: 1;
-    filter: saturate(3);
-  }
-
-  50% {
-    opacity: 0.4;
-    filter: saturate(0.9);
-  }
-
-  100% {
-    opacity: 1;
-    filter: saturate(3);
-  }
 }
