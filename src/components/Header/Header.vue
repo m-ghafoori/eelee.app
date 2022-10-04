@@ -106,6 +106,7 @@ export default {
         el.addEventListener("mousedown", this.onMouseDown);
       }
     });
+    console.log("mount header");
   },
 };
 </script>

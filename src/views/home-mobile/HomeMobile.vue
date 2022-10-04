@@ -442,6 +442,7 @@ export default {
       this.isPageLoaded = true;
       this.startAnimations();
     });
+    console.log("mount home-mobile", Date.now());
   },
 };
 </script>

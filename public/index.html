@@ -20,17 +20,30 @@
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script>
     const pageLoaded = new CustomEvent('page-loaded', {
       bubbles: true
     });
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        console.log("index: complete");
-        document.dispatchEvent(pageLoaded);
-      }
+    const recursiveChildOnload = (node) => {
+      node.onload = () => {console.log(node, "loaded", Date.now())};
+      if (node.hasChildNodes) node.childNodes.forEach(child => recursiveChildOnload(child))
     }
-
+    window.addEventListener("load", () => {
+      console.log("window onload", Date.now());
+    });
+     recursiveChildOnload(document);
+    document.body.onload = () => {
+      // if (document.readyState == "complete") {
+        console.log("body onload", Date.now());
+        document.dispatchEvent(pageLoaded);
+      // }
+    }
+    $(document).ajaxStop(() => {
+      console.log("jq ajaxStop", Date.now());
+    })
 
   </script>
 </body>

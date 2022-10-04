@@ -40,6 +40,10 @@ export default {
       };
     },
   },
+
+  mounted() {
+    console.log("mount orbit");
+  },
 };
 </script>
 

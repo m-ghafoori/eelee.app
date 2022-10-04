@@ -15,6 +15,7 @@ export default {
   },
 
   mounted() {
+    console.log("mount app", Date.now());
     console.log(this.isLoaded);
     if (!this.isLoaded) {
       this.isLoaded = !this.isLoaded;

@@ -202,6 +202,7 @@ export default {
     this.onresize();
   },
   mounted() {
+    console.log("mount footer", Date.now());
     this.html = document.body.parentElement;
     this.footer = document.querySelector(".footer");
     this.footerNav = document.querySelector(".footer-nav");

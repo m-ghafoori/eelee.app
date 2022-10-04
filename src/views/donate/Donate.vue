@@ -120,6 +120,7 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-gold");
     });
+    console.log("mount donate", Date.now());
   },
 };
 </script>

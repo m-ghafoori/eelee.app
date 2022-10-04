@@ -621,6 +621,7 @@ export default {
       this.isPageLoaded = true;
       this.startAnimations();
     });
+    console.log("mount home", Date.now());
   },
 
   beforeUnmount() {
