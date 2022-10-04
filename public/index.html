@@ -27,19 +27,9 @@
     const pageLoaded = new CustomEvent('page-loaded', {
       bubbles: true
     });
-    const recursiveChildOnload = (node) => {
-      node.onload = () => {console.log(node, "loaded", Date.now())};
-      if (node.hasChildNodes) node.childNodes.forEach(child => recursiveChildOnload(child))
-    }
-    window.addEventListener("load", () => {
-      console.log("window onload", Date.now());
-    });
-     recursiveChildOnload(document);
     document.body.onload = () => {
-      // if (document.readyState == "complete") {
         console.log("body onload", Date.now());
         document.dispatchEvent(pageLoaded);
-      // }
     }
     $(document).ajaxStop(() => {
       console.log("jq ajaxStop", Date.now());
