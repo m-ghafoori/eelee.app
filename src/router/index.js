@@ -15,13 +15,6 @@ const routes = [
       }
     }
   },
-  {
-    path: '/:catchAll(.*)',
-    name: 'notfound',
-    component: () => {
-      return import('../views/NotFound.vue')
-    }
-  },
 ]
 
 const router = createRouter({
