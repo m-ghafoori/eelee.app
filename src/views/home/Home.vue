@@ -10,55 +10,55 @@
         @mouseenter="headerMouseEnter"
         @mouseleave="headerMouseLeave"
       >
-        <router-link
+        <a
           id="idph-logo"
           class="invisible hoverable animate__animated"
-          to="/portfolio"
+          href="/portfolio"
           @mouseenter="logoMouseEnter"
           @mouseleave="logoMouseLeave"
-          >EELee</router-link
+          >EELee</a
         >
         <div id="idph-headerNavbar" class="invisible d-flex align-items-center">
-          <router-link
+          <a
             id="idph-appNav"
             class="idph-nav-link hoverable animate__animated"
-            to="/applications"
+            href="/applications"
           >
             App
-          </router-link>
-          <router-link
+          </a>
+          <a
             id="idph-portNav"
             class="idph-nav-link hoverable animate__animated"
-            to="/portfolio"
+            href="/portfolio"
           >
             Portfolio
-          </router-link>
-          <router-link
+          </a>
+          <a
             id="idph-donateNav"
             class="idph-nav-link hoverable animate__animated"
-            to="/donate"
+            href="/donate"
           >
             Donate
-          </router-link>
-          <router-link
+          </a>
+          <a
             id="idph-orderNav"
             class="idph-nav-link hoverable animate__animated"
-            to="/order"
+            href="/order"
           >
             Let's App!
-          </router-link>
+          </a>
         </div>
       </header>
 
       <section id="idph-showcase" class="showcase">
         <div id="idph-orderDiv" class="animate__animated animate__slower">
-          <router-link
+          <a
             id="idph-orderLink"
             class="invisible hoverable animate__animated"
-            to="/order"
+            href="/order"
             @mouseenter="orderLinkMouseEnter"
             @mouseleave="orderLinkMouseLeave"
-            >Need A Modern Website ???</router-link
+            >Need A Modern Website ???</a
           >
           <span id="idph-orderMessage" class="invisible animate__animated"
             >Click To Get One . . .</span
@@ -77,6 +77,7 @@
       </section>
 
       <Footer
+        :reload="true"
         iconBasicColor="#0072b1"
         iconHoverColor="#f9f9f9"
         noteMainColor="#1369b9"
@@ -287,10 +288,17 @@ export default {
     mainContainerInitAppear() {
       this.mainContainerInitRef = setTimeout(() => {
         requestAnimationFrame(() => {
+          document.querySelectorAll(".showcase, .footer").forEach((el) => {
+            el.style.visibility = "visible";
+          });
           this.mainContainer.classList.remove("invisible");
-          this.mainContainer.classList.add("d-flex", "flex-column", "puff-in");
+          this.mainContainer.classList.add(
+            "d-flex",
+            "flex-column",
+            "img-focus-in"
+          );
         });
-      }, 1000);
+      }, 300);
     },
 
     // Initial Header Animations
@@ -307,8 +315,8 @@ export default {
               this.headerNavsList[i].classList.add("tracking-in-expand");
             }
           });
-        }, 5300);
-      }, 3500);
+        }, 3300);
+      }, 1500);
     },
 
     // Sets the first wind effect on header
@@ -353,7 +361,7 @@ export default {
             });
           }, 6000);
         }, 32000);
-      }, 7500);
+      }, 3000);
     },
 
     // Initial orderLink Animation
@@ -400,10 +408,17 @@ export default {
             );
           });
         }, 25000);
-      }, 11500);
+      }, 7500);
     },
 
     // Event Handlers
+
+    onPageLoad() {
+      if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        this.startAnimations();
+      }
+    },
 
     onresize() {
       this.mainContainer.style.setProperty("width", `${window.innerWidth}px`);
@@ -590,6 +605,7 @@ export default {
 
   created() {
     window.addEventListener("resize", this.onresize);
+    document.addEventListener("readystatechange", this.onPageLoad);
   },
 
   mounted() {
@@ -616,12 +632,6 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-gold");
     });
-    document.addEventListener("page-loaded", () => {
-      console.log("page-loaded from home");
-      this.isPageLoaded = true;
-      this.startAnimations();
-    });
-    console.log("mount home", Date.now());
   },
 
   beforeUnmount() {

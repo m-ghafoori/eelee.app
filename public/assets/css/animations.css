@@ -1253,8 +1253,13 @@
 }
 
 .text-focus-in {
-    -webkit-animation: text-focus-in 3.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    animation: text-focus-in 3.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    -webkit-animation: text-focus-in 2.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-focus-in 2.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+.img-focus-in {
+    -webkit-animation: text-focus-in 2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-focus-in 2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
 /**
@@ -1413,44 +1418,6 @@
 .tracking-out-contract-bck-bottom {
     -webkit-animation: tracking-out-contract-bck-bottom 0.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     animation: tracking-out-contract-bck-bottom 0.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-}
-
-/**
-   * ----------------------------------------
-   * animation puff-in
-   * ----------------------------------------
-   */
-@-webkit-keyframes puff-in {
-    0% {
-        -webkit-filter: blur(0.4vw);
-        filter: blur(0.4vw);
-        opacity: 0;
-    }
-
-    100% {
-        -webkit-filter: blur(0vw);
-        filter: blur(0vw);
-        opacity: 1;
-    }
-}
-
-@keyframes puff-in {
-    0% {
-        -webkit-filter: blur(0.4vw);
-        filter: blur(0.4vw);
-        opacity: 0;
-    }
-
-    100% {
-        -webkit-filter: blur(0vw);
-        filter: blur(0vw);
-        opacity: 1;
-    }
-}
-
-.puff-in {
-    -webkit-animation: puff-in 2s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-    animation: puff-in 2s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 }
 
 /* End of Home Page Animations */

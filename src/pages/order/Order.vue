@@ -1,5 +1,8 @@
 <template>
   <div id="idpo-body" class="body" @click="onresize">
+    <div class="loading" v-if="!isPageLoaded">
+      <FingerprintSpinner />
+    </div>
     <Header pageRoute="/order" />
     <section
       ref="showcase"
@@ -199,6 +202,7 @@
 </template>
 
 <script>
+import FingerprintSpinner from "@/components/Loading/FingerprintSpinner.vue";
 import Header from "@/components/Header/Header.vue";
 import Footer from "@/components/Footer/Footer.vue";
 import Slideshow from "@/components/Slideshow/Slideshow.vue";
@@ -208,6 +212,7 @@ export default {
   name: "Order",
 
   components: {
+    FingerprintSpinner,
     Header,
     Footer,
     Slideshow,
@@ -217,6 +222,7 @@ export default {
   data() {
     return {
       windowWidth: Number,
+      isPageLoaded: false,
       clientRequest: "",
       clientEmail: "",
       projectBudget: 4000,
@@ -278,12 +284,16 @@ export default {
   methods: {
     // Event Handlers
 
+    onPageLoad() {
+      if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        document.querySelectorAll(".header, .showcase, .footer").forEach(el => {
+          el.style.visibility = "visible";
+        });
+      }
+    },
+
     onresize() {
-      console.log(
-        this.$refs.showcase.offsetWidth,
-        document.querySelector(".slideshow-next").offsetWidth,
-        document.querySelector(".slideshow-previous").offsetWidth
-      );
       if (window.innerWidth / window.innerHeight <= 1) {
         document.querySelectorAll(".idpo-input-field").forEach((element) => {
           element.classList.add("flex-column", "align-items-start");
@@ -352,6 +362,7 @@ export default {
 
   created() {
     window.addEventListener("resize", this.onresize);
+    document.addEventListener("readystatechange", this.onPageLoad)
   },
 
   mounted() {

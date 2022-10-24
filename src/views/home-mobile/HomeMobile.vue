@@ -1,7 +1,7 @@
 <template>
   <div id="idpm-body" class="pointer-gold" @click="skipInitAnimations">
     <div class="loading" v-if="!isPageLoaded">
-        <BreedingRhombusSpinner />
+      <BreedingRhombusSpinner />
     </div>
     <div
       ref="mainContainer"
@@ -24,9 +24,9 @@
         class="d-flex flex-column justify-content-start align-items-center"
       >
         <div ref="orderDiv" id="idpm-orderDiv" class="invisible">
-          <router-link to="/order" title="Click to Order" class="hoverable">
+          <a href="/order" title="Click to Order" class="hoverable">
             Need A Web App ???
-          </router-link>
+          </a>
         </div>
 
         <div
@@ -39,19 +39,19 @@
               id="idpm-navbar"
               class="invisible d-flex flex-column justify-content-end"
             >
-              <router-link
+              <a
                 id="idpm-portNav"
                 title="App Sample"
-                to="/applications"
+                href="/applications"
                 class="idpm-nav-link footer-shadow hoverable"
-                >App</router-link
+                >App</a
               >
-              <router-link
+              <a
                 id="idpm-appNav"
                 title="Portfolio"
-                to="/portfolio"
+                href="/portfolio"
                 class="idpm-nav-link footer-shadow hoverable"
-                >Portfolio</router-link
+                >Portfolio</a
               >
             </div>
             <span v-show="isPageLoaded" id="idpm-skipAnimations" class=""
@@ -60,13 +60,13 @@
           </div>
 
           <div id="idpm-donateDiv" class="invisible">
-            <router-link
-              to="/donate"
+            <a
+              href="/donate"
               id="idpm-donateLink"
               class="hoverable d-flex justify-content-center"
             >
               <DonationStone />
-            </router-link>
+            </a>
           </div>
 
           <div class="d-flex flex-column justify-content-between">
@@ -74,11 +74,11 @@
               id="idpm-orderCentral"
               class="d-flex justify-content-around align-items-center"
             >
-              <router-link
+              <a
                 ref="orderRight"
                 id="idpm-orderRight"
                 title="Order Now!"
-                to="/order"
+                href="/order"
                 class="footer-shadow hoverable align-self-start"
               >
                 <span
@@ -99,20 +99,21 @@
                   class="invisible"
                   >RDER</span
                 >
-              </router-link>
+              </a>
             </div>
-            <router-link
+            <a
               id="idpm-footerNote"
-              to="/portfolio"
+              href="/portfolio"
               title="About Us"
               class="hoverable"
-              >&copy; 2022 - EELee App Design</router-link
+              >&copy; 2022 - EELee App Design</a
             >
           </div>
         </div>
       </section>
 
       <Footer
+        :reload="true"
         iconBasicColor="#f00"
         iconGradientColor="#ffe56f"
         iconHoverColor="#ffe56f"
@@ -176,6 +177,7 @@ export default {
       mainContainer: Object,
       donateLink: Object,
       skipAnimations: Object,
+      footer: Object,
 
       // Arrays
       initVisibleElemsList: Array,
@@ -279,6 +281,7 @@ export default {
           });
         });
         requestAnimationFrame(() => {
+          this.footer.style.visibility = "visible";
           this.$refs.orderDiv.classList.remove("order-central-appear");
           this.$refs.orderDiv.classList.add("order-central-shine");
         });
@@ -289,6 +292,7 @@ export default {
     // Initial Header Cloud Move Effect
     headerCloudMove() {
       requestAnimationFrame(() => {
+        this.footer.style.visibility = "visible";
         this.$refs.headerCover.classList.add("cloud-move");
       });
       this.cloudMoveRef = setTimeout(() => {
@@ -350,7 +354,7 @@ export default {
             }, 1500);
           });
         }, 2000);
-      }, 8000);
+      }, 7000);
     },
 
     // Initial orderDiv Appearance
@@ -384,7 +388,7 @@ export default {
             this.$refs.orderRightBottom.classList.add("star-appear");
           });
         }, 2500);
-      }, 13000);
+      }, 12500);
     },
 
     // Initial Footer Appearance
@@ -414,12 +418,20 @@ export default {
           this.$refs.navbar.classList.add("star-appear");
         });
         this.areAnimationsOver = true;
-      }, 17000);
+      }, 16500);
+    },
+
+    // Event Handlers
+
+    onPageLoad() {
+      this.isPageLoaded = true;
+      this.startAnimations();
     },
   },
 
   created() {
     window.addEventListener("resize", this.onresize);
+    document.addEventListener("readystatechange", this.onPageLoad);
   },
 
   mounted() {
@@ -428,6 +440,7 @@ export default {
     this.mainContainer.style.setProperty("height", `${window.innerHeight}px`);
     this.donateDiv = document.querySelector("#idpm-donateDiv");
     this.skipAnimations = document.querySelector("#idpm-skipAnimations");
+    this.footer = document.querySelector(".footer");
     this.initVisibleElemsList = [
       this.$refs.bodyCover,
       this.$refs.headerCover,
@@ -437,12 +450,6 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-white");
     });
-    document.addEventListener("page-loaded", () => {
-      console.log("page-loaded from home-mobile");
-      this.isPageLoaded = true;
-      this.startAnimations();
-    });
-    console.log("mount home-mobile", Date.now());
   },
 };
 </script>

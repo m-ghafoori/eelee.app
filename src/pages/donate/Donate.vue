@@ -1,5 +1,8 @@
 <template>
   <div id="idpd-body" class="body pointer-white">
+    <div class="loading" v-if="!isPageLoaded">
+      <FingerprintSpinner color="#ffbf1f" />
+    </div>
     <Header
       pageRoute="/donate"
       logoMainColor="#ffbf1f"
@@ -51,6 +54,7 @@
 </template>
 
 <script>
+import FingerprintSpinner from "@/components/Loading/FingerprintSpinner.vue";
 import Header from "@/components/Header/Header.vue";
 import Footer from "@/components/Footer/Footer.vue";
 import InputNumber from "@/components/Inputs/InputNumber.vue";
@@ -59,12 +63,14 @@ export default {
   name: "Donate",
 
   components: {
+    FingerprintSpinner,
     Header,
     Footer,
     InputNumber,
   },
   data() {
     return {
+      isPageLoaded: false,
       donationAmount: 3,
 
       // Elements Object Refs
@@ -120,15 +126,20 @@ export default {
       element.classList.remove("hoverable");
       element.classList.add("pointer-gold");
     });
-    console.log("mount donate", Date.now());
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        document
+          .querySelectorAll(".header, .showcase, .footer")
+          .forEach((el) => {
+            el.style.visibility = "visible";
+          });
+      }
+    };
   },
 };
 </script>
 
 <style scoped>
 @import "assets/css/donate.css";
-
-.input-wrapper {
-  font-size: calc(1.5vw + 1.5vh);
-}
 </style>

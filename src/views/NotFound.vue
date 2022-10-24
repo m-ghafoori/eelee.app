@@ -1,5 +1,8 @@
 <template>
   <div id="idpn-body" class="body">
+    <div class="loading" v-if="!isPageLoaded">
+      <FingerprintSpinner />
+    </div>
     <Header />
     <section class="showcase">
       <h1>Page Not Found</h1>
@@ -9,14 +12,38 @@
 </template>
 
 <script>
+import FingerprintSpinner from "@/components/Loading/FingerprintSpinner.vue";
 import Header from "@/components/Header/Header.vue";
 import Footer from "@/components/Footer/Footer.vue";
 
 export default {
   name: "NotFound",
   components: {
+    FingerprintSpinner,
     Header,
     Footer,
+  },
+  data() {
+    return {
+      isPageLoaded: false,
+    };
+  },
+  methods: {
+    // Event Handlers
+
+    onPageLoad() {
+      if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        document
+          .querySelectorAll(".header, .showcase, .footer")
+          .forEach((el) => {
+            el.style.visibility = "visible";
+          });
+      }
+    },
+  },
+  created() {
+    document.addEventListener("readystatechange", this.onPageLoad);
   },
   mounted() {
     document.querySelectorAll(".hoverable").forEach((element) => {

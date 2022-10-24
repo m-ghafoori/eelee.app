@@ -41,19 +41,19 @@ a {
 /* Mouse Pointers */
 
 .pointer-white {
-    cursor: url('/src/assets/images/svg/pointer-white.svg'), auto !important;
+    cursor: url('../images/svg/pointer-white.svg'), auto !important;
 }
 
 .pointer-gold {
-    cursor: url('/src/assets/images/svg/pointer-gold.svg'), auto !important;
+    cursor: url('../images/svg/pointer-gold.svg'), auto !important;
 }
 
 .pointer-maroon {
-    cursor: url('/src/assets/images/svg/pointer-maroon.svg'), auto !important;
+    cursor: url('../images/svg/pointer-maroon.svg'), auto !important;
 }
 
 .pointer-green {
-    cursor: url('/src/assets/images/svg/pointer-green.svg'), auto !important;
+    cursor: url('../images/svg/pointer-green.svg'), auto !important;
 }
 
 .prevent-select {
@@ -159,12 +159,13 @@ a {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    cursor: url('/src/assets/images/svg/pointer-maroon.svg'), auto;
+    cursor: url('../images/svg/pointer-maroon.svg'), auto;
 }
 
 .showcase {
     display: flex;
     flex-direction: column;
+    visibility: hidden;
 }
 
 .digital {

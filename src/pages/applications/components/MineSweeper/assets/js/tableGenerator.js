@@ -151,11 +151,3 @@ function startNewGame(rows, cols, mines) {
 }
 
 module.exports = startNewGame;
-
-// startNewGame(4,4,4);
-// console.log(cellsRowFormatArray[0])
-// console.log(cellsRowFormatArray[1])
-// console.log(cellsRowFormatArray[2])
-
-// startNewGame(15,15,15);
-// console.log(cellsRowFormatArray)

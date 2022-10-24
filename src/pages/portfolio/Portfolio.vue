@@ -1,5 +1,8 @@
 <template>
   <div id="idpp-body" class="body">
+    <div class="loading" v-if="!isPageLoaded">
+      <FingerprintSpinner />
+    </div>
     <Header pageRoute="/portfolio" />
     <section id="idpp-showcase" class="showcase">
       <div
@@ -214,18 +217,21 @@
 </template>
 
 <script>
+import FingerprintSpinner from "@/components/Loading/FingerprintSpinner.vue";
 import Header from "@/components/Header/Header.vue";
 import Footer from "@/components/Footer/Footer.vue";
 
 export default {
   name: "Portfolio",
   components: {
+    FingerprintSpinner,
     Header,
     Footer,
   },
   data() {
     return {
       // Loading Variables
+      isPageLoaded: false,
       loadMain: false,
       loadHome: false,
       loadApp: false,
@@ -293,6 +299,19 @@ export default {
   methods: {
     // Event Handlers
 
+    onPageLoad() {
+            if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        document.body.parentElement.style.overflowY = "auto";
+        document.querySelectorAll(".header, .showcase, .footer").forEach(el => {
+          el.style.visibility = "visible";
+        });
+        setTimeout(() => {
+          this.onLoad();
+        }, 500);
+      }
+    },
+
     onLoad() {
       this.loadMain = true;
       this.onScroll();
@@ -341,9 +360,11 @@ export default {
   created() {
     window.addEventListener("resize", this.onScroll);
     window.addEventListener("scroll", this.onScroll);
+    document.addEventListener("readystatechange", this.onPageLoad);
   },
 
   mounted() {
+    document.body.parentElement.style.overflowY = "hidden";
     this.sectionPage = document
       .getElementsByClassName("idpp-section-page")
       .item(0);
@@ -360,11 +381,10 @@ export default {
       document.querySelector("#idpp-portTxtImgContainer").style.lineHeight =
         "0.86vw";
     }
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        this.onLoad();
-      }, 2000);
-    });
+  },
+
+  beforeUnmount() {
+    document.body.parentElement.style.overflowY = "auto";
   },
 };
 </script>

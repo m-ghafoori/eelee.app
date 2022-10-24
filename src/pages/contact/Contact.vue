@@ -1,5 +1,8 @@
 <template>
   <div id="idpc-body" class="body">
+    <div class="loading" v-if="!isPageLoaded">
+      <FingerprintSpinner />
+    </div>
     <Header pageRoute="/contact" />
     <section id="idpc-showcase" class="showcase align-items-start">
       <div id="idpc-messagereceived" class="d-none">
@@ -10,7 +13,12 @@
       <div id="idpc-contactForm" class="d-flex flex-column align-items-start">
         <p id="idpc-contactPar">
           You can fill the form below or email us to
-          <span id="idpc-contactEmail">"eelee.app@gmail.com"</span>
+          <a
+            id="idpc-contactEmail"
+            href="mailto:manager@eelee.app"
+            class="hoverable"
+            >"manager@eelee.app"</a
+          >
         </p>
         <div class="idpc-clientInfo">
           <span>Name:</span>
@@ -73,12 +81,14 @@
 </template>
 
 <script>
+import FingerprintSpinner from "@/components/Loading/FingerprintSpinner.vue";
 import Header from "@/components/Header/Header.vue";
 import Footer from "@/components/Footer/Footer.vue";
 
 export default {
   name: "Contact",
   components: {
+    FingerprintSpinner,
     Header,
     Footer,
   },
@@ -90,6 +100,7 @@ export default {
       clientMessage: "",
       fileName: "",
       attachedFile: { name: "" },
+      isPageLoaded: false,
       showNoNameError: false,
       showNoEmailError: false,
       showInvalidEmailError: false,
@@ -188,6 +199,16 @@ export default {
     },
 
     // Event Handlers
+    onPageLoad() {
+      if (document.readyState == "complete") {
+        this.isPageLoaded = true;
+        document
+          .querySelectorAll(".header, .showcase, .footer")
+          .forEach((el) => {
+            el.style.visibility = "visible";
+          });
+      }
+    },
     onFileUpload($event) {
       this.attachedFile = $event.target.files[0];
       this.fileName = this.attachedFile.name;
@@ -227,6 +248,10 @@ export default {
         this.messagereceived.classList.remove("d-none");
       }
     },
+  },
+
+  created() {
+    document.addEventListener("readystatechange", this.onPageLoad);
   },
 
   mounted() {
