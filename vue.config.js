@@ -9,7 +9,7 @@ module.exports = {
       },
       portfolio: {
         entry: "./src/pages/portfolio/main.js",
-        template: "public/index.html",
+        template: "public/portfolio.html",
         filename: "portfolio.html",
         title: "EELee - Portfolio",
         chunks: ["chunk-vendors", "chunk-common", "portfolio"],
