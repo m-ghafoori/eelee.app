@@ -24,7 +24,7 @@
         class="d-flex flex-column justify-content-start align-items-center"
       >
         <div ref="orderDiv" id="idpm-orderDiv" class="invisible">
-          <a href="eelee.app/order" title="Click to Order" class="hoverable">
+          <a href="/order" title="Click to Order" class="hoverable">
             Need A Web App ???
           </a>
         </div>
@@ -42,14 +42,14 @@
               <a
                 id="idpm-portNav"
                 title="App Sample"
-                href="eelee.app/applications"
+                href="/applications"
                 class="idpm-nav-link footer-shadow hoverable"
                 >App</a
               >
               <a
                 id="idpm-appNav"
                 title="Portfolio"
-                href="eelee.app/portfolio"
+                href="/portfolio"
                 class="idpm-nav-link footer-shadow hoverable"
                 >Portfolio</a
               >
@@ -61,7 +61,7 @@
 
           <div id="idpm-donateDiv" class="invisible">
             <a
-              href="eelee.app/donate"
+              href="/donate"
               id="idpm-donateLink"
               class="hoverable d-flex justify-content-center"
             >
@@ -78,7 +78,7 @@
                 ref="orderRight"
                 id="idpm-orderRight"
                 title="Order Now!"
-                href="eelee.app/order"
+                href="/order"
                 class="footer-shadow hoverable align-self-start"
               >
                 <span
@@ -103,7 +103,7 @@
             </div>
             <a
               id="idpm-footerNote"
-              href="eelee.app/portfolio"
+              href="/portfolio"
               title="About Us"
               class="hoverable"
               >&copy; 2022 - EELee App Design</a
